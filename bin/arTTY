@@ -1,0 +1,168 @@
+#!/usr/bin/env ruby
+
+require "arTTY"
+require "hilighter"
+require "io/wait"
+require "optparse"
+require "scoobydoo"
+
+class ArTTYExit
+    GOOD = 0
+    INVALID_OPTION = 1
+    INVALID_ARGUMENT = 2
+    MISSING_ARGUMENT = 3
+    EXTRA_ARGUMENTS = 4
+    EXCEPTION = 5
+    AMBIGUOUS_ARGUMENT = 6
+    UNSUPPORTED_ART = 7
+end
+
+def parse(args)
+    options = Hash.new
+    options["art"] = "none"
+    options["fortune"] = false
+    options["sysinfo"] = Array.new
+    options["verbose"] = false
+
+    info = "Art for your TTY."
+
+    begin
+        supported = ArTTY.art.collect do |art|
+            art.new.name
+        end.sort
+    rescue #=> e
+        # puts e.message
+    end
+
+    parser = OptionParser.new do |opts|
+        opts.summary_width = 30
+
+        opts.banner = "Usage: #{File.basename($0)} [OPTIONS] [art]"
+
+        opts.on("", "DESCRIPTION")
+
+        info.scan(/\S.{0,76}\S(?=\s|$)|\S+/).each do |line|
+            opts.on("    #{line}")
+        end
+
+        opts.on("", "OPTIONS")
+
+        opts.on("-c", "--clear", "Clear screen first") do
+            system("clear")
+        end
+
+        opts.on("-f", "--fortune", "Display a fortune as well") do
+            options["fortune"] = true
+        end
+
+        opts.on("-h", "--help", "Display this help message") do
+            puts opts
+            exit ArTTYExit::GOOD
+        end
+
+        opts.on("-r", "--random", "Display random art") do
+            options["art"] = supported.delete_if do |art|
+                art == "none"
+            end.shuffle[0] || "none"
+        end
+
+        opts.on(
+            "--random-matching=PATTERN",
+            "Display random art matching PATTERN"
+        ) do |pattern|
+            options["art"] = supported.keep_if do |art|
+                !art.match(/#{pattern}/).nil?
+            end.shuffle[0] || "none"
+        end
+
+        opts.on("--supported", "Show supported art") do
+            begin
+                supported.each do |art|
+                    puts art
+                end
+            rescue #=> e
+                # puts e.message
+            end
+            exit ArTTYExit::GOOD
+        end
+
+        opts.on("-s", "--sysinfo", "Display system info as well") do
+            options["sysinfo"] = ArTTY::SystemInfo.new.info
+        end
+
+        opts.on(
+            "-v",
+            "--verbose",
+            "Show backtrace when error occurs"
+        ) do
+            options["verbose"] = true
+        end
+    end
+
+    begin
+        parser.parse!
+    rescue OptionParser::InvalidOption => e
+        puts e.message
+        puts parser
+        exit ArTTYExit::INVALID_OPTION
+    rescue OptionParser::InvalidArgument => e
+        puts e.message
+        puts parser
+        exit ArTTYExit::INVALID_ARGUMENT
+    rescue OptionParser::MissingArgument => e
+        puts e.message
+        puts parser
+        exit ArTTYExit::MISSING_ARGUMENT
+    rescue OptionParser::AmbiguousOption => e
+        puts e.message
+        puts parser
+        exit ArTTYExit::AMBIGUOUS_ARGUMENT
+    end
+
+    if (args.length == 1)
+        options["art"] = args[0]
+
+        if (!supported.include?(options["art"]))
+            puts parser
+            exit ArTTYExit::UNSUPPORTED_ART
+        end
+    elsif (args.length > 1)
+        puts parser
+        exit ArTTYExit::EXTRA_ARGUMENTS
+    end
+
+    return options
+end
+
+options = parse(ARGV)
+
+begin
+    art = ArTTY.get(options["art"], options["sysinfo"])
+    puts "\n#{art}\n" if (!art.to_s.empty?)
+    if (options["fortune"])
+        system("fortune -s") if (ScoobyDoo.where_are_you("fortune"))
+    end
+rescue Interrupt
+    # ^C
+    # Exit gracefully
+rescue Errno::EPIPE
+    # Do nothing. This can happen if piping to another program such as
+    # less. Usually if less is closed before we're done with STDOUT.
+rescue Exception => e
+    $stderr.puts "Oops! Looks like an error has occured! If the " \
+        "error persists, file a bug at:".wrap
+    $stderr.puts
+    $stderr.puts "    https://gitlab.com/mjwhitta/arTTY/issues"
+    $stderr.puts
+    $stderr.puts "Maybe the message below will help. If not, you " \
+        "can use the --verbose flag to get a backtrace.".wrap
+
+    $stderr.puts e.message.white.on_red
+    if (options["verbose"])
+        e.backtrace.each do |line|
+            $stderr.puts line.light_yellow
+        end
+    end
+    exit ArTTYExit::EXCEPTION
+end
+exit ArTTYExit::GOOD
