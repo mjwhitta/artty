@@ -2,6 +2,8 @@
 
 Art for your TTY.
 
+![Screenshot](imgs/screenshot.png)
+
 ## How to install
 
 Open a terminal and run the following:
@@ -29,11 +31,12 @@ if [[ -n $(command -v arTTY) ]]; then
 fi
 ```
 
-Then I can put things like the following in `~/.config/arTTY/rc`:
+Then I can put things like the following in `$HOME/.config/arTTY/rc`:
 
 - `zelda-shield-ocarina-of-time`
 - `--random`
 - `--random-matching=pkmn-`
+- `--random-matching=mm(bn)?-`
 
 And if the file doesn't exist, it defaults to using `none`. Use the
 `--supported` flag to see all included artwork.
@@ -42,8 +45,9 @@ And if the file doesn't exist, it defaults to using `none`. Use the
 
 - [Source](https://gitlab.com/mjwhitta/arTTY)
 - [Mirror](https://github.com/mjwhitta/arTTY)
-- [RubyGems](https://rubygems.org/gems/ruby-arTTY)
+- [RubyGems](https://rubygems.org/gems/arTTY)
 
 ## TODO
 
+- Lots more art
 - RDoc
