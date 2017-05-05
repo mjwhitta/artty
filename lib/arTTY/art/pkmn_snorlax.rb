@@ -1,7 +1,4 @@
 # encoding: utf-8
-
-require "hilighter"
-
 class ArTTY::Art::PkmnSnorlax < ArTTY::Art
     def color_map
         return [

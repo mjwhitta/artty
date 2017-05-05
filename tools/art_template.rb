@@ -93,9 +93,6 @@ begin
 
     File.open(file, "w") do |f|
         f.write("# encoding: utf-8\n")
-        f.write("\n")
-        f.write("require \"hilighter\"\n")
-        f.write("\n")
         f.write("class ArTTY::Art::#{claz} < ArTTY::Art\n")
         if (name.match(/-ascii$/))
             f.write("    def ascii_map\n")
