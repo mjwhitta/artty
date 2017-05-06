@@ -10,7 +10,8 @@ class ArTTY::SystemInfo
         if (Pathname.new("/proc/cpuinfo").exist?)
             File.read("/proc/cpuinfo").each_line do |line|
                 line.match(/name\s+:\s+(.+)/) do |m|
-                    return m[1].gsub(/\s+/, " ").gsub(/\(R\)/, "")
+                    out = m[1].gsub(/\((R|TM)\)| (@|CPU)/, "")
+                    return out.gsub(/\s+/, " ")
                 end
             end
         end
