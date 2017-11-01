@@ -27,7 +27,7 @@ class ArTTY::SystemInfo
     end
 
     def hostname
-        return %x(hostname -s).strip
+        return %x(hostname).split(".")[0].strip
     end
 
     def initialize

@@ -75,7 +75,7 @@ def parse(args)
             end.shuffle[0] || "none"
         end
 
-        opts.on("--supported", "Show supported art") do
+        opts.on("--ls", "--list-supported", "List supported art") do
             begin
                 supported.each do |art|
                     puts art
@@ -139,8 +139,8 @@ options = parse(ARGV)
 begin
     art = ArTTY.get(options["art"], options["sysinfo"])
     puts "\n#{art}\n" if (!art.to_s.empty?)
-    if (options["fortune"])
-        system("fortune -s") if (ScoobyDoo.where_are_you("fortune"))
+    if (options["fortune"] && ScoobyDoo.where_are_you("fortune"))
+        system("fortune -s")
     end
 rescue Interrupt
     # ^C
