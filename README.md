@@ -39,7 +39,7 @@ Then I can put things like the following in `$HOME/.config/arTTY/rc`:
 - `--random-matching=mm(bn)?-`
 
 And if the file doesn't exist, it defaults to using `none`. Use the
-`--supported` flag to see all included artwork.
+`--list-supported` flag to see all included artwork.
 
 ## Links
 
