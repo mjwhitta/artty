@@ -8,13 +8,13 @@ Art for your TTY.
 
 Open a terminal and run the following:
 
-```bash
+```
 $ gem install arTTY
 ```
 
 Or install from source:
 
-```bash
+```
 $ git clone https://gitlab.com/mjwhitta/arTTY.git
 $ cd arTTY
 $ bundle install && rake install
