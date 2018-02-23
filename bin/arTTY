@@ -97,6 +97,13 @@ def parse(args)
         ) do
             options["verbose"] = true
         end
+
+        opts.on("--version", "Show version") do
+            __FILE__.match(/arTTY-(\d+\.\d+\.\d+)/) do |m|
+                puts m[1]
+            end
+            exit ArTTYExit::GOOD
+        end
     end
 
     begin
