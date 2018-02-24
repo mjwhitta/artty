@@ -2,9 +2,9 @@
 class ArTTY::Art::ZeldaShieldOcarinaOfTime < ArTTY::Art
     def color_map
         return [
-            "                                          00   ",
+            "                                          00     λ",
             "                                         0110  ",
-            "                                         0110    λ",
+            "                                         0110  ",
             "                                        0110   ",
             "                                        0110   ",
             "                                       0110    ",

@@ -2,9 +2,9 @@
 class ArTTY::Art::MmMegamanOldschool < ArTTY::Art
     def color_map
         return [
-            "           000        ",
+            "           000          λ",
             "        0002220       ",
-            "       011100220        λ",
+            "       011100220      ",
             "      01111110000     ",
             "      011111102210    ",
             "     0211111110010    ",

@@ -40,7 +40,15 @@ class ArTTY::SystemInfo
     end
 
     def os
-        return [%x(uname -s).strip, %x(uname -m).strip].join(" ")
+        os = Pathname.new("/etc/os-release").expand_path
+        if (os.exist?)
+            File.read(os).each_line do |line|
+                line.match(/^PRETTY_NAME="(.+)"/) do |m|
+                    return "#{m[1]} #{%x(uname -m).strip}"
+                end
+            end
+        end
+        return "#{%x(uname -s).strip} #{%x(uname -m).strip}"
     end
 
     def ram
@@ -55,34 +63,49 @@ class ArTTY::SystemInfo
     def refresh
         @info.clear
 
-        @info.push(["Hostname:".blue, hostname.white].join(" "))
-        @info.push(["Uptime:".blue, uptime.white].join(" "))
-        @info.push(["OS:".blue, os.white].join(" "))
-        @info.push(["Kernel:".blue, kernel.white].join(" "))
+        @info.push("#{"Hostname:".blue} #{hostname.white}")
+        @info.push("#{"OS:".blue} #{os.white}")
+        @info.push("#{"Kernel:".blue} #{kernel.white}")
+        @info.push("#{"Uptime:".blue} #{uptime.white}")
+
+        t = tty
+        @info.push("#{"Shell:".blue} #{shell.white}")
+        @info.push("#{"TTY:".blue} #{t.white}") if (!t.empty?)
 
         c = cpu
-        @info.push(["CPU:".blue, c.white].join(" ")) if (!c.empty?)
-
         r = ram
-        @info.push(["RAM:".blue, r.white].join(" ")) if (!r.empty?)
-
-        @info.push(["Shell:".blue, shell.white].join(" "))
+        @info.push("#{"CPU:".blue} #{c.white}") if (!c.empty?)
+        @info.push("#{"RAM:".blue} #{r.white}") if (!r.empty?)
 
         root_fs = fs_usage
-        @info.push(["Root FS:".blue, root_fs.white].join(" "))
-
         home_fs = fs_usage(ENV["HOME"])
+        @info.push("#{"Root FS:".blue} #{root_fs.white}")
         if (home_fs != root_fs)
-            @info.push(["Home FS:".blue, home_fs.white].join(" "))
+            @info.push("#{"Home FS:".blue} #{home_fs.white}")
         end
+
+        @info.push("")
+        @info.push([
+            "   ".on_red,
+            "   ".on_green,
+            "   ".on_yellow,
+            "   ".on_blue,
+            "   ".on_magenta,
+            "   ".on_cyan,
+            "   ".on_white
+        ].join)
     end
 
     def shell
         return ENV["SHELL"]
     end
 
+    def tty
+        return %x(tty 2>/dev/null).strip
+    end
+
     def uptime
-        up = %x(uptime).match(/up\s+(.+),\s+\d+\suser/)[1].strip
+        up = %x(uptime -p).gsub(/^up /, "").strip
         return up.gsub(/\s+/, " ")
     end
 end

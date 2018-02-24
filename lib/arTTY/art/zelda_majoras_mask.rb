@@ -2,9 +2,9 @@
 class ArTTY::Art::ZeldaMajorasMask < ArTTY::Art
     def color_map
         return [
-            "                0                       0                ",
+            "                0                       0                  λ",
             "               0a0                     0a0               ",
-            "               0a0                     0a0                 λ",
+            "               0a0                     0a0               ",
             "               0a0                     0a0               ",
             "              0a660                   066a0              ",
             "              0a660                   066a0              ",

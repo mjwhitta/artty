@@ -2,9 +2,9 @@
 class ArTTY::Art::LinuxArch < ArTTY::Art
     def color_map
         return [
+            "                  1                    λ",
             "                  1                  ",
-            "                  1                  ",
-            "                 111                   λ",
+            "                 111                 ",
             "                 111                 ",
             "                11111                ",
             "                11111                ",
