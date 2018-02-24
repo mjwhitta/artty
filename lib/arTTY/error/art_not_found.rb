@@ -1,0 +1,6 @@
+class ArTTY::Error::ArtNotFound < ArTTY::Error
+    def initialize(art = nil)
+        super("Art not found: #{art}") if (art)
+        super("Art not found") if (art.nil?)
+    end
+end
