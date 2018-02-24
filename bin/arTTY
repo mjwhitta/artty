@@ -19,20 +19,14 @@ end
 
 def parse(args)
     options = Hash.new
+    options["action"] = "draw"
     options["art"] = "none"
+    options["clear"] = false
     options["fortune"] = false
     options["sysinfo"] = Array.new
     options["verbose"] = false
 
     info = "Art for your TTY."
-
-    begin
-        supported = ArTTY.art.collect do |art|
-            art.new.name
-        end.sort
-    rescue #=> e
-        # puts e.message
-    end
 
     parser = OptionParser.new do |opts|
         opts.summary_width = 30
@@ -48,7 +42,11 @@ def parse(args)
         opts.on("", "OPTIONS")
 
         opts.on("-c", "--clear", "Clear screen first") do
-            system("clear")
+            options["clear"] = true
+        end
+
+        opts.on("-d", "--demo", "Demo all supported art") do
+            options["action"] = "demo"
         end
 
         opts.on("-f", "--fortune", "Display a fortune as well") do
@@ -60,30 +58,20 @@ def parse(args)
             exit ArTTYExit::GOOD
         end
 
+        opts.on("--ls", "--list-supported", "List supported art") do
+            options["action"] = "list"
+        end
+
         opts.on("-r", "--random", "Display random art") do
-            options["art"] = supported.delete_if do |art|
-                art == "none"
-            end.shuffle[0] || "none"
+            options["action"] = "random"
         end
 
         opts.on(
             "--random-matching=PATTERN",
             "Display random art matching PATTERN"
         ) do |pattern|
-            options["art"] = supported.keep_if do |art|
-                !art.match(/#{pattern}/).nil?
-            end.shuffle[0] || "none"
-        end
-
-        opts.on("--ls", "--list-supported", "List supported art") do
-            begin
-                supported.each do |art|
-                    puts art
-                end
-            rescue #=> e
-                # puts e.message
-            end
-            exit ArTTYExit::GOOD
+            options["action"] = "random-matching"
+            options["art"] = pattern
         end
 
         opts.on("-s", "--sysinfo", "Display system info as well") do
@@ -128,11 +116,6 @@ def parse(args)
 
     if (args.length == 1)
         options["art"] = args[0]
-
-        if (!supported.include?(options["art"]))
-            puts parser
-            exit ArTTYExit::UNSUPPORTED_ART
-        end
     elsif (args.length > 1)
         puts parser
         exit ArTTYExit::EXTRA_ARGUMENTS
@@ -144,11 +127,41 @@ end
 options = parse(ARGV)
 
 begin
-    art = ArTTY.get(options["art"], options["sysinfo"])
-    puts "\n#{art}\n" if (!art.to_s.empty?)
-    if (options["fortune"] && ScoobyDoo.where_are_you("fortune"))
-        system("fortune -s")
+    case options["action"]
+    when "random"
+        options["art"] = ArTTY.art.keys.delete_if do |art|
+            art == "none"
+        end.shuffle[0] || "none"
+    when "random-matching"
+        options["art"] = ArTTY.art.keys.keep_if do |art|
+            !art.match(/#{options["art"]}/).nil?
+        end.shuffle[0] || "none"
     end
+
+    case options["action"]
+    when "demo"
+        ArTTY.art.keys.sort.each do |name|
+            art = ArTTY.get(name, options["sysinfo"]).draw
+            puts "\n#{art}\n" if (!art.empty?)
+        end
+    when "list"
+        puts ArTTY.art.keys.sort
+    else
+        art = ArTTY.get(options["art"], options["sysinfo"]).draw
+        system("clear") if (options["clear"])
+        puts "\n#{art}\n" if (!art.empty?)
+        if (options["fortune"] && ScoobyDoo.where_are_you("fortune"))
+            system("fortune -s")
+        end
+    end
+rescue ArTTY::Error => e
+    $stderr.puts e.message.white.on_red
+    if (options["verbose"])
+        e.backtrace.each do |line|
+            $stderr.puts line.yellow
+        end
+    end
+    exit ArTTYExit::EXCEPTION
 rescue Interrupt
     # ^C
     # Exit gracefully

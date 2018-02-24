@@ -61,29 +61,25 @@ class ArTTY::SystemInfo
     end
 
     def refresh
-        @info.clear
+        t = tty
+        c = cpu
+        r = ram
+        root_fs = fs_usage
+        home_fs = fs_usage(ENV["HOME"])
 
+        @info.clear
         @info.push("#{"Hostname:".blue} #{hostname.white}")
         @info.push("#{"OS:".blue} #{os.white}")
         @info.push("#{"Kernel:".blue} #{kernel.white}")
         @info.push("#{"Uptime:".blue} #{uptime.white}")
-
-        t = tty
         @info.push("#{"Shell:".blue} #{shell.white}")
         @info.push("#{"TTY:".blue} #{t.white}") if (!t.empty?)
-
-        c = cpu
-        r = ram
         @info.push("#{"CPU:".blue} #{c.white}") if (!c.empty?)
         @info.push("#{"RAM:".blue} #{r.white}") if (!r.empty?)
-
-        root_fs = fs_usage
-        home_fs = fs_usage(ENV["HOME"])
         @info.push("#{"Root FS:".blue} #{root_fs.white}")
         if (home_fs != root_fs)
             @info.push("#{"Home FS:".blue} #{home_fs.white}")
         end
-
         @info.push("")
         @info.push([
             "   ".on_red,
