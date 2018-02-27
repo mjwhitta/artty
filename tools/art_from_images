@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+usage() {
+    echo "Usage: ${0/*\//} [OPTIONS]"
+    echo
+    echo "Parse images and create ruby code for ArTTY"
+    echo
+    echo "Options:"
+    echo "    -f, --force         Create ruby code even if it exists"
+    echo "    -h, --help          Display this help message"
+    echo "    -i, --imgs=DIR      Read imgs from specified directory"
+    echo "                        (default: $imgs)"
+    echo "    -o, --output=DIR    Write files to specified directory"
+    echo "                        (default: $output)"
+    echo
+    exit $1
+}
+
+declare -a args
+unset force
+imgs="."
+output="."
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        "--") shift && args+=("$@") && break ;;
+        "-f"|"--force") force="true" ;;
+        "-h"|"--help") usage 0 ;;
+        "-i"|"--imgs"*)
+            case "$1" in
+                "--"*"="*) arg="${1#*=}"; [[ -n $arg ]] || usage 1 ;;
+                *) shift; [[ $# -gt 0 ]] || usage 1; arg="$1" ;;
+            esac
+            imgs="$arg"
+            ;;
+        "-o"|"--output"*)
+            case "$1" in
+                "--"*"="*) arg="${1#*=}"; [[ -n $arg ]] || usage 1 ;;
+                *) shift; [[ $# -gt 0 ]] || usage 1; arg="$1" ;;
+            esac
+            output="$arg"
+            ;;
+        *) args+=("$1") ;;
+    esac
+    shift
+done
+[[ -z ${args[@]} ]] || set -- "${args[@]}"
+
+[[ $# -eq 0 ]] || usage 2
+
+while read filename; do
+    ofilename="$(
+        echo "${filename%_*}" | awk -F "/" '{print $NF}' | \
+        sed -r "s/-/_/g"
+    ).rb"
+    [[ ! -f $output/$ofilename ]] || [[ -n $force ]] || continue
+    arTTY -g $filename >$output/$ofilename
+done < <(
+    find $imgs -regextype awk -iregex ".+_[0-9]+x[0-9]+\.(jpg|png)"
+)

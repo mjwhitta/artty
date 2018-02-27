@@ -82,13 +82,14 @@ class ArTTY::SystemInfo
         end
         @info.push("")
         @info.push([
-            "   ".on_red,
-            "   ".on_green,
-            "   ".on_yellow,
-            "   ".on_blue,
-            "   ".on_magenta,
-            "   ".on_cyan,
-            "   ".on_white
+            "▄▄▄".light_black.on_black,
+            "▄▄▄".light_red.on_red,
+            "▄▄▄".light_green.on_green,
+            "▄▄▄".light_yellow.on_yellow,
+            "▄▄▄".light_blue.on_blue,
+            "▄▄▄".light_magenta.on_magenta,
+            "▄▄▄".light_cyan.on_cyan,
+            "▄▄▄".light_white.on_white
         ].join)
     end
 

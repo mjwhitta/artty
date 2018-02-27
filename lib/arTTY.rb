@@ -25,8 +25,10 @@ end
 
 require "arTTY/art"
 require "arTTY/error"
+require "arTTY/generator"
 require "arTTY/system_info"
-Fagin.find_children(
+Fagin.find_children_recursively(
     "ArTTY::Art",
     "#{File.dirname(__FILE__)}/arTTY/art"
 )
+Fagin.find_children("ArTTY::Art", "~/.config/arTTY/art")

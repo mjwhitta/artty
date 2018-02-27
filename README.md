@@ -27,15 +27,16 @@ configs:
 
 ```
 if [[ -n $(command -v arTTY) ]]; then
-    arTTY -cfs $(cat $HOME/.config/arTTY/rc 2>/dev/null)
+    arTTY -cfs $(head -n 1 $HOME/.config/arTTY/rc 2>/dev/null)
 fi
 ```
 
 Then I can put things like the following in `$HOME/.config/arTTY/rc`:
 
-- `zelda-shield-ocarina-of-time`
+- `linux-arch`
+- `zelda-majoras-mask`
 - `--random`
-- `--random-matching=pkmn-`
+- `--random-matching=pkmn-.*I-`
 - `--random-matching=mm(bn)?-`
 
 And if the file doesn't exist, it defaults to using `none`. Use the
@@ -46,8 +47,11 @@ And if the file doesn't exist, it defaults to using `none`. Use the
 - [Source](https://gitlab.com/mjwhitta/arTTY)
 - [Mirror](https://github.com/mjwhitta/arTTY)
 - [RubyGems](https://rubygems.org/gems/arTTY)
+- [Images](https://gitlab.com/mjwhitta/arTTY_images)
 
 ## TODO
 
 - Lots more art
+    - Can I automatically determine pixel size in the generator?
+    - Generate as much as possible of the original art I added
 - RDoc

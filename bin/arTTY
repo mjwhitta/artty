@@ -58,6 +58,15 @@ def parse(args)
             exit ArTTYExit::GOOD
         end
 
+        opts.on(
+            "-g",
+            "--generate=IMAGE",
+            "Generate ArTTY art from IMAGE (NAME_WxH.png)"
+        ) do |image|
+            options["action"] = "generate"
+            options["art"] = image
+        end
+
         opts.on("--ls", "--list-supported", "List supported art") do
             options["action"] = "list"
         end
@@ -141,9 +150,13 @@ begin
     case options["action"]
     when "demo"
         ArTTY.art.keys.sort.each do |name|
+            next if (name == "none")
             art = ArTTY.get(name, options["sysinfo"]).draw
+            puts "### #{name} ###".white
             puts "\n#{art}\n" if (!art.empty?)
         end
+    when "generate"
+        puts ArTTY::Generator.new.generate(options["art"])
     when "list"
         puts ArTTY.art.keys.sort
     else
