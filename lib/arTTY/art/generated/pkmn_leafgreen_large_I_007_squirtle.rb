@@ -2,63 +2,61 @@
 class ArTTY::Art::PkmnLeafgreenLargeI007Squirtle < ArTTY::Art
     def color_map
         return [
-            "           333111                       λ",
-            "         3355544411                   ",
-            "        355555544441                  ",
-            "       15555555444441                 ",
-            "      1455555434444441                ",
-            "      1445554351144441                ",
-            "     1e344444518a344431               ",
-            "     0844444451e7e14330               ",
-            "     004444444000e13330               ",
-            "     074444444000e13330               ",
-            "      14444444808433330               ",
-            "     144444444444333330               ",
-            "     1443414444443133022              ",
-            "     00144443110003330e92             ",
-            "  11  147000777773100ee992            ",
-            "  1511 04777bbb1305501a9962           ",
-            " 014401100344433003054199262          ",
-            "054445134400001bb03314302662          ",
-            " 0444003332bbbbb1133333066662         ",
-            "  003333333666660543333306662  3311   ",
-            "    1003332cc6ccc001333306660 155441  ",
-            "       1000cd6dddcc03330aa66004444441 ",
-            "          0cdbdddcc60000ee22034444430 ",
-            "          06ddbddd68bbb0ee660334111331",
-            "           06b6bb66cbbb0ee660331344030",
-            "           0cdbdddc66bbb2aa23331433330",
-            "           10cc8ccbb66110aa23330333330",
-            "          140bb6bbbbb1333103333033330 ",
-            "         14440bb6bbb1344330333330110  ",
-            "         144430b666b044443303333100   ",
-            "         03433300bb60344333033000     ",
-            "          03333310000333333000        ",
-            "          0333330    3333330          ",
-            "         04143331    0333110          ",
-            "         1000000     01414140         ",
-            "                      0000001         ",
+            "           111ccc                       λ",
+            "         11444222cc                   ",
+            "        14444442222c                  ",
+            "       c444444422222c                 ",
+            "      c24444421222222c                ",
+            "      c22444214cc2222c                ",
+            "     ca1222224c6d12221c               ",
+            "     b62222224ca5ac211b               ",
+            "     bb2222222bbbac111b               ",
+            "     b52222222bbbac111b               ",
+            "      c22222226b621111b               ",
+            "     c2222222222211111b               ",
+            "     c2212c2222221c11b00              ",
+            "     bbc22221ccbbb111ba60             ",
+            "  cc  c25bbb555551cbbaa660            ",
+            "  c4cc b2555777c1b44bcd6630           ",
+            " bc22bccbb122211bb1b42c66030          ",
+            "b42224c122bbbbc77b11c21b0330          ",
+            " b222bb111077777cc11111b33330         ",
+            "  bb111111133333b4211111b3330  11cc   ",
+            "    cbb1110883888bbc1111b333b c4422c  ",
+            "       cbbb89399988b111bdd33bb222222c ",
+            "          b897999883bbbbaa00b1222221b ",
+            "          b399799936777baa33b112ccc11c",
+            "           b37377338777baa33b11c122b1b",
+            "           b8979998337770dd0111c21111b",
+            "           cb886887733ccbdd0111b11111b",
+            "          c2b77377777c111cb1111b1111b ",
+            "         c222b773777c12211b11111bccb  ",
+            "         c2221b73337b222211b1111cbb   ",
+            "         b12111bb773b122111b11bbb     ",
+            "          b11111cbbbb111111bbb        ",
+            "          b11111b    111111b          ",
+            "         b2c2111c    b111ccb          ",
+            "         cbbbbbb     bc2c2c2b         ",
+            "                      bbbbbbc         ",
         ]
     end
 
     def initialize
         super
         @name = "pkmn-leafgreen-large-I-007-squirtle"
-
-        map_color("0", "080c08")
-        map_color("1", "39715a")
-        map_color("2", "5a2800")
-        map_color("3", "7b92a5")
-        map_color("4", "84c3ce")
-        map_color("5", "addbe7")
-        map_color("6", "b56900")
-        map_color("7", "c63010")
-        map_color("8", "ce8231")
-        map_color("9", "ce924a")
-        map_color("a", "cecbc6")
-        map_color("b", "deaa52")
-        map_color("c", "ffd363")
-        map_color("d", "ffe394")
-        map_color("e", "ffffff")
+        map_color("0", "color_052")
+        map_color("1", "color_103")
+        map_color("2", "color_116")
+        map_color("3", "color_130")
+        map_color("4", "color_152")
+        map_color("5", "color_166")
+        map_color("6", "color_173")
+        map_color("7", "color_179")
+        map_color("8", "color_221")
+        map_color("9", "color_222")
+        map_color("a", "color_231")
+        map_color("b", "color_232")
+        map_color("c", "color_240")
+        map_color("d", "color_251")
     end
 end

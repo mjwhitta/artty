@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+usage() {
+    echo "Usage: ${0/*\//} [OPTIONS]"
+    echo
+    echo "Parse arTTY_images repo and create ruby code for ArTTY"
+    echo
+    echo "Options:"
+    echo "    -f, --force       Regenerate all images"
+    echo "    -i, --imgs=DIR    Path to arTTY_images repo"
+    echo
+    exit $1
+}
+
+declare -a args
+unset force imgs
+output="../lib/arTTY/art/generated"
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        "--") shift && args+=("$@") && break ;;
+        "-f"|"--force") force="-f" ;;
+        "-h"|"--help") usage 0 ;;
+        "-i"|"--imgs"*)
+            case "$1" in
+                "--"*"="*) arg="${1#*=}"; [[ -n $arg ]] || usage 1 ;;
+                *) shift; [[ $# -gt 0 ]] || usage 1; arg="$1" ;;
+            esac
+            imgs="$arg"
+            ;;
+        *) args+=("$1") ;;
+    esac
+    shift
+done
+[[ -z ${args[@]} ]] || set -- "${args[@]}"
+
+[[ $# -eq 0 ]] || usage 2
+[[ -n $imgs ]] || usage 3
+
+./art_from_images $force \
+    -i $imgs/back_to_the_future \
+    -i $imgs/dc \
+    -i $imgs/evil_dead \
+    -i $imgs/kirby \
+    -i $imgs/marvel \
+    -i $imgs/megaman \
+    -i $imgs/mighty_morphin_power_rangers \
+    -i $imgs/pokemon \
+    -i $imgs/sonic \
+    -i $imgs/teenage_mutant_ninja_turtles \
+    -i $imgs/legend_of_zelda \
+    -o $output -p

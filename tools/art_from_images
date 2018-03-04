@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
 
+err() { echo -e "\e[31m[!] $@\e[0m"; }
+
+generate() {
+    local filename="$1"
+    local ofilename="$(
+        echo "${filename%_*}" | awk -F "/" '{print $NF}' | \
+        sed -r "s/-/_/g"
+    ).rb"
+    [[ ! -f $output/$ofilename ]] || [[ -n $force ]] || return 0
+    arTTY -g $filename >$output/$ofilename
+}
+
+info() { echo -e "\e[32m[+] $@\e[0m"; }
+
 usage() {
     echo "Usage: ${0/*\//} [OPTIONS]"
     echo
@@ -8,18 +22,22 @@ usage() {
     echo "Options:"
     echo "    -f, --force         Create ruby code even if it exists"
     echo "    -h, --help          Display this help message"
-    echo "    -i, --imgs=DIR      Read imgs from specified directory"
-    echo "                        (default: $imgs)"
+    echo "    -i, --imgs=DIR      Read imgs from specified directory,"
+    echo "                        can be used more than once"
+    echo "                        (default: $dir)"
     echo "    -o, --output=DIR    Write files to specified directory"
     echo "                        (default: $output)"
     echo
     exit $1
 }
 
-declare -a args
-unset force
-imgs="."
+warn() { echo -e "\e[33m[-] $@\e[0m"; }
+
+declare -a args dirs
+unset force parallel
+dir="."
 output="."
+threads="32"
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -31,7 +49,7 @@ while [[ $# -gt 0 ]]; do
                 "--"*"="*) arg="${1#*=}"; [[ -n $arg ]] || usage 1 ;;
                 *) shift; [[ $# -gt 0 ]] || usage 1; arg="$1" ;;
             esac
-            imgs="$arg"
+            dirs+=("$arg")
             ;;
         "-o"|"--output"*)
             case "$1" in
@@ -39,6 +57,14 @@ while [[ $# -gt 0 ]]; do
                 *) shift; [[ $# -gt 0 ]] || usage 1; arg="$1" ;;
             esac
             output="$arg"
+            ;;
+        "-p"|"--parallel") parallel="true" ;;
+        "-t"|"--threads"*)
+            case "$1" in
+                "--"*"="*) arg="${1#*=}"; [[ -n $arg ]] || usage 1 ;;
+                *) shift; [[ $# -gt 0 ]] || usage 1; arg="$1" ;;
+            esac
+            threads="$arg"
             ;;
         *) args+=("$1") ;;
     esac
@@ -48,13 +74,34 @@ done
 
 [[ $# -eq 0 ]] || usage 2
 
-while read filename; do
-    ofilename="$(
-        echo "${filename%_*}" | awk -F "/" '{print $NF}' | \
-        sed -r "s/-/_/g"
-    ).rb"
-    [[ ! -f $output/$ofilename ]] || [[ -n $force ]] || continue
-    arTTY -g $filename >$output/$ofilename
-done < <(
-    find $imgs -regextype awk -iregex ".+_[0-9]+x[0-9]+\.(jpg|png)"
-)
+if [[ -n $parallel ]]; then
+    if [[ -z $(command -v parallel) ]] ||
+       [[ -z $(command -v env_parallel.bash) ]]
+    then
+        warn "Parallel is not installed, using default behavior"
+        unset parallel
+    fi
+fi
+
+[[ -n ${dirs[@]} ]] || dirs=($dir)
+mkdir -p $output
+
+declare -a imgs=($(
+    find ${dirs[@]} -regextype awk \
+    -iregex ".+_[0-9]+x[0-9]+\.(jpg|png)"
+))
+let "total = ${#imgs[@]}"
+
+if [[ -n $parallel ]]; then
+    source $(command -v env_parallel.bash)
+    info "$total jobs to run"
+    # env_parallel -P $threads generate {} ::: ${imgs[@]}
+    env_parallel --eta -P $threads generate {} ::: ${imgs[@]}
+else
+    let "count = 1"
+    for img in "${imgs[@]}"; do
+        echo -en "[$count/$total]                              \r" >&2
+        generate "$img"
+        let "count += 1"
+    done; unset img
+fi

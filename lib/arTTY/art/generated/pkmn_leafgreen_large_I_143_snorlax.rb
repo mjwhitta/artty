@@ -2,81 +2,80 @@
 class ArTTY::Art::PkmnLeafgreenLargeI143Snorlax < ArTTY::Art
     def color_map
         return [
-            "                                              22                  λ",
-            "                                             2532               ",
-            "                                            15530               ",
-            "                                          11155530              ",
-            "                                        013dddd55511            ",
-            "                                      013dd44ddd555312          ",
-            "                         9999999999  033cdddd00d55333301        ",
-            "                      966dddddddddd6669cccddddd0ccc533331       ",
-            "                   966cddddddddddddddcc06ccc00cccccccc533111222 ",
-            "                 96cdddddddddddddddddddcc0677e00cccccccc33335531",
-            "                6bcdddddddddddddddddddddccc0777700cc00ccc3355321",
-            "               6cccdddddddddddddddddddddcccc6777770ccc00c533221 ",
-            "              0ccccdddddddddddddddddddddccccc67777e0cccc4c22220 ",
-            "             0cccccdddddddddddddddddddddcccccc077770cccccc2221  ",
-            "           20cccccccddddddddddddddddddddccccccc7777bcccccb2220  ",
-            "         230ccccccccdddddddddddddddddddcccccccc0770cccccbb222   ",
-            "        030cccccccccccddddddddddddddddcccccccccb10ccccbbbb221   ",
-            "       1230cccccccccccccdddddddddddccccccccccccc31bbbbbbb3220   ",
-            "       020cccccccccccccccccccccccccccccccccccccc310bbbbbb2220   ",
-            "       020ccccccccccccccccccccccccccccccccccccccb220bbbbb220    ",
-            "       00cccccccccccccccccccccccccccccccccccccccc22200bb3220    ",
-            "       10cccccccccccccccccccccccccccccccccccccccc2222301220     ",
-            "        0cbcbcccccccccccccccccccccccccccccccccccc222333310      ",
-            "        03cbcbcbccccccccccccccccccccccccccccccccc223333331      ",
-            "   44  122bcbcbcbcccccccccccccccccccccccccccccbcb2233333332     ",
-            "   0e4 1222ccbcbcbcccccccccccccccccccccccccbcbcb322333333332    ",
-            "40 0ee612204bcbbbbbbccccccccccccccccccccbcbcbcbc2223333333331   ",
-            "4e00ae0020e03bbbbbbbbbbccccccccccccccccbcbcbcbc322223333333331  ",
-            "0ae040bc0ee0233bbbbbbbbbbbbbbbbbbbbbbbbcbcbcbcb2222233333333331 ",
-            "4a4ccccc0ea02222223bbbbbbbbbbbbbbbbbbbbbbbcbcb22222223333333330 ",
-            " 0bbbccccb4022222222223bbbbbbbbbbbbbbbbbbbbcb22222222223333332e3",
-            "4bbbbbbcccb02222222222223bbbbbbbbbbbbbbbbbbb32222222222233333201",
-            "0bbbbbbbccc6222222222222223bbbbbbbbbbbbbbbb3222222222222223331e3",
-            "0bbbbbbbbccb02222222222222233bbbb4bbbbbbb3222222222222222222200 ",
-            "0b999bbbbccc0222222222222223333b4e4bbb32222222222002222222222e0 ",
-            "6b8888bbbbcc022222222222222233330e0333224422222221100222222220  ",
-            " 088889bbbbb02222222222222223330eee03224e0222222220   1022201   ",
-            " 088888bbbbb02222222222222223320eae0000ee022222221      001     ",
-            " 0b8888bbbbb0222222222222222230c040bc0eea02222220               ",
-            "  08889bbbbb022222222222222220ccccccc4eaa4022220                ",
-            "  6b88bbbbb022222222222222220cccccccccb40bb0000                 ",
-            "   0bbbbbbb00002222222222220bccbbbbbcccccc0aee0                 ",
-            "    60bbb00    1002222222220cbbbbbbbbbcccc4aa0                  ",
-            "      600         102222220bcbbbbbbbbbbcccb40                   ",
-            "                    1022220bbbb9889bbbbbbbb0                    ",
-            "                      10220bbb988888bbbbbbb0                    ",
-            "                        100bbb8888888bbbbbb0                    ",
-            "                          0bbb88888889bbbb6                     ",
-            "                           6bb98888889bbbb0                     ",
-            "                           0bbb888888bbbb0                      ",
-            "                            0bbb9889bbbb0                       ",
-            "                             0bbbbbbbbb0                        ",
-            "                              06bbbbb06                         ",
-            "                                60006                           ",
+            "                                              cc                  λ",
+            "                                             c20c               ",
+            "                                            b220a               ",
+            "                                          bbb2220a              ",
+            "                                        ab08888222bb            ",
+            "                                      ab088dd8882220bc          ",
+            "                         5555555555  a0078888aa8220000ab        ",
+            "                      5118888888888111577788888a77720000b       ",
+            "                   51178888888888888877a1777aa77777777200bbbccc ",
+            "                 517888888888888888888877a1339aa777777770000220b",
+            "                167888888888888888888888777a3333aa77aa77700220cb",
+            "               17778888888888888888888887777133333a777aa7200ccb ",
+            "              a777788888888888888888888877777133339a7777d7cccca ",
+            "             a77777888888888888888888888777777a3333a777777cccb  ",
+            "           ca777777788888888888888888888777777733336777776ccca  ",
+            "         c0a77777777888888888888888888877777777a33a7777766ccc   ",
+            "        a0a7777777777788888888888888887777777776ba77776666ccb   ",
+            "       bc0a77777777777778888888888877777777777770b66666660cca   ",
+            "       aca777777777777777777777777777777777777770ba666666ccca   ",
+            "       aca777777777777777777777777777777777777776cca66666cca    ",
+            "       aa7777777777777777777777777777777777777777cccaa660cca    ",
+            "       ba7777777777777777777777777777777777777777cccc0abcca     ",
+            "        a7676777777777777777777777777777777777777ccc0000ba      ",
+            "        a0767676777777777777777777777777777777777cc000000b      ",
+            "   dd  bcc676767677777777777777777777777777777676cc0000000c     ",
+            "   a9d bccc77676767777777777777777777777777676760cc00000000c    ",
+            "da a991bccad676666667777777777777777777767676767ccc000000000b   ",
+            "d9aae9aaca9a066666666667777777777777777676767670cccc000000000b  ",
+            "ae9ada67a99ac0066666666666666666666666676767676ccccc0000000000b ",
+            "ded77777a9eacccccc0666666666666666666666667676ccccccc000000000a ",
+            " a66677776dacccccccccc06666666666666666666676cccccccccc000000c90",
+            "d6666667776acccccccccccc066666666666666666660ccccccccccc00000cab",
+            "a66666667771cccccccccccccc066666666666666660cccccccccccccc000b90",
+            "a66666666776acccccccccccccc006666d66666660cccccccccccccccccccaa ",
+            "a65556666777acccccccccccccc00006d9d6660ccccccccccaacccccccccc9a ",
+            "164444666677accccccccccccccc0000a9a000ccddcccccccbbaacccccccca  ",
+            " a4444566666accccccccccccccc000a999a0ccd9acccccccca   bacccab   ",
+            " a4444466666accccccccccccccc00ca9e9aaaa99acccccccb      aab     ",
+            " a6444466666acccccccccccccccc0a7ada67a99eacccccca               ",
+            "  a444566666acccccccccccccccca7777777d9eedacccca                ",
+            "  164466666acccccccccccccccca7777777776da66aaaa                 ",
+            "   a6666666aaaacccccccccccca67766666777777ae99a                 ",
+            "    1a666aa    baaccccccccca76666666667777deea                  ",
+            "      1aa         bacccccca6766666666667776da                   ",
+            "                    bacccca6666544566666666a                    ",
+            "                      bacca6665444446666666a                    ",
+            "                        baa6664444444666666a                    ",
+            "                          a6664444444566661                     ",
+            "                           166544444456666a                     ",
+            "                           a6664444446666a                      ",
+            "                            a66654456666a                       ",
+            "                             a666666666a                        ",
+            "                              a166666a1                         ",
+            "                                1aaa1                           ",
         ]
     end
 
     def initialize
         super
         @name = "pkmn-leafgreen-large-I-143-snorlax"
-
-        map_color("0", "080c08")
-        map_color("1", "315139")
-        map_color("2", "31614a")
-        map_color("3", "5a826b")
-        map_color("4", "63696b")
-        map_color("5", "73a28c")
-        map_color("6", "848a42")
-        map_color("7", "b51410")
-        map_color("8", "bd8a4a")
-        map_color("9", "cea263")
-        map_color("a", "ced3d6")
-        map_color("b", "e7db94")
-        map_color("c", "eff394")
-        map_color("d", "ffffbd")
-        map_color("e", "ffffff")
+        map_color("0", "color_065")
+        map_color("1", "color_101")
+        map_color("2", "color_108")
+        map_color("3", "color_124")
+        map_color("4", "color_137")
+        map_color("5", "color_179")
+        map_color("6", "color_186")
+        map_color("7", "color_228")
+        map_color("8", "color_229")
+        map_color("9", "color_231")
+        map_color("a", "color_232")
+        map_color("b", "color_237")
+        map_color("c", "color_239")
+        map_color("d", "color_242")
+        map_color("e", "color_252")
     end
 end

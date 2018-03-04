@@ -1,5 +1,5 @@
 # encoding: utf-8
-class ArTTY::Art::MascotTux < ArTTY::Art
+class ArTTY::Art::LinuxTux < ArTTY::Art
     def color_map
         return [
             "             000                 λ",
@@ -45,7 +45,7 @@ class ArTTY::Art::MascotTux < ArTTY::Art
 
     def initialize
         super
-        @name = "mascot-tux"
+        @name = "linux-tux"
 
         black = "color_233"
         white = "color_255"

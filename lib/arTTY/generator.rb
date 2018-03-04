@@ -27,33 +27,16 @@ class ArTTY::Generator
 
     def generate_color_map(pixels)
         color_map = {"" => " "}
-        key = "0"
 
-        pixels.flatten.uniq.sort.each do |color|
-            next if (color.nil? || color.strip.empty?)
-            color_map[color] = key.clone
-            case key
-            when "9"
-                key = "a"
-            when "z"
-                key = "A"
-            when "Z"
-                key = "!"
-            when "!"
-                key = "$"
-            when "&"
-                key = "("
-            when "/"
-                key = ":"
-            when "@"
-                key = "["
-            when "["
-                key = "]"
-            when "`"
-                raise Exception.new("Too many colors")
-            else
-                key.next!
-            end
+        colors = pixels.flatten.uniq.sort.delete_if(&:empty?)
+        if (colors.length > @keys.length)
+            raise Exception.new(
+                "Too many colors: #{colors.length} > #{@keys.length}"
+            )
+        end
+
+        colors.zip(@keys) do |map|
+            color_map[map[0]] = map[1]
         end
 
         return color_map
@@ -81,8 +64,7 @@ class ArTTY::Generator
             "",
             "    def initialize",
             "        super",
-            "        @name = \"#{name}\"",
-            ""
+            "        @name = \"#{name}\""
         ])
         color_map.delete("")
         color_map.each do |color, key|
@@ -122,7 +104,7 @@ class ArTTY::Generator
                         r = (m[2].to_i / h_increment).to_i
                         clr = ""
                         m[3].match(/#?([A-Fa-f0-9]{6})[^0]{2}/) do |h|
-                            clr = h[1].downcase
+                            clr = Hilighter.hex_to_x256(h[1])
                         end
                         pixels.push(Array.new) if (pixels.length <= r)
                         pixels[r].push(clr) if (pixels[r].length <= c)
@@ -134,4 +116,34 @@ class ArTTY::Generator
         return pixels
     end
     private :get_pixel_info
+
+    def initialize
+        @keys = Array.new
+        key = "0"
+        loop do
+            @keys.push(key.clone)
+            case key
+            when "9"
+                key = "a"
+            when "z"
+                key = "A"
+            when "Z"
+                key = "!"
+            when "!"
+                key = "$"
+            when "&"
+                key = "("
+            when "/"
+                key = ":"
+            when "@"
+                key = "["
+            when "["
+                key = "]"
+            when "`"
+                break
+            else
+                key.next!
+            end
+        end
+    end
 end
