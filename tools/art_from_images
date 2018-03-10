@@ -6,7 +6,7 @@ generate() {
     local filename="$1"
     local ofilename="$(
         echo "${filename%_*}" | awk -F "/" '{print $NF}' | \
-        sed -r "s/-/_/g"
+        sed -r "s/[-.]/_/g" | tr "[:upper:]" "[:lower:]"
     ).rb"
     [[ ! -f $output/$ofilename ]] || [[ -n $force ]] || return 0
     arTTY -g $filename >$output/$ofilename

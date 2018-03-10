@@ -1,6 +1,6 @@
 class ArTTY::Generator
     def class_from_name(name)
-        return name.gsub(/(^|[-_]+)(\S)/, &:upcase).gsub(/[-_]+/, "")
+        return name.gsub(/(^|[-_]+)(\S)/, &:upcase).gsub(/[-_.]+/, "")
     end
     private :class_from_name
 

@@ -22,8 +22,9 @@ def parse(args)
     options["action"] = "draw"
     options["art"] = "none"
     options["clear"] = false
+    options["fit"] = false
     options["fortune"] = false
-    options["sysinfo"] = Array.new
+    options["sysinfo"] = nil
     options["verbose"] = false
 
     info = "Art for your TTY."
@@ -47,6 +48,10 @@ def parse(args)
 
         opts.on("-d", "--demo", "Demo all supported art") do
             options["action"] = "demo"
+        end
+
+        opts.on("--fit", "Use art that fits in the current window") do
+            options["fit"] = true
         end
 
         opts.on("-f", "--fortune", "Display a fortune as well") do
@@ -84,7 +89,7 @@ def parse(args)
         end
 
         opts.on("-s", "--sysinfo", "Display system info as well") do
-            options["sysinfo"] = ArTTY::SystemInfo.new.info
+            options["sysinfo"] = ArTTY::SystemInfo.new
         end
 
         opts.on(
@@ -136,20 +141,48 @@ end
 options = parse(ARGV)
 
 begin
+    available = ArTTY.art
+
+    # Don't worry about height for now
+    if (options["fit"])
+        # height = %x(tput lines).to_i
+        width = %x(tput cols).to_i
+
+        # sysinfo_height = 0
+        sysinfo_width = 0
+        if (options["sysinfo"])
+            # sysinfo_height = options["sysinfo"].height
+            sysinfo_width = 2 + options["sysinfo"].width
+        end
+
+        if (sysinfo_width > width)
+            available.clear
+            options["sysinfo"] = nil
+        else
+            available.keep_if do |name, art|
+                # art_height = [art.height, sysinfo_height].max
+                art_width = art.width + sysinfo_width
+                # (art_height <= height) && (art_width <= width)
+                (art_width <= width)
+            end
+            options["sysinfo"] = nil if (available.empty?)
+        end
+    end
+
     case options["action"]
     when "random"
-        options["art"] = ArTTY.art.keys.delete_if do |art|
+        options["art"] = available.keys.delete_if do |art|
             art == "none"
         end.shuffle[0] || "none"
     when "random-matching"
-        options["art"] = ArTTY.art.keys.keep_if do |art|
+        options["art"] = available.keys.keep_if do |art|
             !art.match(/#{options["art"]}/).nil?
         end.shuffle[0] || "none"
     end
 
     case options["action"]
     when "demo"
-        ArTTY.art.keys.sort.each do |name|
+        available.keys.sort.each do |name|
             next if (name == "none")
             art = ArTTY.get(name, options["sysinfo"]).draw
             puts "### #{name} ###".white
@@ -158,7 +191,7 @@ begin
     when "generate"
         puts ArTTY::Generator.new.generate(options["art"])
     when "list"
-        puts ArTTY.art.keys.sort
+        puts available.keys.sort
     else
         art = ArTTY.get(options["art"], options["sysinfo"]).draw
         system("clear") if (options["clear"])

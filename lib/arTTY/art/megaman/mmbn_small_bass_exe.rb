@@ -1,5 +1,5 @@
 # encoding: utf-8
-class ArTTY::Art::MmBNBassExe < ArTTY::Art
+class ArTTY::Art::MmbnSmallBassExe < ArTTY::Art
     def color_map
         return [
             "      000                λ",
@@ -41,7 +41,7 @@ class ArTTY::Art::MmBNBassExe < ArTTY::Art
 
     def initialize
         super
-        @name = "mmbn-bass.EXE"
+        @name = "mmbn-small-bass.EXE"
 
         black = "color_232"
         blue = "color_111"

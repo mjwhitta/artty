@@ -10,7 +10,8 @@ class ArTTY::Art
     def ascii_draw
         offset = nil
         out = ""
-        sysinfo = @sysinfo.clone
+        sysinfo = Array.new
+        sysinfo = @sysinfo.info.clone if (@sysinfo)
 
         ascii_map.zip(color_map).each do |line, colors|
             colors ||= " " * line.length
@@ -69,7 +70,7 @@ class ArTTY::Art
     end
 
     def color_map
-        return ['λ'] if (!@sysinfo.empty?)
+        return ["λ"] if (@sysinfo && !@sysinfo.info.empty?)
         return Array.new
     end
 
@@ -79,10 +80,14 @@ class ArTTY::Art
         return pixel_draw
     end
 
+    def height
+        return color_map.length
+    end
+
     def initialize
         @debug = false
         @name = "none"
-        @sysinfo = Array.new
+        @sysinfo = nil
     end
 
     def map_color(fgk, color)
@@ -95,7 +100,8 @@ class ArTTY::Art
         offset = nil
         out = ""
         pixels = color_map
-        sysinfo = @sysinfo.clone
+        sysinfo = Array.new
+        sysinfo = @sysinfo.info.clone if (@sysinfo)
 
         if ((pixels.length % 2) != 0)
             filler = " " * pixels[0].length
@@ -175,5 +181,13 @@ class ArTTY::Art
 
     def to_s
         return draw
+    end
+
+    def width
+        return color_map.map(&:length).max if (@name.match(/-ascii$/))
+        w = color_map.map(&:length).max
+        w ||= 0
+        return w - 3 if (w >= 3)
+        return w
     end
 end

@@ -26,6 +26,10 @@ class ArTTY::SystemInfo
         return ""
     end
 
+    def height
+        return @info.length
+    end
+
     def hostname
         return %x(hostname).split(".")[0].strip
     end
@@ -104,5 +108,10 @@ class ArTTY::SystemInfo
     def uptime
         up = %x(uptime -p).gsub(/^up /, "").strip
         return up.gsub(/\s+/, " ")
+    end
+
+    def width
+        return 0 if (@info.empty?)
+        return @info.map(&:plain).map(&:length).max
     end
 end

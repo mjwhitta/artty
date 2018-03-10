@@ -13,7 +13,7 @@ class ArTTY
         return @@arts
     end
 
-    def self.get(name, sysinfo = Array.new)
+    def self.get(name, sysinfo = nil)
         if (!self.art.has_key?(name))
             raise ArTTY::Error::ArtNotFound.new(name)
         end

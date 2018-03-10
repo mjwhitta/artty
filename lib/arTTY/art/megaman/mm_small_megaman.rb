@@ -1,5 +1,5 @@
 # encoding: utf-8
-class ArTTY::Art::MmMegamanOldschool < ArTTY::Art
+class ArTTY::Art::MmSmallMegaman < ArTTY::Art
     def color_map
         return [
             "           000          λ",
@@ -31,7 +31,7 @@ class ArTTY::Art::MmMegamanOldschool < ArTTY::Art
 
     def initialize
         super
-        @name = "mm-megaman-oldschool"
+        @name = "mm-small-megaman"
 
         black = "color_232"
         blue = "color_033"

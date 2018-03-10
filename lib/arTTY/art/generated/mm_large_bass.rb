@@ -1,5 +1,5 @@
 # encoding: utf-8
-class ArTTY::Art::MmBassLarge < ArTTY::Art
+class ArTTY::Art::MmLargeBass < ArTTY::Art
     def color_map
         return [
             "        J                                          λ",
@@ -71,7 +71,7 @@ class ArTTY::Art::MmBassLarge < ArTTY::Art
 
     def initialize
         super
-        @name = "mm-bass-large"
+        @name = "mm-large-bass"
         map_color("0", "color_016")
         map_color("1", "color_052")
         map_color("2", "color_053")
