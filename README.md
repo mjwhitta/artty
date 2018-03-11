@@ -35,12 +35,31 @@ Then I can put things like the following in `$HOME/.config/arTTY/rc`:
 
 - `linux-arch`
 - `zelda-majoras-mask`
-- `--random`
-- `--random-matching=pkmn-.*I-`
+- `--fit --random`
+- `--fit --random-matching=pkmn-.*large.*I-`
+- `--random-matching=pkmn-.*small.*I-`
 - `--random-matching=mm(bn)?-`
 
 And if the file doesn't exist, it defaults to using `none`. Use the
 `--list-supported` flag to see all included artwork.
+
+## Generating your own art
+
+ArTTY can generate source code for images so long as they are named
+properly. It can then `require` any code in the
+`$HOME/.config/arTTY/art` directory.
+
+### Example
+
+```
+$ arTTY -g my-art-name_WIDTHxHEIGHT.png \
+    >$HOME/.config/arTTY/art/my_art_name.rb
+```
+
+This will use imagemagick to traverse a `WIDTH` by `HEIGHT` grid and
+sample the color inside each cell. It will then genreate a ruby class
+called `MyArtName`. This works best with pixel art, however, it can
+parse any image this way.
 
 ## Links
 
