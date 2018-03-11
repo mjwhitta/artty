@@ -160,12 +160,15 @@ begin
             options["sysinfo"] = nil
         else
             available.keep_if do |name, art|
-                # art_height = [art.height, sysinfo_height].max
-                art_width = art.width + sysinfo_width
-                # (art_height <= height) && (art_width <= width)
-                (art_width <= width)
+                # total_height = [art.height, sysinfo_height].max
+                total_width = art.width + sysinfo_width
+                # (total_height <= height) && (total_width <= width)
+                (total_width <= width)
             end
-            options["sysinfo"] = nil if (available.empty?)
+        end
+
+        if (!available.has_key?(options["art"]))
+            options["art"] = "none"
         end
     end
 
