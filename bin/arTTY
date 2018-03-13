@@ -152,16 +152,16 @@ begin
         sysinfo_width = 0
         if (options["sysinfo"])
             # sysinfo_height = options["sysinfo"].height
-            sysinfo_width = 2 + options["sysinfo"].width
+            sysinfo_width = options["sysinfo"].width
         end
 
-        if (sysinfo_width > width)
+        if (sysinfo_width >= width)
             available.clear
             options["sysinfo"] = nil
         else
             available.keep_if do |name, art|
-                # total_height = [art.height, sysinfo_height].max
-                total_width = art.width + sysinfo_width
+                # total_height = 1 + [art.height, sysinfo_height].max
+                total_width = 1 + art.width + 2 + sysinfo_width
                 # (total_height <= height) && (total_width <= width)
                 (total_width <= width)
             end
