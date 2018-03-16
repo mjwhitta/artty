@@ -166,10 +166,6 @@ begin
                 (total_width <= width)
             end
         end
-
-        if (!available.has_key?(options["art"]))
-            options["art"] = "none"
-        end
     end
 
     case options["action"]
@@ -179,8 +175,12 @@ begin
         end.shuffle[0] || "none"
     when "random-matching"
         options["art"] = available.keys.keep_if do |art|
-            !art.match(/#{options["art"]}/).nil?
+            art.match?(/#{options["art"]}/)
         end.shuffle[0] || "none"
+    end
+
+    if (options["fit"] && !available.has_key?(options["art"]))
+        options["art"] = "none"
     end
 
     case options["action"]

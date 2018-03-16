@@ -76,7 +76,7 @@ class ArTTY::Art
 
     def draw
         @legend ||= Hash.new
-        return ascii_draw if (@name.match(/-ascii$/))
+        return ascii_draw if (@name.match?(/-ascii$/))
         return pixel_draw
     end
 
@@ -184,10 +184,10 @@ class ArTTY::Art
     end
 
     def width
-        return color_map.map(&:length).max if (@name.match(/-ascii$/))
-        w = color_map.map(&:length).max
-        w ||= 0
-        return w - 3 if (w >= 3)
-        return w
+        if (@name.match?(/-ascii$/))
+            return color_map.map(&:length).max
+        end
+        w = color_map.map(&:length).max || 0
+        return (w >= 3) ? (w - 3) : w
     end
 end
