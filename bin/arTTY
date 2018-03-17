@@ -143,15 +143,14 @@ options = parse(ARGV)
 begin
     available = ArTTY.art
 
-    # Don't worry about height for now
     if (options["fit"])
-        # height = %x(tput lines).to_i
+        height = %x(tput lines).to_i - 4 # Leave some space for prompt
         width = %x(tput cols).to_i
 
-        # sysinfo_height = 0
+        sysinfo_height = 0
         sysinfo_width = 0
         if (options["sysinfo"])
-            # sysinfo_height = options["sysinfo"].height
+            sysinfo_height = options["sysinfo"].height
             sysinfo_width = options["sysinfo"].width
         end
 
@@ -160,10 +159,9 @@ begin
             options["sysinfo"] = nil
         else
             available.keep_if do |name, art|
-                # total_height = 1 + [art.height, sysinfo_height].max
+                total_height = 1 + [art.height, sysinfo_height].max
                 total_width = 1 + art.width + 2 + sysinfo_width
-                # (total_height <= height) && (total_width <= width)
-                (total_width <= width)
+                (total_height <= height) && (total_width <= width)
             end
         end
     end
