@@ -173,7 +173,7 @@ begin
         end.shuffle[0] || "none"
     when "random-matching"
         options["art"] = available.keys.keep_if do |art|
-            art.match?(/#{options["art"]}/)
+            art.match(/#{options["art"]}/)
         end.shuffle[0] || "none"
     end
 
