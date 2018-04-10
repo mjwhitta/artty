@@ -81,7 +81,9 @@ class ArTTY::Art
     end
 
     def height
-        return color_map.length
+        h = ascii_map.length
+        return h if (h > 0)
+        return (color_map.length + 1) / 2
     end
 
     def initialize
