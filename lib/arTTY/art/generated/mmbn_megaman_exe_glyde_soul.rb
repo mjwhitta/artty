@@ -1,5 +1,5 @@
 # encoding: utf-8
-class ArTTY::Art::MmbnMegamanEXEGlyphSoul < ArTTY::Art
+class ArTTY::Art::MmbnMegamanEXEGlydeSoul < ArTTY::Art
     def color_map
         return [
             "                         3                  λ",
@@ -61,7 +61,7 @@ class ArTTY::Art::MmbnMegamanEXEGlyphSoul < ArTTY::Art
 
     def initialize
         super
-        @name = "mmbn-megaman.EXE-glyph-soul"
+        @name = "mmbn-megaman.EXE-glyde-soul"
         map_color("0", "color_028")
         map_color("1", "color_046")
         map_color("2", "color_058")
