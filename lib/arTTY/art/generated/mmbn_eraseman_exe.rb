@@ -2,7 +2,7 @@
 class ArTTY::Art::MmbnErasemanEXE < ArTTY::Art
     def color_map
         return [
-            "                                                                      λ",
+            "                    b                                                 λ",
             "                b  db b                                             ",
             "               cb dc bb                                             ",
             "              cdbcdbbdb                                             ",
@@ -39,8 +39,8 @@ class ArTTY::Art::MmbnErasemanEXE < ArTTY::Art
             "    adacdaababba4 0110cc00b4b100cb                      888ee6      ",
             "    abaacaba   ba4c01100  4a40bc1330                    88ee76      ",
             "  aaaabaaaa    044bb0000  4a4b1333310                   8ee776      ",
-            " aaaaaaa      b0ba4bb00   44b01311000                   8e776       ",
-            " aa         0bcc4a4b0     bb 0100ddb                    88776       ",
+            "aaaaaaaa      b0ba4bb00   44b01311000                   8e776       ",
+            "aaa         0bcc4a4b0     bb 0100ddb                    88776       ",
             "           000ccb444     44   00dd1310                  88776       ",
             "           0310bbb4a4   4ab     133310                  8776        ",
             "           0331000b4a44bab     1111000                  8776        ",

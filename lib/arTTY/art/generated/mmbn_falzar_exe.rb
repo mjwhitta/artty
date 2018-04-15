@@ -2,167 +2,167 @@
 class ArTTY::Art::MmbnFalzarEXE < ArTTY::Art
     def color_map
         return [
-            "008)0                                                                                                                                                   λ",
-            "00)c8)00                                                                                                                                              ",
-            "  0 nn8)0                                                                                                                                             ",
-            "   (npnn)0                                                                                                                                            ",
-            "  0 nnnpn)0                                                                                                                                           ",
-            "   8npnnpn)0                                                                                                                                      0   ",
-            "    npnnnpn)0                                                                                                                                    00   ",
-            "   88nnnnnn800                                                                                                                                 0)88   ",
-            "   0)nnnnnnn800                                                                                                                              0)8nn    ",
-            "   00nnnnnnn8800                                                                                                                          00)8nnn)0   ",
-            "   0 8nnnnnn88)0  000                                                                                                                      8nnpn80    ",
-            "    0)npnnnnn8800008)00                                                                                                                 0)nnppn800    ",
-            "     08nnpnnn8800008n800                                                                                                             00)8nppnn80000)  ",
-            "    2 f88nnpn880080)nn800(                                                                                                          % 8nnpnn8)00000(  ",
-            "     %eqef8nnn8808008nn)0000                                                                                                         nnnnn80000)888   ",
-            "       qqeef8888)880)nn8)08)5                                                                                                   Z 44tnpnn8)0)8nnn)    ",
-            "       4qqeeeee4888808nnc)nn800                                                                                                44qqtmpnnnnnnnnpn 0    ",
-            "       Z4qeeeeee48888)npn8nn8800                                                                                            !44eqqqtnpnnnnnpppn)      ",
-            "        4qeeeeeee4888)8nnnnnn880                                                                                             qqqqqqtnpnnnnnnnn80      ",
-            "       Z qqeeeeee48888)nnnnnn880                                                                                          44qqqqqqqtnpnnnnnn88 0      ",
-            "        !4qeeeeeee4888)nnnnnn88800                                                                                     !44qqqqqqqqqtnpnnnnn880       0",
-            "         4qeeeeee44488)8nnnnn888(0000                                                                                 Z qqqqqqqqqqqtnpnnn88880    00)8",
-            "        Z qqeeeeee44488)nppppn8880 8)%                                                                                 qqqqqqqqqqqqsnnn888880&     nn)",
-            "         !4qeeeeee444480mnnnnn888 08n)0                                                                            !44qqqqqqqqqqqqqtn88888880   0)np80",
-            "          4qeeeeee44444&%efffe4888)8nn)0                                                                            qqqqqqqqqqqqqqtm88888880000)nnpn)0",
-            "         Z qqeeeee4444444eeeeee4888)npn)0                                                                        eeqqqqqqqqqqqqqqqr8888888800)nnnpn80 ",
-            "          !4qeeeee4444444eeeeee4488)nnpn)0                                                                    eerEqqqqqqqqqqqqqqqee8888888))nnnnnnn)0 ",
-            "           4qqeeee44444444eeeeee488)nnnpn)0                                                                    EEEqqqqqqqqqqqqqeeef888880)nnnpnnnn80  ",
-            "           !4qeeee44444444eeeee444(0nnnnpn)0                                                                eqEEEEqqqqqqqqqqqeeeee8888()8nppnnnnpn)0  ",
-            "            4qeeeee4444444eeeeee444(npnnnn800                                                             eqEEEEEEqqqqqqqqqeeeeeee888%tnnnnnnnnnpn0   ",
-            "            !4qeeee44444444eeeee444%mnppnn88000                                                         qEEEEEEEEEqqqqqeeeeeeeeee4%qqqmpnnnnnnnpn8    ",
-            "             4qqeeee4444444eeeee4444efmnpn880000                                                     eeqEEEEEEEEEEqqqqeeeeeeeee44qqqqsnpnnnnnnnnn)    ",
-            "             !4qeeee44444444eeee44444eefmn888 0(0                                                     EEEEEEEEEEEEqqeeeeeeeee44qqqqqqtnpnnnnnnn8)0    ",
-            "              4qeeee44444444eeeee4444eeefm8880)c)0                                                 eqEEEEEEEEEEEqqeeeeeeeee44qqqqqqqtmpnnnnnn8 00(    ",
-            "             Z qqeeee4444444eeeee4444eeeef8888)nn)0                                             4eqEEEEEEEEEEEqqeeeeeeeee44qqqqqqqqqsnpnnnn8)00       ",
-            "              !4qeeee44444444eeee4444eeeeef888)npn)0                                             EEEEEEEEEEEqqeeeeeeeee44qqqqqqqqqqqtnpnn8000&        ",
-            "               4qqeee44444444eeee44444eeeee488)nnpn)0                                         44tEEEEEEEEEqqeeeeeeeeee4qqqqqqqqqqqqtmppn8)))00000     ",
-            "               !4qeeee4444444eeee44444eeeeee%8)nnnpn)0                                     !44qqEEEEEEEEsqeeeeeeeeee44qqqqqqqqqqqqqtnppzxxzx88800     ",
-            "           44! Y4qeeee4444444eeee44444eeeeee48)nnnnpn)0                                     qqqqEEEEEEEqeeeeeeeeee44qqqqqqqqqqqqqqqtnnnn888888 (      ",
-            "           44444$4eeeee4444444eee44444eeeee444(nnnnnn80                                 !44qqqqqEEEEEqqeeeeeeeee44qqqqqqqqqqqqqqqqqtn88888888 0       ",
-            "           $44eq44eeeee4444444eee44444eeeee444%npnnnn80  00)                           Z qqqqqqqEEEqqeeeeeeeee44qqqqqqqqqqqqqqqqqqqe88888888 0        ",
-            "             4eeeq4eeeee444444eee44444eeeee444$mpnnnn8000(0&                            qqqqqqqqEqqeeeeeeeee44tqqqqqqqqqqqqqqqqqqeef88888880          ",
-            "              4eeeq44ee44444444ee44444eeeee4444fmpnnn800)c)!                         44qqqqqqqqqqeeeeeeeee4%EEEqqqqqqqqqqqqqqqeeeee888888880          ",
-            "              !4eeeqq4444444444eee4444eeeee4444efmpn8800n800     44               !44qqqqqqqqqqeeeeeeeee4%EEEEEqqqqqqqqqqqqqeeeeeef8888888 (          ",
-            "               !4eeeeqqe4444444eee4444eeeee4444eefmn880)n80%     4ee4Z         Zq  qqqqqqqqqqeeeeeeeeee4EEEEEEqqqqqqqqqqqeeeeeeeee88888)0 0   0!!08)  ",
-            "               4$444eeeee4444444ee44444eeee4444eeeef88)b880000   eeEe444     !44qqqqqqqqqeeeeeeeeee4%EEEEEEEEEqqqqqqqeeeeeeeeeeeef88888800   0))0)80  ",
-            "               $4eq444eee4444444ee44444eeee4444eeeee4808880000    eEEe444e    qqqqqqqqqqeeeeeeeee4%EEEEEEEEEEEqqqqeeeeeeeeeeeeeee88888800  0)8nnnn)0  ",
-            "                 4eqq444e4444444eee4444eeeee444eeeee4$(8880 880   4eEEe444444qqqqqqqqqeeeeeeeee4%EEEEEEEEEEEEqqeeeeeeeeeeeeeeeeef88888)0)0)nnnnpn8    ",
-            "                 44eeqq444444444eee4444eeeeee44eeeee44$8880)nn)    eEEEe44 qqqqqqqqqeeeeeeeee44EEEEEEEEEEEEEEeeeeeeeeeeeeeeeeeee+88%()8nnnnnpppn80    ",
-            "                   eeeeqq44444444ee4444eeeeee44f(eee444f8808n800  4eEqsEe4qqqqqqqqeeeeeeeee44qEEEEEEEEEEEEeeeeeeeeeeeeeeeeeeeee4%%4emnnnppnnnnnn 0    ",
-            "                   4eeeeeqq444444ee4444eeeeee4$((eee44ee48)nn)0)0  eEqqtEeqqqqqqeeeeeeeee44eeqEEEEEEEEEEeeeeeeeeeeeeeeeeeee4444eqqqqnpnnnnnnn88 0     ",
-            "                    4eeeeee444444ee44444eeeee4%(fee444ee4$ehm)8n)  eEqqqtEeqqqeeeeeeeeee4qqqqEEEEEEEEeeeeeeeeeeeeeeeeee4444eeqqqqqqtnpnnnnn88) 0      ",
-            "                    44eeeee444444ee44444eeee4&b)eee44ee444eef8nn0  4 qqqqtEqeeeeeeeeee44qqqqqEEEEEeeeeeeeeeeeeeeeeee444eqqqqqqqqqqqmpnnnn880000       ",
-            "                   4444eeeee44444ee44444eeee&m8feee44e444eeeenpn0 ee4qqqqqqeeeeeeeeee4qqqqqqEEEeeeeeeeeeeeeeeeee4444eqqqqqqqqqqqqqtnpnn8800)8)        ",
-            "                   4444eeeee44444eee4444eeefmp8eeee444444eeefmpn8 eEeeqqqqqE4eeeee44qqqqqqqqEqeeeeeeeeeeeeee4444eqqqqqqqqqqqqqqqqqmpn885))5zz)        ",
-            "                   $44qq44444444eeee4444eefmn8(eeee444444eeeefnpn)4sEeeqqqqE4eee44qqqqqqqqeeeeeeeeeeeeee4444eeqqqqqqqqqqqqqqqqqqqtnpzzzzzzzn50        ",
-            "                     4eeqqqq44444eee4444efmp80(eee444444eeeeeemn88(esEeeqqqE$444qqqqqqqqqeeeeeeeeeeee444EEEtqqqqqqqqqqqqqqqqqqqqqmpnppppppn80         ",
-            "                     $44eeeeq4444eee4444&npn80$eee444444eeeeeef888(4qDEeeqqe4qqqqqqqqqeeeeeeeeeee4444EEEEEEqqqqqqqqqqqqqqqqqqqqqtnpnnnnnnn8 0         ",
-            "                      $44eeee44444ee444&n?n8(&$eee444444eeeeeee488(4qqtEeeqe4qqqqqqeeeeeeeeee4444tEEEEEEEEqqqqqqqqqqqqqqqqqqqqqtmnnn888 8)00          ",
-            "                      44444eeee444eee&n>pn8(4%(eee44444eeeeeee44&80$eEqsEeee4eeeeeeeee444tEEEEEEEEEEEEEEEsqqqqqqeeeeeeeeeeeeeef888888) )80            ",
-            "                      $444444eee44eefnMpnn8(4((ee44444eeeeeee444480!eEqqEE4e4eeeee4444eqqEEEEEEEEEEEEEEEEqeeeeeeeeeeeeeeeeeeee888888)00               ",
-            "                        4qqe44ee44efn?pnn80((0$ee44444eeeeee444e4($ eEqqqE%e444444eeqqqqsEEEEEEEEEeeeeeeeeeeeeeeeeeeeeeeeeeeef888888)                 ",
-            "                        44eqq44e44emppnn88)c8($ee44444eeeee444444$4eeEqqqtEe4eqqqqqqqqqqEEEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee88888800  !000           ",
-            "                        $44eeeq44q&npnnn8)n8(44ee4444eeeee444444444qeeqqqqEe4qqqqqqeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef888800 0)))000           ",
-            "                     &&(& 44eeeq4q8nnnn808n8(44ee4444eeee4444444ee%qeeqqqqq4qeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee88)))00)nnnn800           ",
-            "                     $(88(&&eeeeqenpnn88)n8(444ee4444eee444444eeef*eqeqqqqq4eeeeeeeeeeeeeeeeeeeeeeeeeee44444444444444444444%)5nnnnnnpn8 0(            ",
-            "                     ! k/w88(&eqE&npn885nn8(444e4444ee4444444eeee4qeEeeqqqq4eeeeeeeeeeeee44444444444444eeeeeqqqqqqqqqqqqqqtmnnnpppppn8 0              ",
-            "                      %)/vvv88tEE8nn885nn8(!!!!!!!!!!!!!4444eeeee4qeEqeqqqq44444444444444tEEEEEEEEEEEtqqqqqqqqqqqqqqqqqqqqmppnnnpnnn8 0               ",
-            "                       (/wFvstEEtnn885nn8(!!!!!$$$%&&(&$!!!eeeee4EqeEqqeqqq4qqqqqqqqqqqqqEEEEEEEEEEEEqqqqqqqqqqqqqqqqqqqqtnpnpnnnn88 0                ",
-            "                      ! k/vssEEqsnb85nn88($$$!!!!$%$(x:(&(&%$eee44qeEqqeqqeeeeeeeqqqqqqqEEEEEEEEEEEEqqqqqqqqqqqqqqqqqqqqqmpnnnn80(000                 ",
-            "                       %(/ssEEsqe885nn88(%%%%%$!!!!!(z>w/.(&&%!!444sEqqeee4eeeeeeeeeeeeeEEEEEEEEEEEEqqqqqqqqqqqqqqqqqqqqtnpn855))00                   ",
-            "                        (/tEEEqq4(5nn88(%%%%%%%&%$!!!)>UFw/.(&&$4q4EEqqe4444eeeeeeeeeeeeeeeeeeeEEEEqqqqqqqqqqqqqqqqqqqqqmnnzzzzzx)                    ",
-            "      0n                tEEEEsqq4mnn88(%%&%%%%%&%%$!%(>UQFvw.(&%Eq4EEqqe4qqe44444eeeeeeeeeeeeeeeeeeeeeeqqqqqqqqqqqqqqqqtnpnpppn8 (                    ",
-            "      )nbzW]bb          EEEEsqqe)n88((%&80%%%%%&%%$!&(k>UQFFw/j&Eq4Esqqe4qqqqqqqe4444eeeeeeeeeeeeeeeeeeeeeeeeeeqqqqqqqtmnnnnn )00                     ",
-            "      )80nMMpp88b   qqEEEEsqqqqeb)(%%%$)n)%&&&&&%%$!&%)>UTTQFs&Esqe4qqe4eeeeeeeqqqqqEEEEE4444eeeeeeeeeeeeeeeeeeeeeeeee888888 80                       ",
-            "        0)8pM@?ppbzH EEEEsqeqqq48$$$$$%wn($%%&&&%%$!&%&k>UTTI&EEqqe4qe4eeeeeeeeeeeeEEEEEEEEEE%4444eeeeeeeeeeeeeeeeeeef88888 0                         ",
-            "          0  npMM?@@nmEEqqq$qq%%$!$%$%vUn0$%%$$&&&&!&%!(>UUUUEEsqqe4e4444eeeeeeeeeeeeeEEEEEEEEEEte44444eeeeeeeeeeeeef88888 0                          ",
-            "            0)888bp@?GEqqq$Eq%)&$$$%(vUUn0$%$$%%%&&$&&!(z???>Eqqqqe44qqqq44eeeeeeeeeeeeeqEEEEEEEqqqqqee44444eeeeeeef88888 0                           ",
-            "              0)88888ECq$4%E%)=(%())vUUUn0%$$&%%%$$&%$!(kzzz>tqqqee4eeeqqqq444eeeeeeeeeeeeeeEEEqqqqqqqqqqqqe4444(((888880%                            ",
-            "                 u58Eqqq!$Et%((<)vRUUUUpn($!&%%%$$&%%$$,)z?z>tqqee444eeeeqqqqq444eeeeeeeeeeeeeqqqqqqqqqqqqqqqqqtn88))))00 00                          ",
-            "                WMuEqqs$!%Eq!&%)(vUUUUKpn(!&%%%$$&%%%$$,(/z?>tqee44ee44eeeeqqqqqt444eeeeeeeeeeeeeqqqqqqqqqqqqqtmpnnnnn88)000                          ",
-            "                 SEEqtm$!Ess%$$$%JUUUUpnn(!&%%$!&%%%%$$--)>URsee44eeqqq4eeeeqqqEEEEt444eeeeeeeeeeeeeqqqqqqqqqtmpnnnnppnnc)0(                          ",
-            "                  Eqqtm$$EvUJ$!!$UUUUUMn)$!&%%$$&%%%%$$--(=UQee44eeeeqqq44eeeetEEEEEEEt44eeeeeeeeeeeeeeqqqqqtmpnnnnnnpn ()                            ",
-            "                  Esq88%EvJKh!44%UUUUp@n$!!&%$%&$$$$$$$--(k?R44&I&eeeeqqqq4eeeeeEEEEEEEEE%44eeeeeeeeeeeeeqqtmpnnnnnnpn 0                              ",
-            "                 )J)!%JUUJhhg$44&UUU?pz)!!!&%$!!$$!!!!$--))>UQIQUI%eeeeqqqq4eeeeeeEEEEEEEEEe444eeeeeeeeeeef88nnnnnnnn 0                               ",
-            "                 hJ$$JUUU&gvv$&j&RU@[n)%$!!&%!%$,-5))))55)(z?UTUUUI%eeeeqqst4eeeeeeeEEEEEsqqqqe444eeeeeeef888888nnn 00                                ",
-            "               ! J%%JUKUJ&gvs$(j&K@[>)&&%!!!$!%$-j*5555a2)(k?UTUUUUI%eeeetEEE44eeeeeeetqqqqqqqqqqe444eeef888888888 0                                  ",
-            "              ! UJhJJ(&&&g $$!!%w@@n5!&)%$!!$$%$-j55))l?2)))>UTUUUUUI%eeeeEEEEt44eeeeeeeqqqqqqqqqqqee%4e888888888 0                                   ",
-            "             % >U)J(%gsg $ZX $8&J 60 $&)%$!!!%%,j-5)5l?7)5)(/UTTTTTTTI%eeeqEEEEEt4eeeeeeeqqqqqqqqqqtmn8()888888)00                                    ",
-            "            4h>iJg !!$$$$   05nn j!030()&%!!!$$--*)9BLa0)55))>UUUUUUUUQI%eeeEEEEqqq44eeeeeeeeqqqqtmnppnnnn8))0)0                                      ",
-            "            !hKvs XZ!XY    0)c700    0(5)&$!!$,-*)9BOa2)555)*z;:::::::UTI%eeetsqqqqqq4eeeeeeeeeqtmppnnnppnn8800                                       ",
-            "            &)v !Z          0)0     20()5&%!$,j*)9BPa905555)(/kkkkkkkk>UTI%eeeqqqqqqqq%eeeeeeeef88nnnpnnn (00)0                                       ",
-            "            h($Y           00       200&5)%&-.-59AB@a2)5555)&&((((((&(k>UTIeeeeqqqqqqt8(eeeeef888888nnn 0%00                                          ",
-            "            ! Z                     0 0&))&-.-*9ABLa905555)&!!%&))&!44(k>UQ%eeeeqqqqt888(eef88888888 )00                                              ",
-            "                                     200&5-.-*59a?l995555)(&!4!!&)$4444(k>UI)888888888888((8888 000000                                                ",
-            "                                      2a&5j-*)5997AB2)55)(&!44444!!4ee4e(k>UJ788)88888888880000&000                                                   ",
-            "                                     0 a2&5*555997BB2)5)(&!4eee44444qEeeq(/UTJ))v)((888888880                                                         ",
-            "                                      02a&&)55)27>aAB2)(&!44eqEe444eqEE4eq)>UUIJQvs(0000 888800                                                       ",
-            "                                       2a2&&))7yM799o2&&!444eqEEe44eqqEe4qr/z?UTTQF.($000 00000                                                       ",
-            "                                       02a0&&7yVB20020&!4444eqqEEe4eqqEE4eq(5x>UUTF/(     0000(                                                       ",
-            "                                         a2&(yBB90)5)&&4eee4eqqEEq4eqqtEe4eqE()=>UR/(Z                                                                ",
-            "                                         2a2BNOa90555&&4eqqqeqqsEE4eqqqEE44qE4q()/:/(Z                                                                ",
-            "                                           2B y9o2)5)&&4eqqqeqqqEE44qqqtEeeeEeq44(((&&                                                                ",
-            "                                           2Bn 220& &&&e4eqqqeqqtE444eqqEeeqsEEq4e444                                                                 ",
-            "                                               100 $4eeee4qqq4eqqEee44eqEeeqqsEE4eqe44                                                                ",
-            "                                                   $$4eee4eqq44qqEee4e4eE4eqqqEE4eqqe4                                                                ",
-            "                                     $            $$44eeeeeqq444ee4ee4e444eqqqEE4eqqe4                                                                ",
-            "                          !(&  !&% %%%%&$$YYZ%Y $%4eqEEe4eeeq4ee444eq4ee4qqe44eE44qqe44                                                               ",
-            "                         Y M) !5? Y &&&&%%%%%%%444EEEEtq444444eqe44eqe4e4eqeeeeE44eqe44                                                               ",
-            "                        Y [[(Z)[W+Z!!!%&&%EEseEEEqeEtqqee44!44eqq44eqq4e4qeqeeeEee4qe444                                                              ",
-            "                       Z [].% .][ !%&&!!&&&EEqeEEEqeqeeee4 Z44eqqe4eqq4e4qEqee44ee4ee4e4                                                              ",
-            "                      ! []/-,)[]/5%!$&&$$&&%qqqqqqq4eeee4 Z  44qqq4eeqe44qEqee444ee4e4q4                                                              ",
-            "                      &.][.-(.][.--5)5&&&$&&%qqqqeee4ee4 Z     eqq4eeqq44eEe44eEeeqe44qee                                                             ",
-            "                      ([]/j-([]/-jjjj-$$&&$&&eeeeeee444 Z      4eq4eeqq4eqqqqe4Eq4qqe4qq4                                                             ",
-            "                    Z .][.j,)[[.-jjj.-&!&&&$&%e4eeee4!!!        4e44eeq4qEEqee$sEeeqqeqq44                                                            ",
-            "                     )[]cc-(.[/jccccc*&&!&&!&&e4eee4!Z      &&&  444ee44qEEqee!qEs4eq4eq444                   &&(                                     ",
-            "                 &&(,)[]ccc)[].cccccc)&&!$&%!&&4ee4$)(     ()&   44444eqqEqeee!qEE44e44qee44                (&&&&                                     ",
-            "                 $(--*[dccc)[]cc5$$$$$&&&$&&!&&4e4$)j%Z   5 j( &  44 eqEeeqq$4!qEEee444e4qqeee44      &&02&&& &                                       ",
-            "                  &%)@[c)%%(]]c5%!$&&%$&&&$&$!&4!$)/@+%ZY  [[.-&444esEee4$$eee$qqEeqee444qqqqe444444 &&&000&&&                                        ",
-            "                   $([c)%$Z([]c%ZZ!%%%!$%%!%$!&!X +[].)%%%+]].j*&4qEEEEt(>%eee!eqe4qqe4e4eqqqqqqe4444eqt0&&&                                          ",
-            "                   Z)@c(8%Y&/]c%   !$$$!$$!$$!&! &+][.---+@]cjj-5&%&%&E&+[%eee!4e4eqqe4e44eqqqqqqqqqqqqe &                                            ",
-            "                    (c(Mc% !)@c%4  !!!$!$$!$$!%! 5/[cjjj-+]]ccjj-5%()&%*[[$!4e!444eqqe4eq444eeqqqqqqee 44                                             ",
-            "                   4(b&[]j( &.c%4   !!!!!!!%%$$  +[]ccj-*.][cccjj-$$&%)/].$e$e!444eqqe4eq44444444444444                                               ",
-            "                   $(,%5@c% 4(c%4      !!!)-jc$  +]]cccc+[]cccccj5%%$)j][%eee4!44e4qq44eq44  44444444                                                 ",
-            "                   (&%!4)c%   &%$     Y!!%-/cc$  +]]cccc+]]cccccb%&&5-/][$$ee!!44e4eq44eqe44                                                          ",
-            "                   & $   &%$  $ $ )&  !%*j/@c ! !+]]cccc+[]cc($$$!$%c/[]j$&ee!e44eeeq444qqe4                                                          ",
-            "                         % &    )5**+++.[][c(   !+[]ccc(*[[cc%%&&&!)c[W@$!&%e!444ee44e44eqq44                                                         ",
-            "                                $(-.@[[[][dc&   & /[ccc&*[dcc&&&&&$cd]]j!$!%e!4444e4ee4qeqqq44                                                        ",
-            "                                    ccccccc(     &+[ccc&*[cc5$!$$$!c[W@%$$!%%!4444e4ee4qeqqqq44                                                       ",
-            "                                   %  5cccc&      +[:c($+[dc(&))&!%c]]j!$%%&%!4444e4qe4qqeqqqq44                                                      ",
-            "                                     %  *cc(4    ! [[c&Z+[dc(&&(&!c]WM%$!$%&$!4444e4qe4qq4eqqqqe4                                                     ",
-            "                                       % ((&      &,]c& :[c5&&&&%$c]@&$$!$%%$!4e44eeqe4qq44eqqqqe4eq4                                                 ",
-            "                                         44&       *[[(  +c($!%%$c@.%$!$$!$%b2  444eqe4qq44e  eqqqqqe44                                               ",
-            "                                                   &,[)  5c( Y!)c@.%$$!$$!$bcc   44qqeeqq4   4  eqqqqqe4                                              ",
-            "                                                    +M)  )(&  $5c.%!$$!!!%b2cc2  4eqqeqqq44    4  eeqqt02                                             ",
-            "                                                    +*&  (&&  ++-(!!!$$)%b22cc22 4qqqeqqe44      % & (002002                                          ",
-            "                                                     )&% %&( ( c 4Y%----%(&%2cc2 eqqeeqqe44        && & 0002022                                       ",
-            "                                                     (&&     5)(% 0*@/jj5%$ 02c2 eqq4qqe444           f&  020000&&                                    ",
-            "                                                              &%   ,[cjj-%Y$ &2b%qq4eqqe444              & &&&&&&&                                    ",
-            "                                                            (5%&&)+[[ccjj5&% & 20qqeqqe4e44                &&&&&(&                                    ",
-            "                                                            &5+++/[]ccccjj,)eqq&0seqqqe4e44                                                           ",
-            "                                                            $)M[[[[cccccc-&4eqqe&(eqqqeee44                                                           ",
-            "                                                              ).cccccccc-&4eqqee4&(qqeeee4                                                            ",
-            "                                                              !&&(cccc-&%0tqeee4eq(qe4eee44                                                           ",
-            "                                                               %%%()(((0cccfee4eqqqq4eeeee4                                                           ",
-            "                                                               0200ccccccc20&4eqqqqe4eeeee44                                                          ",
-            "                                                            &   2222222222(& qqqq 4 4eeeee44                                                          ",
-            "                                                           &&(     00000 (qqqqqe e444eee4e&                                                           ",
-            "                                                            (00022222222btqqqe 44  44eee4e&(                                                          ",
-            "                                                             &&2cccccccctqqe 44    4eeee4e0&                                                          ",
-            "                                                             && ( 2ccccheee 4     %4ffe4&00&                                                          ",
-            "                                                                4$ ((((&&444      2ccc00( 0&(                                                         ",
-            "                                                                   4444&&4       02cc202 &00&                                                         ",
-            "                                                                                 2ccc20   &0&                                                         ",
-            "                                                                                02cc2 0    &(&                                                        ",
-            "                                                                                2cc2 0      &&&                                                       ",
-            "                                                                                2c2 0       & &                                                       ",
-            "                                                                              0 c2 0                                                                  ",
-            "                                                                              2c 00                                                                   ",
-            "                                                                              020                                                                     ",
-            "                                                                            200                                                                       ",
+            "006Z                                                                                                                                                    λ",
+            "  Za6Z0                                                                                                                                               ",
+            "   Zll6Z                                                                                                                                              ",
+            "   YlnllZ                                                                                                                                             ",
+            "   ZlllnlZ                                                                                                                                            ",
+            "    lnllnlZ                                                                                                                                           ",
+            "    lnlllnlZ                                                                                                                                     00   ",
+            "    6llllll60                                                                                                                                  0Z6    ",
+            "    Zlllllll60                                                                                                                               0Z6ll    ",
+            "    0lllllll660                                                                                                                            0Z6lllZ    ",
+            "    06llllll66Z0  00                                                                                                                      Z6llnl60    ",
+            "     Zlnlllll660  06Z0                                                                                                                  0Zllnnl60     ",
+            "     06llnlll6600006l60                                                                                                               0Z6lnnll60  0   ",
+            "     Yd66llnl660060Zll60                                                                                                             Z6llnll6Z00000   ",
+            "      cocd6lll6606006llZ000                                                                                                         Wlllll60000Z66    ",
+            "      2ooccd6666Z660Zll6Z06Z                                                                                                      22rlnll6Z0Z6lllZ    ",
+            "       2ooccccc2666606llaZll60                                                                                                 22oorknllllllllnlZ     ",
+            "        2occcccc26666Zlnl6ll660                                                                                              22cooorlnlllllnnnlZ      ",
+            "        2occccccc2666Z6llllll660                                                                                            2oooooorlnllllllll60      ",
+            "        2oocccccc26666Zllllll660                                                                                          22ooooooorlnllllll660       ",
+            "         2occccccc2666Zllllll6660                                                                                       22ooooooooorlnlllll660       0",
+            "         2occcccc22266Z6lllll666Y 00                                                                                   2ooooooooooorlnlll66660     0Z6",
+            "         2oocccccc22266Zlnnnnl666006Z                                                                                 2ooooooooooooqlll666660     ZllZ",
+            "          2occcccc222260klllll666006lZ                                                                              22ooooooooooooorl66666660   0Zln60",
+            "          2occcccc22222XWcdddc2666Z6llZ                                                                            2oooooooooooooork66666660  0ZllnlZ ",
+            "          2ooccccc2222222cccccc2666ZlnlZ                                                                         ccooooooooooooooop6666666600Zlllnl60 ",
+            "           2occccc2222222cccccc2266ZllnlZ                                                                      cpCooooooooooooooocc6666666ZZlllllllZ  ",
+            "           2oocccc22222222cccccc266ZlllnlZ                                                                    cCCCooooooooooooocccd666660Zlllnllll60  ",
+            "            2occcc22222222ccccc222Y0llllnlZ                                                                 coCCCCoooooooooooccccc6666YZ6lnnllllnlZ   ",
+            "            2occccc2222222cccccc222Ylnllll60                                                              coCCCCCCoooooooooccccccc666Wrlllllllllnl0   ",
+            "             2occcc22222222ccccc222Wklnnll660 0                                                         oCCCCCCCCCooooocccccccccc2Woooknlllllllnl6    ",
+            "             2oocccc2222222ccccc2222cdklnl66000                                                       coCCCCCCCCCCooooccccccccc22ooooqlnlllllllllZ    ",
+            "              2occcc22222222cccc22222ccdkl66600Y                                                     cCCCCCCCCCCCCooccccccccc22oooooorlnlllllll6Z0    ",
+            "              2occcc22222222ccccc2222cccdk6660ZaZ                                                  coCCCCCCCCCCCooccccccccc22ooooooorknllllll6Z00     ",
+            "              2oocccc2222222ccccc2222ccccd6666ZllZ                                               coCCCCCCCCCCCooccccccccc22oooooooooqlnllll6Z0        ",
+            "               2occcc22222222cccc2222cccccd666ZlnlZ                                             2CCCCCCCCCCCooccccccccc22ooooooooooorlnll6000         ",
+            "               2ooccc22222222cccc22222ccccc266ZllnlZ                                          22rCCCCCCCCCoocccccccccc2oooooooooooorknnl6ZZZ00000     ",
+            "                2occcc2222222cccc22222ccccccW6ZlllnlZ                                       22ooCCCCCCCCqocccccccccc22ooooooooooooorlnnxvvxv6660      ",
+            "                2occcc2222222cccc22222cccccc26ZllllnlZ                                     2ooooCCCCCCCocccccccccc22ooooooooooooooorllll666666Z       ",
+            "           22222V2ccccc2222222ccc22222ccccc222Yllllll60                                  22oooooCCCCCooccccccccc22ooooooooooooooooorl66666666Z        ",
+            "            22co22ccccc2222222ccc22222ccccc222Wlnllll60   0                             2oooooooCCCooccccccccc22oooooooooooooooooooc66666666Y         ",
+            "             2ccco2ccccc222222ccc22222ccccc222Vknllll60  Y0                            2ooooooooCooccccccccc22rooooooooooooooooooccd66666660          ",
+            "              2ccco22cc22222222cc22222ccccc2222dknlll600ZaZ                          22ooooooooooccccccccc2WCCCoooooooooooooooccccc666666660          ",
+            "               2cccoo2222222222ccc2222ccccc2222cdknl6600l60                        22ooooooooooccccccccc2WCCCCCoooooooooooooccccccd6666666Z           ",
+            "               U2ccccooc2222222ccc2222ccccc2222ccdkl660Zl60      2cc              2oooooooooocccccccccc2CCCCCCoooooooooooccccccccc66666Z00            ",
+            "               2V222ccccc2222222cc22222cccc2222ccccd66Z9660 00    cCc22       22ooooooooocccccccccc2WCCCCCCCCCoooooooccccccccccccd6666660    0ZZ0Z60  ",
+            "                2co222ccc2222222cc22222cccc2222ccccc2606660000    cCCc222    2ooooooooooccccccccc2WCCCCCCCCCCCooooccccccccccccccc6666660   0Z6llllZ   ",
+            "                 2coo222c2222222ccc2222ccccc222ccccc2VY66600660    cCCc222 22oooooooooccccccccc2WCCCCCCCCCCCCoocccccccccccccccccd66666Z0Z0Zllllnl6    ",
+            "                  2ccoo222222222ccc2222cccccc22ccccc22V6660ZllZ    cCCCc222oooooooooccccccccc22CCCCCCCCCCCCCCccccccccccccccccccc$66WYZ6lllllnnnl60    ",
+            "                  2ccccoo22222222cc2222cccccc22dYccc222d6606l60    cCoqCc2ooooooooccccccccc22oCCCCCCCCCCCCccccccccccccccccccccc2WW2cklllnnllllllZ     ",
+            "                   2cccccoo222222cc2222cccccc2VYYccc22cc26ZllZ0Z0  cCoorCcooooooccccccccc22ccoCCCCCCCCCCccccccccccccccccccc2222coooolnlllllll66Z      ",
+            "                    2cccccc222222cc22222ccccc2WYdcc222cc2VcfkZ6lZ  cCooorCcooocccccccccc2ooooCCCCCCCCcccccccccccccccccc2222ccoooooorlnlllll66Z0       ",
+            "                     2ccccc222222cc22222cccc2X9Zccc22cc222ccd6ll0  2coooorCocccccccccc22oooooCCCCCcccccccccccccccccc222coooooooooooknllll66000        ",
+            "                     22ccccc22222cc22222ccccXk6dccc22c222cccclnl0Wcc2oooooocccccccccc2ooooooCCCccccccccccccccccc2222cooooooooooooorlnll6600Z6         ",
+            "                   2222ccccc22222ccc2222cccdkn6cccc222222cccdknl6YcCccoooooC2ccccc22ooooooooCocccccccccccccc2222coooooooooooooooooknl663ZZ3xxZ        ",
+            "                    22oo22222222cccc2222ccdkl6Ycccc222222ccccdlnlZ2qCccooooC2ccc22oooooooocccccccccccccc2222ccooooooooooooooooooorlnxxxxxxxl3         ",
+            "                     2ccoooo22222ccc2222cdkn60Yccc222222cccccckl66YcqCccoooCV222ooooooooocccccccccccc222CCCroooooooooooooooooooooknlnnnnnnl60         ",
+            "                      22cccco2222ccc2222Xlnl60Vccc222222ccccccd666Y2oBCccooc2oooooooooccccccccccc2222CCCCCCooooooooooooooooooooorlnlllllll60          ",
+            "                      V22cccc22222cc222Xl/l6YXVccc222222ccccccc266Y2oorCccoc2oooooocccccccccc2222rCCCCCCCCooooooooooooooooooooorklll66666Z0           ",
+            "                      22222cccc222cccXl.nl6Y2WYccc22222ccccccc22X60 cCoqCccc2ccccccccc222rCCCCCCCCCCCCCCCqooooooccccccccccccccd666666Z0               ",
+            "                       222222ccc22ccdlJnll6Y2YYcc22222ccccccc222260 cCooCC2c2ccccc2222cooCCCCCCCCCCCCCCCCocccccccccccccccccccc666666Z0                ",
+            "                        2ooc22cc22cdl/nll60YY0Vcc22222cccccc222c2YV2cCoooCWc222222ccooooqCCCCCCCCCcccccccccccccccccccccccccccd666666                  ",
+            "                         2coo22c22cknnll66Za6YVcc22222ccccc222222V2ccCooorCc2cooooooooooCCCcccccccccccccccccccccccccccccccccc6666660                  ",
+            "                         22ccco22oXlnlll6Zl6Y22cc2222ccccc222222222occooooCc2oooooocccccccccccccccccccccccccccccccccccccccccd66660000ZZZ000           ",
+            "                      XYXV22ccco2o6llll606l6Y22cc2222cccc2222222ccWoccooooo2occccccccccccccccccccccccccccccccccccccccccccccc66ZZZ00Zllll60            ",
+            "                      Y66YXXccccoclnll66Zl6Y222cc2222ccc222222cccd!cocooooo2ccccccccccccccccccccccccccc22222222222222222222WZ3llllllnl6Z0             ",
+            "                      Yi)u66YXcoCXlnl663ll6Y222c2222cc2222222cccc2ocCccoooo2ccccccccccccc22222222222222cccccoooooooooooooorklllnnnnnl60               ",
+            "                       Z)ttt66rCC6ll663ll6YUUUUUUUUUUUUU2222ccccc2ocCocoooo22222222222222rCCCCCCCCCCCrooooooooooooooooooooknnlllnlll60                ",
+            "                       Y)uDtqrCCrll663ll6YUUUUUVVVWXXYXVUUUccccc2CocCoocooo2oooooooooooooCCCCCCCCCCCCoooooooooooooooooooorlnlnllll660                 ",
+            "                       Yi)tqqCCoql963ll66YVVVUUUUVWVYv*YXYXWVccc22ocCoocoocccccccoooooooCCCCCCCCCCCCoooooooooooooooooooooknllll60Y00                  ",
+            "                        Y)qqCCqoc663ll66YWWWWWVUUUUUYx.u)(YXXWUU222qCooccc2cccccccccccccCCCCCCCCCCCCoooooooooooooooooooorlnl633ZZ0                    ",
+            "                        Y)rCCCoo2Y3ll66YWWWWWWWXWVUUUZ.QDu)(YXXV2o2CCooc2222cccccccccccccccccccCCCCoooooooooooooooooooookllxxxxxvZ                    ",
+            "                        rCCCCqoo2kll66YWWXWWWWWXWWVUWY.QNDtu(YXWCo2CCooc2ooc22222ccccccccccccccccccccccoooooooooooooooorlnlnnnl63                     ",
+            "      Zl               qCCCCqoocZl66YYWX60WWWWWXWWVUXYi.QNDDu)hXCo2Cqooc2oooooooc2222ccccccccccccccccccccccccccooooooorkllllllZ0                      ",
+            "        0lJJnn6      oCCCCqooooc9ZYWWWVZlZWXXXXXWWVUXWZ.QPPNDqXCqoc2ooc2cccccccoooooCCCCC2222ccccccccccccccccccccccccc666666Z                         ",
+            "         Z6nJ:/nn9  rCCCCqocooo26VVVVVWulYVWWXXXWWVUXWXi.QPPFXCCooc2oc2ccccccccccccCCCCCCCCCCW2222cccccccccccccccccccd666660                          ",
+            "           Z6lnJJ/::lkCCoooVooWWVUVWVWtQl0VWWVVXXXXUXWUY.QQQQCCqooc2c2222cccccccccccccCCCCCCCCCCrc22222cccccccccccccd66666Z                           ",
+            "             Z6669n:/ECoooVCoWZXVVVWYtQQl0VWVVWWWXXVXXUYx///.Cooooc22oooo22cccccccccccccoCCCCCCCooooocc22222cccccccd66666Z                            ",
+            "              0Z66666CAoV2WCWZ-YWYZZtQQQl0WVVXWWWVVXWVUYixxx.rooocc2cccoooo222ccccccccccccccCCCooooooooooooc2222YYY666660                             ",
+            "               Z/s36CoooUVCrWYY,ZtOQQQQnlYVUXWWWVVXWWVV%Zx/x.roocc222ccccooooo222cccccccccccccooooooooooooooooorl66ZZZZ0                              ",
+            "                 JsCooqVUWCoUXWZYtQQQQHnlYUXWWWVVXWWWVV%Y)x/.rocc22cc22ccccooooor222cccccccccccccooooooooooooorknlllll66Z000                          ",
+            "                  CCorkVUCqqWVVVWGQQQQnllYUXWWVUXWWWWVV&&Z.QOqcc22ccooo2ccccoooCCCCr222cccccccccccccooooooooorknllllnnllaZ0                           ",
+            "                  CoorkVVCtQGVUUVQQQQQJlZVUXWWVVXWWWWVV&&Y-QNcc22ccccooo22ccccrCCCCCCCr22ccccccccccccccooooorknllllllnlZY                             ",
+            "                  Cqo66WCtGHfU22WQQQQn:lVUUXWVWXVVVVVVV&&Yi/O22XFXccccoooo2cccccCCCCCCCCCW22cccccccccccccoorknllllllnlZ                               ",
+            "                 ZGZUWGQQGffeV22XQQQ/nxZUUUXWVUUVVUUUUV&&ZZ.QNFNQFWccccoooo2ccccccCCCCCCCCCc222cccccccccccd66llllllllZ                                ",
+            "                 fGVVGQQQXettVXhXOQ:;lZWVUUXWUWV%&3ZZZZ33ZYx/QPQQQFWccccooqr2cccccccCCCCCqooooc222cccccccd666666lllZ0                                 ",
+            "                fGWWGQHQGXetqVYhXH:;.ZXXWUUUVUWV&h!333381ZYi/QPQQQQFWccccrCCC22cccccccrooooooooooc222cccd666666666Z                                   ",
+            "               fQGfGGYXXXeVVVU Wu::l3UXZWVUUVVWV&h33ZZj/1ZZZ.QPQQQQQFWccccCCCCr22cccccccoooooooooooccW2c6666666660                                    ",
+            "              f.QZGYWeqeVV     XG/406VXZWVUUUWW%h&3Z3j/5Z3ZY)QPPPPPPPFWcccoCCCCCr2cccccccoooooooooorkl6YZ666666Z0                                     ",
+            "             f.gGeVUUVVV     3ll3    0YZXWUUUVV&&!Z7zI80Z33ZZ.QQQQQQQQNFWcccCCCCooo22ccccccccoooorklnnllll6ZZ0Z                                       ",
+            "             fHtqV          Za50     0Y3ZXVUUV%&!Z7zL81Z333Z!x+*******QPFWcccrqoooooo2cccccccccorknnlllnnll6600                                       ",
+            "             ZtVU          00Z       0YZ3XWUV%h!Z7zM8703333ZY)iiiiiiii.QPFWcccooooooooWccccccccd66lllnlllZY00                                         ",
+            "             YV                      00X3ZWX&(&37yz:81Z3333ZXXYYYYYYXYi.QPFccccoooooor6Ycccccd666666lllZ0                                             ",
+            "             U                       00XZZX&(&!7yzI8703333ZXUUWXZZXU22Yi.QNWccccoooor666Yccd66666666ZZ0                                               ",
+            "                                      00X3&(&!378/j773333ZYXU2UUXZV2222Yi.QFZ666666666666YY666600000                                                  ",
+            "                                      18X3h&!Z3775yz1Z33ZYXU22222UU2cc2cYi.QG566Z66666666660000                                                       ",
+            "                                      181X3!333775zz1Z3ZYXU2ccc22222oCccoY)QPGZZtZYY6666666600                                                        ",
+            "                                       18XXZ33Z15.8yz1ZYXU22coCc222coCC2coZ.QQFGNtqY0000066660                                                        ",
+            "                                       181XXZZ5wJ577m1XXU222coCCc22cooCc2op)x/QPPND(Y    000000                                                       ",
+            "                                        180XX5wRz10010XU2222cooCCc2cooCC2coY3v.QQPD)Y                                                                 ",
+            "                                        181XYwzz70Z3ZXX2ccc2cooCCo2coorCc2coCYZ-.QO)Y                                                                 ",
+            "                                         181zKL870333XX2cooocooqCC2coooCC22oC2oYZ)*)Y                                                                 ",
+            "                                          01zMw7m1Z3ZXX2cooocoooCC22ooorCcccCco22YYYX                                                                 ",
+            "                                              1110XXXXXc2cooocoorC222cooCccoqCCo2c222                                                                 ",
+            "                                                    2cccc2ooo2cooCcc22coCccooqCC2coc2                                                                 ",
+            "                                                    V2ccc2coo22ooCcc2c2cC2coooCC2cooc2                                                                ",
+            "                                                  VV22cccccoo222cc2cc2c222coooCC2cooc2                                                                ",
+            "                           YX   X   WWW         VW2coCCc2ccco2cc222co2cc2ooc22cC22ooc22                                                               ",
+            "                          !JZ  3/  VXXXXWWWWWWW222CCCCro222222coc22coc2c2coccccC22coc22                                                               ",
+            "                         3;;Y Z;S TUUUWXXWCCqcCCCocCroocc22U22coo22coo2c2ococccCcc2oc22                                                               ",
+            "                        3;<(WX(<;XUWXXUUXXXCCocCCCococccc2U  2cooc2coo2c2oCocc22cc2cc2c2                                                              ",
+            "                       Y;<)&%Z;<)3WUVXXVVXXWooooooo2cccc2U    2ooo2ccoc22oCocc222cc2c2o2                                                              ",
+            "                      X(<;(&Y(<;(&&3Z3XXXVXXWooooccc2cc2U     2coo2ccoo22cCc22cCccoc22oc                                                              ",
+            "                      Y;<)h&Y;<)&hhhh&VVXXVXXccccccc222U       2co2ccoo2cooooc2Co2ooc2oo2                                                             ",
+            "                     X(<;(h%Z;;(&hhh(&XUXXXVXWc2cccc2UU         2c22cco2oCCoccVqCccoocoo2                                                             ",
+            "                    WZ;<aa&Y(;)haaaaa!XXUXXUXXc2ccc2U        X   222cc22oCCoccUoCq2co2co22                     X                                      ",
+            "                  XY%Z;<aaaZ;<(aaaaaaZXXUVXWUXX2cc2VZ       ZX    2222cooCocccUoCC22c22occ2                   XX                                      ",
+            "                  Y&&!;baaaZ;<aa3VVVVVXXXVXXUXX2c2VZhW     $hY     22coCccooV2UoCCcc222c2ooc               XXXX                                       ",
+            "                   WZ:;aZWWY<<a3WUVXXWVXXXVXVUX2UVZ):$W   !;;(&X222cqCcc2VVcccVooCcocc222ooooc222    XXX000XX                                         ",
+            "                   VY;aZWVTY;<aW  UWWWUVWWUWVUXU  $;<(ZWWW$<<(h!X2oCCCCrY.WcccUcoc2ooc2c2cooooooc2222cor0XX                                           ",
+            "                    Z:aY6W X)<aW  UUVVVUVVUVVUXU  $<;(&&&$:<ahh&3XWXWXCX$;WcccU2c2cooc2c22coooooooooooocX                                             ",
+            "                    YaYJaW  Z:aW   UUUVUVVUVVUW  3);ahhh&$<<aahh&3WYZXW!;;VU2cU222cooc2co222ccoooooocc22                                              ",
+            "                    Y9X;<h  X(aW    UUUUUUUWWVV  $;<aah&!(<;aaahh&VVXWZ)<(VcVcU222cooc2co2222222222222                                                ",
+            "                    Y%W3:aW  YaW     UUUUUZ&haV  $<<aaaa$;<aaaaah3WWVZh<;Wccc2U22c2oo22co22                                                           ",
+            "                    XW  ZaW   XW       UUW&)aaV  $<<aaaa$<<aaaaa9WXX3&)<;VVccUU22c2co22coc2                                                           ",
+            "                    X    XW    V       W!h):aW   $<<aaaa$;<aaYVVVUVWa);<hVXccUc22ccco222ooc2                                                          ",
+            "                          X      3!!$$$(;<;aY    $;<aaaY!;;aaWWXXXUZa;S:VUXWcU222cc22c22coo2                                                          ",
+            "                                 Y&(:;;;<;baX    3);aaaX!;baaXXXXXVab<<hUVUWcU2222c2cc2ocooo2                                                         ",
+            "                                  YYaaaaaaaY      $;aaaX!;aa3VUVVVUa;S:WVVUWWU2222c2cc2ocoooo2                                                        ",
+            "                                    XY3aaaaX      $;*aYV$;baYXZZXUWa<<hUVWWXWU2222c2oc2oocoooo2                                                       ",
+            "                                      XY!aaY      $;;aX $;baYXXYXUa<SJWVUVWXVU2222c2oc2oo2cooooc                                                      ",
+            "                                        XYYX       %<aX  ;a3XXXXWVa<:XVVUVWWVU  22ccoc2oo22cooooc2                                                    ",
+            "                                                   !;;Y  $aYVUWWVa:(WVUVVUVW91   22coc2oo2  22coooooc2                                                ",
+            "                                                    %;Z  3aY  UZa:(WVVUVVUV9aa   22ooccoo2    22coooooc2                                              ",
+            "                                                    $JZ  ZY    3a(WUVVUUUW91aa1  2coocooo2      22ccoor0                                              ",
+            "                                                     !X   X    $&YUUUVVZW911aa1  2ooocooc2        XXXY0010                                            ",
+            "                                                     ZX   X   !aY  W&&&&WYX 1aa1Vcooccooc2           XXX00010                                         ",
+            "                                                      X       ZY   !:)hh3W   1a12coo2ooc22              XX010000                                      ",
+            "                                                              XW  0%;ahh&W   X19Woo2cooc22                XXXXXXXX                                    ",
+            "                                                               XXZ$;;aahh3XW  X10oocooc2c2                                                            ",
+            "                                                            X3$$$);<aaaahh%  ooX0qcoooc2c2                                                            ",
+            "                                                             ZJ;;;;aaaaaa&X coocXYcoooccc2                                                            ",
+            "                                                              Z(aaaaaaaa&X2coocc2XYoocccc2                                                            ",
+            "                                                               XXYaaaa&XW0roccc2coYoc2ccc2                                                            ",
+            "                                                                 WYZYYY0aaadcc2coooo2ccccc2                                                           ",
+            "                                                               0100aaaaaaa10X2cooooc2ccccc2                                                           ",
+            "                                                                   1111111  2ooooo222ccccc2                                                           ",
+            "                                                            X          01Yoooooc2   2ccc2cX                                                           ",
+            "                                                             000111111119roooc22    2ccc2cX                                                           ",
+            "                                                             XX1aaaaaaaarooc22     2cccc2c0X                                                          ",
+            "                                                               XYY1aaaafccc2       2ddc2X00X                                                          ",
+            "                                                                  XYYYYXX22       1aaa00Y00X                                                          ",
+            "                                                                                  1aa10  X00X                                                         ",
+            "                                                                                 1aaa10   X0X                                                         ",
+            "                                                                                 1aa10     XYX                                                        ",
+            "                                                                                1aa10       XX                                                        ",
+            "                                                                                1a10         X                                                        ",
+            "                                                                               1a10                                                                   ",
+            "                                                                              1a10                                                                    ",
+            "                                                                              01                                                                      ",
+            "                                                                             0                                                                        ",
         ]
     end
 
@@ -170,87 +170,81 @@ class ArTTY::Art::MmbnFalzarEXE < ArTTY::Art
         super
         @name = "mmbn-falzar.EXE"
         map_color("0", "color_023")
-        map_color("1", "color_024")
-        map_color("2", "color_029")
-        map_color("3", "color_030")
-        map_color("4", "color_052")
-        map_color("5", "color_059")
-        map_color("6", "color_060")
-        map_color("7", "color_065")
-        map_color("8", "color_066")
-        map_color("9", "color_070")
-        map_color("a", "color_071")
-        map_color("b", "color_072")
-        map_color("c", "color_073")
-        map_color("d", "color_079")
-        map_color("e", "color_088")
-        map_color("f", "color_089")
-        map_color("g", "color_094")
-        map_color("h", "color_095")
-        map_color("i", "color_101")
-        map_color("j", "color_102")
-        map_color("k", "color_103")
-        map_color("l", "color_107")
-        map_color("m", "color_108")
-        map_color("n", "color_109")
-        map_color("o", "color_113")
-        map_color("p", "color_115")
-        map_color("q", "color_124")
-        map_color("r", "color_125")
-        map_color("s", "color_130")
-        map_color("t", "color_131")
-        map_color("u", "color_134")
-        map_color("v", "color_136")
-        map_color("w", "color_137")
-        map_color("x", "color_146")
-        map_color("y", "color_149")
-        map_color("z", "color_152")
-        map_color("A", "color_154")
-        map_color("B", "color_155")
-        map_color("C", "color_160")
-        map_color("D", "color_166")
-        map_color("E", "color_167")
-        map_color("F", "color_172")
-        map_color("G", "color_173")
-        map_color("H", "color_174")
-        map_color("I", "color_178")
-        map_color("J", "color_179")
-        map_color("K", "color_185")
-        map_color("L", "color_187")
-        map_color("M", "color_188")
-        map_color("N", "color_191")
-        map_color("O", "color_193")
-        map_color("P", "color_194")
-        map_color("Q", "color_214")
-        map_color("R", "color_215")
-        map_color("S", "color_217")
-        map_color("T", "color_220")
-        map_color("U", "color_221")
-        map_color("V", "color_229")
-        map_color("W", "color_231")
-        map_color("X", "color_232")
-        map_color("Y", "color_233")
-        map_color("Z", "color_234")
-        map_color("!", "color_235")
-        map_color("$", "color_236")
-        map_color("%", "color_237")
-        map_color("&", "color_238")
-        map_color("(", "color_239")
-        map_color(")", "color_240")
-        map_color("*", "color_241")
-        map_color("+", "color_242")
-        map_color(",", "color_243")
-        map_color("-", "color_244")
-        map_color(".", "color_245")
-        map_color("/", "color_246")
-        map_color(":", "color_247")
-        map_color(";", "color_248")
-        map_color("<", "color_249")
-        map_color("=", "color_250")
-        map_color(">", "color_251")
-        map_color("?", "color_252")
-        map_color("@", "color_253")
-        map_color("[", "color_254")
-        map_color("]", "color_255")
+        map_color("1", "color_029")
+        map_color("2", "color_052")
+        map_color("3", "color_059")
+        map_color("4", "color_060")
+        map_color("5", "color_065")
+        map_color("6", "color_066")
+        map_color("7", "color_070")
+        map_color("8", "color_071")
+        map_color("9", "color_072")
+        map_color("a", "color_073")
+        map_color("b", "color_079")
+        map_color("c", "color_088")
+        map_color("d", "color_089")
+        map_color("e", "color_094")
+        map_color("f", "color_095")
+        map_color("g", "color_101")
+        map_color("h", "color_102")
+        map_color("i", "color_103")
+        map_color("j", "color_107")
+        map_color("k", "color_108")
+        map_color("l", "color_109")
+        map_color("m", "color_113")
+        map_color("n", "color_115")
+        map_color("o", "color_124")
+        map_color("p", "color_125")
+        map_color("q", "color_130")
+        map_color("r", "color_131")
+        map_color("s", "color_134")
+        map_color("t", "color_136")
+        map_color("u", "color_137")
+        map_color("v", "color_146")
+        map_color("w", "color_149")
+        map_color("x", "color_152")
+        map_color("y", "color_154")
+        map_color("z", "color_155")
+        map_color("A", "color_160")
+        map_color("B", "color_166")
+        map_color("C", "color_167")
+        map_color("D", "color_172")
+        map_color("E", "color_173")
+        map_color("F", "color_178")
+        map_color("G", "color_179")
+        map_color("H", "color_185")
+        map_color("I", "color_187")
+        map_color("J", "color_188")
+        map_color("K", "color_191")
+        map_color("L", "color_193")
+        map_color("M", "color_194")
+        map_color("N", "color_214")
+        map_color("O", "color_215")
+        map_color("P", "color_220")
+        map_color("Q", "color_221")
+        map_color("R", "color_229")
+        map_color("S", "color_231")
+        map_color("T", "color_234")
+        map_color("U", "color_235")
+        map_color("V", "color_236")
+        map_color("W", "color_237")
+        map_color("X", "color_238")
+        map_color("Y", "color_239")
+        map_color("Z", "color_240")
+        map_color("!", "color_241")
+        map_color("$", "color_242")
+        map_color("%", "color_243")
+        map_color("&", "color_244")
+        map_color("(", "color_245")
+        map_color(")", "color_246")
+        map_color("*", "color_247")
+        map_color("+", "color_248")
+        map_color(",", "color_249")
+        map_color("-", "color_250")
+        map_color(".", "color_251")
+        map_color("/", "color_252")
+        map_color(":", "color_253")
+        map_color(";", "color_254")
+        map_color("<", "color_255")
     end
 end

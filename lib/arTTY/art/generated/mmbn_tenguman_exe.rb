@@ -2,7 +2,7 @@
 class ArTTY::Art::MmbnTengumanEXE < ArTTY::Art
     def color_map
         return [
-            "                                                       λ",
+            "                     110                               λ",
             "                   1110                              ",
             "                 11110                               ",
             "                11110                                ",
@@ -32,8 +32,8 @@ class ArTTY::Art::MmbnTengumanEXE < ArTTY::Art
             "    bbc55caaaaaaaaaa    dddaaaaaccc                  ",
             "  2222cc55aaaaaaaaa     ddddaaaac58d                 ",
             " 422742c5caaaaaaaaa       daaaac581cdd               ",
-            " 4727722caaaaaaaaaaa       aaaac581ceed              ",
-            " 7722724caaaaaaaaaaac      aaaac588dddedd            ",
+            "24727722caaaaaaaaaaa       aaaac581ceed              ",
+            "27722724caaaaaaaaaaac      aaaac588dddedd            ",
             " 2222424caaaaaaaaaaccc    ccccc558cddddeed           ",
             " 274422caaaaaaaaaac55c    c5888cc5c ddddded          ",
             "  2222c5aaaaa aaaac555c  c5888888cc   ddddedd        ",
@@ -57,9 +57,9 @@ class ArTTY::Art::MmbnTengumanEXE < ArTTY::Art
             "   2402aaaada2      cc55caaa  b3b                    ",
             "  24402aaaaaa42      cc5caadd  b                     ",
             " 224402aaadd4222     accaaadd  b                     ",
-            " 244222222444422      aaaaaaaa                       ",
-            " 222244444444442       aa2aaad                       ",
-            " 24444444444422        aa72aad222                    ",
+            "2244222222444422      aaaaaaaa                       ",
+            "2222244444444442       aa2aaad                       ",
+            "224444444444422        aa72aad222                    ",
             "  222244444222          a102ad2442                   ",
             "     2222222           2a740aa24442                  ",
             "     22442             2a4402a24442                  ",

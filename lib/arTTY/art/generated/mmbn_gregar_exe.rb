@@ -2,195 +2,193 @@
 class ArTTY::Art::MmbnGregarEXE < ArTTY::Art
     def color_map
         return [
-            "                                                                                 vte                                                                                            λ",
-            "                                                                                tt                                                                                            ",
-            "                                                                              tvFlc                                                                                           ",
-            "                                                                            tvGGl                                                                                             ",
-            "                                                                          tvGGGle                                                                                             ",
-            "                                                                      e tvGGGGl e                                                                                             ",
-            "                                                                     tltGGGGGle                                                                                               ",
-            "                                                                  ttvFlGGGGxlte             kk                                                                                ",
-            "                                                                   GGGlGGGxll e           kkuc                                                                                ",
-            "                                                               ttvGGGGlGGxltl           RkEEc5                                                          dccccdd               ",
-            "                                                                GGGGGGlGGltte        P22uEEu5                                                        c kkkkkkkk               ",
-            "                                                            ttwKGGGGGGlvllt e         3WEEEc5                                                     2 TfmuEEEEEuk               ",
-            "                                                        ttelvKKKGGGGGGeeeee       PR237uEEu5                                                     239hhh99uEEEk                ",
-            "                                                         Gl KKKKGGGGGxeeeee        9*96EEEc5                k5                                 2799hih999YEEk jjdcd           ",
-            "                                                     ttwKKlGKKKGGGGGxltttte    PR29+97uEEu5                kk5                               2999hhih9999uEkT2dkkkkkddk5      ",
-            "                                                      GKKKlGKKKGGGGxltttt e     239C96EEEc5              kkuc5                            227999hhih99999ED5226muEEEkkd5      ",
-            "                                                  ttvGGKKKlGKKKGGGxltttt e  PR2999*97uEEu5             RkEEc                             2 9999hiih99999uE5S39999uEEEuc5      ",
-            "                                                   GGGGKKKlGKKGGGxlttttle    29C,C936EEEc5           22uEEu5                            2 79999hhh99999uEcS2999999EEE 5       ",
-            "                                               ttGGGGGKKKKlGKKGGxltttteR1R2229*99937uEEu5          2T8VlEEc5                           2 3777779997737uEk523999999EDc5        ",
-            "                                              t GGGGGGKKKKlGKKGvltttteR222339*93333WEEEc5        R28xvluEu5                           222222222222222Vkk5S2799999uEcQ         ",
-            "                                             t GGGGGGGKKKKlGKGvltttteV333399*933737uEEu5       TxGxvllEEEc5                            RRQQQ 222222222dk52237799ED5S222       ",
-            "                                            t KGGGGGGGKKKKlGKxltttteV37399,+937773WEEEcN   K GKAKvteVuEEu5               k5           QQQQQQQ RR 2222Tkk5222226uD5S22222      ",
-            "                                            tKKGGGGGGKKKKKlGKltttteV3339+,+9233337uEEs5e  GKKKGvteeV7EEEc5              kk5                   QQQ  222dk5S2222dk5S223732R     ",
-            "                                            wKGvGGGGGKKKKKlvllttteW9999,M99222222TEEEc GKKKKKGtteV37uEEu5             kkuc5                       Q  2Tkk52222kk5223333322    ",
-            "                                          c KKGGvGGGGKKKKKeeeeeelL-+C++-,+C+*922TuEEFtwKKKGvtteeV446EEEc5           RkEEc                           Q  dk52222dk52222R22322   ",
-            "                                           tKGGGGvGGGKKKKAeeeeeee,,9999999999*,C9GKKKKKtlttttt6733Vfkkk5          22uEEu5                             P5k5Q222dk52222222222Q  ",
-            "                                        ltFwKGGGGGvGGKKKAltttttte79C+933336799HKKKKKKGveetttee7322Tdkk55        R23WEEEc5                               55Q2  dk5R223222222RQ ",
-            "                                      ltGGvKKGGGGGGvGKKAltttttteV339,+9V79yKAAKKKKKGtttettteVV2222dkkk5       R29*9uEEu5                   237          55   P5k5Q2222227333R ",
-            "                                    ltGGGGwKGGGGGGGGvKKltttttle699999HGvwAKKKKKKGGGttteetleV22222Tkkk5c  23 229++96EEu 5                   973                 55Q2  22237772 ",
-            "                                 clKKGGGGvKGGGGGGGGGleettttte8xGAAAAAKKKKGtltvGGGGttttllL+$22232Tdkk55  S2339++996uEk5                  29,,92                 55   2Q22777732",
-            "                                5eKKGGGxGwKGGGGGGGtl97TlttvGGAKKKKKKKKGvtttettGGGtttteB,,9932227fkdd5R22)9339,932fkkd5                 2 +M+92                       Q27737772",
-            "               QQ2               eKGGGvStKGGGGGttlW9CC9UwKKKKKKKKKKGvttttteetGGGGtteeV99993792Q27VRRQ 339*99C+22Tdkk55                2 +M+b72                        27322773",
-            "               PQ2RP             lKGvSS9uKGGttl699,C99yAKGGKKKKKGvttttttttetGGGGtteV73329*932P234332222339,CV222dkkk5                2 +M+hC92                       O 33R2293",
-            "      QQ2       QR92Q          5eKGvT999ltvvS979,,,938KKKKKGHKGvttttttttttetGGGteeV33339,+92PP2777773222V$pV222Tkkk55               2 +M+h++Q0                        22322223",
-            "      PQ2RP      Q292RO         lzTS992R99+*S99,,9936yKKKKKKKGGttttttttttteGGtee9*93339+,b3P2277777777322S22222dkkk5               2 +M+h+M9O0                         2323222",
-            "       QR92Q       299RO        eS9922999*97299,93338KKKKKKKGGGtttttttttteeteeV29,9939+,h*92397777777773222R22Tkkk55              2 +M+h+M+7P0                        22223922",
-            "        Q292RO     R799RP      RS922999+C92R939C9239yKKKKKGGGGGtttttttttteeeV7339+,+99+b++22777773333222222222fdkk55             2 +M+h+M+92P0                        Q 227772",
-            "          299RO     R7992RO   2999999+C9932299*9399BKKKKKGGGGGGtttttttttteeV3377799*9++b,9R2333332222222222PQ22Tdkkc5           2 +M+h+M+932P0                         R279773",
-            "          R799RP     R3999RQQR29b+,,*97222299)929,+HKKKKGGGGGGGttttttttteV7377777339+,h,+7222222V%%$$$$$!QPQ22222Tdd5Q         2 +M+h+M+9339P0                          299773",
-            "           R7992RO   PR27992R99++999TRSSR299+999+,9AKKKGGGGGGGGttttttteeV4477777327CMa++932222U%%%U2222QQR22222222RRQQQP      2 +M+h+MC9339)Q0                         2299773",
-            "            R7999RQ   R922392T)972Q299,*R9,,,++C99yKKGGGGGGGGGGtttttteVV333323732P9rCh+9372S!%%%U2222PPQ222222222R22222R2O   2 +M+h+MCT239*9P                           292393",
-            "            PR27992RQ5Q 9922922229999+,9RC,9999938KKGGGGGGGGGGGtttteeUQ2222RP222P7hhb,+9377R2222222QPQ22222222RR223333332RPNQ ,M+h+M+9Q29*92PP2                         292293",
-            "             R922332ReeR2922292R299+C99229933333VxKGGGGGGGGGGGGtteeSPRR22222QQPP7iqa&C9339*222222QPPQ2222222RRR237777777732QPhM+h+M+9229*932P22R22                    22222233",
-            "             Q2922VeetGvR232223239*9932222227772SltttttttttttttleT2PQ222TSSSSSPPhrqq&V2739,9222QPPQ2222222RQR2337777777779732RhhCM+9322)9337P2322222                   2222233",
-            "               23VxttlltlR2322222393373R22RR23229766VVVVV999999922P222QS9TSSSSSQRhrrh2239,,9R2PPPQ222222QQQR237773777772777932RhrC937329339)Q232233222                 2293222",
-            "               Q2TKGttleeeR232RRR223232R2999TQ29933399999,,+++,*2P222QQT9SSSSSSVPQhh22239,92QPRSSPPR22QPPPR23999997VTSSTSSV7932Rh933732239*9P29222293222              Q2993222",
-            "               PRyKGtt99992RQPQ9992RRR29939,*S993339,,++,,999999TR22QPSSSQQQQQR2QPR222229+92RSSSSSRPPPPRSS2399hqi9SSSSUBUSSSV72RV33773229C92P2973222973222            2799322R",
-            "                RKHvFt99992QOP993799999999++T993339,,9999933366lGxlTQQRQQ222222RQQP222229C932RSSSSSQSSSSSR279irrhTTSSSUBURSTTV32P37773229,92P2333322277732222       2 7999222R",
-            "                Sy99tt9972POQ99999999999CC97S99999,,933333338xGvGGGxxlRQS2222222RQQQR22229+93RSSSSSQSSSSSR279irhTT)9SSSTSST)9TV2R27773229,92P222R22R237732222222Q22  9999722RQ",
-            "              O 99999993RPOP979C,+,,99,C9922*,+++,,933773379xGGGvGGGGGxxlU2222222QPQ232227*92RSSSSSQSSSSP23779hUSSV)USV27VT9TSQ22Q2773229C92P22R2222277772227322R22299999322R ",
-            "             P 99999932POOP999*9999,,M-9332R99999993373378yKKGGGvGGGGGGKKAxlV2T22QPQ222222S22RSST6SQSSSSP277377SSSSUV7777773SSQ22P277327*92PQRR 222223333322299322399999322RQ ",
-            "            OQ3999932TcOOO2C,C9333399,M9373223333337737WlGKKKKGGGvGGGGGGKKKGtxlUTQPR!U2222299VT6W6QQSSSSP27777SSSSS237777773VSQQ2P2773R2972POQQQ RR 2222R23222992222R273222R  ",
-            "             Q23722TducPOP999933777339,,93322232222236nGGGKKKKKGGvGGGGGGGKKKwKKAxl6RU$%22239976WW6QSSSSSP27777SSUUS7777777773QQQQP277229223P     QQQ  22222RQ2799999223222 Q  ",
-            "            OPPQQPPcEuPOOR9733777333339,C9999RRRRRR2ReFGGGGKKKKKGGvGGGGGGGKKKwKKKKKxlVoo$22337WWWVQSS66SP27777STBBT277777777VR99RP293299222P0        Q  22222233932222222 Q   ",
-            "           RR22RQQOPcPOOOQ223333799933399C,,*R79999999lttttGKKKKKGvGGGGGGGGGKwKKKKKKGxGwoU2237WW6QQSTWWSP29777SSUUS7777777792QQRQP2922979*2ON          R  2222222222222 RQ    ",
-            "         R29999222POOOOOOOOPRR239C,C999939999T997799,,BetttttttGKKGGGGGGGGGGGJwKKKKKKGGtGGlU67WW6QRS6WWSP23777SSSSSV777777732QPQQP232979,,7P0            Q R 22222222 RQ      ",
-            "       R29999722222POPPPOOOPcud29999C+,,97322*,,99+,,99VettttttttltttttttttGGGtKKKKKKKGGvGGxxtWWVQSTWWWSPQ2237SSSSS2333337322QQQQP932979,92P0              QQ RRQRRRRQ        ",
-            "     R29999322222UU2P222POPcEEuR2333999,,,99R99,,,M99333VeettttttetttttttttttteltvGKKKKGtGGGGGGtRQS6WW6SSPQ2222SSSSR2222222RRQQQPUC9299,,92P0                 QQQQQQ          ",
-            "QQRQ2999722222229CC922222PcEEEEdR22322399,,)S23999,+72773VTettttltttttttttttteetttttttttttGGGGGGxxtXXWSSSPQRRRRQST99QQQQRQQQ99QQP9,9229,,92P                                  ",
-            "QQ 237222222229CCVV*,C922PcEEEEIfQ2RRR2227UT2773339,9933733TeetlttttttttttteeettttttttttelttttttvGGGGtTSQPPQQQQQQS9RPQQQQQQPR9RP29C929*9+9P                                   ",
-            "QQR  2222222*+*V222229*)ROPcjjEEIdS222RRRRQ27777739+,,9933399UettttttttttleeetttttttttteettttttttttttttlRPPQRQQRQQQQQPQ9QPQQQRQP9+9229+9+9O                                   ",
-            "    PQR22222UU22222QPPSSPPQPccjcdcdV2222229T277777799,,C999C,*UeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeQQPQRRQRQQQQPQ9QPQQQQPQ9+9229+9*9P0                                  ",
-            "      QR222222RQRPPQ(T)C9QQQPcccR2U**V2V26C*S27777733999C,+99932SPPPPPPPPPQPR2222U$T2222RT$U2T66RSSSSSSQ QQP QQRRRQQQQQQQQQQQPPR29+729+99CQ0                                  ",
-            "       QQ22SRQ7SZSgThR9,9QQQQPPR22226*+C+*V2RR277777733399,93332POOOOOOOOQPQP22222%V222222%222WWSQQQQQQQ PPQO  QQQRRQQQQQQQPPQQR29*T99+99*Q                                   ",
-            "       QPQSChRR22222222hSQ22RQ QQQ2222UUU22R2RR23333333327+,9332OOOOOOOOOOPQPQ2222%%%U222S$22R6WSQQQQQQQ      OPPPQQQQQQPPPQSSQQ222939C92 O                                   ",
-            "         )6C&R222222222R22222   Q RRQQ2222S222QRR22TTTTTTT6CV2TTQPOOOOOOOOQPQPR222$6$%%$2R222RS66QQRQQRQ2Q     P2RQPPPPPR22VSSSQQ2999*93P                                     ",
-            "         &9VhS QQ 2222222222 O QR22222RQQS)62222QQRlvxxxxxxGxxxxvePPOOOOOOOPQPQ222$222V%22R22QQS6RQQQRRRQRQ2  0P29*922223337TSSQQ239C932P                                     ",
-            "         92222RPPQ QQQ 2222 N PQ22222222226)62U2222etGGGGGGGGGGGvteePOO OOPQPQPR22$U222$22R22RPQSVQQRQQQRRRQPO P29,932397777VSSQQR29C92P                                      ",
-            "             2     PPPQ QQPN  QQQ 222222222V*+++V22TltGGGGGGGGGGttGteRQOOO PPQPQ22U$222$22R22QPPQQQQRQQQQQQRQONP29+9223777777SSSQR339+9O                                      ",
-            "                        PP     QPQ Q 2222222U26+,+V2etttGGGGGGGtttGGtlee OOOQPQPR22$222$22R22POOOOOPQRQQQQQRQONP29+9323777777TSSQQ239+9P0                                     ",
-            "                                   PQQQR222222226,+2SltttGGGGGGttttGGttel  OOPQPQ22%U2U$22R2R OOOOOOPQRQQQQRQONP29+9223777773VSSQQ2339CQ0                                     ",
-            "                                     55QQQQ2222226,6UlttttGGGGtttttGGttte   OQPQPQ2%$V!U22R2R  OOOOOOQRQQQQRQONP22$V2223773397SSSQR339*Q                                      ",
-            "                                    555OOOPQQQ2222+++BtttttGGGttttttGGttee  OOPQPQ2Up$U222RRQ  OOOOOPQRQQQQRQO O  S$$TRR2339C9SSSQR272QO           OOOO                       ",
-            "                                     kdPOOOOOPQQQ22U2UetttttFtttttttGGtteee  OQPQPQ2%V222QPOQ POPOOOPQRQQQRQ     N Q !!SS29+M92SSQQ222N  OQOOOOOO 22RR2QP                     ",
-            "                                 c5ckkkdPPPPPPPPPQQQ22TltttteettttttGGGtetleeQOPQPQ2!222QPPPNc 55POOPQRRQRQP       0N  !$$$9,,7SSSQPQ22RRRQRRRQQQ29999992RQ                   ",
-            "                             OQQ  dkkkkkddddkkdc5POPQQ etteeeeeetttttGGtetttleQPPOOPPPPPP222P555555OPQ555RQO          0QSS229,9SSQQ2273332223399999C,,,+932Q                  ",
-            "                           P22QQOPP5dkkkkkkkEEk5RQOOPPR e eeeeeeeeettGGtetttttlePOOOOQQ222222R5555555555RQPO           OQQQ29,,7QQR23733332299C,+,C99999993R                  ",
-            "                          N h9222QQOO5duEEEukc5S2ROO    ee e eeeeeeeetGtettttttl5OPPPPPP222222P5555kd55Q2QO            OPQQR29,9PQR223999322C+99999)9922233RO                 ",
-            "                         P h9U*h92S2RPPkEEkk5S222QOO        leeeeeeeeeltetttttte R222222P22222PO5kkk555RQPO             OQQR29*RQQQ2Q2*,C92299223339+*22222QQ                 ",
-            "                        02h92*(TT*,,,hPduk55S2222RO NNNNN    555 eeeeeeeetttttteeeT2222RQQSRR2SQPdk555QRQON N             QQR27PQR222R999*922Q2223229223332RO                 ",
-            "                         2922h9*,MMMMhQcc55522222ROOOOOOOOOOOOOOOOPeeeeeeeettttetteT222QSo$222hhQdc555QRQOOOOOO         P2POOPOO29992P2339*9999R22222277793RO                 ",
-            "                         R229hT+M,(qq9Pd55552222RQOOOOOOOOOOOOOOOOOOOPeeeeeeettettteeRQS%%U22229Qc5555R2QOOOOOOOO      0P22OOOOShqi92P27739C,,*229)92337773R                  ",
-            "                       O OPR972hr99999Qd5555QRRRQPOOOOOOOOOOOOOOOOOOOOOOPeeeeeeettttteeo%2222229P55555QQQOOOOOOOOOO    0P33PPPQhrrq9RP3932299923979*99933732                  ",
-            "                      NOOOOR2PR9939722Pd5555POOOOOOOOOOOOOOOOOOOOOOOOOOOOOOPeeeeeettttteT2222222P55555PPOOOOOOOOOOO    0 293229qri92QP22PPPPQR233339C,C93732555               ",
-            "                      NOOOOQPOQ2PPPPPOO55555OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOPeeeeelttteeT2222QOOOOOOOOOOOOOOOOOOOO     P29999ih92Q OPPNN5dPOPPPR23999*933Sukc               ",
-            "                      N OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOP276eeeeeetteTTdT2QOOOOOOOOOOOOOOOOOOOO     P227992RQ OO0   5dPQQQOOPR2339C96uEc                ",
-            "                          OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONO22337VTeeeelledkdTQOOOOOOOOOOOOOOOOOOOOOO   NP R2RQ OO     55kdRRRQQOOP239LEEEk5                ",
-            "                         N O OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONOSSR222232QU,BeeeeekkdROOOOOOOOOOOOOOOOOOOOOOOO   NOOOOO       5dkkkkdRRRQO27WEEEEc                 ",
-            "                           NN OOOOO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO5OOOOR9+,&hh922QR*,9Tdkeeekk5OOOOOOOOOOOOOOOOOOOOOOOOOON             5kEEEEEuukdQTuEEEEk                  ",
-            "                              NNNNNN OOO OOOOOOOOOOOOOOOOOOOOOOOOOO5kdONQ*,(qqh99937ST72Tdkcdke5OOOOOOOOOOOOOOOOOOOOOOOOOOOOON         5 kEEEEEEEEEEuuEEEEE5                  ",
-            "                                     NNNN O OOOOOOOOOOOOOOOOOOOOOOOkEkPNQ%V22223739,CV2Rdkk555OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONNNNO  kEEEEEEEEEEEEEEEEEkRQ                 ",
-            "                                          NN  OOOOOOOOOOOOOOOOOOOO5kEEdOP!22222229+,9322Rd5OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONN5cuEEEEEEEEEEEEEEEEE5Q                  ",
-            "                                             NOOOOOOOOOOOOOOOOOOO5kEEEkPPR2RRR222%&933732ROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOPQQQPPduuuEEEEEEEEEEEk5Q2                 ",
-            "                                               OOOOOOOOOOOOOOOOOOkEEEEEkdRQQQQQRUooTT67732QOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONORSh,,hPPQQQPduuEEEEEEEkdRQQ                 ",
-            "                                                OOOOOOOOOOOOOOOO5EEEEEEEEudRRRRduEEEufV472QOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOORT*,MM+92h++hQOPPduEEEEkkdR2QQ                ",
-            "                                                 OOOOOOOOOOOOOOcEEEEEEEEEEEuuuuEEEEEkT2332QOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONS*,MM,9UVCMMMMhQOPQPdEEkkkdR2RQ                ",
-            "                                                 NOOONOOOOOOOO5suEEEEEEEEEEEEEEEEEEdT22222QOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOSCMMM,9V*,MMMMM,h2hhQPukkkkdR2QQ                ",
-            "                                                  OOOQ6997222RQRRmuuuuuEEEEEEEEEEEdR222222ROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONRCMM,,hV*MMMMM,rh7hMMhQukkkkdR P                 ",
-            "                                                 NNO9C,,,h999h+++&TQPOPduEEEEEEEk5R2R22222QOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONS,M(99T*MMM,(&999CMMM+Rukkkkd PO                 ",
-            "                                                  O9+MMrh9C,,MMMM+h9QPPOQuEEEEEkdV2QQ22222POOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR&r932S,MM,&9992CMMMM+Rukkkk5                    ",
-            "                                                  7+M,(h9CMMMMM+h999C,hQOQEEkkkk573RPPPPPPOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOORhh7RQS+MM(99922,MMMMhQukkkk5                    ",
-            "                                                0O9,rq99CMMM,(h99C,,MM-hQPukkkkdV33ROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR99RONS,M,h9732S+MM,(9Qukkk 5                    ",
-            "                                                P2h99939,M,rq99C,MMMMMM-hQukkkkd743ROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR92QONS+Mr972RQS+MM(99Pdkc 5                     ",
-            "                                                222RRQ2CM,rh99CMMMMMMM,rhQukkkkdV33ROOOOOOOOOOOOO OOOOOOOOOOOOOOOOO OOOOOOOOOP2ROOOR&,&92QOOS,MM&92P5555                      ",
-            "                                                2QOOOQUMM(h92hMMMMM,rq&99Qukkkkd222ROOOOOOOOO OOONNNNNNNNNNNNNNNNNNN O OOOOOOO2QOOOQ9q93ROONS+M,93ROO5                        ",
-            "                                                NOOOORh,&9722+MMM,rqh9999Qukkkkd222QOOOOOO OONNN                     NN  OOOOOQOOOOO2h9ROOOOR(M(7QOO                          ",
-            "                                                NOOOOR99RQQQS,Mrqqi999992Pukkkkd22QOOOOO ONN                            N  OOOOOOOOOR97QOOOOR&,9RO O                          ",
-            "                                                N OOOQRQOOOOS+ri99999992OPdkkkkdRQOOOO ON                                 N O OOOOOOORROOOOOQ9&2QON                           ",
-            "                                                  OOOQOOOOOORqi92RRRRRRQOO555555OOOO ON                                     NN OO OOOOQOOOOOO2h2P                             ",
-            "                                                   OOOOOOOOORh9RQOOOOOOOOOOOOOOOO OON                                          NNN OOOOOOOOOOR72                              ",
-            "                                                     OOOOOO R 2OOOOOOOOOOOOOOOOOONN                                                NNN0NNNNNNQ Q                              ",
-            "                                                           QQQ                                                                                                                ",
+            "                                                                                  rc                                                                                            λ",
+            "                                                                                rrc                                                                                           ",
+            "                                                                              rtDj                                                                                            ",
+            "                                                                            rtEEj                                                                                             ",
+            "                                                                          rtEEEjc                                                                                             ",
+            "                                                                        rtEEEEjc                                                                                              ",
+            "                                                                     rjrEEEEEjc                                                                                               ",
+            "                                                                   rtDjEEEEvjrc             ii                                                                                ",
+            "                                                                  rEEEjEEEvjjj            iisa                                                                                ",
+            "                                                                rtEEEEjEEvjrj           PiCCa                                                                                 ",
+            "                                                               tEEEEEEjEEjrrc         00sCCs3                                                          iiiiiiii               ",
+            "                                                             ruIEEEEEEjtjjrc         01UCCCa                                                        RdksCCCCCs                ",
+            "                                                         rc tIIIEEEEEEccccc        P015sCCs3                                                     017fff77sCCCi                ",
+            "                                                        tEjrIIIIEEEEEvccccc       07(74CCCa                                                    0577fgf777WCCiR                ",
+            "                                                      ruIIjEIIIEEEEEvjrrrrc     P07)75sCCs3                ii3                               0777ffgf7777sCiR0biiiii          ",
+            "                                                     rEIIIjEIIIEEEEvjrrrrc     0017A74CCCa               iisa                              05777ffgf77777CB3004ksCCCiib3      ",
+            "                                                   rtEEIIIjEIIIEEEvjrrrrc    P0777(75sCCs3             PiCCa                              07777fggf77777sC3Q17777sCCCsa       ",
+            "                                                  rEEEEIIIjEIIEEEvjrrrrj    007A*A714CCCa            00sCCs3                             057777fff77777sCaQ0777777CCCa        ",
+            "                                                rEEEEEIIIIjEIIEEvjrrrrc  P0007(77715sCCs3          0R6TjCCa                             01555557775515sCi301777777CBa         ",
+            "                                               rEEEEEEIIIIjEIIEtjrrrrcP000117(71111UCCCa         P06vtjsCs3                            00000000000000Tii3Q0577777sCa          ",
+            "                                              tEEEEEEEIIIIjEIEtjrrrrcT111177(711515sCCs3       RvEvtjjCCCa                            OPPOOOP000000000bi30015577CB3Q00        ",
+            "                                             uIEEEEEEEIIIIjEIvjrrrrcT15177*)715551UCCCa      EIyItrcTsCCs3                                   PPPP0000Rii3000004sB3Q0000       ",
+            "                                            rIIEEEEEEIIIIIjEIjrrrrcT1117)*)7011115sCCq3   EIIIEtrccT5CCCa               ii3                      P0000bi3Q0000bi3Q001510      ",
+            "                                            uIEtEEEEEIIIIIjtjjrrrcU7777*K77000000RCCCacEIIIIIErrcT15sCCs3             iisa                         P00Rii30000ii300111110     ",
+            "                                           rIIEEtEEEEIIIIIccccccjJ+)A))+*)A)(700RsCCDruIIIEtrrccT224CCCa            PiCCa                            0Pbi30000bi30000P0010    ",
+            "                                          jrIEEEEtEEEIIIIyccccccc**7777777777(*A7EIIIIIrjrrrrr4511Tdiii3          00sCCs3                              3i3O000bi30000000000   ",
+            "                                        jrDuIEEEEEtEEIIIyjrrrrrrc57A)711114577FIIIIIIEtccrrrcc5100Rbii3         P01UCCCa                                33  0Pbi3P001000000P  ",
+            "                                      jrEEtIIEEEEEEtEIIyjrrrrrrcT117*)7T57wIyyIIIIIErrrcrrrcTT0000biii3       P07(7sCCs3                    1                 3i3O0000005111P ",
+            "                                    jrEEEEuIEEEEEEEEtIIjrrrrrjc477777FEtuyIIIIIIEEErrrccrjcT00000Riii3      007))74CCsa                    75                  33  P000015550 ",
+            "                                  jIIEEEEtIEEEEEEEEEjccrrrrrc6vEyyyyyIIIIErjrtEEEErrrrjjJ)Z00010Rbii3   Q0117))774sCi3                   7**7                        O00555510",
+            "                                 cIIEEEvEuIEEEEEEErj75RjrrtEEyIIIIIIIIEtrrrcrrEEErrrrcz**7710005dibb3 00&7117*710diib3                  7)K)7                         05515550",
+            "                O                cIEEEtQrIEEEEErrjU7AA7SuIIIIIIIIIIEtrrrrrccrEEEErrccT77771570O05TPPO0117(77A)00Rbii3                  7)K)95                         05100551",
+            "                O0P              jIEtQQ7sIEErrj477*A77wyIEEIIIIIEtrrrrrrrrcrEEEErrcT51107(710N012110000117*AT000biii3                 7)K)fA7                         011P0071",
+            "       O         P70            cIEtR777jrttQ757***716IIIIIEFIEtrrrrrrrrrrcrEEErccT11117*)70NN0555551000TZnT000Riii3                 7)K)f))O                          0100001",
+            "       O0P        070P          jxRQ770P77)(Q77**7714wIIIIIIIEErrrrrrrrrrrcEErcc7(71117)*91N0055555555100Q00000biii3                7)K)f)K7M                          0101000",
+            "        P70       O077P         cQ7700777(75077*71116IIIIIIIEEErrrrrrrrrrccrccT07*7717)*f(70175555555551000P00Riii3                7)K)f)K)5N                          0001700",
+            "         070P      P577P       PQ700777)A70P717A7017wIIIIIEEEEErrrrrrrrrrcccT5117)*)77)9))00555551111000000000dbii3               7)K)f)K)70N                          O005550",
+            "         O077P      P5770P     777777)A7710077(7177zIIIIIEEEEEErrrrrrrrrrccT1155577(7))9*7P0111110000000000NO00Rbiia             7)K)f)K)710N                           057551",
+            "          P577P      P1777P  P079)**(75000077&707*)FIIIIEEEEEEErrrrrrrrrcT5155555117)*f*)5000000T!!ZZZZZYONO00000Rbb3           7)K)f)K)7117N                           077551",
+            "           P5770P     P05770P77))777RPQQP077)777)*7yIIIEEEEEEEErrrrrrrccT2255555105AK8))710000S!!!S0000OOP00000000PPOOO        7)K)f)KA7117&O                           077551",
+            "            P5777P    P700170R&750O077*(P7***))A77wIIEEEEEEEEEErrrrrrcTT111101510N7pAf)7150QY!!!S0000NNO000000000P00000P      7)K)f)KAR017(7N                           070171",
+            "             P05770P  O07700700007777)*7PA*7777716IIEEEEEEEEEEErrrrccSO0000PN000N5ff9*)7155P0000000ONO00000000PP001111110PN  7*K)f)K)7O07(70N                           070071",
+            "             P700110PccP0700070P077)A77007711111TvIEEEEEEEEEEEErrccQNPP00000OONN5go8$A7117(000000ONNO0000000PPP015555555510ONfK)f)K)7007(710N00P                       0000011",
+            "              0700TccrEtP010001017(7710000005550QjrrrrrrrrrrrrrjcR0NO000RQQQQQNNfpoo$T0517*7000ONNO0000000POP0115555555557510PffAK)7100&7115N010000                    0000011",
+            "              O01TvrrjjrjP0100000171151P00PP01007544TTTTT777777700N000OQ7RQQQQQOPfppf0017**7P0NNNO000000OOOP015551555550555710PfpA715107117&O01001100                  0071000",
+            "               O0RIErrjcccP010PPP001010P0777RO07711177777**)))*(0N000OOR7QQQQQQTNOff00017*70ONPQQNNP00ONNNP01777775TRQQRQQT5710Pf711510017(7N0700007100               O0771000",
+            "                PwIErr77770PONO7770PPP07717*(Q771117**))**777777RP00ONQQQOOOOOP0ONP000007)70PQQQQQPNNNNPQQ0177fog7QQQQSzSQQQT50PT11551007A70N075100075100             0577100P",
+            "                PIFtDr77770OMN771577777777))R771117**7777711144jEvjROOPOO000000POON000007A710PQQQQQOQQQQQP057gppfRRQQQSzSPQRRT10N15551007*70N01111000555100          05777000P",
+            "                Qw77rr7750NMO77777777777AA75Q77777**711111116vEtEEEvvjPOQ0000000POOOP00007)71PQQQQQOQQQQQP057gpfRR&7QQQRQQR&7RT0P05551007*70N000P00P0155100000      07777500P ",
+            "               P77777771PNMN757A*)**77*A7700(*)))**711551157vEEEtEEEEEvvjS0000000ONO010005(70PQQQQQOQQQQN01557fSQQT&SQT05TR7RQO00O0551007A70N00P0000055550005100P00077777100P ",
+            "              P77777710NMMN777(7777**K+7110P77777771151156wIIEEEtEEEEEEIIyvjT0R00ONO000000Q00PQQR4QOQQQQN055155QQQQST5555551QQO00N055105(70NOPPP000001111100077100177777100P  ",
+            "             O1777710RaMMM0A*A7111177*K7151001111115515UjEIIIIEEEtEEEEEEIIIErvjSRONPYS0000077TR4U4OOQQQQN05555QQQQQ015555551TQOO0N0551P0750N    PPPP0000P01000770000P051000P  ",
+            "             O01500RbsaNMN777711555117**71100010000014lEEEIIIIIEEtEEEEEEEIIIuIIyvj4PSZ!00017754UU4OQQQQQN05555QQSSQ5555555551OOOON055007001N        P000000PO0577777001000P   ",
+            "             NNOONNaCsNMMP7511555111117*A7777PPPPPP0PcDEEEEIIIIIEEtEEEEEEEIIIuIIIIIvjTmmZ00115UUUTOQQ44QN05555QRzzR055555555TP77PN071077000N          OP00000011710000000P    ",
+            "           PP00POOMNaNMMMO001111577711177A**(P57777777jrrrrEIIIIIEtEEEEEEEEEIuIIIIIIEvEumS0015UU4OOQRUUQN07555QQSSQ5555555570OOPON0700757(0M            P000000000000000P     ",
+            "         P07777000NMMMMMMMMNPP017A*A777717777R775577**zcrrrrrrrEIIEEEEEEEEEEEHuIIIIIIEErEEjS45UU4OPQ4UUQN01555QQQQQT555555510ONOON010757**5N              PPP000000000P       ",
+            "       P07777500000NMNNNMMMNasb07777A)**75100(**77)**77TcrrrrrrrrjrrrrrrrrrEEErIIIIIIIEEtEEvvrUUTOQRUUUQNO0015QQQQQ0111115100OOOON710757*70N                 PPPOPPPP         ",
+            "     P07777100000SS0N000NMNaCCsP0111777***77P77***K77111TccrrrrrrcrrrrrrrrrrrrcjrtEIIIIErEEEEEErPOQ4UU4QQNO0000QQQQP0000000PPOOONSA7077**70N                                  ",
+            "   O0777500000007AA700000NaCCCCbP00100177**&Q01777*)50551TRcrrrrjrrrrrrrrrrrrccrrrrrrrrrrrEEEEEEvvrVVUQQQNOPPPPOQR77OOOOPOOO77OON7*7007**70N                                  ",
+            "OOO015000000007AATT(*A700NaCCCCGdO0PPP0005SR0551117*7711511RccrjrrrrrrrrrrrcccrrrrrrrrrrcjrrrrrrtEEEErRQONNOOOOOOQ7PNOOOOOONP7PN07A707(7)7N                                   ",
+            "   OP0000000()(T000007(&PMNahhCCGbQ000PPPPO05555517)**7711177ScrrrrrrrrrrjcccrrrrrrrrrrccrrrrrrrrrrrrrrjPNNOPOOPOOOOONO7ONOOOPON7)7007)7)7M                                   ",
+            "     OP00000SS00000ONNQQNNONaahababT0000007R055555577**A777A*(SccccccccccccccccccccccccccccccccccccccccccOONOPPOPOOOONO7ONOOOONO7)7007)7(7N                                   ",
+            "      OP000000POPNNO%R&A7OOONaaaP0S((T0T04A(Q05555511777A*)77710QNNNNNNNNNONP0000SZR0000PRZS0R44PQQQQQQOOOONNOOPPPOOOOOOOOOOONNP07)507)77AO                                   ",
+            "       OO00QPO5QXQeRfP7*7OOOONNP00004()A)(T0PP055555511177*71110NMMMMMMMMONON00000!T000000!000UUQOOOOOOO     MNOOOPPOOOOOOONNOOP07(R77)77(O                                   ",
+            "        NOQAfPP00000000fQO00PONOOO0000SSS00P0PP01111111105)*7110MMMMMMMMMMNONO0000!!!S000QZ00P4UQOOOOO         NNNOOOOOONNNOQQOO000717A70O                                    ",
+            "        7&4A$P000000000P00000N  OOPPOO0000Q000OPP00RRRRRRR4AT0RRONMMMMMMMMONONP000Z4Z!!Z0P000PQ44OOPOOPO       N0PONNNNNP00TQQQOO0777(71N                                     ",
+            "         $7TfQOOOP0000000000N   P00000POOQ&40000OOPjtvvvvvvEvvvvtcNNMMMMMMMNONO000Z000T!00P00OOQ4POOOPPPOPO    N07(700001115RQQOO017A710N                                     ",
+            "          0000    OOOOP0000N   O00000000004&40S0000crEEEEEEEEEEEtrccNMMMMMNONONP00ZS000Z00P00PNOQTOOPOOOPPPON  N07*710175555TQQOOP07A70N                                      ",
+            "                       OOON    OOP000000000T()))T00RjrEEEEEEEEEErrErcP  MMMNNONO00SZ000Z00P00ONNOOOOPOOOOOOPOM N07)7001555555QQQOP117)7M                                      ",
+            "                                  OOP0000000S04)*)T0crrrEEEEEEErrrEErjc    MONONP00Z000Z00P00NMMMMMNOPOOOOOPOM N07)7101555555RQQOO017)7N                                      ",
+            "                                     OOP000000004*)0QjrrrEEEEEErrrrEErrc    MNONO00!S0SZ00P0P  MMMMMNOPOOOOPOM N07)7001555551TQQOO0117AO                                      ",
+            "                                     33OOOO0000004*4SjrrrrEEEErrrrrEErrrc   MONONO0!ZTYS00P0P  MMMMMMOPOOOOPOM N00ZT0001551175QQQOP117(O                                      ",
+            "                                     33MMMNOOO0000)))zrrrrrEEErrrrrrEErrc    MNONO0SnZS000PPO  MMMMMNOPOOOOPOM  NNQZZRPP0117A7QQQOP050O                                       ",
+            "                                    3ibNMMMMMNOOO00S0ScrrrrrDrrrrrrrEErrcc   MONONO0!T000ONM   MNMMMNOPOOOPON     MOPYYQQ07)K70QQOO000            00PP0O                      ",
+            "                                  3aiiibNNNNNNNNNOOO00RjrrrrccrrrrrrEEErcrjc  MNONO0Y000ONNN  333NMMNOPPOPON         OPYZZZ7**5QQQONO00PPPOPPPOOO07777770P                    ",
+            "                                 3biiiiibbbbiiba3NMNOOOcrrccccccrrrrrEErcrrrjcONNMMNNNNNN000N333333MNO333POM           OQQ007*7QQOO0051110001177777A***)710                   ",
+            "                            00OOMNN3biiiiiiiCCi3POMM   ccccccccccccrrEErcrrrrrjc MMMMOO000000P3333333333PON            MOOO07**5OOP01511110077A*)*A77777771P                  ",
+            "                           0f7000OOMM3bsCCCsia3Q0PMM      cccccccccccrErcrrrrrrj MNNNNNN000000N3333ib33O0OM             NOOP07*7NOP001777100A)77777&7700011P                  ",
+            "                          0f7S(f70Q0PNNiCCii3Q000OMM         cccccccccjrcrrrrrrccP000000N00000NM3iii333PON              MOOP07(POOO0O0(*A70077001117)(00000O                  ",
+            "                         0f70(%RR(***fNbsi33Q0000PMM           3cccccccccrrrrrrcccR0000POOQPP0QONbi333OPOM              MNOOP05NOP000P777(700O0001007001110P                  ",
+            "                         0700f7(*KKKKfOaa33300000PMMMMMMMMMMMMMMMMNccccccccrrrrcrrcR000OQmZ000ffOba333OPOMMMMM          N0NMMNMM07770N0117(7777P00000055571P                  ",
+            "                         P007fR)K*%oo7Nb33330000POMMMMMMMMMMMMMMMMMMMNcccccccrrcrrrccPOQ!!S00007Oa3333P0OMMMMMMM        N00MMMMQfog70N05517A**(007&70115551P                  ",
+            "                        MMNP750fp77777Ob3333OPPPONMMMMMMMMMMMMMMMMMMMMMMNcccccccrrrrrccm!0000007N33333OOOMMMMMMMMM      N11NNNOfppo7PN1710077701757(77711510                  ",
+            "                       MMMMP0NP7717500Nb3333NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNccccccrrrrrcR0000000N33333NNMMMMMMMMMMM     N071007opg70ON00NNNNOP011117A*A7151033                ",
+            "                       MMMMONMO0NNNNNMM33333MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNcccccjrrrccR0000OMMMMMMMMMMMMMMMMMMM      N07777gf70ONMNN  3bNMNNNP01777(711Qsi                ",
+            "                       MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN054ccccccrrcRRbR0OMMMMMMMMMMMMMMMMMMM      N005770PON      3bNOOOMMNP0117A74sCa                ",
+            "                        MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMLM00115TRccccjjcbibROMMMMMMMMMMMMMMMMMMMMM     NNP0PONM       3ibPPPOOMMN017JCCCi                 ",
+            "                          MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMLMQQP000010OS*zccccciibPMMMMMMMMMMMMMMMMMMMMMMM     MMMM        3biiiibPPPOM05UCCCCa                 ",
+            "                             MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM3MMMMP7)*$ff700OP(*7Rbicccii3MMMMMMMMMMMMMMMMMMMMMMMMMM              3iCCCCCssibORsCCCCi                  ",
+            "                                    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM3ibMLO(*%oof77715QR50Rbiabic3MMMMMMMMMMMMMMMMMMMMMMMMMMMMM           3iCCCCCCCCCCssCCCCC3                  ",
+            "                                         MMMMMMMMMMMMMMMMMMMMMMMMMMiCiNLO!T00001517*AT0Pbii333MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM       3iCCCCCCCCCCCCCCCCCiP                  ",
+            "                                            MMMMMMMMMMMMMMMMMMMMMM3iCCbMNY00000007)*7100Pb3MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMLL3asCCCCCCCCCCCCCCCCC3O                  ",
+            "                                              MMMMMMMMMMMMMMMMMMM3iCCCiNNP0PPP000!$711510PMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOOONNbsssCCCCCCCCCCCi3O                  ",
+            "                                               MMMMMMMMMMMMMMMMMMiCCCCCibPOOOOOPSmmRR45510OMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMLMPQf**fNNOOONbssCCCCCCCibPOO                 ",
+            "                                                MMMMMMMMMMMMMMMM3CCCCCCCCsbPPPPbsCCCsdT250OMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMPR(*KK)70f))fOMNNbsCCCCiibP0O                 ",
+            "                                                 MMMMMMMMMMMMMMaCCCCCCCCCCCssssCCCCCiR0110OMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMLQ(*KK*7STAKKKKfOMNONbCCiiibP0P                 ",
+            "                                                  MMMLMMMMMMMM3qsCCCCCCCCCCCCCCCCCCbR00000OMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMQAKKK*7T(*KKKKK*f0ffONsiiiibP0O                 ",
+            "                                                  MMMO4775000POPPksssssCCCCCCCCCCCbP000000PMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMLPAKK**fT(KKKKK*pf5fKKfOsiiiibPON                 ",
+            "                                                  LM7A***f777f)))$RONMNbsCCCCCCCi3P0P00000OMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMLQ*K%77R(KKK*%$777AKKK)PsiiiibN                   ",
+            "                                                  M7)KKpf7A**KKKK)f7ONNMOsCCCCCibT0OO00000NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMP$p710Q*KK*$7770AKKKK)Psiiii3                    ",
+            "                                                  5)K*%f7AKKKKK)f777A*fOMOCCiiii351PNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMPff5POQ)KK%77700*KKKKfOsiiii3                    ",
+            "                                                 M7*po77AKKK*%f77A**KK+fONsiiiibT11PMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMP77PMLQ*K*f7510Q)KK*%7Osiii3                     ",
+            "                                                 0f77717*K*po77A*KKKKKK+fOsiiiib521PMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMP70OMLQ)Kp750POQ)KK%77Nbia3                      ",
+            "                                                 00PPO0AK*pf77AKKKKKKK*pfOsiiiibT11PMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0PMMMP$*$70OMMQ*KK$70N333                       ",
+            "                                                 OMMMOSKK%f70fKKKKK*po$77Osiiiib000PMMMMMMMMMMMMM                   MMMMMMMMMM0OMMMO7o71PMMLQ)K*71PM                          ",
+            "                                                 MMMMPf*$7500)KKK*pof7777Osiiiib000OMMMMMMMMM                          MMMMMMMOMMMMM0f7PMMMMP%K%5OMM                          ",
+            "                                                 MMMMP77POOOQ*Kpoog777770Nsiiiib00OMMMMMMM                               MMMMMMMMMMMP75OMMMMP$*7PMM                           ",
+            "                                                 MMMMOPOMMMMQ)pg77777770MNbiiiibPOMMMMMM                                   MMMMMMMMMMPPMMMMMO7$0OM                            ",
+            "                                                  MMMOMMMMMMPog70PPPPPPOMM333333MMMMMM                                        MMMMMMMMOMMMMMM0f0                              ",
+            "                                                   MMMMMMMMMPf7POMMMMMMMMMMMMMMMMMMM                                              MMMMMMMMMMMP50                              ",
+            "                                                    MMMMMMMMP00MMMMMMMMMMMMMMMMMM                                                             P                               ",
+            "                                                            O                                                                                                                 ",
         ]
     end
 
     def initialize
         super
         @name = "mmbn-gregar.EXE"
-        map_color("0", "color_016")
-        map_color("1", "color_017")
-        map_color("2", "color_023")
-        map_color("3", "color_024")
-        map_color("4", "color_030")
-        map_color("5", "color_052")
-        map_color("6", "color_059")
-        map_color("7", "color_060")
-        map_color("8", "color_065")
-        map_color("9", "color_066")
-        map_color("a", "color_067")
-        map_color("b", "color_073")
-        map_color("c", "color_088")
-        map_color("d", "color_089")
-        map_color("e", "color_094")
-        map_color("f", "color_095")
-        map_color("g", "color_102")
-        map_color("h", "color_109")
-        map_color("i", "color_110")
-        map_color("j", "color_124")
-        map_color("k", "color_125")
-        map_color("l", "color_130")
-        map_color("m", "color_131")
-        map_color("n", "color_136")
-        map_color("o", "color_144")
-        map_color("p", "color_145")
-        map_color("q", "color_146")
-        map_color("r", "color_152")
-        map_color("s", "color_161")
-        map_color("t", "color_166")
-        map_color("u", "color_167")
-        map_color("v", "color_172")
-        map_color("w", "color_173")
-        map_color("x", "color_178")
-        map_color("y", "color_179")
-        map_color("z", "color_180")
-        map_color("A", "color_186")
-        map_color("B", "color_187")
-        map_color("C", "color_188")
-        map_color("D", "color_197")
-        map_color("E", "color_203")
-        map_color("F", "color_208")
-        map_color("G", "color_214")
-        map_color("H", "color_215")
-        map_color("I", "color_216")
-        map_color("J", "color_221")
-        map_color("K", "color_222")
-        map_color("L", "color_224")
-        map_color("M", "color_230")
-        map_color("N", "color_232")
-        map_color("O", "color_233")
-        map_color("P", "color_234")
-        map_color("Q", "color_235")
-        map_color("R", "color_236")
-        map_color("S", "color_237")
-        map_color("T", "color_238")
-        map_color("U", "color_239")
-        map_color("V", "color_240")
-        map_color("W", "color_241")
-        map_color("X", "color_242")
-        map_color("Y", "color_243")
-        map_color("Z", "color_245")
-        map_color("!", "color_246")
-        map_color("$", "color_247")
-        map_color("%", "color_248")
-        map_color("&", "color_249")
-        map_color("(", "color_250")
-        map_color(")", "color_251")
-        map_color("*", "color_252")
-        map_color("+", "color_253")
-        map_color(",", "color_254")
-        map_color("-", "color_255")
+        map_color("0", "color_023")
+        map_color("1", "color_024")
+        map_color("2", "color_030")
+        map_color("3", "color_052")
+        map_color("4", "color_059")
+        map_color("5", "color_060")
+        map_color("6", "color_065")
+        map_color("7", "color_066")
+        map_color("8", "color_067")
+        map_color("9", "color_073")
+        map_color("a", "color_088")
+        map_color("b", "color_089")
+        map_color("c", "color_094")
+        map_color("d", "color_095")
+        map_color("e", "color_102")
+        map_color("f", "color_109")
+        map_color("g", "color_110")
+        map_color("h", "color_124")
+        map_color("i", "color_125")
+        map_color("j", "color_130")
+        map_color("k", "color_131")
+        map_color("l", "color_136")
+        map_color("m", "color_144")
+        map_color("n", "color_145")
+        map_color("o", "color_146")
+        map_color("p", "color_152")
+        map_color("q", "color_161")
+        map_color("r", "color_166")
+        map_color("s", "color_167")
+        map_color("t", "color_172")
+        map_color("u", "color_173")
+        map_color("v", "color_178")
+        map_color("w", "color_179")
+        map_color("x", "color_180")
+        map_color("y", "color_186")
+        map_color("z", "color_187")
+        map_color("A", "color_188")
+        map_color("B", "color_197")
+        map_color("C", "color_203")
+        map_color("D", "color_208")
+        map_color("E", "color_214")
+        map_color("F", "color_215")
+        map_color("G", "color_216")
+        map_color("H", "color_221")
+        map_color("I", "color_222")
+        map_color("J", "color_224")
+        map_color("K", "color_230")
+        map_color("L", "color_232")
+        map_color("M", "color_233")
+        map_color("N", "color_234")
+        map_color("O", "color_235")
+        map_color("P", "color_236")
+        map_color("Q", "color_237")
+        map_color("R", "color_238")
+        map_color("S", "color_239")
+        map_color("T", "color_240")
+        map_color("U", "color_241")
+        map_color("V", "color_242")
+        map_color("W", "color_243")
+        map_color("X", "color_245")
+        map_color("Y", "color_246")
+        map_color("Z", "color_247")
+        map_color("!", "color_248")
+        map_color("$", "color_249")
+        map_color("%", "color_250")
+        map_color("&", "color_251")
+        map_color("(", "color_252")
+        map_color(")", "color_253")
+        map_color("*", "color_254")
+        map_color("+", "color_255")
     end
 end
