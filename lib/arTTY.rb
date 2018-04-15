@@ -31,4 +31,4 @@ Fagin.find_children_recursively(
     "ArTTY::Art",
     "#{File.dirname(__FILE__)}/arTTY/art"
 )
-Fagin.find_children("ArTTY::Art", "~/.config/arTTY/art")
+Fagin.find_children_recursively("ArTTY::Art", "~/.config/arTTY/art")
