@@ -42,11 +42,11 @@ done
     -i $imgs/dc \
     -i $imgs/evil_dead \
     -i $imgs/kirby \
+    -i $imgs/legend_of_zelda \
     -i $imgs/marvel \
     -i $imgs/megaman \
     -i $imgs/mighty_morphin_power_rangers \
     -i $imgs/pokemon \
     -i $imgs/sonic \
     -i $imgs/teenage_mutant_ninja_turtles \
-    -i $imgs/legend_of_zelda \
     -o $output -p
