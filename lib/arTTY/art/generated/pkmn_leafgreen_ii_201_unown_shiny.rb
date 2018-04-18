@@ -41,11 +41,11 @@ class ArTTY::Art::PkmnLeafgreenII201UnownShiny < ArTTY::Art
     def initialize
         super
         @name = "pkmn-leafgreen-II-201-unown-shiny"
-        map_color("0", "color_025")
-        map_color("1", "color_033")
+        map_color("0", "color_024")
+        map_color("1", "color_027")
         map_color("2", "color_081")
         map_color("3", "color_231")
-        map_color("4", "color_234")
-        map_color("5", "color_239")
+        map_color("4", "color_233")
+        map_color("5", "color_238")
     end
 end

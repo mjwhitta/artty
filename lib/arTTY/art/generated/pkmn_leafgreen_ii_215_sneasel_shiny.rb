@@ -2,54 +2,54 @@
 class ArTTY::Art::PkmnLeafgreenII215SneaselShiny < ArTTY::Art
     def color_map
         return [
-            "                                 7773      λ",
-            "                             33888883    ",
-            "                            07887083     ",
-            "                           077700883     ",
-            "                          077703388a     ",
-            "                         0773033380      ",
-            "           2b            073033337a      ",
-            "          252bb         0730033370       ",
-            "          25522b  bbbaa 033033337a       ",
-            "          b55222bb22222a30a03337a        ",
-            "          b555226655522a06a0333a         ",
-            "           255666665552b65aaa3a          ",
-            "   cc      25266666555b65522aa           ",
-            "  cdc      b5b66666555555222a            ",
-            " c9dc       b6666655255a22222b           ",
-            " 99cba      b566655255aa2a222a           ",
-            " 9999dba   2555225525bd9a2222a           ",
-            " 9999992ba 225294255bd999aa22a           ",
-            " ccd992555a2db29425bd9119a222b           ",
-            " c9dd255555b9a294b5299a1b222b            ",
-            "  cccbb2225b9a244b52991b2222b            ",
-            "       2aa2bda5bb55292b5222b             ",
-            "          aab5555552255222b              ",
-            "            b555555552222b               ",
-            "             b552b52222bbb               ",
-            "          33  aa222b2aa22a               ",
-            "          3833  baaaa2222a               ",
-            "          38883   a6552229b              ",
-            "     3330a 08870  b665b2a9a              ",
-            "    378888aa07330a2a655aa4a              ",
-            "     3788887a0a3a262a6552aa           cc ",
-            "      3088773a aa6652a6555a          c9c ",
-            "        000333ab266552a6555ab        c9c ",
-            "           aaaaa6665552a65555ab2    c99c ",
-            "         2bb33aa6655552ba6555555abcc999ca",
-            "       226650a a55555222ba255552999999dca",
-            "     2266652a a2552222222ba2222999999dada",
-            "ccccb5665555aa252a22222ba  aa222999dccdca",
-            "c999b65555555552a baaaaa     aa222999dca ",
-            " cdd225522b222ba  a222a        aaddddca  ",
-            " dccaa22ba2baa  ba222a           aaaa    ",
-            " cddd2aa       a2222a                    ",
-            "  caaa        b5522b                     ",
-            "              a5522a                     ",
-            "             b55222a                     ",
-            "             a5522b                      ",
-            "            b55222a                      ",
-            "            b2222a                       ",
+            "                                 7774      λ",
+            "                             44888884    ",
+            "                            07887084     ",
+            "                           077700884     ",
+            "                          077704488a     ",
+            "                         0774044480      ",
+            "           1b            074044447a      ",
+            "          131bb         0740044470       ",
+            "          13311b  bbbaa 044044447a       ",
+            "          b33111bb11111a40a04447a        ",
+            "          b333116633311a06a0444a         ",
+            "           133666663331b63aaa4a          ",
+            "   cc      13166666333b63311aa           ",
+            "  cdc      b3b66666333333111a            ",
+            " c9dc       b6666633133a11111b           ",
+            " 99cba      b366633133aa1a111a           ",
+            " 9999dba   1333113313bd9a1111a           ",
+            " 9999991ba 113195133bd999aa11a           ",
+            " ccd991333a1db19513bd9229a111b           ",
+            " c9dd133333b9a195b3199a2b111b            ",
+            "  cccbb1113b9a155b31992b1111b            ",
+            "       1aa1bda3bb33191b3111b             ",
+            "          aab3333331133111b              ",
+            "            b333333331111b               ",
+            "             b331b31111bbb               ",
+            "          44  aa111b1aa11a               ",
+            "          4844  baaaa1111a               ",
+            "          48884   a6331119b              ",
+            "     4440a 08870  b663b1a9a              ",
+            "    478888aa07440a1a633aa5a              ",
+            "     4788887a0a4a161a6331aa           cc ",
+            "      4088774a aa6631a6333a          c9c ",
+            "        000444ab166331a6333ab        c9c ",
+            "           aaaaa6663331a63333ab1    c99c ",
+            "         1bb44aa6633331ba6333333abcc999ca",
+            "       116630a a33333111ba133331999999dca",
+            "     1166631a a1331111111ba1111999999dada",
+            "ccccb3663333aa131a11111ba  aa111999dccdca",
+            "c999b63333333331a baaaaa     aa111999dca ",
+            " cdd113311b111ba  a111a        aaddddca  ",
+            " dccaa11ba1baa  ba111a           aaaa    ",
+            " cddd1aa       a1111a                    ",
+            "  caaa        b3311b                     ",
+            "              a3311a                     ",
+            "             b33111a                     ",
+            "             a3311b                      ",
+            "            b33111a                      ",
+            "            b1111a                       ",
             "           cd9bbba                       ",
             "           c9dcda                        ",
             "          c9dcda                         ",
@@ -60,19 +60,19 @@ class ArTTY::Art::PkmnLeafgreenII215SneaselShiny < ArTTY::Art
     def initialize
         super
         @name = "pkmn-leafgreen-II-215-sneasel-shiny"
-        map_color("0", "color_131")
-        map_color("1", "color_167")
-        map_color("2", "color_168")
-        map_color("3", "color_179")
-        map_color("4", "color_189")
-        map_color("5", "color_211")
+        map_color("0", "color_095")
+        map_color("1", "color_132")
+        map_color("2", "color_167")
+        map_color("3", "color_175")
+        map_color("4", "color_179")
+        map_color("5", "color_188")
         map_color("6", "color_218")
         map_color("7", "color_221")
         map_color("8", "color_229")
         map_color("9", "color_231")
-        map_color("a", "color_234")
-        map_color("b", "color_239")
-        map_color("c", "color_243")
+        map_color("a", "color_233")
+        map_color("b", "color_238")
+        map_color("c", "color_242")
         map_color("d", "color_250")
     end
 end

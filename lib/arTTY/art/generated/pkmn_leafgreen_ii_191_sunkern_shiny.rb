@@ -43,7 +43,7 @@ class ArTTY::Art::PkmnLeafgreenII191SunkernShiny < ArTTY::Art
         map_color("1", "color_071")
         map_color("2", "color_113")
         map_color("3", "color_130")
-        map_color("4", "color_173")
+        map_color("4", "color_179")
         map_color("5", "color_191")
         map_color("6", "color_221")
         map_color("7", "color_231")

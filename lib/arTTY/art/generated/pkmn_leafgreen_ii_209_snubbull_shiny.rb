@@ -56,7 +56,7 @@ class ArTTY::Art::PkmnLeafgreenII209SnubbullShiny < ArTTY::Art
         map_color("8", "color_231")
         map_color("9", "color_233")
         map_color("a", "color_239")
-        map_color("b", "color_247")
+        map_color("b", "color_246")
         map_color("c", "color_251")
     end
 end

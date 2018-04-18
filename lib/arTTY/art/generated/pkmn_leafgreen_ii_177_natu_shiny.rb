@@ -44,6 +44,6 @@ class ArTTY::Art::PkmnLeafgreenII177NatuShiny < ArTTY::Art
         map_color("9", "color_231")
         map_color("a", "color_235")
         map_color("b", "color_239")
-        map_color("c", "color_247")
+        map_color("c", "color_246")
     end
 end

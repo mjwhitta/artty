@@ -2,60 +2,58 @@
 class ArTTY::Art::PkmnLeafgreenII182Bellossom < ArTTY::Art
     def color_map
         return [
-            "      9994                      λ",
-            "    94bbb4990   9b9994        ",
-            "   9b94b49990  9bb999440      ",
-            "  9bb97a79990ee09bb944990     ",
-            "  9bb9a07040e649049aa4990     ",
-            "   444770999064bb94a55990     ",
-            "  9b99949b99064bb99705440     ",
-            "  9bb994bbb06669bb95779990    ",
-            "   9bb94944688809b94b94990    ",
-            "    400eec08888c004bb99490    ",
-            "      e680088880de0b99940     ",
-            "      06bb844488bbe4440       ",
-            "       e6888b48866e00         ",
-            "       0e88888886ee0          ",
-            "      ee068888866e0           ",
-            "     e886e666666ee0           ",
-            "     e886066666e00d0          ",
-            "      0e6666666666ee00        ",
-            "    57700e666ee00eee050       ",
-            "   5aa70d006ee021000d750      ",
-            "   7a7123210e033222077755     ",
-            "  5aa13332220333322207770     ",
-            "  5a7133322203333322077770    ",
-            "  5a13333222033333222077770   ",
-            "  7a13333222023333322077777550",
-            "  7a13332220703333322057777750",
-            " 5aa03332220a7033332200555550 ",
-            " 5aa02322207aa7033322010000   ",
-            " aa701222207aaa502323011      ",
-            "5a7010222010aaa7000320110     ",
-            "500 110220117aa7011030 00     ",
-            "    010020 107a70 10 0        ",
-            "     0  00 0 0050 00          ",
-            "               0              ",
+            "      7773                      λ",
+            "    73999377b   797773        ",
+            "   797393777b  79977733b      ",
+            "  7997686777bccb79973377b     ",
+            "  79978b6b3bc237b3788377b     ",
+            "   33366b777b23997384477b     ",
+            "  7977737977b2399776b433b     ",
+            "  799773999b2227997466777b    ",
+            "   799737332555b797397377b    ",
+            "    3bbccab5555abb3997737b    ",
+            "      c25bb5555bbcb97773b     ",
+            "      b29953335599c333b       ",
+            "       c2555935522cbb         ",
+            "       bc55555552ccb          ",
+            "      ccb25555522cb           ",
+            "     c552c222222ccb           ",
+            "     c552b22222cbbbb          ",
+            "      bc2222222222ccbb        ",
+            "    466bbc222ccbbcccb4b       ",
+            "   4886bbbb2ccb10bbbb64b      ",
+            "   68601210bcb22111b66644     ",
+            "  4880222111b2222111b666b     ",
+            "  4860222111b2222211b6666b    ",
+            "  4802222111b22222111b6666b   ",
+            "  6802222111b12222211b6666644b",
+            "  680222111b6b2222211b4666664b",
+            " 488b222111b86b222211bb44444b ",
+            " 488b12111b6886b22211b0bbbb   ",
+            " 886b01111b68884b1212b00b     ",
+            "486b0b111b0b8886bbb21b00b     ",
+            "4bbb00b11b006886b00b2bbbb     ",
+            "    b0bb1bb0b686bb0bbb        ",
+            "     bb bb b bb4b bb          ",
+            "               bb             ",
         ]
     end
 
     def initialize
         super
         @name = "pkmn-leafgreen-II-182-bellossom"
-        map_color("0", "color_016")
-        map_color("1", "color_022")
-        map_color("2", "color_064")
-        map_color("3", "color_077")
-        map_color("4", "color_088")
-        map_color("5", "color_100")
-        map_color("6", "color_107")
-        map_color("7", "color_143")
-        map_color("8", "color_149")
-        map_color("9", "color_160")
-        map_color("a", "color_185")
-        map_color("b", "color_202")
-        map_color("c", "color_231")
-        map_color("d", "color_237")
-        map_color("e", "color_239")
+        map_color("0", "color_022")
+        map_color("1", "color_064")
+        map_color("2", "color_071")
+        map_color("3", "color_088")
+        map_color("4", "color_100")
+        map_color("5", "color_113")
+        map_color("6", "color_143")
+        map_color("7", "color_160")
+        map_color("8", "color_185")
+        map_color("9", "color_202")
+        map_color("a", "color_231")
+        map_color("b", "color_233")
+        map_color("c", "color_238")
     end
 end

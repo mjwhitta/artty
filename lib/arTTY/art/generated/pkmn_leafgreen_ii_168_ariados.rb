@@ -74,7 +74,7 @@ class ArTTY::Art::PkmnLeafgreenII168Ariados < ArTTY::Art
         map_color("a", "color_221")
         map_color("b", "color_231")
         map_color("c", "color_233")
-        map_color("d", "color_241")
+        map_color("d", "color_242")
         map_color("e", "color_250")
     end
 end

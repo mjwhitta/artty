@@ -83,7 +83,7 @@ class ArTTY::Art::PkmnLeafgreenII157TyphlosionShiny < ArTTY::Art
         map_color("9", "color_208")
         map_color("a", "color_220")
         map_color("b", "color_221")
-        map_color("c", "color_229")
+        map_color("c", "color_228")
         map_color("d", "color_231")
         map_color("e", "color_233")
     end

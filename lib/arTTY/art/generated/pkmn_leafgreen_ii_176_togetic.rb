@@ -63,7 +63,7 @@ class ArTTY::Art::PkmnLeafgreenII176Togetic < ArTTY::Art
         map_color("7", "color_167")
         map_color("8", "color_231")
         map_color("9", "color_233")
-        map_color("a", "color_252")
+        map_color("a", "color_251")
         map_color("b", "color_254")
     end
 end

@@ -82,6 +82,6 @@ class ArTTY::Art::PkmnLeafgreenII250HoOhShiny < ArTTY::Art
         map_color("8", "color_233")
         map_color("9", "color_244")
         map_color("a", "color_249")
-        map_color("b", "color_252")
+        map_color("b", "color_250")
     end
 end

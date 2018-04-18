@@ -2,58 +2,58 @@
 class ArTTY::Art::PkmnLeafgreenII215Sneasel < ArTTY::Art
     def color_map
         return [
-            "                                 5553      λ",
-            "                             33777773    ",
-            "                            15775173     ",
-            "                           155511773     ",
-            "                          1555133779     ",
-            "                         1553133371      ",
-            "           ba            1531333359      ",
-            "          b0baa         1531133351       ",
-            "          b00bba  aaa99 1331333359       ",
-            "          a00bbbaabbbbb9319133359        ",
-            "          a000bb22000bb912913339         ",
-            "           b0022222000ba2099939          ",
-            "   cc      b0b22222000a200bb99           ",
-            "  cdc      a0a22222000000bbb9            ",
-            " c8dc       a2222200b009bbbbba           ",
-            " 88ca9      a022200b0099b9bbb9           ",
-            " 8888da9   b000bb00b0ad89bbbb9           ",
-            " 888888ba9 bb0b84b00ad88899bb9           ",
-            " ccd88b0009bdab64b0ad83389bbba           ",
-            " c8ddb00000a89b64a0b8893abbba            ",
-            "  cccaabbb0a89b44a0b883abbbba            ",
-            "       b99bad90aa00b8ba0bbba             ",
-            "          99a000000bb00bbba              ",
-            "            a00000000bbbba               ",
-            "             a00ba0bbbbaaa               ",
-            "          33  99bbbab99bb9               ",
-            "          3733  a9999bbbb9               ",
-            "          37773   9200bbb8a              ",
-            "     33319 17751  a220ab969              ",
-            "    35777799153319b92009949              ",
-            "     357777591939b2b9200b99           cc ",
-            "      31775539 99220b920009          c8c ",
-            "        1113339ab2200b920009a        c8c ",
-            "           99999222000b9200009ab    c88c ",
-            "         baa3399220000ba920000009acc888c9",
-            "       bb22019 900000bbba9b0000b888888dc9",
-            "     bb2220b9 9b00bbbbbbba9bbbb888888d9d9",
-            "cccca022000099b0b9bbbbba9  99bbb888dccdc9",
-            "c888a2000000000b9 a99999     99bbb888dc9 ",
-            " cddbb00bbabbba9  9bbb9        99ddddc9  ",
-            " dcc99bba9ba99  a9bbb9           9999    ",
-            " cdddb99       9bbbb9                    ",
-            "  c999        a00bba                     ",
-            "              900bb9                     ",
-            "             a00bbb9                     ",
-            "             900bba                      ",
-            "            a00bbb9                      ",
-            "            abbbb9                       ",
-            "           cd8aaa9                       ",
-            "           c8dcd9                        ",
-            "          c8dcd9                         ",
-            "          c9999                          ",
+            "                                 6663      λ",
+            "                             33888883    ",
+            "                            16886183     ",
+            "                           166611883     ",
+            "                          166613388a     ",
+            "                         1663133381      ",
+            "           cb            163133336a      ",
+            "          c0cbb         1631133361       ",
+            "          c00ccb  bbbaa 133133336a       ",
+            "          b00cccbbccccca31a13336a        ",
+            "          b000cc22000cca12a1333a         ",
+            "           c0022222000cb20aaa3a          ",
+            "   dd      c0c22222000b200ccaa           ",
+            "  ded      b0b22222000000ccca            ",
+            " d9ed       b2222200c00acccccb           ",
+            " 99dba      b022200c00aacaccca           ",
+            " 9999eba   c000cc00c0be9acccca           ",
+            " 999999cba cc0c95c00be999aacca           ",
+            " dde99c000acebc75c0be9449acccb           ",
+            " d9eec00000b9ac75b0c99a4bcccb            ",
+            "  dddbbccc0b9ac55b0c994bccccb            ",
+            "       caacbea0bb00c9cb0cccb             ",
+            "          aab000000cc00cccb              ",
+            "            b00000000ccccb               ",
+            "             b00cb0ccccbbb               ",
+            "          33  aacccbcaacca               ",
+            "          3833  baaaacccca               ",
+            "          38883   a200ccc9b              ",
+            "     3331a 18861  b220bca7a              ",
+            "    368888aa16331aca200aa5a              ",
+            "     3688886a1a3ac2ca200caa           dd ",
+            "      3188663a aa220ca2000a          d9d ",
+            "        111333abc2200ca2000ab        d9d ",
+            "           aaaaa222000ca20000abc    d99d ",
+            "         cbb33aa220000cba2000000abdd999da",
+            "       cc2201a a00000cccbac0000c999999eda",
+            "     cc2220ca ac00cccccccbacccc999999eaea",
+            "ddddb0220000aac0cacccccba  aaccc999eddeda",
+            "d999b2000000000ca baaaaa     aaccc999eda ",
+            " deecc00ccbcccba  accca        aaeeeeda  ",
+            " eddaaccbacbaa  baccca           aaaa    ",
+            " deeecaa       acccca                    ",
+            "  daaa        b00ccb                     ",
+            "              a00cca                     ",
+            "             b00ccca                     ",
+            "             a00ccb                      ",
+            "            b00ccca                      ",
+            "            bcccca                       ",
+            "           de9bbba                       ",
+            "           d9edea                        ",
+            "          d9edea                         ",
+            "          daaaa                          ",
         ]
     end
 
@@ -62,17 +62,18 @@ class ArTTY::Art::PkmnLeafgreenII215Sneasel < ArTTY::Art
         @name = "pkmn-leafgreen-II-215-sneasel"
         map_color("0", "color_065")
         map_color("1", "color_088")
-        map_color("2", "color_109")
-        map_color("3", "color_167")
-        map_color("4", "color_172")
-        map_color("5", "color_209")
-        map_color("6", "color_221")
-        map_color("7", "color_224")
-        map_color("8", "color_231")
-        map_color("9", "color_234")
-        map_color("a", "color_236")
-        map_color("b", "color_239")
-        map_color("c", "color_243")
-        map_color("d", "color_250")
+        map_color("2", "color_108")
+        map_color("3", "color_131")
+        map_color("4", "color_167")
+        map_color("5", "color_172")
+        map_color("6", "color_203")
+        map_color("7", "color_221")
+        map_color("8", "color_224")
+        map_color("9", "color_231")
+        map_color("a", "color_233")
+        map_color("b", "color_236")
+        map_color("c", "color_238")
+        map_color("d", "color_242")
+        map_color("e", "color_250")
     end
 end

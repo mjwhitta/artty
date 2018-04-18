@@ -45,17 +45,17 @@ class ArTTY::Art::PkmnLeafgreenII172Pichu < ArTTY::Art
     def initialize
         super
         @name = "pkmn-leafgreen-II-172-pichu"
-        map_color("0", "color_088")
+        map_color("0", "color_052")
         map_color("1", "color_094")
-        map_color("2", "color_166")
-        map_color("3", "color_172")
+        map_color("2", "color_130")
+        map_color("3", "color_136")
         map_color("4", "color_179")
         map_color("5", "color_203")
-        map_color("6", "color_228")
-        map_color("7", "color_230")
+        map_color("6", "color_222")
+        map_color("7", "color_229")
         map_color("8", "color_231")
         map_color("9", "color_233")
         map_color("a", "color_239")
-        map_color("b", "color_243")
+        map_color("b", "color_242")
     end
 end

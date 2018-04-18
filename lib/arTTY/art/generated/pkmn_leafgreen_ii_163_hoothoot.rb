@@ -47,7 +47,7 @@ class ArTTY::Art::PkmnLeafgreenII163Hoothoot < ArTTY::Art
         map_color("0", "color_058")
         map_color("1", "color_094")
         map_color("2", "color_100")
-        map_color("3", "color_142")
+        map_color("3", "color_136")
         map_color("4", "color_172")
         map_color("5", "color_178")
         map_color("6", "color_185")
@@ -55,8 +55,8 @@ class ArTTY::Art::PkmnLeafgreenII163Hoothoot < ArTTY::Art
         map_color("8", "color_215")
         map_color("9", "color_229")
         map_color("a", "color_231")
-        map_color("b", "color_234")
-        map_color("c", "color_240")
-        map_color("d", "color_244")
+        map_color("b", "color_233")
+        map_color("c", "color_239")
+        map_color("d", "color_243")
     end
 end

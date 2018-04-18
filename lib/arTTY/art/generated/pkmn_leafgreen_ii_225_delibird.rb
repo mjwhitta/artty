@@ -2,71 +2,71 @@
 class ArTTY::Art::PkmnLeafgreenII225Delibird < ArTTY::Art
     def color_map
         return [
-            "     cc                     c2           λ",
-            "     ca52  2              caa2         ",
-            "     caa52050        c2  2aaa2         ",
-            "      caa50a0       ca0 2aaa0          ",
-            "      2aaacab       2a02aaaa0          ",
-            "       caaaab 333110aa2aaaa0000        ",
-            "      c0caaacb777630aaaaa5b5550        ",
-            "      2a5aaaacb6630aaaaa5555cb         ",
-            "       caaaaaac060aaaaa555ccb          ",
-            "       caaaaaaac0aaaaaa55cb            ",
-            "        0aaaaaaaaaaaaa5500             ",
-            "       c0ca00aaaaa000550c00            ",
-            "       ca5b5abaaa00a5b55ccc00          ",
-            "        b02abab50baba205cc0cb          ",
-            "       0cb2abb111bbba2b5c0c0           ",
-            "33     0abb2a19884ba2bb5cccb           ",
-            "37311  0cabb4998844bbb55cc0            ",
-            "1776631 baaa4841111c555ccc0            ",
-            " 7777661b1aa44bbb41555cc0b             ",
-            " 777766631caabbb8155ccccccb            ",
-            " 37666631caaa1b815555cc0c2cb           ",
-            " 37666631caaaa1155555cc02bbbb          ",
-            "  1666631a5aaaa5555555cbb33331         ",
-            "   1663311caaaaaa55555033333331        ",
-            "    163b335aaaaaaaa5550336666331       ",
-            "     11b33aaaaaaaaaa55b36676633b       ",
-            "      b363aaaaaaaaaa5cb3667766331      ",
-            "      1763aaaaaaaaaab113617776331      ",
-            "      177333aaaaaa5ab300000b7633b      ",
-            "     1777661aaaaa5bc005aacc5b633b      ",
-            "    17777761aaa551310a5caaa5b331bb     ",
-            "  41177777661aa55b310acaaaa5b331ba0    ",
-            "  49167767663aa513330caaa555b33baaa0   ",
-            " 418817676666151b3360aa5555b33ba0aaa0  ",
-            " 91884166666661b33660aaa5bb3bb2550aaa0 ",
-            " 98888166666611336666055b33333b5a5aaa2 ",
-            " 488884166661a51166663bb333333b555aa550",
-            " 4988841666615c116666633333333b5555a550",
-            "  18884b6666311333336663333333b5555555b",
-            "  18884b333333333333333333333bc55c55ccb",
-            "   b444b3333331bb333333333333bcc5ccccb ",
-            "    bbb33333bb   b3333333333bcccc2ccb  ",
-            "       b1bbb      bb33333bbbbb2cc2bb   ",
-            "                   bbbbb1444b bbbb     ",
-            "                    188844144b         ",
-            "                     1b884bbbb         ",
-            "                       bbbb            ",
+            "     bb                     ba           λ",
+            "     b7ca  a              b77a         ",
+            "     b77ca9c9        ba  a777a         ",
+            "      b77c979       b79 a7779          ",
+            "      a777b78       a79a77779          ",
+            "       b77778 11100977a77779999        ",
+            "      b9b777b844431977777c8ccc9        ",
+            "      a7c7777b8331977777ccccb8         ",
+            "       b777777b93977777cccbb8          ",
+            "       b7777777b9777777ccb8            ",
+            "        97777777777777cc99             ",
+            "       b9b79977777999cc9b99            ",
+            "       b7c8c78777997c8ccbbb99          ",
+            "        89a7878c98787a9cbb9b8          ",
+            "       9b8a7880008887a8cb9b9           ",
+            "11     9788a70655287a88cbbb8           ",
+            "14100  9b7882665522888ccbb9            ",
+            "0443310 87772520000bcccbbb9            ",
+            " 444433080772288820cccbb98             ",
+            " 444433310b7788850ccbbbbbb8            ",
+            " 14333310b7770850ccccbb9bab8           ",
+            " 14333310b777700cccccbb9a8888          ",
+            "  03333107c7777cccccccb8811110         ",
+            "   0331100b777777ccccc911111110        ",
+            "    031811c77777777ccc9113333110       ",
+            "     008117777777777cc8133433118       ",
+            "      81317777777777cb81334433110      ",
+            "      043177777777778001304443110      ",
+            "      044111777777c78199999843118      ",
+            "     044433077777c8b99c77bbc83118      ",
+            "    04444430777cc01097cb777c811088     ",
+            "  2004444433077cc81097b7777c8110879    ",
+            "  2603443433177c01119b777ccc81187779   ",
+            " 2055043433330c08113977cccc8118797779  ",
+            " 60552033333330811339777c88188acc97779 ",
+            " 655550333333001133339cc8111118c7c777a ",
+            " 2555520333307c0033331881111118ccc77cc9",
+            " 265552033330cb0033333111111118cccc7cc9",
+            "  05552833331001111133311111118ccccccc8",
+            "  0555281111111111111111111118bccbccbb8",
+            "   822281111110881111111111118bbcbbbb8 ",
+            "    8881111188   811111111118bbbbabb8  ",
+            "       80888      881111188888abba88   ",
+            "                   8888802228 8888     ",
+            "                    0555220228         ",
+            "                     085528888         ",
+            "                       8888            ",
         ]
     end
 
     def initialize
         super
         @name = "pkmn-leafgreen-II-225-delibird"
-        map_color("0", "color_059")
-        map_color("1", "color_094")
-        map_color("2", "color_102")
-        map_color("3", "color_166")
-        map_color("4", "color_172")
-        map_color("5", "color_188")
-        map_color("6", "color_208")
-        map_color("7", "color_215")
-        map_color("8", "color_221")
-        map_color("9", "color_228")
-        map_color("a", "color_231")
-        map_color("b", "color_234")
-        map_color("c", "color_249")
+        map_color("0", "color_094")
+        map_color("1", "color_166")
+        map_color("2", "color_172")
+        map_color("3", "color_202")
+        map_color("4", "color_215")
+        map_color("5", "color_221")
+        map_color("6", "color_228")
+        map_color("7", "color_231")
+        map_color("8", "color_233")
+        map_color("9", "color_240")
+        map_color("a", "color_244")
+        map_color("b", "color_248")
+        map_color("c", "color_252")
     end
 end

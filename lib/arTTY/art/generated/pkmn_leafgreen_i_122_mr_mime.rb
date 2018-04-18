@@ -54,7 +54,7 @@ class ArTTY::Art::PkmnLeafgreenI122MrMime < ArTTY::Art
 
     def initialize
         super
-        @name = "pkmn-leafgreen-I-122-mr_mime"
+        @name = "pkmn-leafgreen-I-122-mr-mime"
         map_color("0", "color_060")
         map_color("1", "color_088")
         map_color("2", "color_103")

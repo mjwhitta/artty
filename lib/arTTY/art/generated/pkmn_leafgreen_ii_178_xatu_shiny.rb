@@ -11,11 +11,11 @@ class ArTTY::Art::PkmnLeafgreenII178XatuShiny < ArTTY::Art
             "  0a288883a51aaa411a        ",
             "  02888883355444411a        ",
             "  0282a333a54444411a        ",
-            "  0aa112aa444444411a        ",
+            "  0aa112aa444444111a        ",
             "   144444444444411060       ",
             "   014444444444111a660      ",
             "    0444444444111a 06a      ",
-            "     04444444111a  a66a     ",
+            "     04444441111a  a66a     ",
             "      011111110a    0660    ",
             "      aa000000aa    a66a    ",
             "     ababaaaaaaaa    0660   ",
@@ -69,7 +69,7 @@ class ArTTY::Art::PkmnLeafgreenII178XatuShiny < ArTTY::Art
         map_color("9", "color_231")
         map_color("a", "color_235")
         map_color("b", "color_239")
-        map_color("c", "color_247")
-        map_color("d", "color_252")
+        map_color("c", "color_246")
+        map_color("d", "color_251")
     end
 end

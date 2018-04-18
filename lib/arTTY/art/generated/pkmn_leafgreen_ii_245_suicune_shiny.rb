@@ -27,22 +27,22 @@ class ArTTY::Art::PkmnLeafgreenII245SuicuneShiny < ArTTY::Art
             "              bb33333333a42d248882002e8882000000abbba         ",
             "               cbbbbaaaa442d24e882028e888a00000baaa           ",
             "              c9991  288822d24e8842288884a0bbbbba             ",
-            "             c99d1d1288882e2d2e88828888820aaaaaa         77   ",
-            "             c991ddd188882e8244e8448888a3a444a2         799d7 ",
-            "             79911ddd188882e822e848888a24844aa4a       77199d7",
-            "             7991 4ddd188824e8aee8888a48844a224a      7dcc1997",
-            "             7991e94ddd18822e8a4e88848884aa24444a    7dddc1997",
-            "             7d9d1ee4ddd182d2e4ae8848844a4a44444a   7dddca1991",
-            "              7991ee84ddd12d2e4aee88842a444a44444a1cdddd1 1991",
-            "              7d9d18884dddc12244ee888a24444a44444addddc1  c991",
-            "            44e79918844acddd4824ee88ad28444a44444addd1a  c999a",
-            "           4e48799d844444aa28e24e88a9d28842c842444aa1    199d ",
-            "          8ee488799144aaa442ee828846288844a1d14444a      1991 ",
-            "         8ee82447d914a   a42ee8244429484aacdd18444a     c99da ",
-            "        8ee8884447991    a42ee8299999d4a7cddd18444a     1991  ",
-            "       4ee88882447d91     a28e199999d1dacddd7d844a      19da  ",
+            "             c99d1d1288882e2d2e88828888820aaaaaa         66   ",
+            "             c991ddd188882e8244e8448888a3a444a2         699d6 ",
+            "             69911ddd188882e822e848888a24844aa4a       66199d6",
+            "             6991 4ddd188824e8aee8888a48844a224a      6dcc1996",
+            "             6991e94ddd18822e8a4e88848884aa24444a    6dddc1996",
+            "             6d9d1ee4ddd182d2e4ae8848844a4a44444a   6dddca1991",
+            "              6991ee84ddd12d2e4aee88842a444a44444a1cdddd1 1991",
+            "              6d9d18884dddc12244ee888a24444a44444addddc1  c991",
+            "            44e69918844acddd4824ee88ad28444a44444addd1a  c999a",
+            "           4e48699d844444aa28e24e88a9d28842c842444aa1    199d ",
+            "          8ee488699144aaa442ee828847288844a1d14444a      1991 ",
+            "         8ee82446d914a   a42ee8244429484aacdd18444a     c99da ",
+            "        8ee8884446991    a42ee8299999d4a6cddd18444a     1991  ",
+            "       4ee88882446d91     a28e199999d1dacddd6d844a      19da  ",
             "      4ee88882 2221991     28819999d1ddadddd1d844a     c991   ",
-            "      4e88882     cd91     24881ddda1aadddd7dd44a      19da   ",
+            "      4e88882     cd91     24881ddda1aadddd6dd44a      19da   ",
             "     4ee88842      c991   2428881aa42cddddc1d442a     c991    ",
             "     4e48882        c91   2442e88844a1addc1d442a      191     ",
             "     2488442        cd91 244442e9984a  aa1d442a      c9da     ",
@@ -77,8 +77,8 @@ class ArTTY::Art::PkmnLeafgreenII245SuicuneShiny < ArTTY::Art
         map_color("3", "color_068")
         map_color("4", "color_074")
         map_color("5", "color_075")
-        map_color("6", "color_088")
-        map_color("7", "color_102")
+        map_color("6", "color_102")
+        map_color("7", "color_124")
         map_color("8", "color_153")
         map_color("9", "color_231")
         map_color("a", "color_233")

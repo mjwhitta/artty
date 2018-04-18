@@ -2,52 +2,50 @@
 class ArTTY::Art::PkmnLeafgreenII167Spinarak < ArTTY::Art
     def color_map
         return [
-            "             eeeeeeeee                   λ",
-            "          ed1255555552221e             ",
-            "         ed151dd5555555211e            ",
-            "         d1551dd555555521d2e  dd4      ",
-            "        e155999552111112222e 0gdd4     ",
-            "        d25999992ddddddd2222dg0ddb4    ",
-            "     ddd155599995115555222220bdd6bbd   ",
-            "  44ddfdd259595951c155222222d6d844dd   ",
-            " 46b6dddd455959551cc12222222d4dddd     ",
-            "4bbb6dffd425555511ccgeee2222d6dffdd    ",
-            "4ddddfddfbd255115ec8gd22ee22db6ddd64   ",
-            "  466dddd4d2215591g gd5222deb64dddbb4  ",
-            " 4bb6ddddbb4155999ddd552222164   44b9d ",
-            "4bb94d d6664dd9999999552ddd2d444   ddd ",
-            "4b4d    d44dcgd999999551cgdddbbddd     ",
-            "4d     ddbb0cfd959595520cfddebbdfgdd   ",
-            "     d0gf6bdd0d59595552dd0dde66dd0fd4  ",
-            "    46d0dd6ddd2555555521ddd1d4ddddddb4 ",
-            "   6b66dddd e15555555222222d     dd6b9d",
-            "   4bb6d     e335552222332d        d6bd",
-            "  6bb6d      3a7d222213a73          ddd",
-            "  4b9d       3a7dedddd3a7d             ",
-            "  4bd         37d    3a7d              ",
-            "  44           3d    ddd               ",
+            "             ccccccccc                   λ",
+            "          cb0144444441110c             ",
+            "         cb040bb4444444100c            ",
+            "         b0440bb444444410b1c  bb3      ",
+            "        c044777441000001111c bdbb3     ",
+            "        b14777771bbbbbbb1111bdbbb93    ",
+            "     bbb04447777400444411111b9bb599b   ",
+            "  33bbdbb147474740a044111111b5b 33bb   ",
+            " 3595bbbb344747440aa01111111b3bbbb     ",
+            "39995bddb314444400aaeccc1111b5bddbb    ",
+            "3bbbbdbbd9b144004caaeb11cc11b95bbb53   ",
+            "  355bbbb3b1104470eeeb4111bc953bbb993  ",
+            " 3995bbbb993044777bbb441111053   3399b ",
+            "39993b b5553bb7777777441bbb1b333   bbb ",
+            "393b    b33baeb777777440aebbb99bbb     ",
+            "3b     bb99badb74747441badbbc99bddbb   ",
+            "     bbdd59bbbb47474441bbbbbc55bbbdb3  ",
+            "    35bbbb5bbb1444444410bbb0b3bbbbbb93 ",
+            "   5955bbbb c04444444111111b     bb599b",
+            "   3995b     c224441111221b        b59b",
+            "  5995b      286b111102862          bbb",
+            "  399b       286bcbbbb286b             ",
+            "  39b         26b    286b              ",
+            "  33           2b    bbb               ",
         ]
     end
 
     def initialize
         super
         @name = "pkmn-leafgreen-II-167-spinarak"
-        map_color("0", "color_016")
-        map_color("1", "color_064")
-        map_color("2", "color_070")
-        map_color("3", "color_094")
-        map_color("4", "color_101")
-        map_color("5", "color_113")
-        map_color("6", "color_143")
-        map_color("7", "color_166")
-        map_color("8", "color_188")
-        map_color("9", "color_191")
-        map_color("a", "color_209")
-        map_color("b", "color_227")
-        map_color("c", "color_231")
-        map_color("d", "color_233")
-        map_color("e", "color_236")
-        map_color("f", "color_243")
-        map_color("g", "color_250")
+        map_color("0", "color_064")
+        map_color("1", "color_070")
+        map_color("2", "color_094")
+        map_color("3", "color_101")
+        map_color("4", "color_113")
+        map_color("5", "color_143")
+        map_color("6", "color_166")
+        map_color("7", "color_191")
+        map_color("8", "color_209")
+        map_color("9", "color_227")
+        map_color("a", "color_231")
+        map_color("b", "color_233")
+        map_color("c", "color_236")
+        map_color("d", "color_243")
+        map_color("e", "color_250")
     end
 end

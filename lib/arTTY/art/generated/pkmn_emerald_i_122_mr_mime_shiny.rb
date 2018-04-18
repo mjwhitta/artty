@@ -54,7 +54,7 @@ class ArTTY::Art::PkmnEmeraldI122MrMimeShiny < ArTTY::Art
 
     def initialize
         super
-        @name = "pkmn-emerald-I-122-mr_mime-shiny"
+        @name = "pkmn-emerald-I-122-mr-mime-shiny"
         map_color("0", "color_022")
         map_color("1", "color_064")
         map_color("2", "color_095")

@@ -3,52 +3,52 @@ class ArTTY::Art::PkmnLeafgreenII156QuilavaShiny < ArTTY::Art
     def color_map
         return [
             "                               5                    λ",
-            "                              575  5              ",
-            "                              575  5 5            ",
-            "                             5775 5755 5          ",
-            "                             5775 575555          ",
-            "                             57755777595          ",
-            "                            57775587595           ",
-            "                         5  57775797995           ",
-            "                         55 578757999995          ",
-            "                         57577977899995           ",
-            "                         5757797899995            ",
-            "                         577779799995 dddd        ",
-            "                         577979999992dd22d        ",
-            "                         57798999922d2227d        ",
-            "                          579999222222278d        ",
-            "          5               579992222222278dd       ",
-            "          55              57992222dd2222211d      ",
-            "          575   5  5       7892d2d444222221d      ",
-            "          5775  55 55      7562d25bb42222211d     ",
-            "          57775 575575    d65622db5b40aa6221d     ",
-            " 555     5777775577575    d66622dc56aaaaa621d     ",
-            "  5755   57777775777775 5 d66222dcaaaaaaaa611c    ",
-            "   57755 57797777578775 5 d62222aaaaaaaaaaa01c    ",
-            "    577755777998797977757 d222aaaaaaaaaaaaa61c    ",
-            " 55  577777777999899897775 daaaaa03aaaaaaaaa6c    ",
-            "  555 57777797799999997775  00000aaaaaaaaaaaac    ",
-            "   5757577777999999999ddddd   dd00066aaaaaaaac    ",
-            "55577777777977999999226221dddd6662666aaaaaaaac    ",
-            " 55777777777997999306221d112666622aaaaaaaaaaac    ",
-            "   5577777777999900622222222222222aaaaaaaaaaac    ",
-            "     5577778999933222222222222222aaaaaaaaaaa6c    ",
-            "       5577777788222222222222222aaaaaaaaaaaa6c    ",
-            "   5555777777772222222222222226aaaaaaaaaaaaac     ",
-            "      55577777772222222226aaaaaaaaaaaaaaaaa6c     ",
-            "         555555776222226aaaaaaaaaaaaaaaaaa6c0     ",
-            "             0aaaaaaaaaaaaaa6aaaaaaaaaaa663c0     ",
-            "             3aaaaaaaaaaaaaa3aaaaa6aaa6666030     ",
-            "              0aaaaaaaaaaaaa3aaaa636666663330     ",
-            "              03aaaaaaa666333aaaa6c6666633333c    ",
-            "             3a606aa6666cc003aaa66c0000333333c    ",
-            "            3aaaa3000ccc  c06aaa6c0c  0c333333c   ",
-            "           3aaaaa66c       caaa66c0c    c333333c  ",
-            "           3a3a366c       3aaaa60cc      c333333c ",
-            "           360606c       3aaaa66c         c330303c",
-            "            000cc       3a0a066c           c33c3cc",
-            "                        306c66c             ccccc ",
-            "                         ccccc                    ",
+            "                              585  5              ",
+            "                              585  5 5            ",
+            "                             5885 5855 5          ",
+            "                             5885 585555          ",
+            "                             588558885a5          ",
+            "                            588855985a5           ",
+            "                         5  588858a8aa5           ",
+            "                         55 589858aaaaa5          ",
+            "                         58588a889aaaa5           ",
+            "                         58588a89aaaa5            ",
+            "                         58888a8aaaa5 eeee        ",
+            "                         588a8aaaaaa2ee22e        ",
+            "                         588a9aaaa22e2228e        ",
+            "                          58aaaa222222289e        ",
+            "          5               58aaa2222222289ee       ",
+            "          55              58aa2222ee2222211e      ",
+            "          585   5  5       89a2e2e444222221e      ",
+            "          5885  55 55      8562e25cc42222211e     ",
+            "          58885 585585    e65622ec5c40bb7221e     ",
+            " 555     5888885588585    e66622ed57bbbbb721e     ",
+            "  5855   58888885888885 5 e66222edbbbbbbbb711d    ",
+            "   58855 588a8888589885 5 e62222bbbbbbbbbbb01d    ",
+            "    588855888aa98a8a88858 e222bbbbbbbbbbbbb71d    ",
+            " 55  588888888aaa9aa9a8885 ebbbbb03bbbbbbbbb7d    ",
+            "  555 588888a88aaaaaaa8885  00000bbbbbbbbbbbbd    ",
+            "   5858588888aaaaaaaaaeeeee   ee00077bbbbbbbbd    ",
+            "55588888888a88aaaaaa226221eeee6662777bbbbbbbbd    ",
+            " 55888888888aa8aaa306221e112666622bbbbbbbbbbbd    ",
+            "   5588888888aaaa00622222222222222bbbbbbbbbbbd    ",
+            "     5588889aaaa33222222222222222bbbbbbbbbbb7d    ",
+            "       5588888899222222222222222bbbbbbbbbbbb7d    ",
+            "   5555888888882222222222222227bbbbbbbbbbbbbd     ",
+            "      55588888882222222227bbbbbbbbbbbbbbbbb7d     ",
+            "         555555887222227bbbbbbbbbbbbbbbbbb7d0     ",
+            "             0bbbbbbbbbbbbbb7bbbbbbbbbbb773d0     ",
+            "             3bbbbbbbbbbbbbb3bbbbb7bbb7777030     ",
+            "              0bbbbbbbbbbbbb3bbbb737777773330     ",
+            "              03bbbbbbb777333bbbb7d7777733333d    ",
+            "             3b707bb7777dd003bbb77d0000333333d    ",
+            "            3bbbb3000ddd  d07bbb7d0d  0d333333d   ",
+            "           3bbbbb77d       dbbb77d0d    d333333d  ",
+            "           3b3b377d       3bbbb70dd      d333333d ",
+            "           370707d       3bbbb77d         d330303d",
+            "            000dd       3b0b077d           d33d3dd",
+            "                        307d77d             ddddd ",
+            "                         ddddd                    ",
         ]
     end
 
@@ -61,13 +61,14 @@ class ArTTY::Art::PkmnLeafgreenII156QuilavaShiny < ArTTY::Art
         map_color("3", "color_137")
         map_color("4", "color_145")
         map_color("5", "color_160")
-        map_color("6", "color_179")
-        map_color("7", "color_202")
-        map_color("8", "color_208")
-        map_color("9", "color_220")
-        map_color("a", "color_221")
-        map_color("b", "color_231")
-        map_color("c", "color_233")
-        map_color("d", "color_238")
+        map_color("6", "color_173")
+        map_color("7", "color_179")
+        map_color("8", "color_202")
+        map_color("9", "color_208")
+        map_color("a", "color_220")
+        map_color("b", "color_221")
+        map_color("c", "color_231")
+        map_color("d", "color_233")
+        map_color("e", "color_238")
     end
 end

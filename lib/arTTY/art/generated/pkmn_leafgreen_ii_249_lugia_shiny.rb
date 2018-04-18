@@ -25,7 +25,7 @@ class ArTTY::Art::PkmnLeafgreenII249LugiaShiny < ArTTY::Art
             " cccc888480  30                                 0ccccccccc8840",
             " 8cccc88380 3c0      11                          3cccccccc8830",
             " 3cccc883803cc0     1a1                          0cccccccc880 ",
-            " 08cccc8833ccc0     161d  333333         111     0ccc8ccc884d ",
+            " 08cccc8833ccc0     16dd  333333         111     0ccc8ccc884d ",
             "  0ccccc83cccc0     111d33cccc8833       16d     0ccc4ccc883d ",
             "  d8cccc3cccc80      33ccccccccc883     1a1d     0cc38ccc880  ",
             "   dcccc3cccc8d    33cccccccccccc880    161d     0c38ccc883d  ",

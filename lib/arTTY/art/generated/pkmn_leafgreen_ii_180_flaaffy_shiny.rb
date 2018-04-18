@@ -3,48 +3,48 @@ class ArTTY::Art::PkmnLeafgreenII180FlaaffyShiny < ArTTY::Art
     def color_map
         return [
             "          4444                      λ",
-            "    644aaaa668884c                ",
-            "   6aa84aa68aaaa86c               ",
-            "  4a8aa4aa6aa6aaa86c              ",
-            "  a8aaa4aa6aaa6aa88c              ",
-            " 6a6aa84aa68aa6aa884c             ",
-            " 4aa644a8aa644aaa8866c            ",
-            " 4aaaaa88aaaaaaa88c46c            ",
-            " 48aaa8848aaaaa888cbb             ",
-            "b9488888c88888868484bb            ",
-            "b954888c74888864497bbb            ",
-            " 77bccc799444bbbb77bb             ",
-            " b5bab99997ab75bb5bb              ",
-            "  bbbb99999bb773bb44         111  ",
-            "   65999999997736666c       aa220 ",
-            "  6a59999999975666666c     1aa1120",
-            " 4aa8799999977366666cc     121112b",
-            " 4caa599799773666886664    12a112b",
-            " caaa85999733666888866c     0222b ",
-            " aaaaaa533666688888866b      00b  ",
-            " aaaaaaaaa888888888866b       bb  ",
-            " aaaa84aaaa8888886866c        bb  ",
-            " c888caaaa8888886466c        35b  ",
-            "  ccccaaa88c88864cbbb       3973  ",
-            "  7975c888c7ccccb555b      3b573  ",
-            " 799975ccc795775b57753    3b4b73  ",
-            " 999539999995997b7777b  b379bb3   ",
-            " 3bb399999999597377775bbb5995b3   ",
-            "    5999999999bb777777b444577b    ",
-            "   7999999999993335777544bb7b     ",
-            "   59999999999399975775bbbbb      ",
-            "   39999999993999777775bbbb       ",
-            "   39999999993447777775bbb        ",
-            "   37999999993a84777775b          ",
-            "    5999999993aa857775b           ",
-            "    3799999977b9777755b           ",
-            "     3799577777b977b5b            ",
-            "     b999933bbbbb97bb             ",
-            "      b997755b   bb               ",
-            "       bb3775b                    ",
-            "       45995b                     ",
-            "      4aa8bb                      ",
-            "      4bbb                        ",
+            "    644bbbb668884d                ",
+            "   6bb84bb68bbbb86d               ",
+            "  4b8bb4bb6bb6bbb86d              ",
+            "  b8bbb4bb6bbb6bb88d              ",
+            " 6b6bb84bb68bb6bb884d             ",
+            " 4bb644b8bb644bbb8866d            ",
+            " 4bbbbb88bbbbbbb88d46d            ",
+            " 48bbb8848bbbbb888dcc             ",
+            "ca488888d88888868484cc            ",
+            "c954888d74888864497ccc            ",
+            " 77cddd7a9444cccc77cc             ",
+            " c5cbcaaaa7bc75cc5cc              ",
+            "  ccccaaaa9cc773cc44         111  ",
+            "   659aaaa9997736666d       bb220 ",
+            "  6b599aa999975666666d     1bb1120",
+            " 4bb8799999977366666dd     121112c",
+            " 4dbb599799773666886664    12b112c",
+            " dbbb85999733666888866d     0222c ",
+            " bbbbbb533666688888866c      00c  ",
+            " bbbbbbbbb888888888866c       cc  ",
+            " bbbb84bbbb8888886866d        cc  ",
+            " d888dbbbb8888886466d        35c  ",
+            "  ddddbbb88d88864dccc       3973  ",
+            "  7a75d888d7ddddc555c      3c573  ",
+            " 7a9975ddd795775c57753    3c4c73  ",
+            " a9953aaaa995997c7777c  c379cc3   ",
+            " 3cc39aaaaa99597377775ccc5995c3   ",
+            "    5aaaaaa999cc777777c444577c    ",
+            "   79aaaaaa99993335777544cc7c     ",
+            "   59aaaaa9999399975775ccccc      ",
+            "   399aaa99993999777775cccc       ",
+            "   39999999993447777775ccc        ",
+            "   37999999993b84777775c          ",
+            "    5999999993bb857775c           ",
+            "    3799999977c9777755c           ",
+            "     3799577777c977c5c            ",
+            "     c999933ccccc97cc             ",
+            "      c997755c   cc               ",
+            "       cc3775c                    ",
+            "       45995c                     ",
+            "      4bb8cc                      ",
+            "      4ccc                        ",
         ]
     end
 
@@ -58,11 +58,12 @@ class ArTTY::Art::PkmnLeafgreenII180FlaaffyShiny < ArTTY::Art
         map_color("4", "color_101")
         map_color("5", "color_131")
         map_color("6", "color_144")
-        map_color("7", "color_175")
+        map_color("7", "color_174")
         map_color("8", "color_188")
-        map_color("9", "color_224")
-        map_color("a", "color_231")
-        map_color("b", "color_233")
-        map_color("c", "color_239")
+        map_color("9", "color_218")
+        map_color("a", "color_224")
+        map_color("b", "color_231")
+        map_color("c", "color_233")
+        map_color("d", "color_239")
     end
 end

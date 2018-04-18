@@ -2,51 +2,51 @@
 class ArTTY::Art::PkmnLeafgreenII236TyrogueShiny < ArTTY::Art
     def color_map
         return [
-            "         19               λ",
-            "        1ec9            ",
-            "        1eca8 98        ",
-            "     11 1eca89aa8       ",
-            "    1ec9aecaa9aa8       ",
-            "    1ecc91ccaa199       ",
-            "     9eccaacccaa19      ",
-            "    1a9eccccccccaa8     ",
-            "   1cca8eccccccccaa8    ",
-            "  1ceeca1ccccc9cccaa8   ",
-            "  ac9eca1cccc97acca99   ",
-            " 1ea79acaccc857acc9aa9  ",
-            " 1ea799cccc8867ac1aaa8  ",
-            " 1ca796cccc7867ac1aaa8  ",
-            " 1ca795cccc7967ac1aaa8  ",
-            " 1acc1acccca11ccc1aa18  ",
-            "  9cccccccccccccaa9a8   ",
-            "   8cca999999caaaa88    ",
-            "    8ac5566669aaa8      ",
-            "      19988889118       ",
-            "        9a9c598         ",
-            "       9cccccaa11       ",
-            "      1caccccccca8      ",
-            "      9c9aaaaa8cc18     ",
-            "       19eeedb18ca8     ",
-            " 99    99aaaaa8 1aa9    ",
-            " aa88 9c9eeedb8999da9   ",
-            "18c198eb00000999ca9d8   ",
-            "91c8c90044330a9c9cad8   ",
-            "9ac1ca0444338c9c9ca8    ",
-            " aaaa80442438cacaaa8    ",
-            " 9988 04430338acca8     ",
-            "      034430022888      ",
-            "       8880  888a9      ",
-            "      1cc0    acca9     ",
-            "      1caa0   1caa8     ",
-            "     1ccaa8    9a119    ",
-            "    00ca08      0a188   ",
-            "   04428328    0300220  ",
-            "  044443328    03332220 ",
-            " 0444333228    034332220",
-            " 043333228     034432228",
-            " 04332288       03332228",
-            "  88888          0222208",
-            "                  88888 ",
+            "         17               λ",
+            "        1ca7            ",
+            "        1ca86 76        ",
+            "     11 1ca867886       ",
+            "    1ca78ca887886       ",
+            "    1caa71aa88177       ",
+            "     7caa88aaa8817      ",
+            "    187caaaaaaaa886     ",
+            "   1aa86caaaaaaaa886    ",
+            "  1acca81aaaaa7aaa886   ",
+            "  8a7ca81aaaa758aa877   ",
+            " 1c8578a8aaa6258aa7887  ",
+            " 1c8577aaaa66458a18886  ",
+            " 1a8574aaaa56458a18886  ",
+            " 1a8572aaaa57458a18886  ",
+            " 18aa18aaaa811aaa18816  ",
+            "  7aaaaaaaaaaaaa88786   ",
+            "   6aa8777777a888866    ",
+            "    68a22444478886      ",
+            "      17766667116       ",
+            "        787a276         ",
+            "       7aaaaa8811       ",
+            "      1a8aaaaaaa86      ",
+            "      7a7888886aa16     ",
+            "       17cccb916a86     ",
+            " 77    77888886 1887    ",
+            " 8866 7a7cccb96777b87   ",
+            "16a176c900000777a87b6   ",
+            "71a6a7004433087a7a8b6   ",
+            "78a1a80444336a7a7a86    ",
+            " 888860442436a8a8886    ",
+            " 7766 044303368aa86     ",
+            "      034430022666      ",
+            "       6660  66687      ",
+            "      1aa0    8aa87     ",
+            "      1a880   1a886     ",
+            "     1aa886    78117    ",
+            "    00a806      08166   ",
+            "   04426326    0300220  ",
+            "  044443326    03332220 ",
+            " 0444333226    034332220",
+            " 043333226     034432226",
+            " 04332266       03332226",
+            "  66666          0222206",
+            "                  66666 ",
         ]
     end
 
@@ -58,15 +58,13 @@ class ArTTY::Art::PkmnLeafgreenII236TyrogueShiny < ArTTY::Art
         map_color("2", "color_061")
         map_color("3", "color_068")
         map_color("4", "color_075")
-        map_color("5", "color_130")
-        map_color("6", "color_173")
-        map_color("7", "color_231")
-        map_color("8", "color_233")
-        map_color("9", "color_239")
-        map_color("a", "color_245")
-        map_color("b", "color_248")
-        map_color("c", "color_250")
-        map_color("d", "color_252")
-        map_color("e", "color_253")
+        map_color("5", "color_231")
+        map_color("6", "color_233")
+        map_color("7", "color_239")
+        map_color("8", "color_245")
+        map_color("9", "color_248")
+        map_color("a", "color_250")
+        map_color("b", "color_252")
+        map_color("c", "color_253")
     end
 end

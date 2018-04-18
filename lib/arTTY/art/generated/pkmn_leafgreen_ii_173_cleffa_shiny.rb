@@ -40,7 +40,7 @@ class ArTTY::Art::PkmnLeafgreenII173CleffaShiny < ArTTY::Art
         map_color("5", "color_131")
         map_color("6", "color_160")
         map_color("7", "color_174")
-        map_color("8", "color_218")
+        map_color("8", "color_217")
         map_color("9", "color_224")
         map_color("a", "color_231")
         map_color("b", "color_233")

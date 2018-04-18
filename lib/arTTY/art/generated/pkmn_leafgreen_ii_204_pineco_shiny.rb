@@ -52,11 +52,11 @@ class ArTTY::Art::PkmnLeafgreenII204PinecoShiny < ArTTY::Art
         @name = "pkmn-leafgreen-II-204-pineco-shiny"
         map_color("0", "color_095")
         map_color("1", "color_137")
-        map_color("2", "color_185")
+        map_color("2", "color_179")
         map_color("3", "color_203")
         map_color("4", "color_222")
         map_color("5", "color_231")
-        map_color("6", "color_234")
-        map_color("7", "color_239")
+        map_color("6", "color_233")
+        map_color("7", "color_238")
     end
 end

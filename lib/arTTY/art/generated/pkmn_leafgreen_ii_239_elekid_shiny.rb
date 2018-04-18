@@ -61,6 +61,6 @@ class ArTTY::Art::PkmnLeafgreenII239ElekidShiny < ArTTY::Art
         map_color("7", "color_233")
         map_color("8", "color_236")
         map_color("9", "color_240")
-        map_color("a", "color_252")
+        map_color("a", "color_251")
     end
 end

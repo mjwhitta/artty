@@ -2,82 +2,80 @@
 class ArTTY::Art::PkmnLeafgreenII166Ledian < ArTTY::Art
     def color_map
         return [
-            "        ee          ee                    λ",
-            "       00          ee                   ",
-            "      06e         06e                   ",
-            "     060          e0                    ",
-            "     efe         e60                    ",
-            "    e6e          00                     ",
-            "    efe        306e33                   ",
-            "   06e       44ef049933                 ",
-            "   e0ee    44aaefe999943                ",
-            "   eeeee  49aaaeee999994e               ",
-            "    eeeee49aaaaeee9999944e              ",
-            "      eee9aaaaaee499999943              ",
-            "       e4aaaaaaee999999944e             ",
-            "        9aee9a99994ee99944e             ",
-            "       49efee99994e1ee9944e             ",
-            "       e9efeea99e0dd1e9944e             ",
-            "      ee99ee999e1ddd1e9444e 3333333     ",
-            "    44ed999999911dd11e9444e3999999933   ",
-            "  44990d999999e21211149443e9955555a99e  ",
-            " 49955e1999999e12111e9444e955777bbb79e  ",
-            " 495bbe1e99999e22211e444e95777bbbbb7e   ",
-            "  47bbb1299999e121ee7444e5777bbbbb7e    ",
-            "  6fffbe149994aeee5bb74e9577bbbbb7e     ",
-            " 66dggfbe7444abbbbbbb9395777ffff7e      ",
-            " 6dddd6fb37bbb5bbbb75395777fgdd e6f6f   ",
-            "fdd8d6ffbb337bbbb773349577egfdddd08g 6  ",
-            "6ddgff6fe5bb3333333e33eeffegf8dd66eg  6 ",
-            "f ff66feee55bb773efe4effee0dgf6666eggg f",
-            " f 66eeeffeeeee39ee4efee3f6fd6e666egggg6",
-            "  eee  eeefffe39aaa94e394366f66e6egggg 6",
-            "       6ddeeee3ab7baa33994666eeeeggggggf",
-            "      66d dgge7bc7cbba3eee46gggggggggg 6",
-            "      fddd gge7cc7cccbeeffeegggggggggg6 ",
-            "      6d8gdee3ccc7ccbbbeeefeegggggggg f ",
-            "      f ddefe3bcc7bcbbbb34eeeeeggggg 6  ",
-            "       6 0fee3bbc7cbcbbbb34efffeegg 6   ",
-            "        60ee837cb7bbbbbb734fgddd 6f6    ",
-            "        fdd6f83bc7bbbbbb73fgdddddf      ",
-            "       6 dd66e37bb7bbbb773f dd8d6 6     ",
-            "      6 ddd66e 37b5bb77734ef ddd66f     ",
-            "      fgd8660e  3575775ee3egfgd66 6     ",
-            "      6 d66f e  e33333efee8e606666      ",
-            "       6 ff e   ef34438efee8eeef6       ",
-            "        feee    3eee443 eeee444e        ",
-            "                 eee444e eeee444e       ",
-            "                 3ee944e  eeee944e      ",
-            "                 39a9944e 39ee994e      ",
-            "                 3aaa944e 39999994e     ",
-            "                  3aa944e  3aa9994e     ",
-            "                  3a994e   3aaa994e     ",
-            "                   3444e    3aa994e     ",
-            "                    33e     399944e     ",
-            "                             3444e      ",
-            "                              eee       ",
+            "        cc          cc                    λ",
+            "       cc          cc                   ",
+            "      cdc         cdc                   ",
+            "     cdc          cc                    ",
+            "     cdc         cdc                    ",
+            "    cdc          cc                     ",
+            "    cdc        2cdc22                   ",
+            "   cdc       33cdc37722                 ",
+            "   cccc    3388cdc777732                ",
+            "   ccccc  37888ccc777773c               ",
+            "    ccccc378888ccc7777733c              ",
+            "      ccc788888cc377777732              ",
+            "       c3888888cc777777733c             ",
+            "        78cc7877773cc77733c             ",
+            "       37cdcc77773c0cc7733c             ",
+            "       c7cdcc877ccbb0c7733c             ",
+            "      cc77cc777c0bbb0c7333c 2222222     ",
+            "    33cb777777700bb00c7333c2777777722   ",
+            "  3377cb777777c10100037332c7744444877c  ",
+            " 37744c0777777c01000c7333c74466699967c  ",
+            " 37499c0c77777c11100c333c74666999996c   ",
+            "  369990177777c010cc6333c4666999996c    ",
+            "  dddd9c0377738ccc49963c7466999996c     ",
+            " dbbeed9c6333899999997274666dddd6c      ",
+            " bbbbb5d9269994999964274666debbecdddd   ",
+            "dbbbb5dd992269999662237466cedbbbbceeed  ",
+            "dbbedd5dc4992222222c22ccddcedbbb55ceeed ",
+            "dedd55dccc4499662cdc3cddcccbed5555ceeeed",
+            " db55cccddccccc27cc3cdcc2d5db5c555ceeeed",
+            "  ccc  cccdddc2788873c273255d55c5ceeeeed",
+            "       dbbcccc289698822773555cccceeeeeed",
+            "      dbbebeec69a6a9982ccc35eeeeeeeeeeed",
+            "      dbbbeeec6aa6aaa9ccddcceeeeeeeeeed ",
+            "      dbbebcc2aaa6aa999cccdcceeeeeeeeed ",
+            "      dbbbcdc29aa69a999923ccccceeeeeed  ",
+            "       dbcdcc299a6a9a999923cdddcceeed   ",
+            "        dccc 26a96999999623debbbeddd    ",
+            "        dbb5d 29a699999962debbbbbd      ",
+            "       debb55c269969999662debbbb55d     ",
+            "      debbb55c 26949966623cdebbb55d     ",
+            "      debb55cc  2464664cc2cedeb555d     ",
+            "      deb55d5c  c22222cdcc c5c555d      ",
+            "       dedd5c   cd2332 cdcc cccdd       ",
+            "        dccc    2ccc332 cccc333c        ",
+            "                 ccc333c cccc333c       ",
+            "                 2cc733c  cccc733c      ",
+            "                 2787733c 27cc773c      ",
+            "                 2888733c 27777773c     ",
+            "                  288733c  2887773c     ",
+            "                  28773c   2888773c     ",
+            "                   2333c    288773c     ",
+            "                    22c     277733c     ",
+            "                             2333c      ",
+            "                              ccc       ",
         ]
     end
 
     def initialize
         super
         @name = "pkmn-leafgreen-II-166-ledian"
-        map_color("0", "color_016")
-        map_color("1", "color_017")
-        map_color("2", "color_025")
-        map_color("3", "color_094")
-        map_color("4", "color_130")
-        map_color("5", "color_136")
-        map_color("6", "color_145")
-        map_color("7", "color_179")
-        map_color("8", "color_188")
-        map_color("9", "color_202")
-        map_color("a", "color_216")
-        map_color("b", "color_221")
-        map_color("c", "color_229")
-        map_color("d", "color_231")
-        map_color("e", "color_233")
-        map_color("f", "color_242")
-        map_color("g", "color_252")
+        map_color("0", "color_017")
+        map_color("1", "color_025")
+        map_color("2", "color_094")
+        map_color("3", "color_130")
+        map_color("4", "color_136")
+        map_color("5", "color_145")
+        map_color("6", "color_179")
+        map_color("7", "color_202")
+        map_color("8", "color_216")
+        map_color("9", "color_221")
+        map_color("a", "color_229")
+        map_color("b", "color_231")
+        map_color("c", "color_233")
+        map_color("d", "color_242")
+        map_color("e", "color_252")
     end
 end

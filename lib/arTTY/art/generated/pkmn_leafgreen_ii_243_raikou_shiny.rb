@@ -26,11 +26,11 @@ class ArTTY::Art::PkmnLeafgreenII243RaikouShiny < ArTTY::Art
             "  c6c c6c 359505533b33b03330aaacaa66666666b6aaaaaa66b        ",
             "  c6c c6b 055503330bb0333330baacaa6cc6666b6aaaaa666b         ",
             "  c6c  c6c055550bbb3355330022bcaacc66cb666b6aa6666b          ",
-            "  c6c  c6b60555555555333022222cac4baaacc666b6666bb           ",
+            "  c6c  c6b 0555555555333022222cac4baaacc666b6666bb           ",
             "  c6c   c6c055555555333022277caca6baa6cacc66bbbb2b           ",
-            "   46c  c6b605555333300227777ccca6b466ca6bcbb4422b           ",
-            "   46c   c6c60033330022777777777c6bcc4c66bb446622b           ",
-            "4  c6b   c6b666000b8887777777777c6c86ccc6b44666222b          ",
+            "   46c  c6b 05555333300227777ccca6b466ca6bcbb4422b           ",
+            "   46c   c6c 0033330022777777777c6bcc4c66bb446622b           ",
+            "4  c6b   c6b   000b8887777777777c6c86ccc6b44666222b          ",
             "4c c6b    c6ccc444088777787727788cc78aaab446662222b          ",
             " acc64ccc c6444bbb88887728772788887778aaaa466622220          ",
             " 6ac6664b  bbbc  088877288727788887777aaaaa66622222b         ",
@@ -64,7 +64,6 @@ class ArTTY::Art::PkmnLeafgreenII243RaikouShiny < ArTTY::Art
             "                       b6ac6aa6c6b                cca6caa64bb",
             "                        b46caa6cb                   bbbb4a4b ",
             "                         bbb6a6b                        bbb  ",
-            "                            bbb                              ",
         ]
     end
 

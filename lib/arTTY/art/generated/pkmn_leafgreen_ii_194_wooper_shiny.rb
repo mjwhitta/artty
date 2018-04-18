@@ -40,7 +40,7 @@ class ArTTY::Art::PkmnLeafgreenII194WooperShiny < ArTTY::Art
         map_color("0", "color_095")
         map_color("1", "color_131")
         map_color("2", "color_173")
-        map_color("3", "color_174")
+        map_color("3", "color_175")
         map_color("4", "color_218")
         map_color("5", "color_223")
         map_color("6", "color_224")

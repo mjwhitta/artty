@@ -76,6 +76,6 @@ class ArTTY::Art::PkmnLeafgreenII207Gligar < ArTTY::Art
         map_color("b", "color_231")
         map_color("c", "color_233")
         map_color("d", "color_240")
-        map_color("e", "color_247")
+        map_color("e", "color_246")
     end
 end

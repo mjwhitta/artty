@@ -9,52 +9,52 @@ class ArTTY::Art::PkmnLeafgreenII166LedianShiny < ArTTY::Art
             "     cdc         cdc                    ",
             "    cdc          cc                     ",
             "    cdc        2cdc22                   ",
-            "   cdc       44cdc47722                 ",
-            "   cccc    4488cdc777742                ",
-            "   ccccc  47888ccc777774c               ",
-            "    ccccc478888ccc7777744c              ",
-            "      ccc788888cc477777742              ",
-            "       c4888888cc777777744c             ",
-            "        78cc7877774cc77744c             ",
-            "       47cdcc77774c0cc7744c             ",
-            "       c7cdcc877ccbb0c7744c             ",
-            "      cc77cc777c0bbb0c7444c 2222222     ",
-            "    44cb777777700bb00c7444c2777777722   ",
-            "  4477cb777777c10100047442c7733333877c  ",
-            " 47733c0777777c01000c7444c73355599957c  ",
-            " 47399c0c77777c11100c444c73555999995c   ",
-            "  459990177777c010cc5444c3555999995c    ",
-            "  dddd9c0477748ccc39954c7355999995c     ",
-            " dbb66d9c5444899999997273555dddd5c      ",
-            " bbbbbed9259993999953273555d6bb6cdddd   ",
-            "dbbbbedd992259999552247355c6dbbbbc666d  ",
-            "dbb6ddedc3992222222c22ccddc6dbbbeec666d ",
-            "d6ddeedccc3399552cdc4cddcccb6deeeec6666d",
-            " dbeecccddccccc27cc4cdcc2dedbeceeec6666d",
-            "  ccc  cccdddc2788874c2742eedeecec66666d",
-            "       dbbcccc289598822774eeecccc666666d",
-            "      dbb6b66c59a5a9982ccc4e66666666666d",
-            "      dbbb666c5aa5aaa9ccddcc6666666666d ",
-            "      dbb6bcc2aaa5aa999cccdcc666666666d ",
-            "      dbbbcdc29aa59a999924ccccc666666d  ",
-            "       dbcdcc299a5a9a999924cdddcc666d   ",
-            "        dccc 25a95999999524d6bbb6ddd    ",
-            "        dbbed 29a599999952d6bbbbbd      ",
-            "       d6bbeec259959999552d6bbbbeed     ",
-            "      d6bbbeec 25939955524cd6bbbeed     ",
-            "      d6bbeecc  2353553cc2c6d6beeed     ",
-            "      d6beedec  c22222cdcc ceceeed      ",
-            "       d6ddec   cd2442 cdcc cccdd       ",
-            "        dccc    2ccc442 cccc444c        ",
-            "                 ccc444c cccc444c       ",
-            "                 2cc744c  cccc744c      ",
-            "                 2787744c 27cc774c      ",
-            "                 2888744c 27777774c     ",
-            "                  288744c  2887774c     ",
-            "                  28774c   2888774c     ",
-            "                   2444c    288774c     ",
-            "                    22c     277744c     ",
-            "                             2444c      ",
+            "   cdc       55cdc57722                 ",
+            "   cccc    5588cdc777752                ",
+            "   ccccc  57888ccc777775c               ",
+            "    ccccc578888ccc7777755c              ",
+            "      ccc788888cc577777752              ",
+            "       c5888888cc777777755c             ",
+            "        78cc7877775cc77755c             ",
+            "       57cdcc77775c0cc7755c             ",
+            "       c7cdcc877ccbb0c7755c             ",
+            "      cc77cc777c0bbb0c7555c 2222222     ",
+            "    55cb777777700bb00c7555c2777777722   ",
+            "  5577cb777777c10100057552c7733333877c  ",
+            " 57733c0777777c01000c7555c73366699967c  ",
+            " 57399c0c77777c11100c555c73666999996c   ",
+            "  569990177777c010cc6555c3666999996c    ",
+            "  dddd9c0577758ccc39965c7366999996c     ",
+            " dbbeed9c6555899999997273666dddd6c      ",
+            " bbbbb4d9269993999963273666debbecdddd   ",
+            "dbbbb4dd992269999662257366cedbbbbceeed  ",
+            "dbbedd4dc3992222222c22ccddcedbbb44ceeed ",
+            "dedd44dccc3399662cdc5cddcccbed4444ceeeed",
+            " db44cccddccccc27cc5cdcc2d4db4c444ceeeed",
+            "  ccc  cccdddc2788875c275244d44c4ceeeeed",
+            "       dbbcccc289698822775444cccceeeeeed",
+            "      dbbebeec69a6a9982ccc54eeeeeeeeeeed",
+            "      dbbbeeec6aa6aaa9ccddcceeeeeeeeeed ",
+            "      dbbebcc2aaa6aa999cccdcceeeeeeeeed ",
+            "      dbbbcdc29aa69a999925ccccceeeeeed  ",
+            "       dbcdcc299a6a9a999925cdddcceeed   ",
+            "        dccc 26a96999999625debbbeddd    ",
+            "        dbb4d 29a699999962debbbbbd      ",
+            "       debb44c269969999662debbbb44d     ",
+            "      debbb44c 26939966625cdebbb44d     ",
+            "      debb44cc  2363663cc2cedeb444d     ",
+            "      deb44d4c  c22222cdcc c4c444d      ",
+            "       dedd4c   cd2552 cdcc cccdd       ",
+            "        dccc    2ccc552 cccc555c        ",
+            "                 ccc555c cccc555c       ",
+            "                 2cc755c  cccc755c      ",
+            "                 2787755c 27cc775c      ",
+            "                 2888755c 27777775c     ",
+            "                  288755c  2887775c     ",
+            "                  28775c   2888775c     ",
+            "                   2555c    288775c     ",
+            "                    22c     277755c     ",
+            "                             2555c      ",
             "                              ccc       ",
         ]
     end
@@ -62,20 +62,20 @@ class ArTTY::Art::PkmnLeafgreenII166LedianShiny < ArTTY::Art
     def initialize
         super
         @name = "pkmn-leafgreen-II-166-ledian-shiny"
-        map_color("0", "color_018")
+        map_color("0", "color_017")
         map_color("1", "color_025")
         map_color("2", "color_094")
         map_color("3", "color_136")
-        map_color("4", "color_172")
-        map_color("5", "color_179")
-        map_color("6", "color_188")
+        map_color("4", "color_145")
+        map_color("5", "color_172")
+        map_color("6", "color_179")
         map_color("7", "color_214")
         map_color("8", "color_220")
-        map_color("9", "color_228")
+        map_color("9", "color_222")
         map_color("a", "color_230")
         map_color("b", "color_231")
-        map_color("c", "color_234")
+        map_color("c", "color_233")
         map_color("d", "color_242")
-        map_color("e", "color_250")
+        map_color("e", "color_252")
     end
 end

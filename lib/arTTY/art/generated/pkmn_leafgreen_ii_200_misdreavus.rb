@@ -2,65 +2,63 @@
 class ArTTY::Art::PkmnLeafgreenII200Misdreavus < ArTTY::Art
     def color_map
         return [
-            "     76 6                           λ",
-            "     7abbe f    6a7 e             ",
-            "  6  6aabef1f   6aabe             ",
-            "  66  6aa611f   7 17e       6     ",
-            "  676 6aa611f    fa17f      6     ",
-            "  67ab6aaa611f   f1112f    6 76   ",
-            "   6aa67a2a612ffeeee111fff 6b6ae  ",
-            " 1 6aaa6722a111111fffff2246 ba7e  ",
-            "1 ff6a27272222ffff12222ff26baa6   ",
-            " 44446a226622222224442222f6b7aff  ",
-            "f444442266b62222444422222e677271e ",
-            " f4242226abe22222222222222e77221f ",
-            "  ff44666abe222222222222221e72222f",
-            "    f46aabab66ee222222222221f4221e",
-            "     126aababbbb6e2222222221f4221e",
-            "     f26aaaaaaaaa7f122222221f4211f",
-            "     f26aaaaaaaaa7f122222221f4211f",
-            "     f226aa7722722f11222221f2421e ",
-            "    f122e7777722244ff11222f24221e ",
-            "    f1122eef7777224442f222222fff  ",
-            "    f2111111e111222244422222fce   ",
-            "     fff11111eeee12222422223cce   ",
-            "       f11111eee5ff12222220d9ce   ",
-            "       f11111ee5ee9ee22222ee9e    ",
-            "        ffee11e5eedccf22223e3e    ",
-            "           ef11e505ccf222221e     ",
-            "           ef111ee5cf2223321e     ",
-            "            ee1112222219934e      ",
-            "          1211ee3e112222ee3       ",
-            "         1422223933ff33389e       ",
-            "         f422222339e3d953e        ",
-            "          ff244422ee3995e         ",
-            "           f444422213555e         ",
-            "           1444222111eee1e        ",
-            "           2 422211111112e        ",
-            "            1212211111120         ",
-            "              f421ee111e          ",
-            "               fee  eee           ",
+            "     65 5                           λ",
+            "     6899c d    5869c             ",
+            "  5  5889cd0d   5889c             ",
+            "  55 9588500d   6806c       5     ",
+            "  5659588500d    d806d      5     ",
+            "  56895888500d   d0000d    5965   ",
+            "   58856818500ddcccc000ddd 5958c  ",
+            " 0 588856118000000ddddd11159986c  ",
+            "03dd5816161111dddd01111dd159885   ",
+            " 333358115511111113331111d5968dd  ",
+            "d333331155951111333311111c566160c ",
+            " d113111589c11111111111111c66110d ",
+            "  dd1355589c111111111111110c61110d",
+            "    d158898955cc111111111110d3110c",
+            "     015889899995c1111111110d3110c",
+            "     d158888888886d011111110d3100d",
+            "     d158888888886d011111110d3100d",
+            "     d115886611611d00111110d1310c ",
+            "    d011c6666611133dd00111d13110c ",
+            "    d0011ccd6666113331d111111ddd  ",
+            "    d0000000c000111133311111dac   ",
+            "     ddd00000cccc01111311112aac   ",
+            "       d00000ccc4dd0111111cb7ac   ",
+            "       d00000cc4cc7cc11111cc7c    ",
+            "        ddcc00c4ccbaad11112c2c    ",
+            "           cd00c4c4aad111110c     ",
+            "           cd000cc4ad1112210c     ",
+            "            cc0001111107721c      ",
+            "          0000cc2c001111cc2       ",
+            "         0111112722dd222 7c       ",
+            "         d111111227c2b742c        ",
+            "          dd133311cc2774c         ",
+            "           d333311102444c         ",
+            "           0333111000ccc0c        ",
+            "           03311100000000c        ",
+            "            000110000000c         ",
+            "              d110cc000c          ",
+            "               dcc  ccc           ",
         ]
     end
 
     def initialize
         super
         @name = "pkmn-leafgreen-II-200-misdreavus"
-        map_color("0", "color_016")
-        map_color("1", "color_059")
-        map_color("2", "color_066")
-        map_color("3", "color_088")
-        map_color("4", "color_109")
-        map_color("5", "color_124")
-        map_color("6", "color_125")
-        map_color("7", "color_168")
-        map_color("8", "color_188")
-        map_color("9", "color_202")
-        map_color("a", "color_211")
-        map_color("b", "color_223")
-        map_color("c", "color_227")
-        map_color("d", "color_231")
-        map_color("e", "color_233")
-        map_color("f", "color_237")
+        map_color("0", "color_059")
+        map_color("1", "color_066")
+        map_color("2", "color_088")
+        map_color("3", "color_109")
+        map_color("4", "color_124")
+        map_color("5", "color_125")
+        map_color("6", "color_168")
+        map_color("7", "color_202")
+        map_color("8", "color_211")
+        map_color("9", "color_223")
+        map_color("a", "color_227")
+        map_color("b", "color_231")
+        map_color("c", "color_233")
+        map_color("d", "color_237")
     end
 end

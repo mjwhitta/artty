@@ -62,16 +62,16 @@ class ArTTY::Art::PkmnLeafgreenII237Hitmontop < ArTTY::Art
         @name = "pkmn-leafgreen-II-237-hitmontop"
         map_color("0", "color_060")
         map_color("1", "color_068")
-        map_color("2", "color_075")
+        map_color("2", "color_074")
         map_color("3", "color_094")
         map_color("4", "color_117")
         map_color("5", "color_143")
         map_color("6", "color_186")
-        map_color("7", "color_229")
+        map_color("7", "color_222")
         map_color("8", "color_231")
-        map_color("9", "color_234")
-        map_color("a", "color_242")
-        map_color("b", "color_247")
-        map_color("c", "color_252")
+        map_color("9", "color_233")
+        map_color("a", "color_241")
+        map_color("b", "color_246")
+        map_color("c", "color_251")
     end
 end

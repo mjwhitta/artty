@@ -59,8 +59,8 @@ class ArTTY::Art::PkmnLeafgreenII184AzumarillShiny < ArTTY::Art
         map_color("4", "color_221")
         map_color("5", "color_231")
         map_color("6", "color_233")
-        map_color("7", "color_241")
-        map_color("8", "color_247")
-        map_color("9", "color_252")
+        map_color("7", "color_242")
+        map_color("8", "color_246")
+        map_color("9", "color_251")
     end
 end
