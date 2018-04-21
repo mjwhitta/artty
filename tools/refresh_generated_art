@@ -14,7 +14,7 @@ usage() {
 
 declare -a args
 unset force imgs
-output="../lib/arTTY/art/generated"
+output="../lib/arTTY/art/generated.rb"
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -49,4 +49,7 @@ done
     -i $imgs/pokemon \
     -i $imgs/sonic \
     -i $imgs/teenage_mutant_ninja_turtles \
-    -o $output -p
+    -p
+
+cat *.rb >$output
+rm *.rb
