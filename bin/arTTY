@@ -22,10 +22,11 @@ def parse(args)
     options["action"] = "draw"
     options["art"] = "none"
     options["clear"] = false
+    options["exclude"] = nil
     options["fit"] = false
     options["fortune"] = false
     options["random"] = false
-    options["random-matching"] = false
+    options["random-matching"] = nil
     options["sysinfo"] = nil
     options["verbose"] = false
 
@@ -50,6 +51,14 @@ def parse(args)
 
         opts.on("-d", "--demo", "Demo all supported art") do
             options["action"] = "demo"
+        end
+
+        opts.on(
+            "-e",
+            "--exclude=PATTERN",
+            "Exclude art matching PATTERN"
+        ) do |pattern|
+            options["exclude"] = pattern
         end
 
         opts.on("--fit", "Use art that fits in the current window") do
@@ -86,8 +95,7 @@ def parse(args)
             "--random-matching=PATTERN",
             "Display random art matching PATTERN"
         ) do |pattern|
-            options["art"] = pattern
-            options["random-matching"] = true
+            options["random-matching"] = pattern
         end
 
         opts.on("-s", "--sysinfo", "Display system info as well") do
@@ -145,6 +153,13 @@ options = parse(ARGV)
 begin
     available = ArTTY.art
 
+    # Remove excluded art
+    if (options["exclude"])
+        available.delete_if do |name, art|
+            name.match(/#{options["exclude"]}/)
+        end
+    end
+
     # Remove art that doesn't fit
     if (options["fit"])
         height = %x(tput lines).to_i - 4 # Leave some space for prompt
@@ -176,7 +191,7 @@ begin
         end.shuffle[0] || "none"
     elsif (options["random-matching"])
         available.keep_if do |name, art|
-            name.match(/#{options["art"]}/)
+            name.match(/#{options["random-matching"]}/)
         end
         options["art"] = available.keys.shuffle[0] || "none"
     end
