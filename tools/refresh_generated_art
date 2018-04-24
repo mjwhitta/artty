@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+info() { echo -e "\e[32m[+] $@\e[0m"; }
+
 usage() {
     echo "Usage: ${0/*\//} [OPTIONS]"
     echo
@@ -37,21 +39,24 @@ done
 [[ $# -eq 0 ]] || usage 2
 [[ -n $imgs ]] || usage 3
 
-./art_from_images $force \
-    -i $imgs/back_to_the_future \
-    -i $imgs/dc \
-    -i $imgs/evil_dead \
-    -i $imgs/kirby \
-    -i $imgs/legend_of_zelda \
-    -i $imgs/marvel \
-    -i $imgs/megaman \
-    -i $imgs/mighty_morphin_power_rangers \
-    -i $imgs/pokemon \
-    -i $imgs/sonic \
-    -i $imgs/teenage_mutant_ninja_turtles \
-    -p
+for dir in \
+    back_to_the_future \
+    dc \
+    evil_dead \
+    kirby \
+    legend_of_zelda \
+    marvel \
+    megaman \
+    mighty_morphin_power_rangers \
+    pokemon \
+    pokemon/bulbapedia/I \
+    pokemon/bulbapedia/II \
+    sonic \
+    teenage_mutant_ninja_turtles
+do
+    info "$dir"
+    ./art_from_images $force -i $imgs/$dir -o cache -p
+    [[ $? -eq 0 ]] || exit 1
+done; unset dir
 
-if [[ $? -eq 0 ]]; then
-    cat *.rb >$output
-    rm *.rb
-fi
+cat cache/*.rb >$output
