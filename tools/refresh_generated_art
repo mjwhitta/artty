@@ -51,5 +51,7 @@ done
     -i $imgs/teenage_mutant_ninja_turtles \
     -p
 
-cat *.rb >$output
-rm *.rb
+if [[ $? -eq 0 ]]; then
+    cat *.rb >$output
+    rm *.rb
+fi
