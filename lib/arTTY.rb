@@ -5,12 +5,10 @@ class ArTTY
         @@arts ||= Hash.new
         return @@arts if (!@@arts.empty?)
 
-        [ArTTY::Art].concat(
-            Fagin.find_children_recursively(
-                "ArTTY::Art",
-                "#{File.dirname(__FILE__)}/arTTY/art"
-            ).values
-        ).concat(
+        Fagin.find_children_recursively(
+            "ArTTY::Art",
+            "#{File.dirname(__FILE__)}/arTTY/art"
+        ).values.concat(
             Fagin.find_children_recursively(
                 "ArTTY::Art",
                 "~/.config/arTTY/art"
@@ -24,10 +22,15 @@ class ArTTY
     end
 
     def self.get(name, sysinfo = nil)
-        if (!self.art.has_key?(name))
-            raise ArTTY::Error::ArtNotFound.new(name)
+        case name
+        when "none"
+            img = ArTTY::Art.new()
+        else
+            if (!self.art.has_key?(name))
+                raise ArTTY::Error::ArtNotFound.new(name)
+            end
+            img = self.art[name]
         end
-        img = self.art[name]
         img.sysinfo = sysinfo
         return img
     end

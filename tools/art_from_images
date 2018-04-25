@@ -10,6 +10,9 @@ generate() {
     ).rb"
     [[ ! -f $output/$ofilename ]] || [[ -n $force ]] || return 0
     arTTY -g $filename >$output/$ofilename
+    if [[ -n $(find $output/$ofilename -size 0) ]]; then
+        err "$filename failed"
+    fi
 }
 
 info() { echo -e "\e[32m[+] $@\e[0m"; }

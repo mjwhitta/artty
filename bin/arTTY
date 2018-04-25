@@ -20,13 +20,14 @@ end
 def parse(args)
     options = Hash.new
     options["action"] = "draw"
-    options["art"] = "none"
+    options["art"] = nil
     options["clear"] = false
     options["exclude"] = nil
     options["fit"] = false
     options["fortune"] = false
+    options["generate"] = nil
+    options["matching"] = nil
     options["random"] = false
-    options["random-matching"] = nil
     options["sysinfo"] = nil
     options["verbose"] = false
 
@@ -80,22 +81,23 @@ def parse(args)
             "Generate ArTTY art from IMAGE (NAME_WxH.png)"
         ) do |image|
             options["action"] = "generate"
-            options["art"] = image
+            options["generate"] = image
         end
 
         opts.on("--ls", "--list-supported", "List supported art") do
             options["action"] = "list"
         end
 
-        opts.on("-r", "--random", "Display random art") do
-            options["random"] = true
+        opts.on(
+            "-m",
+            "--matching=PATTERN",
+            "Display art matching PATTERN"
+        ) do |pattern|
+            options["matching"] = pattern
         end
 
-        opts.on(
-            "--random-matching=PATTERN",
-            "Display random art matching PATTERN"
-        ) do |pattern|
-            options["random-matching"] = pattern
+        opts.on("-r", "--random", "Display random art") do
+            options["random"] = true
         end
 
         opts.on("-s", "--sysinfo", "Display system info as well") do
@@ -148,19 +150,36 @@ def parse(args)
     return options
 end
 
-options = parse(ARGV)
+begin
+    options = parse(ARGV)
+rescue Interrupt
+    # ^C
+    # Exit gracefully
+    exit ArTTYExit::GOOD
+end
 
 begin
     available = ArTTY.art
+    exists = (
+        options["art"].nil? || available.has_key?(options["art"])
+    )
 
-    # Remove excluded art
+    # Remove all that match pattern if provided
     if (options["exclude"])
         available.delete_if do |name, art|
             name.match(/#{options["exclude"]}/)
         end
     end
 
-    # Remove art that doesn't fit
+    # Keep all that match pattern if provided
+    if (options["matching"])
+        available.keep_if do |name, art|
+            name.match(/#{options["matching"]}/)
+        end
+        options["art"] ||= available.keys[0]
+    end
+
+    # Remove all that do not fit
     if (options["fit"])
         height = %x(tput lines).to_i - 4 # Leave some space for prompt
         width = %x(tput cols).to_i
@@ -182,35 +201,29 @@ begin
                 (total_height <= height) && (total_width <= width)
             end
         end
+
+        # Do not throw exception if specified art exists but does not
+        # fit
+        if (exists && !available.has_key?(options["art"]))
+            options["art"] = nil
+        end
     end
 
     # Randomize
-    if (options["random"])
-        options["art"] = available.keys.delete_if do |name|
-            name == "none"
-        end.shuffle[0] || "none"
-    elsif (options["random-matching"])
-        available.keep_if do |name, art|
-            name.match(/#{options["random-matching"]}/)
-        end
-        options["art"] = available.keys.shuffle[0] || "none"
-    end
+    options["art"] = available.keys.shuffle[0] if (options["random"])
 
-    # Default to none if specified art doesn't fit
-    if (options["fit"] && !available.has_key?(options["art"]))
-        options["art"] = "none"
-    end
+    # Ensure art is not nil
+    options["art"] ||= "none"
 
     case options["action"]
     when "demo"
         available.keys.sort.each do |name|
-            next if (name == "none")
             art = ArTTY.get(name, options["sysinfo"]).draw
             puts "### #{name} ###".white
             puts "\n#{art}\n" if (!art.empty?)
         end
     when "generate"
-        puts ArTTY::Generator.new.generate(options["art"])
+        puts ArTTY::Generator.new.generate(options["generate"])
     when "list"
         puts available.keys.sort
     else
