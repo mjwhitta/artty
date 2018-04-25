@@ -175,12 +175,6 @@ class ArTTY::Art
     end
     private :pixel_draw
 
-    def self.subclasses
-        return ObjectSpace.each_object(Class).select do |clas|
-            (clas < self)
-        end
-    end
-
     def to_s
         return draw
     end

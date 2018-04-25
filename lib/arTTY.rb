@@ -5,7 +5,17 @@ class ArTTY
         @@arts ||= Hash.new
         return @@arts if (!@@arts.empty?)
 
-        [ArTTY::Art].concat(ArTTY::Art.subclasses).each do |clas|
+        [ArTTY::Art].concat(
+            Fagin.find_children_recursively(
+                "ArTTY::Art",
+                "#{File.dirname(__FILE__)}/arTTY/art"
+            ).values
+        ).concat(
+            Fagin.find_children_recursively(
+                "ArTTY::Art",
+                "~/.config/arTTY/art"
+            ).values
+        ).each do |clas|
             img = clas.new
             @@arts[img.name] = img
         end
@@ -27,8 +37,3 @@ require "arTTY/art"
 require "arTTY/error"
 require "arTTY/generator"
 require "arTTY/system_info"
-Fagin.find_children_recursively(
-    "ArTTY::Art",
-    "#{File.dirname(__FILE__)}/arTTY/art"
-)
-Fagin.find_children_recursively("ArTTY::Art", "~/.config/arTTY/art")
