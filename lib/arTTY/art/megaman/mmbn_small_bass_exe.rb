@@ -2,7 +2,7 @@
 class ArTTY::Art::MmbnSmallBassExe < ArTTY::Art
     def color_map
         return [
-            "      000                λ",
+            "      000              λ",
             "     03330    000000   ",
             "    033330000088888800 ",
             "   03330033088888888880",

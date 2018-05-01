@@ -2,7 +2,7 @@
 class ArTTY::Art::MN9Beck < ArTTY::Art
     def color_map
         return [
-            "      000000         λ",
+            "      000000       λ",
             "     03333330      ",
             "    0322222220     ",
             "   032111100110    ",

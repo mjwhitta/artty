@@ -2,7 +2,7 @@
 class ArTTY::Art::MmSmallProtoman < ArTTY::Art
     def color_map
         return [
-            "        00000           λ",
+            "        00000         λ",
             "       02222200       ",
             "      0222221220      ",
             "     02222201120      ",

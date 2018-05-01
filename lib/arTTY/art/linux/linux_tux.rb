@@ -2,7 +2,7 @@
 class ArTTY::Art::LinuxTux < ArTTY::Art
     def color_map
         return [
-            "             000                 λ",
+            "             000               λ",
             "           0000000             ",
             "          000000000            ",
             "          0000000000           ",

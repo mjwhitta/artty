@@ -50,7 +50,7 @@ class ArTTY::Generator
             "    def color_map",
             "        return ["
         ]
-        first = "  λ"
+        first = "λ"
         pixels.each do |row|
             line = row.map do |color|
                 color_map[color]

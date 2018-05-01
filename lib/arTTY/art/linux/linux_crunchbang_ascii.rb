@@ -2,7 +2,7 @@
 class ArTTY::Art::LinuxCrunchbangAscii < ArTTY::Art
     def ascii_map
         return [
-            "         __      __   _   λ",
+            "         __      __   _ λ",
             "        / /     / /  | |",
             "   ____/ /_____/ /__ | |",
             "  /___  ______  ___/ | |",

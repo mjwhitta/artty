@@ -36,12 +36,12 @@ Then I can put things like the following in `$HOME/.config/arTTY/rc`:
 - `linux-arch`
 - `zelda-majoras-mask`
 - `--fit --random`
-- `--fit --random-matching=pkmn-.*large.*I-`
-- `--random-matching=pkmn-.*small.*I-`
-- `--random-matching=mm(bn)?-`
+- `--fit --matching=pkmn-.*large.*I- --random`
+- `--matching=pkmn-.*small.*I- --random`
+- `--matching=mm(bn)?- --random`
 
 And if the file doesn't exist, it defaults to using `none`. Use the
-`--list-supported` flag to see all included artwork.
+`--list-supported` or `--ls` flags to see all included artwork.
 
 ## Generating your own art
 
@@ -57,7 +57,7 @@ $ arTTY -g my-art-name_WIDTHxHEIGHT.png \
 ```
 
 This will use imagemagick to traverse a `WIDTH` by `HEIGHT` grid and
-sample the color inside each cell. It will then genreate a ruby class
+sample the color inside each cell. It will then generate a ruby class
 called `MyArtName`. This works best with pixel art, however, it can
 parse any image this way.
 
@@ -72,5 +72,6 @@ parse any image this way.
 
 - Lots more art
     - Can I automatically determine pixel size in the generator?
+        - No but convert (from imagemagick) can for many images
     - Generate as much as possible of the original art I added
 - RDoc

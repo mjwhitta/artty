@@ -2,7 +2,7 @@
 class ArTTY::Art::MarvelBabyGroot < ArTTY::Art
     def color_map
         return [
-            "           2 02      λ",
+            "           2 02    λ",
             "   2  20 0  00 2   ",
             "    0 002 002000 2 ",
             "  0202 0020 03020  ",

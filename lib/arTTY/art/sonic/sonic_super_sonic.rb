@@ -2,7 +2,7 @@
 class ArTTY::Art::SonicSuperSonic < ArTTY::Art
     def color_map
         return [
-            "   0     000000       λ",
+            "   0     000000     λ",
             "   00  0011111100   ",
             "   010011111111110  ",
             "   01011111331110   ",

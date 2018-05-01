@@ -2,7 +2,7 @@
 class ArTTY::Art::LinuxManjaroAscii < ArTTY::Art
     def ascii_map
         return [
-            "                              λ",
+            "                            λ",
             "                            ",
             "                            ",
             "                            ",

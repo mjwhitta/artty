@@ -21,18 +21,57 @@ class ArTTY
         return @@arts
     end
 
-    def self.get(name, sysinfo = nil)
+    def available
+        return @art.sort
+    end
+
+    def exclude(pattern)
+        @art.delete_if do |name|
+            name.match(/#{pattern}/)
+        end
+    end
+
+    def fits(width, height)
+        if ((height <= 0) || (width <= 0))
+            @art.clear
+        else
+            @art.keep_if do |name|
+                (@@arts[name].width <= width) &&
+                (@@arts[name].height <= height)
+            end
+        end
+    end
+
+    def get(name, sysinfo = nil)
         case name
         when "none"
             img = ArTTY::Art.new()
         else
-            if (!self.art.has_key?(name))
+            if (!@@arts.has_key?(name))
                 raise ArTTY::Error::ArtNotFound.new(name)
             end
-            img = self.art[name]
+            if (!@art.include?(name))
+                img = ArTTY::Art.new()
+            else
+                img = @@arts[name]
+            end
         end
         img.sysinfo = sysinfo
         return img
+    end
+
+    def initialize
+        @art = ArTTY.art.keys.clone
+    end
+
+    def match(pattern)
+        @art.keep_if do |name|
+            name.match(/#{pattern}/)
+        end
+    end
+
+    def random
+        return @art.shuffle[0]
     end
 end
 

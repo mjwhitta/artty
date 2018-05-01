@@ -2,7 +2,7 @@
 class ArTTY::Art::LinuxArchAscii < ArTTY::Art
     def ascii_map
         return [
-            "                  A                    λ",
+            "                  A                  λ",
             "                 RCH                 ",
             "                ARCHA                ",
             "               RCHARCH               ",

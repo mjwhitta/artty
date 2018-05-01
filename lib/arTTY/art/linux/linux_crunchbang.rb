@@ -2,7 +2,7 @@
 class ArTTY::Art::LinuxCrunchbang < ArTTY::Art
     def color_map
         return [
-            "         000     000  000  λ",
+            "         000     000  000λ",
             "         010     010  010",
             "        010     010   010",
             "        010     010   010",

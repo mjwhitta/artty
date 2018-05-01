@@ -23,7 +23,8 @@ class ArTTY::Art
 
                 break if (char.nil? && offset.nil?)
                 if (char.nil? || (char == "λ") || (i == offset))
-                    offset ||= i
+                    offset ||= i + 2
+                    out += " "
                     break
                 end
 
@@ -51,13 +52,12 @@ class ArTTY::Art
             out += "\n"
         end
 
-        while (offset)
-            info = sysinfo.delete_at(0)
-            if (info)
+        if (offset)
+            loop do
+                info = sysinfo.delete_at(0)
+                break if (info.nil?)
                 out += " " * (offset + 1)
                 out += "#{info}\n"
-            else
-                offset = nil
             end
         end
 
@@ -123,7 +123,8 @@ class ArTTY::Art
                 b = map[1].strip
 
                 if ((t == "λ") || (b == "λ") || (i == offset))
-                    offset ||= i
+                    offset ||= i + 2
+                    out += " "
                     break
                 end
 
@@ -161,13 +162,12 @@ class ArTTY::Art
             out += "\n"
         end
 
-        while (offset)
-            info = sysinfo.delete_at(0)
-            if (info)
+        if (offset)
+            loop do
+                info = sysinfo.delete_at(0)
+                break if (info.nil?)
                 out += " " * (offset + 1)
                 out += "#{info}\n"
-            else
-                offset = nil
             end
         end
 
@@ -182,6 +182,6 @@ class ArTTY::Art
     def width
         return color_map.map(&:length).max if (@name.match(/-ascii$/))
         w = color_map.map(&:length).max || 0
-        return (w >= 3) ? (w - 3) : w
+        return (w >= 1) ? (w - 1) : w
     end
 end

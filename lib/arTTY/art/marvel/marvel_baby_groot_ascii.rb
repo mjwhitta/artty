@@ -2,7 +2,7 @@
 class ArTTY::Art::MarvelBabyGrootAscii < ArTTY::Art
     def ascii_map
         return [
-            '  \^V//    λ',
+            '  \^V//  λ',
             '  |. .|  ',
             '- \ - / _',
             ' \_| |_/ ',
