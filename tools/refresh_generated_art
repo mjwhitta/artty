@@ -52,6 +52,7 @@ for dir in \
     pokemon/bulbapedia/I \
     pokemon/bulbapedia/II \
     sonic \
+    street_fighter \
     teenage_mutant_ninja_turtles
 do
     info "$dir"
