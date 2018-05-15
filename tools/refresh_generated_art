@@ -51,6 +51,7 @@ for dir in \
     pokemon \
     pokemon/bulbapedia/I \
     pokemon/bulbapedia/II \
+    pokemon/bulbapedia/III \
     sonic \
     street_fighter \
     teenage_mutant_ninja_turtles

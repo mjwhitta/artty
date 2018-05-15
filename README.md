@@ -74,4 +74,5 @@ parse any image this way.
     - Can I automatically determine pixel size in the generator?
         - No but convert (from imagemagick) can for many images
     - Generate as much as possible of the original art I added
+- Profile and try to make much more efficient
 - RDoc
