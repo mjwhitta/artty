@@ -16,7 +16,6 @@ usage() {
 
 declare -a args
 unset force imgs
-output="../lib/arTTY/art/generated.rb"
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -57,8 +56,6 @@ for dir in \
     teenage_mutant_ninja_turtles
 do
     info "$dir"
-    ./art_from_images $force -i $imgs/$dir -o cache -p
+    ./art_from_images $force -i $imgs/$dir -o ../art/generated/$dir -p
     [[ $? -eq 0 ]] || exit 1
 done; unset dir
-
-cat cache/*.rb >$output
