@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI070Weepinbell < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                         cc00                 λ",
+            "                         cc00                 ",
             "      dd5555d         044400044c              ",
             "    dd55555d         04400ccc000              ",
             "   d555252d         c440cc   cc0c             ",

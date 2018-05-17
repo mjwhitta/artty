@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnCloudmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                              eeeeeee                                   λ",
+            "                              eeeeeee                                   ",
             "                            deeeeeeeeeddd                               ",
             "                            ddddeeedddd                                 ",
             "                             ddddddd                                    ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII281Kirlia < ArTTY::Art
     def initialize
         super
         @colors = [
-            " 222                     22   λ",
+            " 222                     22   ",
             " 9777722  004888400   299772  ",
             " 797777700888844554402977772  ",
             " 297777088884588885429777772  ",

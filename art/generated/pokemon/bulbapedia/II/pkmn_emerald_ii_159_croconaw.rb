@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII159Croconaw < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                 66                      λ",
+            "                 66                      ",
             "               6aa3                      ",
             "              6aa93                      ",
             "             6aa993                      ",

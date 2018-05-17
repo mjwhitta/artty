@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnGroundmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "            11                                                        λ",
+            "            11                                                        ",
             "         a1 1c1                                                       ",
             "         a111c1                                                       ",
             "          acc11                                                       ",

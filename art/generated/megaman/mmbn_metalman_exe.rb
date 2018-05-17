@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnMetalmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                            8    8h                     λ",
+            "                            8    8h                     ",
             "                           85h  85h                     ",
             "                           85h 855h   88h               ",
             "                          855h8555h 885h                ",

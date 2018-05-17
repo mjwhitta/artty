@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnGatemanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                 333           λ",
+            "                 333           ",
             "               3365533         ",
             "              915666553        ",
             "             9a11566655        ",

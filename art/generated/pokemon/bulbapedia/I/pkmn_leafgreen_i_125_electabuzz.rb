@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI125Electabuzz < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                   2                                       λ",
+            "                   2                                       ",
             "                 240                                       ",
             "                 040                                       ",
             "                 057                                       ",

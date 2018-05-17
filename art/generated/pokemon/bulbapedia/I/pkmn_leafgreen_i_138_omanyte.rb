@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI138Omanyte < ArTTY::Art
     def initialize
         super
         @colors = [
-            "            66666666666        λ",
+            "            66666666666        ",
             "         67777777777888716b    ",
             "        6999999999876676616b   ",
             "       699999999998888166616b  ",

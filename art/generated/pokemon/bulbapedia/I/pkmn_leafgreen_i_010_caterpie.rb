@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI010Caterpie < ArTTY::Art
     def initialize
         super
         @colors = [
-            " 3          330              λ",
+            " 3          330              ",
             "099b  1cc399933b             ",
             "0355bcc35553333b             ",
             " 335533553333bbcc            ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI132Ditto < ArTTY::Art
     def initialize
         super
         @colors = [
-            "         111  100                 λ",
+            "         111  100                 ",
             "       143331444320               ",
             "       133313443320    111        ",
             "       1332333332220  13331       ",

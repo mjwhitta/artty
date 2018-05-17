@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII260Swampert < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                ddddd                       ddddd             λ",
+            "                ddddd                       ddddd             ",
             "             d511110111c                 05111011d            ",
             "            d51011110111c               011110111dc           ",
             "            d511011101111c             05111101101c           ",

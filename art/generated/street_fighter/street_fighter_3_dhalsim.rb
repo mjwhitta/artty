@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter3Dhalsim < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                           11111                  λ",
+            "                           11111                  ",
             "                         17aadad61                ",
             "                         1aaada331                ",
             "                         137637aa1                ",

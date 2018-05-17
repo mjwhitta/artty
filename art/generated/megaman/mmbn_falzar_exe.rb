@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnFalzarEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "006Z                                                                                                                                                  λ",
+            "006Z                                                                                                                                                  ",
             "  Za6Z0                                                                                                                                               ",
             "   Zll6Z                                                                                                                                              ",
             "   YlnllZ                                                                                                                                             ",

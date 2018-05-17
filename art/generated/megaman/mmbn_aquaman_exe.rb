@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnAquamanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "     7777   7777       λ",
+            "     7777   7777       ",
             "    7    777    7      ",
             "   7      7      7     ",
             "   6      7      6     ",

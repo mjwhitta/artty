@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter3Cody < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                    4477                λ",
+            "                    4477                ",
             "                  49bbcccb7             ",
             "                 4799bbbccc7            ",
             "             2222497477b9c7c7           ",

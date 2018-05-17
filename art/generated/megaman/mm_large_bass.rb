@@ -2,7 +2,7 @@ class ArTTY::Art::MmLargeBass < ArTTY::Art
     def initialize
         super
         @colors = [
-            "        J                                        λ",
+            "        J                                        ",
             "         dLJ                        K3           ",
             "          BdMK                   &KKK            ",
             "           BB3MK               YKKO0             ",

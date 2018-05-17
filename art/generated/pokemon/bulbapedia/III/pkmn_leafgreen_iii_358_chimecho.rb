@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII358Chimecho < ArTTY::Art
     def initialize
         super
         @colors = [
-            "         333           λ",
+            "         333           ",
             "      3abbbba90        ",
             "     39aaaaa9990       ",
             "     39999999990       ",

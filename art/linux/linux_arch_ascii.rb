@@ -2,7 +2,7 @@ class ArTTY::Art::LinuxArchAscii < ArTTY::Art
     def initialize
         super
         @ascii = [
-            "                  A                  λ",
+            "                  A                  ",
             "                 RCH                 ",
             "                ARCHA                ",
             "               RCHARCH               ",

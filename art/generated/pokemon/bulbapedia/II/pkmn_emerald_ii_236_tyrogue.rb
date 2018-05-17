@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII236Tyrogue < ArTTY::Art
     def initialize
         super
         @colors = [
-            "         31             λ",
+            "         31             ",
             "        3871            ",
             "        3876a 1a        ",
             "     33 3876a166a       ",

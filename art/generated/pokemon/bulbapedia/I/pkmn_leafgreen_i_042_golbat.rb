@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI042Golbat < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                                           30λ",
+            "                                                           30",
             " 9955333                                                930  ",
             " 666005533                                            39307  ",
             "  1666005533                                         935071  ",

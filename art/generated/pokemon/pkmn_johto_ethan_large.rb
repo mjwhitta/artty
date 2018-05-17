@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnJohtoEthanLarge < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                          00000000                      λ",
+            "                          00000000                      ",
             "                     009946666666648900                 ",
             "                    08999466666666488980                ",
             "                    08899466666666488880                ",

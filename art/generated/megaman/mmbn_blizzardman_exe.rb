@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnBlizzardmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                    55 5                             λ",
+            "                    55 5                             ",
             "                   59959555                          ",
             "                 55599999995                         ",
             "                59999999995                          ",

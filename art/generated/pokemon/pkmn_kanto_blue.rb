@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnKantoBlue < ArTTY::Art
     def initialize
         super
         @colors = [
-            "          c0       c     λ",
+            "          c0       c     ",
             "           777300 c30    ",
             "           c77777003c    ",
             "       33ccc7777777330 c0",

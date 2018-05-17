@@ -2,7 +2,7 @@ class ArTTY::Art::MarvelCaptainAmerica < ArTTY::Art
     def initialize
         super
         @colors = [
-            "         000000            λ",
+            "         000000            ",
             "        01111110           ",
             "       0141111110          ",
             "      014141111770         ",

@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnLifeVirusEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                              3                                                       λ",
+            "                              3                                                       ",
             "              3              33                                                       ",
             "             33             333                                                       ",
             "            353            3353                                                       ",

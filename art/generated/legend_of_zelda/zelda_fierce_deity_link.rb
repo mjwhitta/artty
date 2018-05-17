@@ -2,7 +2,7 @@ class ArTTY::Art::ZeldaFierceDeityLink < ArTTY::Art
     def initialize
         super
         @colors = [
-            "          iiiii                     λ",
+            "          iiiii                     ",
             "        ii111kkkk                   ",
             "       ip111ko99okk                 ",
             "      ip111kqqqq9okk                ",

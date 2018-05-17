@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII386DeoxysSpeedShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                               99                         λ",
+            "                               99                         ",
             "                           9933228                        ",
             "                         99712228                         ",
             "                       997712228                          ",

@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter3Juli < ArTTY::Art
     def initialize
         super
         @colors = [
-            "             0000                     λ",
+            "             0000                     ",
             "           10b90ba0                   ",
             "           a1000001                   ",
             "           131178731                  ",

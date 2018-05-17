@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII330Flygon < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                           dddddddddd          λ",
+            "                                           dddddddddd          ",
             "                                   222333332ddddddddd          ",
             "              99999              2377722dddd777777773          ",
             "          9999bbbbb4           2377722dd777732222d000022       ",

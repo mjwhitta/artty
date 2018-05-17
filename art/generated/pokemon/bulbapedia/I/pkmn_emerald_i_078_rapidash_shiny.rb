@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI078RapidashShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                   777              7777777          77       λ",
+            "                   777              7777777          77       ",
             "7                78bbb87    77888877    7aaaaa887777  78a7    ",
             " 7         7     7888bbb7777888888887777888aababa8887 78a7    ",
             " 87        77   788888bbbaaaaaabbbbb888888888ababba88a88b87   ",

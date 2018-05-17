@@ -2,7 +2,7 @@ class ArTTY::Art::EvilDeadAsh < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                00              λ",
+            "                00              ",
             "               0e10             ",
             "                0e10            ",
             "                 0e10           ",

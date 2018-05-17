@@ -2,7 +2,7 @@ class ArTTY::Art::BttfDocBrown < ArTTY::Art
     def initialize
         super
         @colors = [
-            "        00000000         λ",
+            "        00000000         ",
             "  00   0bbbbbbbb00   00  ",
             " 0660 0babaaabbbbb0 0660 ",
             "0666600ababbbaa4bbb066660",

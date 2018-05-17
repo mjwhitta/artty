@@ -2,7 +2,7 @@ class ArTTY::Art::BttfMartyMcfly < ArTTY::Art
     def initialize
         super
         @colors = [
-            "         0                 λ",
+            "         0                 ",
             "        040000000          ",
             "        0044444440         ",
             "  000  044444444440        ",

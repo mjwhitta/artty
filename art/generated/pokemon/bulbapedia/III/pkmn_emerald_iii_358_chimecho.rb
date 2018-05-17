@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII358Chimecho < ArTTY::Art
     def initialize
         super
         @colors = [
-            "         444           λ",
+            "         444           ",
             "      49aaaa980        ",
             "     48999998880       ",
             "     48888888880       ",

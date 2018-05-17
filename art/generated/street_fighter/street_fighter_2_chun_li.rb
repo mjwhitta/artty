@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter2ChunLi < ArTTY::Art
     def initialize
         super
         @colors = [
-            "            0000   00                       λ",
+            "            0000   00                       ",
             "          0266221111110                     ",
             "          0266661141111                     ",
             "         202622614314431                    ",

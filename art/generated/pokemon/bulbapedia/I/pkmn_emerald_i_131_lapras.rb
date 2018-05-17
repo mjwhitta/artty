@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI131Lapras < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                           0aa                 λ",
+            "                                           0aa                 ",
             "                                         0220009      a04420a  ",
             "                                         a2200aa999a a44422009 ",
             "                        bb   bb        0aa20aa000002a44222200a ",

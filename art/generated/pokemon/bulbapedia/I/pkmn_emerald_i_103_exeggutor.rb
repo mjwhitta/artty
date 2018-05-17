@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI103Exeggutor < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              ee                                          λ",
+            "              ee                                          ",
             "            e22224e      ee242e                           ",
             "            e2e2444e    2447e22e                          ",
             "            e2ee2447d  e747deeee  ee22ee                  ",

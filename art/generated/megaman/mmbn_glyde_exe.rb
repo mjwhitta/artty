@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnGlydeEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "      11111          λ",
+            "      11111          ",
             "     3583199         ",
             "     38851999        ",
             "     58851999        ",

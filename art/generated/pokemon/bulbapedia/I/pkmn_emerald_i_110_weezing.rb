@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI110Weezing < ArTTY::Art
     def initialize
         super
         @colors = [
-            "  8 6                                                        λ",
+            "  8 6                                                        ",
             "688888                                                       ",
             "684484              100                                      ",
             " 444844    1bb 11bbb777b0                                    ",

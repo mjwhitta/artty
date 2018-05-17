@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnSnakemanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              00000j               λ",
+            "              00000j               ",
             "            011111000j             ",
             "          011111000000jj           ",
             "        01110j000b20j00000         ",

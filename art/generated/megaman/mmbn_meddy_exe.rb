@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnMeddyEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                      220       λ",
+            "                      220       ",
             "                     29930      ",
             "          58855     2236920     ",
             "         69ee885   223e0692     ",

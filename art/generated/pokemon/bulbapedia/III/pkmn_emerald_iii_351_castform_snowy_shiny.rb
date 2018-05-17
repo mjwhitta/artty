@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII351CastformSnowyShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "             33333333333333            λ",
+            "             33333333333333            ",
             "      33366666443333aaaaa334443        ",
             "    33666644333aaa         aaa43       ",
             "   3666664333aa               aa       ",

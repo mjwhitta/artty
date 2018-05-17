@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI074GeodudeShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                       1111     λ",
+            "                                       1111     ",
             "     111                            5233333301  ",
             "    03330                          022230333331 ",
             "  10333330                         522202233330 ",

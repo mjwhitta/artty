@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII355Duskull < ArTTY::Art
     def initialize
         super
         @colors = [
-            "           99a                        λ",
+            "           99a                        ",
             "        92227                         ",
             "       9222a0                         ",
             "       9a2aaa7                        ",

@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter2Blanka < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                             2                          λ",
+            "                             2                          ",
             "                   222255575877252                      ",
             "                  255557588888a7252                     ",
             "                2222555888aaaaa87872                    ",

@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnWoodmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                    33445554433                  λ",
+            "                    33445554433                  ",
             "                   0455555555548                 ",
             "                   0334455544308                 ",
             "                   0333333300008                 ",

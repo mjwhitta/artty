@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnJohtoSilver < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                       30            λ",
+            "                       30            ",
             "                   33550             ",
             "                 33555511            ",
             "                35555515511          ",

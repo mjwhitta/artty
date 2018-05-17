@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnKantoRedLarge < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              7777              λ",
+            "              7777              ",
             "          77dddddddaa62         ",
             "         7ddddddddaa7772        ",
             "        7dddddddaa777776        ",

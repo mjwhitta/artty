@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI104Cubone < ArTTY::Art
     def initialize
         super
         @colors = [
-            "             aa            2a         λ",
+            "             aa            2a         ",
             "            288ba28888bb2888ba        ",
             "            2cbb888888c2c88b9         ",
             "             2b8888888ccc8bb9         ",

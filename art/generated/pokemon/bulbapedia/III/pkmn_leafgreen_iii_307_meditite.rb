@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII307Meditite < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                ba                    λ",
+            "                ba                    ",
             "               bbc0                   ",
             "              bcbcc0                  ",
             "             bccbccc0                 ",

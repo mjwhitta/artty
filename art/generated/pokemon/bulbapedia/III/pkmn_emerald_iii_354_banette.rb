@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII354Banette < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              a0                 λ",
+            "              a0                 ",
             "           a2bb20                ",
             "          a2992000999            ",
             "        a222229aaaaaa99          ",

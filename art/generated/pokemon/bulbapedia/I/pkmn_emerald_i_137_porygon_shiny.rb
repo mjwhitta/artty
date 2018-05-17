@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI137PorygonShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            " 4                                   λ",
+            " 4                                   ",
             "494                                  ",
             "694                   21111          ",
             "6994              21223333311        ",

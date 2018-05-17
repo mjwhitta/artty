@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII381Latios < ArTTY::Art
     def initialize
         super
         @colors = [
-            "    cc                                                        λ",
+            "    cc                                                        ",
             "   cdbd0          bdbc                                        ",
             "   cdb50          cdbd                                        ",
             "   5d550         bd5b50                                    22 ",

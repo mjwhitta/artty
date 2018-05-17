@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnTopmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                21                                λ",
+            "                21                                ",
             "              cc1ccc                              ",
             "            c699cc66c                             ",
             "          3c69dd96666c3                           ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI130Gyarados < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                             bb                λ",
+            "                                             bb                ",
             "                                           bcaded       dcb    ",
             "                                          bcadadebb d d1acb    ",
             "                                          bcadadb4bdad1dacb    ",

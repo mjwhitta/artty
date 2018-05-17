@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnFlamemanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                 999999999                   λ",
+            "                 999999999                   ",
             "                99bbba99a999                 ",
             "              aaaa9a999a9ba988               ",
             "            aaddcaa9bbb9a9bb898              ",

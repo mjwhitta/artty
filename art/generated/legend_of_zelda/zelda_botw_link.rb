@@ -2,7 +2,7 @@ class ArTTY::Art::ZeldaBotwLink < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                  h                                                      λ",
+            "                  h                                                      ",
             "                  nh                                                     ",
             "                  heh                                                    ",
             "                  hkh                                                    ",

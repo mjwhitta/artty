@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnFreezemanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                     111111             λ",
+            "                     111111             ",
             "                   11477733111          ",
             "                  137773322441          ",
             "                 1377732222241          ",

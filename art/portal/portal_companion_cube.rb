@@ -2,7 +2,7 @@ class ArTTY::Art::PortalCompanionCube < ArTTY::Art
     def initialize
         super
         @colors = [
-            "  00000  00000  00000  λ",
+            "  00000  00000  00000  ",
             " 022222002222200222220 ",
             "02222222122222122222220",
             "02222222112221122222220",

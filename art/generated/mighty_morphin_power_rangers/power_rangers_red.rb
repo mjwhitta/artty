@@ -2,7 +2,7 @@ class ArTTY::Art::PowerRangersRed < ArTTY::Art
     def initialize
         super
         @colors = [
-            "           000000      00  λ",
+            "           000000      00  ",
             "          04444440    0550 ",
             "         0444444640  055550",
             "        04444444440  005550",

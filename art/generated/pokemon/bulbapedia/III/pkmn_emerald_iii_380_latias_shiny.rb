@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII380LatiasShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                     d55d      55e5            λ",
+            "                                     d55d      55e5            ",
             "                                  d88888d   5ee8858d           ",
             "                                 d888885  58e88858d            ",
             "                                d855558d 5ee88888d             ",

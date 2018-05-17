@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnAirmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                     12221                    λ",
+            "                     12221                    ",
             "                   133333210                  ",
             "               cba46e32222210                 ",
             "             cdba144d222222110                ",

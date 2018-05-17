@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnLasermanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "     0111                                       λ",
+            "     0111                                       ",
             "     0b10111                          011       ",
             "     0b1444011                      011c1       ",
             "    0bb2444441                   011141c1       ",

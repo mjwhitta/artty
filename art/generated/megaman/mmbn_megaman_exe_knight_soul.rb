@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnMegamanEXEKnightSoul < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                    555556665       λ",
+            "                    555556665       ",
             "                  44444444556665    ",
             "                44444444444445665   ",
             "               444444444444444454   ",

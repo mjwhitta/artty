@@ -2,7 +2,7 @@ class ArTTY::Art::MarvelSpiderMan < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                               868λ",
+            "                                               868",
             "                                               3  ",
             "                                              3   ",
             "                                             3    ",

@@ -2,7 +2,7 @@ class ArTTY::Art::MarvelBabyGrootAscii < ArTTY::Art
     def initialize
         super
         @ascii = [
-            '  \^V//  λ',
+            '  \^V//  ',
             '  |. .|  ',
             '- \ - / _',
             ' \_| |_/ ',

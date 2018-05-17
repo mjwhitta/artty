@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII310Manectric < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                           52            λ",
+            "                           52            ",
             "                          5872           ",
             "                          58772          ",
             "                         588772          ",

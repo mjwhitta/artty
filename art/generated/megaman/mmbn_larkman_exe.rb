@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnLarkmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                         1                        λ",
+            "                         1                        ",
             "                0      11                         ",
             "               0      131                         ",
             "              00     131                          ",

@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter2Vega < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                     0000                     λ",
+            "                     0000                     ",
             "                   004444400          44      ",
             "                  0004440004         47 5554  ",
             "                  00044045000       47 47     ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI072Tentacool < ArTTY::Art
     def initialize
         super
         @colors = [
-            "            0000d                   λ",
+            "            0000d                   ",
             "       7406633660777744             ",
             "      7c0666633077bbb774            ",
             "     7c06666633d7bcccb774           ",

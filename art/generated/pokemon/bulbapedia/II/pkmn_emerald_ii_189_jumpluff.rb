@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII189Jumpluff < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                696696                              λ",
+            "                696696                              ",
             "            99dddddcccaa96 9                        ",
             "         9 9dddddddddccaaa6                         ",
             "          9dddddddddddccaaa6                        ",

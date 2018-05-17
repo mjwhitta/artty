@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII353Shuppet < ArTTY::Art
     def initialize
         super
         @colors = [
-            "      9                       λ",
+            "      9                       ",
             "     9bb3                     ",
             "     9bb8                     ",
             "     9aa38                    ",

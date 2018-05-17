@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI030Nidorina < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                   22   c2                   λ",
+            "                   22   c2                   ",
             " 22     cc          c664c4c                  ",
             " 6622  c66c         2666444c                 ",
             " c6666cc66c       c22666644c                 ",

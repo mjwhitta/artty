@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII342Crawdaunt < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                    75                                    λ",
+            "                    75                                    ",
             "                   bc0                                    ",
             "                  7eb5                                    ",
             "                  bcb70                                   ",

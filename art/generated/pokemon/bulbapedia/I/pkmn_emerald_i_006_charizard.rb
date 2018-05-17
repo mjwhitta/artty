@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI006Charizard < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                       53                                      λ",
+            "                       53                                      ",
             "                     3883              38833                   ",
             "                    378c                37753                  ",
             "                5333775c                 35553                 ",

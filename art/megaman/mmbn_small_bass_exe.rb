@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnSmallBassExe < ArTTY::Art
     def initialize
         super
         @colors = [
-            "      000              λ",
+            "      000              ",
             "     03330    000000   ",
             "    033330000088888800 ",
             "   03330033088888888880",

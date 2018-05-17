@@ -2,7 +2,7 @@ class ArTTY::Art::MarvelIronMan < ArTTY::Art
     def initialize
         super
         @colors = [
-            "        000000                 λ",
+            "        000000                 ",
             "       03333330                ",
             "      0335553330               ",
             "      03355553350              ",

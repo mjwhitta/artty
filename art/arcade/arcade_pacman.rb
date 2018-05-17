@@ -2,7 +2,7 @@ class ArTTY::Art::ArcadePacman < ArTTY::Art
     def initialize
         super
         @colors = [
-            "     2222            1111                             λ",
+            "     2222            1111                             ",
             "   22222222        11111111                           ",
             "  2222222222      1111111111                          ",
             " 222552222552    111551111551                         ",

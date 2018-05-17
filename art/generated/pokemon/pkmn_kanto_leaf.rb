@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnKantoLeaf < ArTTY::Art
     def initialize
         super
         @colors = [
-            "               224442221               λ",
+            "               224442221               ",
             "            2bbbbbbbbbbd1              ",
             "            2dbbbbbbddddd0             ",
             "            2dddddddddddd0             ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI143SnorlaxSprite < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              66        λ",
+            "              66        ",
             "             674        ",
             "            677444   44 ",
             "            422777444774",

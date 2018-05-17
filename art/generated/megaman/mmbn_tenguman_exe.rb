@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnTengumanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                     110                             λ",
+            "                     110                             ",
             "                   1110                              ",
             "                 11110                               ",
             "                11110                                ",

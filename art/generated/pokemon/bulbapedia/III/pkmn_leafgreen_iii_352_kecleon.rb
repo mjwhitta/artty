@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII352Kecleon < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                     4                   λ",
+            "                     4                   ",
             "             e1e   ebc4  77              ",
             "             e11e e4cbb47c4              ",
             "       4eee  e111e14cbb4cb4              ",

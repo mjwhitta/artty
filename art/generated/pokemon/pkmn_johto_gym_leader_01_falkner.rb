@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnJohtoGymLeader01Falkner < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              11                                      λ",
+            "              11                                      ",
             "          22333221                                    ",
             "         233333322111                                 ",
             "        23333333233330                                ",

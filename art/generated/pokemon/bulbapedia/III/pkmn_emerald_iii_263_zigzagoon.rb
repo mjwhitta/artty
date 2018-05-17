@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII263Zigzagoon < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                         a             λ",
+            "                                         a             ",
             "                                       a66aa   a339    ",
             "                        a              26626a 2339     ",
             "                   a9  37a            a66636226669     ",

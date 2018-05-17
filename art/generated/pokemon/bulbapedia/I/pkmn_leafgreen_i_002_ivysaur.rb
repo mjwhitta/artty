@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI002Ivysaur < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                       77 7 77            λ",
+            "                       77 7 77            ",
             "                      8aa8999777          ",
             "          33  111   88aa7aa9998c          ",
             "         344010440 89a77aaa9998c          ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI053Persian < ArTTY::Art
     def initialize
         super
         @colors = [
-            "    ccc             ccccc        1111cccc1c         λ",
+            "    ccc             ccccc        1111cccc1c         ",
             "   c0cccc         cccc00cc 51111aaaaaaaaaaaaac      ",
             "   c20cccc1      cccc0222c1aaaaa11a1ccc111aaaac     ",
             "   c420ccc1111111ccc02222caaaaaaaa11      c1aaac    ",

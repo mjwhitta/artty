@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnNormalnavi < ArTTY::Art
     def initialize
         super
         @colors = [
-            "        344443                    λ",
+            "        344443                    ",
             "      a00266d538                  ",
             "     a111126640a8                 ",
             "     541d11220aa8                 ",

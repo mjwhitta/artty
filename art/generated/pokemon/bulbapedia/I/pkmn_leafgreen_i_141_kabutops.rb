@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI141Kabutops < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                  10                                    λ",
+            "                  10                                    ",
             "                1446                                    ",
             "               1441                                     ",
             "              14210                                     ",

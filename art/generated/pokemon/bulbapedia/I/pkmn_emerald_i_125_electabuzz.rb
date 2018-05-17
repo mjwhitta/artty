@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI125Electabuzz < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                 08                                λ",
+            "                 08                                ",
             "                058                                ",
             "                158                                ",
             "          11   1658                                ",

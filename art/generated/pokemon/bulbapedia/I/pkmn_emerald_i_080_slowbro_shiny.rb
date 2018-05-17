@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI080SlowbroShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              311            1ddd                             λ",
+            "              311            1ddd                             ",
             "            3963313999666111999666d              05d 00       ",
             "            196d199999666661666666d              d55d2d       ",
             "            16d999999666666663d136d              d5082d       ",

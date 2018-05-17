@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnMegamanEXESearchSoul < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                88                         λ",
+            "                88                         ",
             "                808                        ",
             "                818    22222               ",
             "                 818 825cc552              ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI026Raichu < ArTTY::Art
     def initialize
         super
         @colors = [
-            "           1                       00          λ",
+            "           1                       00          ",
             "         1a1                     031c          ",
             "         6a1   0                0306c          ",
             "        1a6   0c               03106c          ",

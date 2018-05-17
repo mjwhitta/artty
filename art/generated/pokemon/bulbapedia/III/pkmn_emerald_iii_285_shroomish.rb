@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII285Shroomish < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                 29 999              λ",
+            "                 29 999              ",
             "                9772777299           ",
             "                97777772769          ",
             "              2267777777629          ",

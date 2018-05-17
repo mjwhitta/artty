@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnBeastmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                            8                               λ",
+            "                            8                               ",
             "                           8                                ",
             "                          89     9                          ",
             "                         898    9                           ",

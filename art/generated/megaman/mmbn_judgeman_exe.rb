@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnJudgemanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                  5**$s52                 λ",
+            "                  5**$s52                 ",
             "                 5)*s5330                 ",
             "                5H%s53ppN                 ",
             "               5HB533pw30                 ",

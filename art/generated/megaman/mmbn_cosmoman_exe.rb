@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnCosmomanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "               2        5               λ",
+            "               2        5               ",
             "               22       6               ",
             "               52       65              ",
             "              2522ccbb 265              ",

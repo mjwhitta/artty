@@ -2,7 +2,7 @@ class ArTTY::Art::MarvelXMenWolverine < ArTTY::Art
     def initialize
         super
         @colors = [
-            "            0     0            λ",
+            "            0     0            ",
             "           080   080           ",
             "           080000080           ",
             "          08885555580          ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI101Electrode < ArTTY::Art
     def initialize
         super
         @colors = [
-            "             88888888              λ",
+            "             88888888              ",
             "        895555555555aaaa87         ",
             "       85555555555555aaaaa7        ",
             "     89555555555555555aaaaa77      ",

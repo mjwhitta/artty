@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnDrillmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                     c                            λ",
+            "                     c                            ",
             "                     cc                           ",
             "                     c1c                          ",
             "                     c3cc                         ",

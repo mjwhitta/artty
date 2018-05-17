@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI077Ponyta < ArTTY::Art
     def initialize
         super
         @colors = [
-            "        2222                            2 2111λ",
+            "        2222                            2 2111",
             "    2 2235512111    2221             233511   ",
             "   22 23555533331123331             233551    ",
             "   2325555555555533311          1   255521    ",

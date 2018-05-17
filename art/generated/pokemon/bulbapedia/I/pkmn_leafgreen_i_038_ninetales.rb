@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI038Ninetales < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                          332          λ",
+            "                                          332          ",
             "                                  369 226669           ",
             "                                  2600776600022        ",
             "                                 27077766336666222     ",

@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter3Sakura < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                  ddd                    λ",
+            "                  ddd                    ",
             "                d464d4dd                 ",
             "                dd666d6d                 ",
             "               ddd484f8d                 ",

@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnPlanetmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                       1                  λ",
+            "                                       1                  ",
             "              11                      161                 ",
             "              151                    191                  ",
             "              151                   191                   ",

@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnMagnetmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                   aaaa                  λ",
+            "                                   aaaa                  ",
             "                      aa        aaaddddaaaaa             ",
             "                    bcccaa   aaaddddddddeeea             ",
             "                  35531999bbaadddddddeeedbba     bbb     ",

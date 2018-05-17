@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnToadmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "         770                    λ",
+            "         770                    ",
             "        7d960                   ",
             "        379700                  ",
             "        733300                  ",

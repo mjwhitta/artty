@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII201UnownExclamationShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "      5444       λ",
+            "      5444       ",
             "     522154      ",
             "     522154      ",
             "     511154      ",

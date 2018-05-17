@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnJohtoChampionLance < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                32   22     22                            λ",
+            "                32   22     22                            ",
             "               342 24423234442                            ",
             "              344424444344442                             ",
             "              3444344434444422222                         ",

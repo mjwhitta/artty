@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII376Metagross < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                      99               98                      λ",
+            "                      99               98                      ",
             "                  8900008             8009088                  ",
             "                 8009998               8999908                 ",
             "             00 80099998               88999998 999            ",

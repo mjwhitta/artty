@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI040Wigglytuff < ArTTY::Art
     def initialize
         super
         @colors = [
-            "5                                             λ",
+            "5                                             ",
             "5883          577773                          ",
             "38883        5887377a                         ",
             " 8a585a     38873777a                         ",

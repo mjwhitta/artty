@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI001Bulbasaur < ArTTY::Art
     def initialize
         super
         @colors = [
-            "        1c c1                 λ",
+            "        1c c1                 ",
             "       131acc1ac              ",
             "       1313c11a1aaa           ",
             "       13c6131c1133ca         ",

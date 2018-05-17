@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII350Milotic < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                3                             λ",
+            "                                3                             ",
             "                      3b3      3a3          3bb               ",
             "                     b3       3aa3            33              ",
             "                    bb        3aab             b              ",

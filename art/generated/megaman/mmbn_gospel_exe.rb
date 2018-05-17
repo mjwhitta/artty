@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnGospelEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                                                                     b22222            λ",
+            "                                                                                     b22222            ",
             "                                                                                  bb2222222222         ",
             "                                                                               22aaab2227222722b       ",
             "                                                                           2222222aaab2222222222b      ",

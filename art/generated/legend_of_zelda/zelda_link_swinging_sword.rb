@@ -2,7 +2,7 @@ class ArTTY::Art::ZeldaLinkSwingingSword < ArTTY::Art
     def initialize
         super
         @colors = [
-            "          00000                     λ",
+            "          00000                     ",
             "       00000000999999               ",
             "      022222220666669               ",
             "     0222222226666669               ",

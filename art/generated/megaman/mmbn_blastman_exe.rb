@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnBlastmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                         1000                     λ",
+            "                         1000                     ",
             "                       133310                     ",
             "                     13333010                     ",
             "                   1333311110                     ",

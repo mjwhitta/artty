@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter3EHonda < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                              dd                      λ",
+            "                              dd                      ",
             "                            dddeedddd                 ",
             "                            d dddeeeed                ",
             "                           dddeeeeddeed               ",

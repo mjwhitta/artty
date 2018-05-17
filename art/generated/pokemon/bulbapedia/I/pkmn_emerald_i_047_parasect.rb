@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI047Parasect < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                   111111                    λ",
+            "                                   111111                    ",
             "                              13888555333331                 ",
             "                             1888845555333331                ",
             "                            158877555555338431               ",

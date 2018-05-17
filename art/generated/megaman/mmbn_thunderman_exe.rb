@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnThundermanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                 333                            λ",
+            "                 333                            ",
             "                37873                           ",
             "                78887          333              ",
             "                788873        37873             ",

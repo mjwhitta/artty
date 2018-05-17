@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenII235Smeargle < ArTTY::Art
     def initialize
         super
         @colors = [
-            "               66                                λ",
+            "               66                                ",
             "              677a                               ",
             "             c7766b                              ",
             "           66c77666bc                            ",

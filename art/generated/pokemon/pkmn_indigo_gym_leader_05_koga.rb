@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnIndigoGymLeader05Koga < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                 3333        λ",
+            "                                 3333        ",
             "                             3477777773      ",
             "             0              337777777743     ",
             "          0010  00      3333347777777443     ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI001BulbasaurSprite < ArTTY::Art
     def initialize
         super
         @colors = [
-            "            444     λ",
+            "            444     ",
             "           41114    ",
             "         4440104    ",
             "       44050505044  ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI127Pinsir < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                      771                              λ",
+            "                      771                              ",
             "                1 7133225                              ",
             "               137333227                               ",
             "               721332275                   7           ",

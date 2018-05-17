@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI054Psyduck < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                  77              λ",
+            "                  77              ",
             "                 777              ",
             "           77   707 77            ",
             "           707  70 777            ",

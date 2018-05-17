@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI036Clefable < ArTTY::Art
     def initialize
         super
         @colors = [
-            "   77                                     λ",
+            "   77                                     ",
             "   68887                                  ",
             "   677887                         7776    ",
             "    677777      222            7778876    ",

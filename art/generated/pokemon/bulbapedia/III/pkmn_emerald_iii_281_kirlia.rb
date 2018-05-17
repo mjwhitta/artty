@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII281Kirlia < ArTTY::Art
     def initialize
         super
         @colors = [
-            " 222                     22   λ",
+            " 222                     22   ",
             " 8666622  bb17771bb   288662  ",
             " 6866666bb7777114411b2866662  ",
             " 286666b77771477774128666662  ",

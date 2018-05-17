@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII282Gardevoir < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                        aaa            λ",
+            "                                        aaa            ",
             "                                   a0666666666aa       ",
             "                                  a3366666666666a9     ",
             "                                 a03366300666666639    ",

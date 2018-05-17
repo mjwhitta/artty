@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnIrisEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "    c444cc     λ",
+            "    c444cc     ",
             "   c888eebcc   ",
             "  c88bb9e8eec  ",
             " c5888869ee9c  ",

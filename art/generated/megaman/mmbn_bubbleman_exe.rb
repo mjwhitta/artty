@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnBubblemanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "           88000000                 λ",
+            "           88000000                 ",
             "          8dbb772110e               ",
             "         8b9bb333111eee             ",
             "         8b999222111e4ee            ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI081Magnemite < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              dccd              λ",
+            "              dccd              ",
             "             c3e53c             ",
             "             1cccc              ",
             "           1188bc4bb            ",

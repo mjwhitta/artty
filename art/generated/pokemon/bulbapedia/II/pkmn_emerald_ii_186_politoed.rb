@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII186Politoed < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              ccc                           λ",
+            "              ccc                           ",
             "           cddccccdc                        ",
             "          cddc    cdc                       ",
             "          cdc cc   ccc                      ",

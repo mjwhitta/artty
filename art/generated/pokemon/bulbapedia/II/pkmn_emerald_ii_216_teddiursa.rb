@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII216Teddiursa < ArTTY::Art
     def initialize
         super
         @colors = [
-            "    22111                  λ",
+            "    22111                  ",
             "  233333229                ",
             "  231133329                ",
             "  1300133292211     22211  ",

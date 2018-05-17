@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnSerenadeEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                  6                             λ",
+            "                  6                             ",
             "                   76                           ",
             "                   e76                          ",
             "                    e76                         ",

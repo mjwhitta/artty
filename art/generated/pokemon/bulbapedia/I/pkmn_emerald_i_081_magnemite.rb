@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI081Magnemite < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                 3d3         λ",
+            "                 3d3         ",
             " d22dd          dbb53d       ",
             " d00ccdd    4111b3bb3d       ",
             " dd0dcccd 1488888bb3b3       ",

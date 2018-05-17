@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnErasemanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                    b                                               λ",
+            "                    b                                               ",
             "                b  db b                                             ",
             "               cb dc bb                                             ",
             "              cdbcdbbdb                                             ",

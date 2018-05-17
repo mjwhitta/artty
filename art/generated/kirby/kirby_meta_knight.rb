@@ -2,7 +2,7 @@ class ArTTY::Art::KirbyMetaKnight < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                            74λ",
+            "                            74",
             "                          4747",
             "                          747 ",
             "        00000000        47474 ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII377Regirock < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                  aaaa                11aaa     λ",
+            "                  aaaa                11aaa     ",
             "    33773a    aaccccc1bba     a6a   1773666a    ",
             "   3777736aa a88888881b1ba   a666a  17736666a   ",
             "   377773666a8888888881bba  a3666a 177736666a   ",

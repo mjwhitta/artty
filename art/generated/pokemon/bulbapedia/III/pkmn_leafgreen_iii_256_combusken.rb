@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII256Combusken < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                           00c             λ",
+            "                                           00c             ",
             "                                 0     027777c             ",
             "                                270   0777777c             ",
             "                               07770 2777777c              ",

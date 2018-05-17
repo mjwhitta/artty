@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenII211Qwilfish < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                 000baa             λ",
+            "                 000baa             ",
             "              02100000022a          ",
             "              010777600002b         ",
             "             0217777776001b         ",

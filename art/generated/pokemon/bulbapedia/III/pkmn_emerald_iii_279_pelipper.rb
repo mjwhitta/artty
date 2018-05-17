@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII279Pelipper < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                          111111                     λ",
+            "                          111111                     ",
             "                      115555333332211                ",
             "                     133555332222222211              ",
             "                     03333322225ccccc551             ",

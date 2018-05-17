@@ -2,7 +2,7 @@ class ArTTY::Art::LinuxManjaroAscii < ArTTY::Art
     def initialize
         super
         @ascii = [
-            "                            λ",
+            "                            ",
             "                            ",
             "                            ",
             "                            ",

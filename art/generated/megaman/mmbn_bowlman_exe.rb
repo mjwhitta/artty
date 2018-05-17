@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnBowlmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                       ccc              λ",
+            "                       ccc              ",
             "                      cdeec             ",
             "                     cdeeed             ",
             "                     ceeeed             ",

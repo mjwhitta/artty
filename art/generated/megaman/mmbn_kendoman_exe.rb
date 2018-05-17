@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnKendomanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            " c                                                              λ",
+            " c                                                              ",
             "cdd                                                             ",
             "cddd                                                            ",
             " cdd9                                                           ",

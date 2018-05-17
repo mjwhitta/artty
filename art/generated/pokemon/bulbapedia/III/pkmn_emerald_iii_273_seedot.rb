@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII273Seedot < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                 22           λ",
+            "                 22           ",
             "                09930         ",
             "               032220         ",
             "           222203220          ",

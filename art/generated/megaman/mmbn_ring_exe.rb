@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnRingEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                      222                                    λ",
+            "                      222                                    ",
             "                     25652                                   ",
             "                     266d62                                  ",
             "                     2626d5                                  ",

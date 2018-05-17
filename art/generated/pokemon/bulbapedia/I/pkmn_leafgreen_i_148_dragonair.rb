@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI148Dragonair < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                aa                           λ",
+            "                                aa                           ",
             "                   98a         a888a                         ",
             "                   78a         a8889                         ",
             "                  a889        a888a8a                        ",

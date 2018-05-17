@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI080Slowbro < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              400            0ccc                             λ",
+            "              400            0ccc                             ",
             "            4874404888777000888777c              d3c dd       ",
             "            087c088888777770777777c              c33c1c       ",
             "            07c888888777777774c047c              c3d61c       ",

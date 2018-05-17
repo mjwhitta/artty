@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenII213Shuckle < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                            44444              λ",
+            "                            44444              ",
             "                         4bbbbbaaaa0           ",
             "                        4bbbbbbbaaa60          ",
             "                        4bbbbbbaaaaa0          ",

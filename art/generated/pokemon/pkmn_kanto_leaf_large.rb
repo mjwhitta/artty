@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnKantoLeafLarge < ArTTY::Art
     def initialize
         super
         @colors = [
-            "               aaaaa                 λ",
+            "               aaaaa                 ",
             "           laiiiiiiiiial             ",
             "          laiiiiiiiiiiiel            ",
             "         leiiiiiiiiiiieee0           ",

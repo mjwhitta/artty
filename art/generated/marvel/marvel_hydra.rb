@@ -2,7 +2,7 @@ class ArTTY::Art::MarvelHydra < ArTTY::Art
     def initialize
         super
         @colors = [
-            "               000               λ",
+            "               000               ",
             "             0011100             ",
             "            011111110            ",
             "           01111111110           ",

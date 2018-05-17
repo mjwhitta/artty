@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII181Ampharos < ArTTY::Art
     def initialize
         super
         @colors = [
-            "992    44222                                       λ",
+            "992    44222                                       ",
             "974993331777669974b99                              ",
             "a79913835177749a77a99                              ",
             " 49215335177779b2649                               ",

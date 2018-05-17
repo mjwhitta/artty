@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI090Shellder < ArTTY::Art
     def initialize
         super
         @colors = [
-            "  89                             λ",
+            "  89                             ",
             "  7339                           ",
             "  7238                           ",
             "   8228   999999                 ",

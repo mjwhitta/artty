@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnDivemanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                    f11                                            λ",
+            "                    f11                                            ",
             "                   00161661                                        ",
             "                   00f1fff1                                        ",
             "                    fff  f1                                        ",

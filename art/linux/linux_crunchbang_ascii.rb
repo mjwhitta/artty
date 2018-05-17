@@ -2,7 +2,7 @@ class ArTTY::Art::LinuxCrunchbangAscii < ArTTY::Art
     def initialize
         super
         @ascii = [
-            "         __      __   _ λ",
+            "         __      __   _ ",
             "        / /     / /  | |",
             "   ____/ /_____/ /__ | |",
             "  /___  ______  ___/ | |",

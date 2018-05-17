@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnFiremanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "          5          λ",
+            "          5          ",
             "         55          ",
             "         555         ",
             "         585         ",

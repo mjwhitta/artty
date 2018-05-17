@@ -2,7 +2,7 @@ class ArTTY::Art::TmntSplinter < ArTTY::Art
     def initialize
         super
         @colors = [
-            "        0      0        λ",
+            "        0      0        ",
             "       0100   010       ",
             "       0111000000       ",
             "       01711111110      ",

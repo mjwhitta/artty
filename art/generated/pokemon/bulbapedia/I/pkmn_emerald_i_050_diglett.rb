@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI050Diglett < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              30000000               λ",
+            "              30000000               ",
             "           3666666444333b            ",
             "          3666666664443330           ",
             "          36a666a66444433b           ",

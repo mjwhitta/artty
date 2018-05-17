@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII252TreeckoShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                   0ee                        λ",
+            "                   0ee                        ",
             "            044e  14333e                      ",
             "            1333ee443330                      ",
             "           03333e0443333e                     ",

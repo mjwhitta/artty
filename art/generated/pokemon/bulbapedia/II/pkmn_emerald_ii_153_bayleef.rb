@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII153Bayleef < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                 333333333            λ",
+            "                                 333333333            ",
             "                         3455555555555555555554d      ",
             "                      345533555555555555555555544d    ",
             "                    405330  d0333444455544ddd055544d  ",

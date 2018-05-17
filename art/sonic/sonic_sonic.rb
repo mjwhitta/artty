@@ -2,7 +2,7 @@ class ArTTY::Art::SonicSonic < ArTTY::Art
     def initialize
         super
         @colors = [
-            "   0     000000     λ",
+            "   0     000000     ",
             "   00  0011111100   ",
             "   010011111111110  ",
             "   01011111331110   ",

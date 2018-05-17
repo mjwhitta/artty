@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenII198Murkrow < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                              1b         λ",
+            "                              1b         ",
             "                            1c1a         ",
             "                       b   bc11a         ",
             "                      1cb bcc119         ",

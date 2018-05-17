@@ -2,7 +2,7 @@ class ArTTY::Art::MmLargeMegaman < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                        00000                λ",
+            "                        00000                ",
             "                      002222200              ",
             "                     01111112220             ",
             "                    0111111112220            ",

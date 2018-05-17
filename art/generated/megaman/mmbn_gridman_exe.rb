@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnGridmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                    0000000                    λ",
+            "                    0000000                    ",
             "        bb00000  0001111111000                 ",
             "       b3d44441001111111111111000000           ",
             "       de44431bbb55774441111114444333c         ",

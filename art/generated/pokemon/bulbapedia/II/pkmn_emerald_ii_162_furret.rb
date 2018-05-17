@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII162Furret < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                   aa   λ",
+            "                                   aa   ",
             "                     49        aa3619   ",
             "                    a69      9a13669    ",
             "                    a49 99999111331     ",

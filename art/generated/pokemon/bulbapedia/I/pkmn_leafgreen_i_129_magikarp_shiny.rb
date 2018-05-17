@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI129MagikarpShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                             0            λ",
+            "                             0            ",
             "                            34b           ",
             "                      00   043b           ",
             "                     04b  0443            ",

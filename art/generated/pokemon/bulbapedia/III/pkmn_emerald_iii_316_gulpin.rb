@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII316Gulpin < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                      3660          λ",
+            "                      3660          ",
             "                   6888880          ",
             "                  6888883           ",
             "                 38887770           ",

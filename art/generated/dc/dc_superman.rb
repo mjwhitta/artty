@@ -2,7 +2,7 @@ class ArTTY::Art::DcSuperman < ArTTY::Art
     def initialize
         super
         @colors = [
-            "       0000000     00  λ",
+            "       0000000     00  ",
             "      077777770   0550 ",
             "     07777777770 055550",
             "    077777777770 005550",

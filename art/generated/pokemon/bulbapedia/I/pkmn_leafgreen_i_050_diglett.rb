@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI050Diglett < ArTTY::Art
     def initialize
         super
         @colors = [
-            "               3333000             λ",
+            "               3333000             ",
             "            3777777774440          ",
             "           37b7777b7744440         ",
             "          377c7777c744444c         ",

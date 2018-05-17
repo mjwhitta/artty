@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnColonelEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                dc                         λ",
+            "                dc                         ",
             "               dc                          ",
             "              dcc     ddc                  ",
             "             ddc   dddcc                   ",

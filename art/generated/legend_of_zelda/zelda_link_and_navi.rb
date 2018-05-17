@@ -2,7 +2,7 @@ class ArTTY::Art::ZeldaLinkAndNavi < ArTTY::Art
     def initialize
         super
         @colors = [
-            "        vvvvvvv                     λ",
+            "        vvvvvvv                     ",
             "      vv533333wvv        C       C  ",
             "     vw555555333wv      CC          ",
             "    vw53333333553wv                 ",

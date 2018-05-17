@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII167Spinarak < ArTTY::Art
     def initialize
         super
         @colors = [
-            "             ccccccccc                 λ",
+            "             ccccccccc                 ",
             "          cb0144444441110c             ",
             "         cb040bb4444444100c            ",
             "         b0440bb444444410b1c  bb3      ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII254Sceptile < ArTTY::Art
     def initialize
         super
         @colors = [
-            "          00            ddddd                                  λ",
+            "          00            ddddd                                  ",
             "         0522200ccccd15222222c                                 ",
             "         122222211c0522222222c                                 ",
             "        152222155052222222222c                                 ",

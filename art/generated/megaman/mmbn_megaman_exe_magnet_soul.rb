@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnMegamanEXEMagnetSoul < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                     cdacc         λ",
+            "                     cdacc         ",
             "                    cfeeacc        ",
             "                   cddfeeacc       ",
             "                  cddddc54ccc      ",

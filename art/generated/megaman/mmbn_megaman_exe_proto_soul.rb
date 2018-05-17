@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnMegamanEXEProtoSoul < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                          5         λ",
+            "                          5         ",
             "                          5         ",
             "                          55        ",
             "                          55        ",

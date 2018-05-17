@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI074GeodudeShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                         110           λ",
+            "                         110           ",
             "                        132110115      ",
             "                         15102215      ",
             "                           55320155    ",

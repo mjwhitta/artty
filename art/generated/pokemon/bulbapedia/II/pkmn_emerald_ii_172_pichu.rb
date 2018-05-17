@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII172Pichu < ArTTY::Art
     def initialize
         super
         @colors = [
-            " 9                       λ",
+            " 9                       ",
             "9999                 9999",
             "9a999              99aaa9",
             "9a9999           99aaaa99",

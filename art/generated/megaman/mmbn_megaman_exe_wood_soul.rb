@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnMegamanEXEWoodSoul < ArTTY::Art
     def initialize
         super
         @colors = [
-            "          11                      λ",
+            "          11                      ",
             "          151                     ",
             "          1351                    ",
             "          13351                   ",

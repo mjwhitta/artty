@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnVideomanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                       ccccc         λ",
+            "                       ccccc         ",
             "                      cded44c        ",
             "                   cccdeddd44cc      ",
             "                  c44444444cc44c     ",

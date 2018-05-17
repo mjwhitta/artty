@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII329VibravaShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                        aa                             λ",
+            "                        aa                             ",
             "                        b7cca      aac0                ",
             "                       ac676b0   aacbb0                ",
             "        0a             ac76760  acb22b0                ",

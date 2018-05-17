@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnBassEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "     bbb        11111111                λ",
+            "     bbb        11111111                ",
             "    bffebb   11133333333111             ",
             "   bfebbbbb113333333333333311           ",
             "  bebbbbb1133333333333333333311         ",

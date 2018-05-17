@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII322Numel < ArTTY::Art
     def initialize
         super
         @colors = [
-            "      222                                     λ",
+            "      222                                     ",
             "    2888850 28882        11440c04411          ",
             "    288865c2888882     114444444444411        ",
             "    066655c0888860    13333444444433331       ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI071Victreebel < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                 000cccc0             λ",
+            "                                 000cccc0             ",
             "                      d1555220c44dddddcc004cc         ",
             "                    d15555222c44011111c   044c        ",
             "                   15555552204401111111c    04c       ",

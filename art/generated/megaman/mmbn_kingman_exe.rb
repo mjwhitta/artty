@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnKingmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                   90000                   λ",
+            "                   90000                   ",
             "                    000aa08888             ",
             "                    900009888              ",
             "                 988800008888              ",

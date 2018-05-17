@@ -2,7 +2,7 @@ class ArTTY::Art::ZeldaFierceDeityLinkMagicalBeam < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                        2222222222222222cc                                λ",
+            "                        2222222222222222cc                                ",
             "                          22222222222222c2ccc22                           ",
             "                      222222222222222222c2222cc2222                       ",
             "                         2222222222cc222c2222222222222                    ",

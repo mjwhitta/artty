@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnJohtoRed < ArTTY::Art
     def initialize
         super
         @colors = [
-            "            444444                  λ",
+            "            444444                  ",
             "         4888888888440              ",
             "        48888888884440              ",
             "       3888eaae8444443              ",

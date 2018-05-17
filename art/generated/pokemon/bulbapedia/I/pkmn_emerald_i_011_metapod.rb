@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI011Metapod < ArTTY::Art
     def initialize
         super
         @colors = [
-            "  55                               55 λ",
+            "  55                               55 ",
             " 52215                         5551004",
             " 522115                555    51115004",
             " 5222115             50224  5501111554",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII351CastformNormal < ArTTY::Art
     def initialize
         super
         @colors = [
-            "           333      λ",
+            "           333      ",
             "        466233      ",
             "      44772         ",
             "     4777244        ",

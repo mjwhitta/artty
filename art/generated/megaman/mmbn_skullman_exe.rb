@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnSkullmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "               d                 λ",
+            "               d                 ",
             "               d                 ",
             "      cddb   d b                 ",
             "   cde77edb deb9 ed              ",

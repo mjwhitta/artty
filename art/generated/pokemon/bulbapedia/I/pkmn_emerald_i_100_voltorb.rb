@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI100Voltorb < ArTTY::Art
     def initialize
         super
         @colors = [
-            "         111000          λ",
+            "         111000          ",
             "    1233322221111105     ",
             "   233332222111111115    ",
             "  13333332221111111115   ",

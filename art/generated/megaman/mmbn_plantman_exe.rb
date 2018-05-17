@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnPlantmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                   ddc                        λ",
+            "                   ddc                        ",
             "                c4deeec4                      ",
             "                c4eeeec46                     ",
             "                c4eeed4466ee                  ",

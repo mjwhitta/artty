@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII157TyphlosionShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              5         55                          λ",
+            "              5         55                          ",
             "  55        55855     5885     555588a5             ",
             "  5a55      5a9855   58885  5558889aa5              ",
             "   5aa55    5aa9855 5889855588889aaa5               ",

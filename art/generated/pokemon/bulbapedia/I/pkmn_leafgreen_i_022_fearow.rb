@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI022Fearow < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                                  100      λ",
+            "                                                  100      ",
             "    1330                                        1888880881 ",
             "   13330                                       188888088880",
             "   333780                                     088888088888a",

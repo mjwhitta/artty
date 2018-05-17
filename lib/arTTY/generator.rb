@@ -50,13 +50,11 @@ class ArTTY::Generator
             "        super",
             "        @colors = ["
         ]
-        first = "λ"
         pixels.each do |row|
             line = row.map do |color|
                 color_map[color]
             end.join
-            ret.push("            \"#{line}#{first}\",")
-            first = ""
+            ret.push("            \"#{line}\",")
         end
         ret.concat([
             "        ]",

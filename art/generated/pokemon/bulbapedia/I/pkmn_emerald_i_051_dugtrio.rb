@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI051Dugtrio < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                  3000bbb                       λ",
+            "                  3000bbb                       ",
             "               366666444443b                    ",
             "              06666666444443b                   ",
             "              36b666664b44430                   ",

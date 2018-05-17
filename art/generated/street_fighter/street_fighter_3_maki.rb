@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter3Maki < ArTTY::Art
     def initialize
         super
         @colors = [
-            "            aaddd                       λ",
+            "            aaddd                       ",
             "          ddddabba                      ",
             "         ddaaad48dda                    ",
             "        aaaada6adaddda                  ",

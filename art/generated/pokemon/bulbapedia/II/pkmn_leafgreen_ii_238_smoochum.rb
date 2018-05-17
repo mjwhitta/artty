@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenII238Smoochum < ArTTY::Art
     def initialize
         super
         @colors = [
-            "        0              λ",
+            "        0              ",
             "   2b0 2802bb80        ",
             "   288028288880        ",
             "  222888828880         ",

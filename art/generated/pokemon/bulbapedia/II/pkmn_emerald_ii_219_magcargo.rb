@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII219Magcargo < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                             3      λ",
+            "                             3      ",
             "                            373     ",
             "                            373 3   ",
             "                            35733   ",

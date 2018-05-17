@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII247Pupitar < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              10                    λ",
+            "              10                    ",
             "       10    146           1220     ",
             "      140   1446          12110     ",
             "      146   1426        122116      ",

@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnSparkmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                 cccc                                 λ",
+            "                                 cccc                                 ",
             "                               cc6666c                                ",
             "                             cc6663c6c                                ",
             "                            ceee3cd336c                               ",

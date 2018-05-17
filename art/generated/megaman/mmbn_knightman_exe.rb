@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnKnightmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                               555555                                      λ",
+            "                               555555                                      ",
             "                              4777777755                                   ",
             "                             455777777775                                  ",
             "                             4557777777775                                 ",

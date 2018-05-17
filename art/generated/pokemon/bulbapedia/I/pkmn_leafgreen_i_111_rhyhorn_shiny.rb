@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI111RhyhornShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                1000                  λ",
+            "                                1000                  ",
             "                               0552440                ",
             "                      107      1524447                ",
             "                     15527    15504447                ",

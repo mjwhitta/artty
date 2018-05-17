@@ -2,7 +2,7 @@ class ArTTY::Art::MarvelThor < ArTTY::Art
     def initialize
         super
         @colors = [
-            "     00                  λ",
+            "     00                  ",
             "    0hg0                 ",
             "   0hggg0 0         0    ",
             "   0ggggg0f0       0f0   ",

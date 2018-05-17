@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI128Tauros < ArTTY::Art
     def initialize
         super
         @colors = [
-            "               0ccc                           0 c   λ",
+            "               0ccc                           0 c   ",
             "              c331111c        c11110ccc       031c1 ",
             "             c1133311c       c13111b000cb    033331c",
             "            ccc11313100      c33131b    0b  cc31311c",

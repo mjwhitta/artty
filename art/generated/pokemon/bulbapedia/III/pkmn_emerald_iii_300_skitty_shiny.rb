@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII300SkittyShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "    858                                 λ",
+            "    858                                 ",
             " 95 858 5833 33                   36373 ",
             " 58  3  8537363                   33773 ",
             " 3  53 53 37733                   37733 ",

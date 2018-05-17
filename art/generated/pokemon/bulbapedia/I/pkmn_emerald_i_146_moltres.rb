@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI146Moltres < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                              2   22          λ",
+            "                                              2   22          ",
             "       33                                    2c9aa992 333777  ",
             "       3                                     9caa229233777333 ",
             "      3   33                              2 9cca2772777777    ",

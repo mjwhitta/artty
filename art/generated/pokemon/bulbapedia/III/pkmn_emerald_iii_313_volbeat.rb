@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII313Volbeat < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                          b000             λ",
+            "                          b000             ",
             "        b00aaaa          0bbbb880          ",
             "     b0addb5555aaa        00055bd0         ",
             "    b0b85b00aaa888aa      aaaa00b0         ",

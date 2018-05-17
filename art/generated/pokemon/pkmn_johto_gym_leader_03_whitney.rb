@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnJohtoGymLeader03Whitney < ArTTY::Art
     def initialize
         super
         @colors = [
-            "   7                                     λ",
+            "   7                                     ",
             "  4b4                                    ",
             "  497                                    ",
             "  4494          3333                     ",

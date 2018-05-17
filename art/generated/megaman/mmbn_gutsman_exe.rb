@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnGutsmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                          533       aa                     λ",
+            "                          533       aa                     ",
             "                        677658     acba3                   ",
             "                      677658833   acbba3aa                 ",
             "                    67765883553aaaabba3ccba                ",

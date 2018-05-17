@@ -2,7 +2,7 @@ class ArTTY::Art::ZeldaFierceDeityLinkHelixBlade < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                iii              λ",
+            "                                iii              ",
             "                               i55i              ",
             "                              ji44i              ",
             "                             jeennii             ",

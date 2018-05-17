@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII157Typhlosion < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              5         55                          λ",
+            "              5         55                          ",
             "  55        55755     5775     55557795             ",
             "  5955      598755   57775  5557778995              ",
             "   59955    5998755 57787555777789995               ",

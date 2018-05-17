@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI039Jigglypuff < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                          666   λ",
+            "                          666   ",
             "   69966     66666    66998085  ",
             "   6b99855 669999655 59998b065  ",
             "   5bb8866599998888658998bb065  ",

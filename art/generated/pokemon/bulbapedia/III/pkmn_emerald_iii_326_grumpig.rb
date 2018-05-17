@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII326Grumpig < ArTTY::Art
     def initialize
         super
         @colors = [
-            "     ccc                                        λ",
+            "     ccc                                        ",
             "     ceee0                                      ",
             "      ceed0                                     ",
             "      ced10                    ccc10            ",

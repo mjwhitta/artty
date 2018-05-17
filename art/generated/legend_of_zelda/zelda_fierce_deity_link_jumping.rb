@@ -2,7 +2,7 @@ class ArTTY::Art::ZeldaFierceDeityLinkJumping < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                                                       hλ",
+            "                                                                       h",
             "                                                                     hhh",
             "                                                                   hhbbh",
             "                                                                hhhc4bh ",

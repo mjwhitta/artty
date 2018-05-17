@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI028Sandslash < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              99      29                        λ",
+            "              99      29                        ",
             "              1629    2629    00                ",
             "              16229   26229   060      1        ",
             "              166229  26220   060     169       ",

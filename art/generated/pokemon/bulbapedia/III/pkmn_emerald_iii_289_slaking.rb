@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII289Slaking < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                        1111                                   λ",
+            "                        1111                                   ",
             "                    914444431199                        0a0    ",
             "                   944444443311199                     0aa0    ",
             "                 9144444443331111199         111       0aa0    ",

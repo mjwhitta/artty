@@ -2,7 +2,7 @@ class ArTTY::Art::MN9Beck < ArTTY::Art
     def initialize
         super
         @colors = [
-            "      000000       λ",
+            "      000000       ",
             "     03333330      ",
             "    0322222220     ",
             "   032111100110    ",

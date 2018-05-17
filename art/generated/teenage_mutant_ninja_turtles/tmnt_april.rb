@@ -2,7 +2,7 @@ class ArTTY::Art::TmntApril < ArTTY::Art
     def initialize
         super
         @colors = [
-            "      00000000     λ",
+            "      00000000     ",
             "     0111111110    ",
             "    011111111110   ",
             "    0111111111110  ",

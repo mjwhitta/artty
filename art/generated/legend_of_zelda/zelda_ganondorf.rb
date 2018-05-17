@@ -2,7 +2,7 @@ class ArTTY::Art::ZeldaGanondorf < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                      8181                λ",
+            "                      8181                ",
             "                   81841411               ",
             "                   141848181              ",
             "                  81888141181             ",

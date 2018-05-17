@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnDesertmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                   111111           λ",
+            "                                   111111           ",
             "                                  13666641          ",
             "                                  14444431          ",
             "                                  14411431          ",

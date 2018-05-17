@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnPharaohmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                         aa          λ",
+            "                         aa          ",
             "                        aaaa         ",
             "          2200442     aaaaa      dc  ",
             "        06800888742 aaaaaa     cdccc ",

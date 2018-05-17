@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnRollEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                  5  333                    λ",
+            "                  5  333                    ",
             "                 85  333333                 ",
             "                585     33353               ",
             "                88        35553             ",

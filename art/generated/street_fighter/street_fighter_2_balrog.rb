@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter2Balrog < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                    000000            λ",
+            "                    000000            ",
             "                  0000440000          ",
             "                  00245550000         ",
             "   1             040255565504         ",

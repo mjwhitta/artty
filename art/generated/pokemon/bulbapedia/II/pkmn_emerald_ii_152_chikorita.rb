@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII152Chikorita < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                   330000bbbb          λ",
+            "                   330000bbbb          ",
             "              33444444444444444300b    ",
             "             0000000000000000444300b   ",
             "           00bbbb3444444444440000000b  ",

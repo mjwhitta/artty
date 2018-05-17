@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI146Moltres < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                          2        33333      λ",
+            "                                          2        33333      ",
             "                                         2a9aa92277773        ",
             "                                         9caa22277773         ",
             "                                      2 9cca27778777733       ",

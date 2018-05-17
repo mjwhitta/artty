@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI006Charizard < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                       43                                      λ",
+            "                       43                                      ",
             "                     39944             39933                   ",
             "                   337943               37743                  ",
             "                4447774c                 344433                ",

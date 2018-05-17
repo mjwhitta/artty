@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter3Sagat < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                  444244                 λ",
+            "                  444244                 ",
             "                47cccca24                ",
             "                4ac4ccc244               ",
             "                4a4acccc24               ",

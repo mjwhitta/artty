@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter3ChunLi < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                     977                     λ",
+            "                     977                     ",
             "                bb bbe77997                  ",
             "                  e7777adc77                 ",
             "                 b 979cdcd7 7                ",

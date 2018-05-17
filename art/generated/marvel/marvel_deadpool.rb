@@ -2,7 +2,7 @@ class ArTTY::Art::MarvelDeadpool < ArTTY::Art
     def initialize
         super
         @colors = [
-            "          333333       λ",
+            "          333333       ",
             "        3311111133     ",
             "       311111111113    ",
             "      31111111111113   ",

@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnNapalmEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                        33399999999                        λ",
+            "                        33399999999                        ",
             "                    3337ddd44422000999                     ",
             "                  337ddddddd222222000099                   ",
             "                 555dddd77773000002225511                  ",

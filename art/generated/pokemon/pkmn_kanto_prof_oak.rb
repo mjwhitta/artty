@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnKantoProfOak < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                 11                    λ",
+            "                 11                    ",
             "              111144444411111          ",
             "              4444441444411111         ",
             "              1444411411111111         ",

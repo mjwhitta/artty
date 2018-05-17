@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenII241Miltank < ArTTY::Art
     def initialize
         super
         @colors = [
-            "           d          d                         λ",
+            "           d          d                         ",
             "          d99d cccaaa99d                        ",
             "          d99cbdcbbbc999aa                      ",
             "        cbbdcddddcbbcd9dacbaa                   ",

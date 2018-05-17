@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnDuoEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                                     d5gfffed                       dfffggd                                           λ",
+            "                                                     d5gfffed                       dfffggd                                           ",
             "                                                     dgg5ffed                       dfffgggd                                          ",
             "                                                     dgggffed                       dfffggggd                                         ",
             "                                                    d5gggffeed                       dffgggg5d                                        ",

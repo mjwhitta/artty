@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI133Eevee < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                      λ",
+            "                                      ",
             "262                                   ",
             "066a                                  ",
             "0a660                                 ",

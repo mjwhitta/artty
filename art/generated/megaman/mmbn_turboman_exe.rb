@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnTurbomanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                       bb                            λ",
+            "                       bb                            ",
             "                      b2b                  bb        ",
             "                    bb22b                 bbb        ",
             "                   ba1c000000aa0000000000b32b        ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII354BanetteShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              20                 λ",
+            "              20                 ",
             "           246640                ",
             "          24114000111            ",
             "        244444122222211          ",

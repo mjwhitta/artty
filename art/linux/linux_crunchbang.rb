@@ -2,7 +2,7 @@ class ArTTY::Art::LinuxCrunchbang < ArTTY::Art
     def initialize
         super
         @colors = [
-            "         000     000  000λ",
+            "         000     000  000",
             "         010     010  010",
             "        010     010   010",
             "        010     010   010",

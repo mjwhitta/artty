@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI001Bulbasaur < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                      3 cc       λ",
+            "                      3 cc       ",
             "                   33343c44b     ",
             "               33377774c444cbb   ",
             "             344777444c4743c3b   ",

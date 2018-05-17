@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnNebulaGray < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                               b                                                                                    λ",
+            "                                               b                                                                                    ",
             "                                              b                                                                                     ",
             "                                             bb                                                                                     ",
             "                                             bb                                                                                     ",

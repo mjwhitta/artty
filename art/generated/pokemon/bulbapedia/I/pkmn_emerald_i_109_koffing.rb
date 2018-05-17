@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI109Koffing < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                         555                 λ",
+            "                         555                 ",
             "                      55252525555    555     ",
             "                 55  5522222225555  55255    ",
             "                555  5522222222555 5525255   ",

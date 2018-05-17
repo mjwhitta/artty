@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII188Skiploom < ArTTY::Art
     def initialize
         super
         @colors = [
-            "           444 44444                λ",
+            "           444 44444                ",
             "        477766466665955544          ",
             "       44446655955546666659         ",
             "      477764955954455666659         ",

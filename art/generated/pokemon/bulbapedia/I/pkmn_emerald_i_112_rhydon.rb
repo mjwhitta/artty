@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI112Rhydon < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                       a888                                λ",
+            "                       a888                                ",
             "      99a            ab8aaa8                       99bbb8  ",
             "      9cca99        9b8aaaa8                      9bbbaa8  ",
             "      9cccbb9    889bb9aaa8                      9999ba8   ",

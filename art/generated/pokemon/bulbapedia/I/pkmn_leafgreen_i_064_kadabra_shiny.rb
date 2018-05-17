@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI064KadabraShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                88                   88                  λ",
+            "                88                   88                  ",
             "                0aa8              88a9c                  ",
             "                c9aa0            8aa99c    888           ",
             "                c949908         8aa999c   89990  88      ",

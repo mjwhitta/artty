@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnHeelnavi < ArTTY::Art
     def initialize
         super
         @colors = [
-            "             5550000                    λ",
+            "             5550000                    ",
             "           7577705550                   ",
             "          79988705550                   ",
             "         79e988757750                   ",

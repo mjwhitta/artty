@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI126Magmar < ArTTY::Art
     def initialize
         super
         @colors = [
-            "             777                                     λ",
+            "             777                                     ",
             "           6777    667777777                         ",
             "         667776   66777776                           ",
             "         56650002 6666776                            ",

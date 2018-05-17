@@ -2,7 +2,7 @@ class ArTTY::Art::ZeldaMajorasMask < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                a                       a                λ",
+            "                a                       a                ",
             "               aca                     aca               ",
             "               aca                     aca               ",
             "               aca                     aca               ",

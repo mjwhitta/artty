@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnIcemanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "    333                 λ",
+            "    333                 ",
             "   3dddd5aaaaa          ",
             "   d665dd5000aaa        ",
             "   677665d3aaaaaa       ",

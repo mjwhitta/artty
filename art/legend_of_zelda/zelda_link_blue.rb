@@ -2,7 +2,7 @@ class ArTTY::Art::ZeldaLinkBlue < ArTTY::Art
     def initialize
         super
         @colors = [
-            "          0000000                     λ",
+            "          0000000                     ",
             "        00444444000                   ",
             "      00144444444440                  ",
             "     5555522222144400                 ",

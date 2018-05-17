@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI082Magneton < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              d                                    λ",
+            "              d                                    ",
             "            da77d      e83335e       d2d           ",
             "          d  d7e3d     d38853d      d112d          ",
             "         d2d  dee3d     ddddd      d3e1d  d        ",

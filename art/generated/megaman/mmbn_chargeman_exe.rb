@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnChargemanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                         000000000                                    λ",
+            "                         000000000                                    ",
             "                        030dddddd00                                   ",
             "                       044a3dddd0330                                  ",
             "                      0a4aa4444433330                                 ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI066Machop < ArTTY::Art
     def initialize
         super
         @colors = [
-            "           00000             λ",
+            "           00000             ",
             "        00663000000          ",
             "       0066303666630         ",
             "      0696303633aa39         ",

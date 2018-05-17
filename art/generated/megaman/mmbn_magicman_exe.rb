@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnMagicmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                   e                λ",
+            "                   e                ",
             "                   e                ",
             "                  00e    774        ",
             "                  01e  774     99974",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI075Graveler < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                                 11        λ",
+            "                                                 11        ",
             "  100000             1437033300004430           744430     ",
             " 13330330 000       14443733311044433700         744330    ",
             "14331033304430     0444447333134443373330         73337    ",

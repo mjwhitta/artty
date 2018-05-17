@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI140Kabuto < ArTTY::Art
     def initialize
         super
         @colors = [
-            "          1000000001             λ",
+            "          1000000001             ",
             "     01ba666666361ba130          ",
             "    066bb666663636bb33300        ",
             "   13666666663363633333330       ",

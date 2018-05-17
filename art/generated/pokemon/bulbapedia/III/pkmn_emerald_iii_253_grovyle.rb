@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII253Grovyle < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                               111111        λ",
+            "                                               111111        ",
             "                              222       1135555555550        ",
             "                             29970    13555555555510         ",
             "           44111            2997770 13555555555510           ",

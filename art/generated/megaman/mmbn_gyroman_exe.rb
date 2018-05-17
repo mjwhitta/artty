@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnGyromanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                                   d   λ",
+            "                                                   d   ",
             "                                                  dbd  ",
             "                                                 dbbbd ",
             "     a                                          dbbbbba",

@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter2Guile < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                    455457657777757654          λ",
+            "                    455457657777757654          ",
             "                       4747765775757757755      ",
             "                        4757657757775755        ",
             "                       1 4577644557575          ",

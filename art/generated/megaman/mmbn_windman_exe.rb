@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnWindmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                     aaaa                          λ",
+            "                     aaaa                          ",
             "                   aaabaaa                         ",
             "                  abbafffaa                        ",
             "               aaaaaff   faff                      ",

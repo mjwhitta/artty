@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter3Akuma < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                 3 3              λ",
+            "                 3 3              ",
             "                26363             ",
             "                1232              ",
             "                 77 3 3           ",

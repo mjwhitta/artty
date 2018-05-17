@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnIndigoChampionBlue < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                   b       0b        λ",
+            "                   b       0b        ",
             "                  06b 003666         ",
             "                  b60036663b         ",
             "              0b 0363333333bbb33     ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI009Blastoise < ArTTY::Art
     def initialize
         super
         @colors = [
-            "       c00                                                   λ",
+            "       c00                                                   ",
             "     cddddd00000  10000   100                 c99999cc       ",
             "     9dddddd01100044442001441a               c9aaaaa99c      ",
             "    c99ddddd020444444222242a1a           bbbbc9aaaaa0990     ",

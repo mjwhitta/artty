@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnIndigoGymLeader07Blaine < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                         333bb             λ",
+            "                         333bb             ",
             "  33 33               39a9999963           ",
             " 39b39b               6999999963b          ",
             " 3b00b30             39996999366b          ",

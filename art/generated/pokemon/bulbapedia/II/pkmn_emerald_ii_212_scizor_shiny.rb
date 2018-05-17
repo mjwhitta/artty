@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII212ScizorShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "             333     10                      33             λ",
+            "             333     10                      33             ",
             "             39b3   5650                   39933            ",
             "              393  1665a                  3993b93           ",
             "              39b3 1665a      11         39939b93           ",

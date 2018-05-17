@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnDustmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                         111                         λ",
+            "                                         111                         ",
             "                                      11 1341                        ",
             "                                    11341214317711                   ",
             "                               11111c41341111128c411c1               ",

@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnBurnermanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                              0                       λ",
+            "                              0                       ",
             "                              0                       ",
             "                             00         0             ",
             "                            000        00             ",

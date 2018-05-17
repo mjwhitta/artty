@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnMistmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                      de6666eec                                                  λ",
+            "                      de6666eec                                                  ",
             "                     df6fffff6ec                                                 ",
             "                     d6fffffff6eccc                                              ",
             "                    df6f66666ee6cddc                                             ",

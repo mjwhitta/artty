@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII351CastformNormalShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "           888      λ",
+            "           888      ",
             "        922688      ",
             "      99336         ",
             "     9333699        ",

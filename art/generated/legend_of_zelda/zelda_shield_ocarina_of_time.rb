@@ -2,7 +2,7 @@ class ArTTY::Art::ZeldaShieldOcarinaOfTime < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                          44   λ",
+            "                                          44   ",
             "                                         4004  ",
             "                                         4004  ",
             "                                        4004   ",

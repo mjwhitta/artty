@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnTomahawkmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                              22                    λ",
+            "                              22                    ",
             "                            2555                    ",
             "                           6555225552               ",
             "                          4886655555                ",

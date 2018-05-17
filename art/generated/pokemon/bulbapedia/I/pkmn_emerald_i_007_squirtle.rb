@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI007Squirtle < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                   1cccc               λ",
+            "                   1cccc               ",
             "                1553333333c            ",
             "               155533333333c           ",
             "              15533333333331c          ",

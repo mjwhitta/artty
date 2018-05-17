@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnGregarEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                                                                  rc                                                                                          λ",
+            "                                                                                  rc                                                                                          ",
             "                                                                                rrc                                                                                           ",
             "                                                                              rtDj                                                                                            ",
             "                                                                            rtEEj                                                                                             ",

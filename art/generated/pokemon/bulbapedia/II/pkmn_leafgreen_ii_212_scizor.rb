@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenII212Scizor < ArTTY::Art
     def initialize
         super
         @colors = [
-            "             aaa     31                      aa             λ",
+            "             aaa     31                      aa             ",
             "             a8ba   4641                   a88aa            ",
             "              a8a  36649                  a88ab8a           ",
             "              a8ba 36649      33         a88a8b8a           ",

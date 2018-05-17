@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenII226Mantine < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                                       8888  λ",
+            "                                                       8888  ",
             "                                                   88201cc197",
             "                                                  82209cccc17",
             "                                                 820999ccccc7",

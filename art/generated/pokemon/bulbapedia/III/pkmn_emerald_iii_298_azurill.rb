@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII298Azurill < ArTTY::Art
     def initialize
         super
         @colors = [
-            "          199                         λ",
+            "          199                         ",
             "       14354329     9244320           ",
             "       23563320    944444320          ",
             "      145673220    144553329          ",

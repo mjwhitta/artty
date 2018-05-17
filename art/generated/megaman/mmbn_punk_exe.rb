@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnPunkEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                      2                                  λ",
+            "                      2                                  ",
             "                      42   2                             ",
             "             c   2    62   42                            ",
             "             cc  62   64   42                            ",

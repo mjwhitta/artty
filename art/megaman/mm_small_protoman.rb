@@ -2,7 +2,7 @@ class ArTTY::Art::MmSmallProtoman < ArTTY::Art
     def initialize
         super
         @colors = [
-            "        00000         λ",
+            "        00000         ",
             "       02222200       ",
             "      0222221220      ",
             "     02222201120      ",

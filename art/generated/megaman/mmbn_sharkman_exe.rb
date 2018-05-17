@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnSharkmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                   30                           λ",
+            "                   30                           ",
             "                   360                          ",
             "                   3710                         ",
             "                   69710                        ",

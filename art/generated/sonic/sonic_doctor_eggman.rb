@@ -2,7 +2,7 @@ class ArTTY::Art::SonicDoctorEggman < ArTTY::Art
     def initialize
         super
         @colors = [
-            "        000000       λ",
+            "        000000       ",
             "       077777700     ",
             "      07bbbedbbe0    ",
             "      0b77bdd7bd0    ",

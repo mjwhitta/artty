@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnSlashmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                 99    9                          λ",
+            "                                 99    9                          ",
             "                                9b9   9a                          ",
             "                               9b39 9 ab9      777                ",
             "                              9b3099b9ba9     7a977777   9        ",

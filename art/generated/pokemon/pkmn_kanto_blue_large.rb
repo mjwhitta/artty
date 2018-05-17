@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnKantoBlueLarge < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              52               λ",
+            "              52               ",
             "              2882             ",
             "      88555   28882   0        ",
             "      29999855528882 22        ",

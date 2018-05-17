@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnCircusmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                         7  4 696                                              λ",
+            "                         7  4 696                                              ",
             "                        742 429996                                             ",
             "                        74 2462996                                             ",
             "                        74  266966                                             ",

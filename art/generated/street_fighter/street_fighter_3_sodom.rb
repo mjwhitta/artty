@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter3Sodom < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                          88               λ",
+            "                          88               ",
             "                         dd8d8             ",
             "                         d  8d8            ",
             "                            8d8            ",

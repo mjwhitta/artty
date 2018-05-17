@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI049Venomoth < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                                000000     λ",
+            "                                                000000     ",
             "                                           00222277777220  ",
             " 00                                      00222777777777720 ",
             "02200                                  0022277777777777750 ",

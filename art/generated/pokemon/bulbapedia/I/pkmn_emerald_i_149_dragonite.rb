@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI149Dragonite < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                cc               a9                            λ",
+            "                cc               a9                            ",
             "                cddc   cc99  3aaaaaa99cc                       ",
             "                 9ddccd888dca55555c9888d9                      ",
             "                  9cdddc99d8c6555c8dc99889                     ",

@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter3Ken < ArTTY::Art
     def initialize
         super
         @colors = [
-            "               6666              λ",
+            "               6666              ",
             "             69b9999996          ",
             "            6699bb999996         ",
             "           69969996b9b96         ",

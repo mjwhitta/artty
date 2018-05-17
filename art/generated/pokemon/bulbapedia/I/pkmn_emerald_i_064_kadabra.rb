@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI064Kadabra < ArTTY::Art
     def initialize
         super
         @colors = [
-            "            44                   41                 λ",
+            "            44                   41                 ",
             "            1aa1               4a9c                 ",
             "            19aac             1a94c                 ",
             "            4919ac           199441                 ",

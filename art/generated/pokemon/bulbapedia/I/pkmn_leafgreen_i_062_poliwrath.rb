@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI062Poliwrath < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                0000             0000            λ",
+            "                0000             0000            ",
             "             5220002214       5220552224         ",
             "            51002220111544444522022152114        ",
             "            55522222511222222225222115114        ",

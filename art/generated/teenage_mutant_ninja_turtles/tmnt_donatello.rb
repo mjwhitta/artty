@@ -2,7 +2,7 @@ class ArTTY::Art::TmntDonatello < ArTTY::Art
     def initialize
         super
         @colors = [
-            "           000000       λ",
+            "           000000       ",
             "          01111110      ",
             "         0111111110     ",
             "        011111111110    ",

@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII193Yanma < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                               59                        λ",
+            "                               59                        ",
             "                      bb     57559                       ",
             "                      46b   57559                        ",
             "                       229 57559                         ",

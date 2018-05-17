@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI133EeveeSprite < ArTTY::Art
     def initialize
         super
         @colors = [
-            "33               λ",
+            "33               ",
             "3133       333 33",
             "31103    33113323",
             " 3003333311433223",

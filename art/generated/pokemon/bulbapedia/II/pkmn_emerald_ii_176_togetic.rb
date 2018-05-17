@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII176Togetic < ArTTY::Art
     def initialize
         super
         @colors = [
-            "           664            λ",
+            "           664            ",
             "   4    6888b9            ",
             "  684  688889             ",
             "  68a96888889   996       ",

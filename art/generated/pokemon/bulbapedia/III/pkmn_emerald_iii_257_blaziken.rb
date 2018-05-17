@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII257Blaziken < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                          c                               λ",
+            "                          c                               ",
             "                      86869cc0                            ",
             "            4c      d6b8892888c0                          ",
             "             9c    d8bb869c8888bc0                        ",

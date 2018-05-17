@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII252Treecko < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                   ecc                        λ",
+            "                   ecc                        ",
             "            e55c  15333c                      ",
             "            1333cc55333e                      ",
             "           e3333ce553333c                     ",

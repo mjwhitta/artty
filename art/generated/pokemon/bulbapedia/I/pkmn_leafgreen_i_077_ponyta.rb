@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI077Ponyta < ArTTY::Art
     def initialize
         super
         @colors = [
-            "          111                                 λ",
+            "          111                                 ",
             "       134411                                 ",
             "    1 1333333111     11                       ",
             "   15133453345541  11551                   11 ",

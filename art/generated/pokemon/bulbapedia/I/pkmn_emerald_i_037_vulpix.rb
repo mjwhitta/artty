@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI037Vulpix < ArTTY::Art
     def initialize
         super
         @colors = [
-            "         1100                                  λ",
+            "         1100                                  ",
             "     11066631000                               ",
             "    1660663166660                              ",
             "20  16303330666630                             ",

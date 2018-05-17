@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnCutmanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "           a                          λ",
+            "           a                          ",
             "          ab              b           ",
             "          bda            bda          ",
             "         acdb           bdda          ",

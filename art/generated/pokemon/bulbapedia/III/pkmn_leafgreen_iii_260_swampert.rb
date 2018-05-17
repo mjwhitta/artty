@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII260Swampert < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                eeeee                       eeeee             λ",
+            "                eeeee                       eeeee             ",
             "             e511110111d                 05111011e            ",
             "            e51011110111d               011110111ed           ",
             "            e511011101111d             05111101101d           ",

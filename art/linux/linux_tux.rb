@@ -2,7 +2,7 @@ class ArTTY::Art::LinuxTux < ArTTY::Art
     def initialize
         super
         @colors = [
-            "             000               λ",
+            "             000               ",
             "           0000000             ",
             "          000000000            ",
             "          0000000000           ",

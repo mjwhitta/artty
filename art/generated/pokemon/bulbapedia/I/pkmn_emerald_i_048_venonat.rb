@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI048Venonat < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                                  ccc    λ",
+            "                                  ccc    ",
             " aaaacc                        caaaaddc  ",
             "caaaaaac                      caaaaaddb  ",
             "caaaaaddc                    caaaaaddb   ",

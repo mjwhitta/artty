@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldI094Gengar < ArTTY::Art
     def initialize
         super
         @colors = [
-            "     000                   0                         λ",
+            "     000                   0                         ",
             "     0122208         0   028              9901108    ",
             "      01122208      09  0228  9        990222109     ",
             "      9011122208   028990220908     990222211008     ",

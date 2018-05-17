@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI079Slowpoke < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                        bbcccc333            λ",
+            "                        bbcccc333            ",
             "                    bdddddaaa777777733       ",
             "                     cbbbbbcd66667777711     ",
             "                            cbb666666777b    ",

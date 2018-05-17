@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldII202WobbuffetShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            " 00000000        444444000                      λ",
+            " 00000000        444444000                      ",
             "077555555775047777777777755550a                 ",
             "0754444445550777777777777755550a                ",
             "05444444444407777777777777755554a               ",

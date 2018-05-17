@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenIII269Dustox < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                     77                                 λ",
+            "                     77                                 ",
             "                    d99d                                ",
             "                   d7997d                               ",
             "       dd          d3993d                               ",

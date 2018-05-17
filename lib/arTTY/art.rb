@@ -13,7 +13,10 @@ class ArTTY::Art
         offset = nil
         out = ""
         sysinfo = Array.new
-        sysinfo = @sysinfo.info.clone if (@sysinfo)
+        if (@sysinfo)
+            offset = @colors[0] ? @colors[0].length + 2 : 0
+            sysinfo = @sysinfo.info.clone
+        end
 
         @ascii.zip(@colors).each do |line, colors|
             colors ||= " " * line.length
@@ -23,12 +26,7 @@ class ArTTY::Art
                 char = map[0]
                 color = map[1]
 
-                break if (char.nil? && offset.nil?)
-                if (char.nil? || (char == "λ") || (i == offset))
-                    offset ||= i + 2
-                    out += " "
-                    break
-                end
+                break if (char.nil?)
 
                 char.gsub!(/█/, " ") if (@debug)
                 if (color && @legend.include?(color))
@@ -81,7 +79,7 @@ class ArTTY::Art
 
     def initialize
         @ascii = Array.new
-        @colors = ["λ"]
+        @colors = Array.new
         @debug = false
         @name = "none"
         @sysinfo = nil
@@ -98,7 +96,10 @@ class ArTTY::Art
         out = ""
         pixels = @colors
         sysinfo = Array.new
-        sysinfo = @sysinfo.info.clone if (@sysinfo)
+        if (@sysinfo)
+            offset = @colors[0] ? @colors[0].length + 2 : 0
+            sysinfo = @sysinfo.info.clone
+        end
 
         if ((pixels.length % 2) != 0)
             filler = " " * pixels[0].length
@@ -116,12 +117,6 @@ class ArTTY::Art
             top.chars.zip(bottom.chars).each_with_index do |map, i|
                 t = map[0].strip
                 b = map[1].strip
-
-                if ((t == "λ") || (b == "λ") || (i == offset))
-                    offset ||= i + 2
-                    out += " "
-                    break
-                end
 
                 if (
                     (t.empty? && b.empty?) ||

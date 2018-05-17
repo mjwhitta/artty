@@ -2,7 +2,7 @@ class ArTTY::Art::StreetFighter3Adon < ArTTY::Art
     def initialize
         super
         @colors = [
-            "          5555                      λ",
+            "          5555                      ",
             "      bb25999995                    ",
             "      b232599995                    ",
             "     7b 232559995              2222 ",

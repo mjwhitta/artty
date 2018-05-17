@@ -2,7 +2,7 @@ class ArTTY::Art::MmbnMegamanEXERollSoul < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                 2222             λ",
+            "                 2222             ",
             "            44   22 222           ",
             "            4 4    222222         ",
             "            464      222222       ",

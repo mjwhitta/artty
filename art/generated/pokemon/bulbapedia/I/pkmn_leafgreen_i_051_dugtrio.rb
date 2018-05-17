@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI051Dugtrio < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                    2200000                       λ",
+            "                    2200000                       ",
             "                 266666663333b                    ",
             "                2b666666b633330                   ",
             "                26b6666b666333b                   ",

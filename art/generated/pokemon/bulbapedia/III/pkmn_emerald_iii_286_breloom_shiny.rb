@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnEmeraldIII286BreloomShiny < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                           222222222              λ",
+            "                           222222222              ",
             "                        27777777777777722         ",
             "                       22cccc224477777744000      ",
             "                       2cd33dccc2447774459980     ",

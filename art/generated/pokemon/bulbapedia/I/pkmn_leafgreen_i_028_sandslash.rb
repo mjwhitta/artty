@@ -2,7 +2,7 @@ class ArTTY::Art::PkmnLeafgreenI028Sandslash < ArTTY::Art
     def initialize
         super
         @colors = [
-            "              00                                 λ",
+            "              00                                 ",
             "         06b011003b 01b                          ",
             "        163b110631b011b                          ",
             "       1661b106611b11000                         ",
