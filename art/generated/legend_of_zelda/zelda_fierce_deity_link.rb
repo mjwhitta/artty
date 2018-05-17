@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::ZeldaFierceDeityLink < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "          iiiii                     λ",
             "        ii111kkkk                   ",
             "       ip111ko99okk                 ",
@@ -56,10 +56,6 @@ class ArTTY::Art::ZeldaFierceDeityLink < ArTTY::Art
             "     hlllllh   hhhhhhhhh            ",
             "      hhhhh                         ",
         ]
-    end
-
-    def initialize
-        super
         @name = "zelda-fierce-deity-link"
         map_color("0", "color_060")
         map_color("1", "color_066")

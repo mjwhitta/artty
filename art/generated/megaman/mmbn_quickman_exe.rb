@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnQuickmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "           3                      λ",
             "           3                      ",
             "          3                 3     ",
@@ -81,10 +81,6 @@ class ArTTY::Art::MmbnQuickmanEXE < ArTTY::Art
             "        99999999999999999         ",
             "             999999999            ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-quickman.EXE"
         map_color("0", "color_052")
         map_color("1", "color_088")

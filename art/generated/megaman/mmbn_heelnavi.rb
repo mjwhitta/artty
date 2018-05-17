@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnHeelnavi < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "             5550000                    λ",
             "           7577705550                   ",
             "          79988705550                   ",
@@ -50,10 +50,6 @@ class ArTTY::Art::MmbnHeelnavi < ArTTY::Art
             "                              bc3443dcc ",
             "                                ccccc   ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-heelnavi"
         map_color("0", "color_053")
         map_color("1", "color_060")

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnWoodmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                    33445554433                  λ",
             "                   0455555555548                 ",
             "                   0334455544308                 ",
@@ -80,10 +80,6 @@ class ArTTY::Art::MmbnWoodmanEXE < ArTTY::Art
             "                 00000077777777777888888888      ",
             "                      77777777     88888         ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-woodman.EXE"
         map_color("0", "color_052")
         map_color("1", "color_064")

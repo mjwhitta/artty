@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldI078Rapidash < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                   222              2222222          22       λ",
             "2                2366632    22333322    244444332222  2342    ",
             " 2         2     233366622223333333322223334464643332 2342    ",
@@ -63,10 +63,6 @@ class ArTTY::Art::PkmnEmeraldI078Rapidash < ArTTY::Art
             "                                            aacbbaa           ",
             "                                              aaaaa           ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-I-078-rapidash"
         map_color("0", "color_130")
         map_color("1", "color_137")

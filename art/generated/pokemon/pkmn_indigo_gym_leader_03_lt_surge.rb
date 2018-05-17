@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnIndigoGymLeader03LtSurge < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                        c               λ",
             "                 cc699c69969c9c         ",
             "                 c996999999969c         ",
@@ -63,10 +63,6 @@ class ArTTY::Art::PkmnIndigoGymLeader03LtSurge < ArTTY::Art
             "                       00cccc0          ",
             "                         0000           ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-indigo-gym-leader-03-lt-surge"
         map_color("0", "color_016")
         map_color("1", "color_022")

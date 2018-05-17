@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldII201UnownExclamation < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "      3222       λ",
             "     300532      ",
             "     300532      ",
@@ -36,10 +36,6 @@ class ArTTY::Art::PkmnEmeraldII201UnownExclamation < ArTTY::Art
             "    22333322     ",
             "      2222       ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-II-201-unown-exclamation"
         map_color("0", "color_188")
         map_color("1", "color_231")

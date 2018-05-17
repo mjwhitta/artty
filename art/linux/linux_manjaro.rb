@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::LinuxManjaro < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "000000000000000000  00000000λ",
             "000000000000000000  00000000",
             "000000000000000000  00000000",
@@ -37,10 +37,6 @@ class ArTTY::Art::LinuxManjaro < ArTTY::Art
             "00000000  00000000  00000000",
             "00000000  00000000  00000000"
         ]
-    end
-
-    def initialize
-        super
         @name = "linux-manjaro"
 
         green = "color_107"

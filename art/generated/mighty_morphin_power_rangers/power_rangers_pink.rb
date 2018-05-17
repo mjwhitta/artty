@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PowerRangersPink < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "    000000           λ",
             "   03333770          ",
             "  0333333770         ",
@@ -24,10 +24,6 @@ class ArTTY::Art::PowerRangersPink < ArTTY::Art
             " 044444440           ",
             " 000000000           ",
         ]
-    end
-
-    def initialize
-        super
         @name = "power-rangers-pink"
         map_color("0", "color_016")
         map_color("1", "color_176")

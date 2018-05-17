@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::LinuxCrunchbang < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "         000     000  000λ",
             "         010     010  010",
             "        010     010   010",
@@ -21,10 +21,6 @@ class ArTTY::Art::LinuxCrunchbang < ArTTY::Art
             " 010     010          010",
             " 000     000          000"
         ]
-    end
-
-    def initialize
-        super
         @name = "linux-crunchbang"
 
         black = "color_232"

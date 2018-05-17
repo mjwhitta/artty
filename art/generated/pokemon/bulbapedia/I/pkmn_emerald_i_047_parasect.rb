@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldI047Parasect < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                   111111                    λ",
             "                              13888555333331                 ",
             "                             1888845555333331                ",
@@ -50,10 +50,6 @@ class ArTTY::Art::PkmnEmeraldI047Parasect < ArTTY::Art
             "                              0399               999         ",
             "                              09                             ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-I-047-parasect"
         map_color("0", "color_088")
         map_color("1", "color_124")

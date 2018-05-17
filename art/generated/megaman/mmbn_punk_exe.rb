@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnPunkEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                      2                                  λ",
             "                      42   2                             ",
             "             c   2    62   42                            ",
@@ -74,10 +74,6 @@ class ArTTY::Art::MmbnPunkEXE < ArTTY::Art
             "                                    ac11a                ",
             "                                     aaa                 ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-punk.EXE"
         map_color("0", "color_053")
         map_color("1", "color_066")

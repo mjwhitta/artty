@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnGutsmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                          533       aa                     λ",
             "                        677658     acba3                   ",
             "                      677658833   acbba3aa                 ",
@@ -55,10 +55,6 @@ class ArTTY::Art::MmbnGutsmanEXE < ArTTY::Art
             "             9aa33553                                      ",
             "              999933                                       ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-gutsman.EXE"
         map_color("0", "color_028")
         map_color("1", "color_052")

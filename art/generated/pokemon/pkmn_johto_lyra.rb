@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnJohtoLyra < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "             ccccc                λ",
             "         c7777777777cc            ",
             "        c77777777777ddc           ",
@@ -67,10 +67,6 @@ class ArTTY::Art::PkmnJohtoLyra < ArTTY::Art
             "               b777d0             ",
             "                0000              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-johto-lyra"
         map_color("0", "color_016")
         map_color("1", "color_024")

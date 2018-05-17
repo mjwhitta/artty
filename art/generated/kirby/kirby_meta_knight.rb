@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::KirbyMetaKnight < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                            74λ",
             "                          4747",
             "                          747 ",
@@ -23,10 +23,6 @@ class ArTTY::Art::KirbyMetaKnight < ArTTY::Art
             "     03333200003323330        ",
             "     0000000  00000000        ",
         ]
-    end
-
-    def initialize
-        super
         @name = "kirby-meta-knight"
         map_color("0", "color_016")
         map_color("1", "color_026")

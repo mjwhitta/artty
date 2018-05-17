@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnLeafgreenI137Porygon < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "            5555                      λ",
             "        447777777769                  ",
             "       47777777776664                 ",
@@ -40,10 +40,6 @@ class ArTTY::Art::PkmnLeafgreenI137Porygon < ArTTY::Art
             "                     092190           ",
             "                       99             ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-leafgreen-I-137-porygon"
         map_color("0", "color_023")
         map_color("1", "color_030")

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PortalCompanionCube < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "  00000  00000  00000  λ",
             " 022222002222200222220 ",
             "02222222122222122222220",
@@ -26,10 +26,6 @@ class ArTTY::Art::PortalCompanionCube < ArTTY::Art
             " 022222002222200222220 ",
             "  00000  00000  00000  "
         ]
-    end
-
-    def initialize
-        super
         @name = "portal-companion-cube"
 
         black = "color_232"

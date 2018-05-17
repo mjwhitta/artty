@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnDivemanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                    f11                                            λ",
             "                   00161661                                        ",
             "                   00f1fff1                                        ",
@@ -71,10 +71,6 @@ class ArTTY::Art::MmbnDivemanEXE < ArTTY::Art
             "                                                111991             ",
             "                                                   11              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-diveman.EXE"
         map_color("0", "color_041")
         map_color("1", "color_060")

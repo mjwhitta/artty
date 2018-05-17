@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnKantoProfOak < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                 11                    λ",
             "              111144444411111          ",
             "              4444441444411111         ",
@@ -65,10 +65,6 @@ class ArTTY::Art::PkmnKantoProfOak < ArTTY::Art
             "            00a00         0aaaaaa0     ",
             "                           000000      ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-kanto-prof-oak"
         map_color("0", "color_016")
         map_color("1", "color_101")

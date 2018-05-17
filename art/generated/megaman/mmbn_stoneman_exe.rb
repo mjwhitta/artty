@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnStonemanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "             888888888888888888888888888888888888888888           λ",
             "            003555555555555222222222222222222222255553388888      ",
             "            000035555555555322181181181181181181182255555553888   ",
@@ -89,10 +89,6 @@ class ArTTY::Art::MmbnStonemanEXE < ArTTY::Art
             "                              888111449944444441188877777         ",
             "                                 8888888111188888                 ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-stoneman.EXE"
         map_color("0", "color_052")
         map_color("1", "color_065")

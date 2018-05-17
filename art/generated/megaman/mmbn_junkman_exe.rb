@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnJunkmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                0000000000        9                 λ",
             "                             0002277744022000   009                 ",
             "                          00022444444444044220024420                ",
@@ -53,10 +53,6 @@ class ArTTY::Art::MmbnJunkmanEXE < ArTTY::Art
             "                                     9999   9999   99bbcbbbb9       ",
             "                                                     99999999       ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-junkman.EXE"
         map_color("0", "color_052")
         map_color("1", "color_067")

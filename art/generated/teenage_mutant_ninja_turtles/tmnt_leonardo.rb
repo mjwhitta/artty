@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::TmntLeonardo < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "           000000       λ",
             "          02222220      ",
             "         0222222220     ",
@@ -26,10 +26,6 @@ class ArTTY::Art::TmntLeonardo < ArTTY::Art
             "   022222220   022222220",
             "   000000000   000000000",
         ]
-    end
-
-    def initialize
-        super
         @name = "tmnt-leonardo"
         map_color("0", "color_016")
         map_color("1", "color_061")

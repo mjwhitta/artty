@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnLeafgreenI007SquirtleSprite < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "   7777         777  λ",
             "  7222077      72227 ",
             " 7222222077   7222007",
@@ -20,10 +20,6 @@ class ArTTY::Art::PkmnLeafgreenI007SquirtleSprite < ArTTY::Art
             "         80008       ",
             "          888        ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-leafgreen-I-007-squirtle-sprite"
         map_color("0", "color_072")
         map_color("1", "color_143")

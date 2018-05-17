@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnGatemanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                 333           λ",
             "               3365533         ",
             "              915666553        ",
@@ -68,10 +68,6 @@ class ArTTY::Art::MmbnGatemanEXE < ArTTY::Art
             "           777777889999998     ",
             "                  8888888      ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-gateman.EXE"
         map_color("0", "color_058")
         map_color("1", "color_095")

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnFreezemanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                     111111             λ",
             "                   11477733111          ",
             "                  137773322441          ",
@@ -71,10 +71,6 @@ class ArTTY::Art::MmbnFreezemanEXE < ArTTY::Art
             "             9999999999999999           ",
             "                 99999999               ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-freezeman.EXE"
         map_color("0", "color_059")
         map_color("1", "color_060")

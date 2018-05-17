@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::ZeldaLinkAndNavi < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "        vvvvvvv                     λ",
             "      vv533333wvv        C       C  ",
             "     vw555555333wv      CC          ",
@@ -35,10 +35,6 @@ class ArTTY::Art::ZeldaLinkAndNavi < ArTTY::Art
             "       16b616b61                    ",
             "        111 111                     ",
         ]
-    end
-
-    def initialize
-        super
         @name = "zelda-link-and-navi"
         map_color("0", "color_031")
         map_color("1", "color_052")

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnElementmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                  1                       λ",
             "                                 1b                       ",
             "                                 1c           1           ",
@@ -74,10 +74,6 @@ class ArTTY::Art::MmbnElementmanEXE < ArTTY::Art
             "                                      abb00000aa888       ",
             "                                        aaaaaa8           ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-elementman.EXE"
         map_color("0", "color_060")
         map_color("1", "color_066")

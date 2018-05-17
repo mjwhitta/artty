@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnColonelEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                dc                         λ",
             "               dc                          ",
             "              dcc     ddc                  ",
@@ -64,10 +64,6 @@ class ArTTY::Art::MmbnColonelEXE < ArTTY::Art
             " 33                         aaaaaabccccccbb",
             "                                   bbbbbbb ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-colonel.EXE"
         map_color("0", "color_030")
         map_color("1", "color_052")

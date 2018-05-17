@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnMegamanEXEMagnetSoul < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                     cdacc         λ",
             "                    cfeeacc        ",
             "                   cddfeeacc       ",
@@ -51,10 +51,6 @@ class ArTTY::Art::MmbnMegamanEXEMagnetSoul < ArTTY::Art
             "  999999999999                     ",
             "   99999999                        ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-megaman.EXE-magnet-soul"
         map_color("0", "color_052")
         map_color("1", "color_088")

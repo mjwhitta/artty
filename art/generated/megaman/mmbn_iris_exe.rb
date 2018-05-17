@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnIrisEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "    c444cc     λ",
             "   c888eebcc   ",
             "  c88bb9e8eec  ",
@@ -34,10 +34,6 @@ class ArTTY::Art::MmbnIrisEXE < ArTTY::Art
             " cccccc121ccc  ",
             "   cccccccc    ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-iris.EXE"
         map_color("0", "color_023")
         map_color("1", "color_060")

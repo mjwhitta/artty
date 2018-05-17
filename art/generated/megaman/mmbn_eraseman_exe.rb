@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnErasemanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                    b                                               λ",
             "                b  db b                                             ",
             "               cb dc bb                                             ",
@@ -64,10 +64,6 @@ class ArTTY::Art::MmbnErasemanEXE < ArTTY::Art
             "                                       01333330                     ",
             "                                         00000                      ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-eraseman.EXE"
         map_color("0", "color_054")
         map_color("1", "color_061")

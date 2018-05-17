@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnPlantmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                   ddc                        λ",
             "                c4deeec4                      ",
             "                c4eeeec46                     ",
@@ -73,10 +73,6 @@ class ArTTY::Art::MmbnPlantmanEXE < ArTTY::Art
             "        88888888888880110                     ",
             "            88888888  00                      ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-plantman.EXE"
         map_color("0", "color_023")
         map_color("1", "color_029")

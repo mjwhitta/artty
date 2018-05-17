@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmLargeBass < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "        J                                        λ",
             "         dLJ                        K3           ",
             "          BdMK                   &KKK            ",
@@ -67,10 +67,6 @@ class ArTTY::Art::MmLargeBass < ArTTY::Art
             "        wwMKQQ                        KLJ        ",
             "          L%N                                    ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mm-large-bass"
         map_color("0", "color_016")
         map_color("1", "color_052")

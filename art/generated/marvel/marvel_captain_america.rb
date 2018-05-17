@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MarvelCaptainAmerica < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "         000000            λ",
             "        01111110           ",
             "       0141111110          ",
@@ -26,10 +26,6 @@ class ArTTY::Art::MarvelCaptainAmerica < ArTTY::Art
             "      022222220   022222220",
             "      000000000   000000000",
         ]
-    end
-
-    def initialize
-        super
         @name = "marvel-captain-america"
         map_color("0", "color_016")
         map_color("1", "color_062")

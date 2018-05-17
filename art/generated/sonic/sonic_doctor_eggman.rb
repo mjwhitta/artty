@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::SonicDoctorEggman < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "        000000       λ",
             "       077777700     ",
             "      07bbbedbbe0    ",
@@ -27,10 +27,6 @@ class ArTTY::Art::SonicDoctorEggman < ArTTY::Art
             "099b99990   099999b90",
             "000000000   000000000",
         ]
-    end
-
-    def initialize
-        super
         @name = "sonic-doctor-eggman"
         map_color("0", "color_016")
         map_color("1", "color_094")

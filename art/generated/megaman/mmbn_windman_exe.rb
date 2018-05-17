@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnWindmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                     aaaa                          λ",
             "                   aaabaaa                         ",
             "                  abbafffaa                        ",
@@ -67,10 +67,6 @@ class ArTTY::Art::MmbnWindmanEXE < ArTTY::Art
             "                00000000004                        ",
             "                     000000                        ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-windman.EXE"
         map_color("0", "color_023")
         map_color("1", "color_024")

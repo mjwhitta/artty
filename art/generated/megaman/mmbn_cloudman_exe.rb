@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnCloudmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                              eeeeeee                                   λ",
             "                            deeeeeeeeeddd                               ",
             "                            ddddeeedddd                                 ",
@@ -77,10 +77,6 @@ class ArTTY::Art::MmbnCloudmanEXE < ArTTY::Art
             "                          bbbbbbbbbbbbbbbbbbbb                          ",
             "                              bbbbbbbbbbbb                              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-cloudman.EXE"
         map_color("0", "color_053")
         map_color("1", "color_058")

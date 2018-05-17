@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldIII351CastformNormal < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "           333      λ",
             "        466233      ",
             "      44772         ",
@@ -33,10 +33,6 @@ class ArTTY::Art::PkmnEmeraldIII351CastformNormal < ArTTY::Art
             "    22325555522     ",
             "        32223       ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-III-351-castform-normal"
         map_color("0", "color_189")
         map_color("1", "color_231")

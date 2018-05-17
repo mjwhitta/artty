@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnGregarEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                                                                  rc                                                                                          λ",
             "                                                                                rrc                                                                                           ",
             "                                                                              rtDj                                                                                            ",
@@ -115,10 +115,6 @@ class ArTTY::Art::MmbnGregarEXE < ArTTY::Art
             "                                                    MMMMMMMMP00MMMMMMMMMMMMMMMMMM                                                             P                               ",
             "                                                            O                                                                                                                 ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-gregar.EXE"
         map_color("0", "color_023")
         map_color("1", "color_024")

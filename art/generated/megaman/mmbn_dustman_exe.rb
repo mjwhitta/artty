@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnDustmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                         111                         λ",
             "                                      11 1341                        ",
             "                                    11341214317711                   ",
@@ -66,10 +66,6 @@ class ArTTY::Art::MmbnDustmanEXE < ArTTY::Art
             "                                               555555555555          ",
             "                                                 55555555            ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-dustman.EXE"
         map_color("0", "color_065")
         map_color("1", "color_094")

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldIII353Shuppet < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "      9                       λ",
             "     9bb3                     ",
             "     9bb8                     ",
@@ -41,10 +41,6 @@ class ArTTY::Art::PkmnEmeraldIII353Shuppet < ArTTY::Art
             "          83333377  777       ",
             "           87777              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-III-353-shuppet"
         map_color("0", "color_065")
         map_color("1", "color_074")

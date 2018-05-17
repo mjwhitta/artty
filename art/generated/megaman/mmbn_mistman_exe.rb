@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnMistmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                      de6666eec                                                  λ",
             "                     df6fffff6ec                                                 ",
             "                     d6fffffff6eccc                                              ",
@@ -68,10 +68,6 @@ class ArTTY::Art::MmbnMistmanEXE < ArTTY::Art
             "                                                          cccc2222222cccc        ",
             "                                                             ccccccccc           ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-mistman.EXE"
         map_color("0", "color_053")
         map_color("1", "color_089")

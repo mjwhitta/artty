@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnMegamanEXEGyroSoul < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                       db             λ",
             "                       dcb            ",
             "  bb                  dcccb           ",
@@ -57,10 +57,6 @@ class ArTTY::Art::MmbnMegamanEXEGyroSoul < ArTTY::Art
             "    9999aaaaa999                      ",
             "     99999999                         ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-megaman.EXE-gyro-soul"
         map_color("0", "color_023")
         map_color("1", "color_032")

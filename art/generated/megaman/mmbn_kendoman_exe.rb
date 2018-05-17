@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnKendomanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             " c                                                              λ",
             "cdd                                                             ",
             "cddd                                                            ",
@@ -72,10 +72,6 @@ class ArTTY::Art::MmbnKendomanEXE < ArTTY::Art
             "                                    aaaaaaaaaaaaaaaaaa33333333a ",
             "                                          aaaaaaaaaaaaaaaaaaaa  ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-kendoman.EXE"
         map_color("0", "color_023")
         map_color("1", "color_024")

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnGlydeEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "      11111          λ",
             "     3583199         ",
             "     38851999        ",
@@ -48,10 +48,6 @@ class ArTTY::Art::MmbnGlydeEXE < ArTTY::Art
             "    9999a99939       ",
             "         9999        ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-glyde.EXE"
         map_color("0", "color_040")
         map_color("1", "color_095")

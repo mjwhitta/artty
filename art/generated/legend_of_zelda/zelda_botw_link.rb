@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::ZeldaBotwLink < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                  h                                                      λ",
             "                  nh                                                     ",
             "                  heh                                                    ",
@@ -88,10 +88,6 @@ class ArTTY::Art::ZeldaBotwLink < ArTTY::Art
             "   jhg0000ggggggggg00000000000000000000000gggn00000000000gggggggg00gghhj ",
             "     jhhgg00000000000000000000000000000000000g000000000000000000ghhhj    ",
         ]
-    end
-
-    def initialize
-        super
         @name = "zelda-botw-link"
         map_color("0", "color_016")
         map_color("1", "color_058")

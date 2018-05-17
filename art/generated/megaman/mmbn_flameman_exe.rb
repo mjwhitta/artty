@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnFlamemanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                 999999999                   λ",
             "                99bbba99a999                 ",
             "              aaaa9a999a9ba988               ",
@@ -62,10 +62,6 @@ class ArTTY::Art::MmbnFlamemanEXE < ArTTY::Art
             "              0222555550                     ",
             "                  222220                     ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-flameman.EXE"
         map_color("0", "color_088")
         map_color("1", "color_101")

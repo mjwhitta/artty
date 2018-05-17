@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnLasermanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "     0111                                       λ",
             "     0b10111                          011       ",
             "     0b1444011                      011c1       ",
@@ -81,10 +81,6 @@ class ArTTY::Art::MmbnLasermanEXE < ArTTY::Art
             "                     9999889bcaa08              ",
             "                           89ba98               ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-laserman.EXE"
         map_color("0", "color_024")
         map_color("1", "color_025")

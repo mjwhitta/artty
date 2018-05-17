@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnMeddyEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                      220       λ",
             "                     29930      ",
             "          58855     2236920     ",
@@ -59,10 +59,6 @@ class ArTTY::Art::MmbnMeddyEXE < ArTTY::Art
             "cdd555dccccc                    ",
             " cddddcc                        ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-meddy.EXE"
         map_color("0", "color_017")
         map_color("1", "color_019")

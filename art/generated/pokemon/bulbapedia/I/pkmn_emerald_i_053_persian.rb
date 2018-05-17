@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldI053Persian < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "    ccc             ccccc        1111cccc1c         λ",
             "   c0cccc         cccc00cc 51111aaaaaaaaaaaaac      ",
             "   c20cccc1      cccc0222c1aaaaa11a1ccc111aaaac     ",
@@ -49,10 +49,6 @@ class ArTTY::Art::PkmnEmeraldI053Persian < ArTTY::Art
             "            c  1bc cbc                              ",
             "               cc   c                               ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-I-053-persian"
         map_color("0", "color_058")
         map_color("1", "color_094")

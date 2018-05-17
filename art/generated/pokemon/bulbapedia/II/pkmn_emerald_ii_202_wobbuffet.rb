@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldII202Wobbuffet < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             " 00000000        111111000                      λ",
             "033222222332013333333333322220a                 ",
             "0321111112220333333333333322220a                ",
@@ -54,10 +54,6 @@ class ArTTY::Art::PkmnEmeraldII202Wobbuffet < ArTTY::Art
             "        a00000a9999       99aaaa9               ",
             "         a9999              9999                ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-II-202-wobbuffet"
         map_color("0", "color_024")
         map_color("1", "color_067")

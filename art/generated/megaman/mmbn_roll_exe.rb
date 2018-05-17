@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnRollEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                  5  333                    λ",
             "                 85  333333                 ",
             "                585     33353               ",
@@ -66,10 +66,6 @@ class ArTTY::Art::MmbnRollEXE < ArTTY::Art
             "            99999999999999                  ",
             "               99999999                     ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-roll.EXE"
         map_color("0", "color_022")
         map_color("1", "color_088")

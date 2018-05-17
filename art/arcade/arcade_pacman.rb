@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::ArcadePacman < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "     2222            1111                             λ",
             "   22222222        11111111                           ",
             "  2222222222      1111111111                          ",
@@ -31,10 +31,6 @@ class ArTTY::Art::ArcadePacman < ArTTY::Art
             "33 333  333 33  44 444  444 44                        ",
             "3   33  33   3  4   44  44   4                        ",
         ]
-    end
-
-    def initialize
-        super
         @name = "arcade-pacman"
 
         blue = "color_021"

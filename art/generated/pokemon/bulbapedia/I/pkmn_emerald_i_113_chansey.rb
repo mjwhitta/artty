@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldI113Chansey < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                    200000002                       λ",
             "                02666666666666620                   ",
             "               26666666666666666620                 ",
@@ -48,10 +48,6 @@ class ArTTY::Art::PkmnEmeraldI113Chansey < ArTTY::Art
             "                                 801118             ",
             "                                   888              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-I-113-chansey"
         map_color("0", "color_131")
         map_color("1", "color_167")

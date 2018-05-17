@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnAlphaEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                                                                                              a          λ",
             "                                                                                                            aa           ",
             "                                                                                                          aaa           9",
@@ -124,10 +124,6 @@ class ArTTY::Art::MmbnAlphaEXE < ArTTY::Art
             "                                           0100510110770110150010                                                        ",
             "                                                 1111111111                                                              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-alpha.EXE"
         map_color("0", "color_043")
         map_color("1", "color_045")

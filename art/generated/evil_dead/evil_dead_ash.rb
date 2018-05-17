@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::EvilDeadAsh < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                00              λ",
             "               0e10             ",
             "                0e10            ",
@@ -33,10 +33,6 @@ class ArTTY::Art::EvilDeadAsh < ArTTY::Art
             "0gg0 099999990   099999990      ",
             " 00  000000000   000000000      ",
         ]
-    end
-
-    def initialize
-        super
         @name = "evil-dead-ash"
         map_color("0", "color_016")
         map_color("1", "color_094")

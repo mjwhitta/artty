@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnSnakemanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "              00000j               λ",
             "            011111000j             ",
             "          011111000000jj           ",
@@ -86,10 +86,6 @@ class ArTTY::Art::MmbnSnakemanEXE < ArTTY::Art
             "   aa                              ",
             "  a                                ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-snakeman.EXE"
         map_color("0", "color_029")
         map_color("1", "color_041")

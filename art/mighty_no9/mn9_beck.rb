@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MN9Beck < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "      000000       λ",
             "     03333330      ",
             "    0322222220     ",
@@ -27,10 +27,6 @@ class ArTTY::Art::MN9Beck < ArTTY::Art
             "01211230   03332110",
             "00000000   00000000"
         ]
-    end
-
-    def initialize
-        super
         @name = "mn9-beck"
 
         black = "color_232"

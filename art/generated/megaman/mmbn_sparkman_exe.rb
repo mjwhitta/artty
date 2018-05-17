@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnSparkmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                 cccc                                 λ",
             "                               cc6666c                                ",
             "                             cc6663c6c                                ",
@@ -64,10 +64,6 @@ class ArTTY::Art::MmbnSparkmanEXE < ArTTY::Art
             "                         c                           1144444111       ",
             "                        c                                             ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-sparkman.EXE"
         map_color("0", "color_028")
         map_color("1", "color_058")

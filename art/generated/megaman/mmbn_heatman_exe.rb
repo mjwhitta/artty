@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnHeatmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                      7                                      λ",
             "                                                             ",
             "                                       44444444              ",
@@ -81,10 +81,6 @@ class ArTTY::Art::MmbnHeatmanEXE < ArTTY::Art
             "                         fghhff                              ",
             "                          fff                                ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-heatman.EXE"
         map_color("0", "color_028")
         map_color("1", "color_052")

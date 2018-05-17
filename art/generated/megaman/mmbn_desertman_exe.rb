@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnDesertmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                   111111           λ",
             "                                  13666641          ",
             "                                  14444431          ",
@@ -55,10 +55,6 @@ class ArTTY::Art::MmbnDesertmanEXE < ArTTY::Art
             "                                   1111663136111    ",
             "                                      111  11       ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-desertman.EXE"
         map_color("0", "color_016")
         map_color("1", "color_058")

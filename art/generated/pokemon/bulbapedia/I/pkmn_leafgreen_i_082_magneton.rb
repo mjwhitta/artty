@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnLeafgreenI082Magneton < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "              d                                    λ",
             "            da77d      e83335e       d2d           ",
             "          d  d7e3d     d38853d      d112d          ",
@@ -38,10 +38,6 @@ class ArTTY::Art::PkmnLeafgreenI082Magneton < ArTTY::Art
             " ddddddd         d111d      d777dccc    deeeeee11d ",
             "                  ddd        ddd          ddddddd  ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-leafgreen-I-082-magneton"
         map_color("0", "color_065")
         map_color("1", "color_067")

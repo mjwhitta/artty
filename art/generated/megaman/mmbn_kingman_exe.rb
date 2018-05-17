@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnKingmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                   90000                   λ",
             "                    000aa08888             ",
             "                    900009888              ",
@@ -70,10 +70,6 @@ class ArTTY::Art::MmbnKingmanEXE < ArTTY::Art
             "             88888888888888888888          ",
             "                 888888888888              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-kingman.EXE"
         map_color("0", "color_059")
         map_color("1", "color_088")

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnLifeVirusEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                              3                                                       λ",
             "              3              33                                                       ",
             "             33             333                                                       ",
@@ -94,10 +94,6 @@ class ArTTY::Art::MmbnLifeVirusEXE < ArTTY::Art
             "                          aaabcbaaaaaaaaaaaaa                    ddd                  ",
             "                              baaaa                                                   ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-life-virus.EXE"
         map_color("0", "color_065")
         map_color("1", "color_071")

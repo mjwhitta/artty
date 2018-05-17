@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::ZeldaLinkSwingingSword < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "          00000                     λ",
             "       00000000999999               ",
             "      022222220666669               ",
@@ -25,10 +25,6 @@ class ArTTY::Art::ZeldaLinkSwingingSword < ArTTY::Art
             "       99 999999333339              ",
             "                999999              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "zelda-link-swinging-sword"
         map_color("0", "color_028")
         map_color("1", "color_052")

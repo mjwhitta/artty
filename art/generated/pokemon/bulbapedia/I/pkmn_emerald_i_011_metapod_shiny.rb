@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldI011MetapodShiny < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "  00                               00 λ",
             " 03320                         0002115",
             " 033220                000    02220115",
@@ -27,10 +27,6 @@ class ArTTY::Art::PkmnEmeraldI011MetapodShiny < ArTTY::Art
             "          511111000555                ",
             "            5555555                   ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-I-011-metapod-shiny"
         map_color("0", "color_094")
         map_color("1", "color_167")

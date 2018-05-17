@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnChargemanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                         000000000                                    λ",
             "                        030dddddd00                                   ",
             "                       044a3dddd0330                                  ",
@@ -58,10 +58,6 @@ class ArTTY::Art::MmbnChargemanEXE < ArTTY::Art
             "                       e1111111ee                                     ",
             "                        eeeeeee                                       ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-chargeman.EXE"
         map_color("0", "color_052")
         map_color("1", "color_059")

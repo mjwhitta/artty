@@ -153,8 +153,7 @@ end
 begin
     options = parse(ARGV)
 rescue Interrupt
-    # ^C
-    # Exit gracefully
+    # Exit gracefully on ^C
     exit ArTTYExit::GOOD
 end
 
@@ -212,8 +211,7 @@ rescue ArTTY::Error => e
     end
     exit ArTTYExit::EXCEPTION
 rescue Interrupt
-    # ^C
-    # Exit gracefully
+    # Exit gracefully on ^C
 rescue Errno::EPIPE
     # Do nothing. This can happen if piping to another program such as
     # less. Usually if less is closed before we're done with STDOUT.

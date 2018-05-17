@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnFiremanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "          5          λ",
             "         55          ",
             "         555         ",
@@ -58,10 +58,6 @@ class ArTTY::Art::MmbnFiremanEXE < ArTTY::Art
             "     aaaaaaaaaaaa    ",
             "        aaaaaa       ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-fireman.EXE"
         map_color("0", "color_023")
         map_color("1", "color_024")

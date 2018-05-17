@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnDrillmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                     c                            λ",
             "                     cc                           ",
             "                     c1c                          ",
@@ -68,10 +68,6 @@ class ArTTY::Art::MmbnDrillmanEXE < ArTTY::Art
             "                                     b1b          ",
             "                                      b           ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-drillman.EXE"
         map_color("0", "color_058")
         map_color("1", "color_066")

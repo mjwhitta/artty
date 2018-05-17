@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnDuoEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                                     d5gfffed                       dfffggd                                           λ",
             "                                                     dgg5ffed                       dfffgggd                                          ",
             "                                                     dgggffed                       dfffggggd                                         ",
@@ -151,10 +151,6 @@ class ArTTY::Art::MmbnDuoEXE < ArTTY::Art
             "                                                                               ddf2fd                                                 ",
             "                                                                                 ddd                                                  ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-duo.EXE"
         map_color("0", "color_024")
         map_color("1", "color_061")

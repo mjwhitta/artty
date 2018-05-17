@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnJapanmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "     6                                           λ",
             "     6                                           ",
             "    666                                          ",
@@ -86,10 +86,6 @@ class ArTTY::Art::MmbnJapanmanEXE < ArTTY::Art
             "                dddddddddddddddd1112221          ",
             "                    dddddddddd                   ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-japanman.EXE"
         map_color("0", "color_030")
         map_color("1", "color_060")

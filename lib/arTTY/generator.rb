@@ -45,10 +45,10 @@ class ArTTY::Generator
 
     def generate_ruby_code(clas, name, pixels, color_map)
         ret = [
-            "# encoding: utf-8",
             "class ArTTY::Art::#{clas} < ArTTY::Art",
-            "    def color_map",
-            "        return ["
+            "    def initialize",
+            "        super",
+            "        @colors = ["
         ]
         first = "λ"
         pixels.each do |row|
@@ -60,10 +60,6 @@ class ArTTY::Generator
         end
         ret.concat([
             "        ]",
-            "    end",
-            "",
-            "    def initialize",
-            "        super",
             "        @name = \"#{name}\""
         ])
         color_map.delete("")

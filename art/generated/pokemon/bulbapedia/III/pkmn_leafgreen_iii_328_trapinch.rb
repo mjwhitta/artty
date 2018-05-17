@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnLeafgreenIII328Trapinch < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "      2222222                   λ",
             "   244444444444228              ",
             "  28822444444442228             ",
@@ -34,10 +34,6 @@ class ArTTY::Art::PkmnLeafgreenIII328Trapinch < ArTTY::Art
             "         66  66         62226   ",
             "                         666    ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-leafgreen-III-328-trapinch"
         map_color("0", "color_101")
         map_color("1", "color_143")

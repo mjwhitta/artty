@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnPlanetmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                       1                  λ",
             "              11                      161                 ",
             "              151                    191                  ",
@@ -82,10 +82,6 @@ class ArTTY::Art::MmbnPlanetmanEXE < ArTTY::Art
             "             cccccccccccccccccccc                         ",
             "                 cccccccccccc                             ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-planetman.EXE"
         map_color("0", "color_024")
         map_color("1", "color_060")

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnMegamanEXEGlydeSoul < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                         3                λ",
             "                         f3               ",
             "                         f3               ",
@@ -57,10 +57,6 @@ class ArTTY::Art::MmbnMegamanEXEGlydeSoul < ArTTY::Art
             "       bbbbbbbbbbbb                       ",
             "        bbbbbbbb                          ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-megaman.EXE-glyde-soul"
         map_color("0", "color_028")
         map_color("1", "color_046")

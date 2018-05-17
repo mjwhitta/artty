@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnIndigoChampionBlue < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                   b       0b        λ",
             "                  06b 003666         ",
             "                  b60036663b         ",
@@ -62,10 +62,6 @@ class ArTTY::Art::PkmnIndigoChampionBlue < ArTTY::Art
             "             0aaaaa0           0000  ",
             "              00aa0                  ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-indigo-champion-blue"
         map_color("0", "color_016")
         map_color("1", "color_060")

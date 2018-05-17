@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnToadmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "         770                    λ",
             "        7d960                   ",
             "        379700                  ",
@@ -43,10 +43,6 @@ class ArTTY::Art::MmbnToadmanEXE < ArTTY::Art
             "            aaaaaaaa002212210   ",
             "                aaaaaa000000    ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-toadman.EXE"
         map_color("0", "color_022")
         map_color("1", "color_064")

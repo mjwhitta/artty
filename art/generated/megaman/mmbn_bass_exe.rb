@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnBassEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "     bbb        11111111                λ",
             "    bffebb   11133333333111             ",
             "   bfebbbbb113333333333333311           ",
@@ -71,10 +71,6 @@ class ArTTY::Art::MmbnBassEXE < ArTTY::Art
             "           888888888888888888           ",
             "              888888888888              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-bass.EXE"
         map_color("0", "color_074")
         map_color("1", "color_094")

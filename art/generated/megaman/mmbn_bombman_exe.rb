@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnBombmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "            26311                λ",
             "            2d66511              ",
             "            27665551             ",
@@ -63,10 +63,6 @@ class ArTTY::Art::MmbnBombmanEXE < ArTTY::Art
             "      999999999999999999         ",
             "          9999999999             ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-bombman.EXE"
         map_color("0", "color_052")
         map_color("1", "color_088")

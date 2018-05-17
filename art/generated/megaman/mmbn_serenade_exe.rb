@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnSerenadeEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                  6                             λ",
             "                   76                           ",
             "                   e76                          ",
@@ -79,10 +79,6 @@ class ArTTY::Art::MmbnSerenadeEXE < ArTTY::Art
             "                    aaaaaaa                     ",
             "                     aaaaa                      ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-serenade.EXE"
         map_color("0", "color_028")
         map_color("1", "color_058")

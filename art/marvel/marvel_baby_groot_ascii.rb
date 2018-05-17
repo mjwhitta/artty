@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MarvelBabyGrootAscii < ArTTY::Art
-    def ascii_map
-        return [
+    def initialize
+        super
+        @ascii = [
             '  \^V//  λ',
             '  |. .|  ',
             '- \ - / _',
@@ -12,10 +12,7 @@ class ArTTY::Art::MarvelBabyGrootAscii < ArTTY::Art
             ' \     / ',
             '  \___/  '
         ]
-    end
-
-    def color_map
-        return [
+        @colors = [
             "  11111  ",
             "  03 30  ",
             "1 0 0 0 1",
@@ -26,10 +23,6 @@ class ArTTY::Art::MarvelBabyGrootAscii < ArTTY::Art
             " 2     2 ",
             "  22222  "
         ]
-    end
-
-    def initialize
-        super
         @name = "marvel-baby-groot-ascii"
 
         brown = "color_136"

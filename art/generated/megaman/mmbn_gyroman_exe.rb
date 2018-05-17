@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnGyromanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                                   d   λ",
             "                                                  dbd  ",
             "                                                 dbbbd ",
@@ -75,10 +75,6 @@ class ArTTY::Art::MmbnGyromanEXE < ArTTY::Art
             "                          9999999915351                ",
             "                              99999141                 ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-gyroman.EXE"
         map_color("0", "color_072")
         map_color("1", "color_094")

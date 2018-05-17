@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnIcemanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "    333                 λ",
             "   3dddd5aaaaa          ",
             "   d665dd5000aaa        ",
@@ -37,10 +37,6 @@ class ArTTY::Art::MmbnIcemanEXE < ArTTY::Art
             "     aaaaaaaaaaaaaaaa   ",
             "        aaaaaaaaaa      ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-iceman.EXE"
         map_color("0", "color_023")
         map_color("1", "color_029")

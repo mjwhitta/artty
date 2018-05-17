@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::ZeldaGanondorf < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                      8181                λ",
             "                   81841411               ",
             "                   141848181              ",
@@ -78,10 +78,6 @@ class ArTTY::Art::ZeldaGanondorf < ArTTY::Art
             "     m11mmnnmn0m        mmmmmmmmmmmmmmmnm ",
             "     nmmlmmlmnmm        mmmmmmmmmmmmmmmmm ",
         ]
-    end
-
-    def initialize
-        super
         @name = "zelda-ganondorf"
         map_color("0", "color_016")
         map_color("1", "color_052")

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnSharkmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                   30                           λ",
             "                   360                          ",
             "                   3710                         ",
@@ -54,10 +54,6 @@ class ArTTY::Art::MmbnSharkmanEXE < ArTTY::Art
             "             444       52                       ",
             "                  4444444                       ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-sharkman.EXE"
         map_color("0", "color_023")
         map_color("1", "color_024")

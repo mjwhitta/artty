@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::DcSuperman < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "       0000000     00  λ",
             "      077777770   0550 ",
             "     07777777770 055550",
@@ -32,10 +32,6 @@ class ArTTY::Art::DcSuperman < ArTTY::Art
             "    0333003330         ",
             "     000  000          ",
         ]
-    end
-
-    def initialize
-        super
         @name = "dc-superman"
         map_color("0", "color_016")
         map_color("1", "color_027")

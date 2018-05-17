@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnCosmomanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "               2        5               λ",
             "               22       6               ",
             "               52       65              ",
@@ -70,10 +70,6 @@ class ArTTY::Art::MmbnCosmomanEXE < ArTTY::Art
             "                  aaaaabbbbbbbb         ",
             "                     aaabbbbbb          ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-cosmoman.EXE"
         map_color("0", "color_024")
         map_color("1", "color_025")

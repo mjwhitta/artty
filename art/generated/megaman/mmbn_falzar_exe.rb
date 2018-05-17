@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnFalzarEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "006Z                                                                                                                                                  λ",
             "  Za6Z0                                                                                                                                               ",
             "   Zll6Z                                                                                                                                              ",
@@ -164,10 +164,6 @@ class ArTTY::Art::MmbnFalzarEXE < ArTTY::Art
             "                                                                              01                                                                      ",
             "                                                                             0                                                                        ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-falzar.EXE"
         map_color("0", "color_023")
         map_color("1", "color_029")

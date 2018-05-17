@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldIII299Nosepass < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                        211112     λ",
             "                  213333333333328  ",
             "                213333333333222218 ",
@@ -43,10 +43,6 @@ class ArTTY::Art::PkmnEmeraldIII299Nosepass < ArTTY::Art
             "                 711111a7          ",
             "                  777777           ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-III-299-nosepass"
         map_color("0", "color_094")
         map_color("1", "color_103")

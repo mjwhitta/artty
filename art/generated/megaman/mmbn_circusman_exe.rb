@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnCircusmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                         7  4 696                                              λ",
             "                        742 429996                                             ",
             "                        74 2462996                                             ",
@@ -72,10 +72,6 @@ class ArTTY::Art::MmbnCircusmanEXE < ArTTY::Art
             "                          aaaaaaaaaaaaaaaaaaaa                                 ",
             "                              aaaaaaaaaaaa                                     ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-circusman.EXE"
         map_color("0", "color_023")
         map_color("1", "color_030")

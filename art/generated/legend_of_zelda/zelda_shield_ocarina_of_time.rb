@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::ZeldaShieldOcarinaOfTime < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                          44   λ",
             "                                         4004  ",
             "                                         4004  ",
@@ -73,10 +73,6 @@ class ArTTY::Art::ZeldaShieldOcarinaOfTime < ArTTY::Art
             "       4764                                    ",
             "        44                                     ",
         ]
-    end
-
-    def initialize
-        super
         @name = "zelda-shield-ocarina-of-time"
         map_color("0", "color_019")
         map_color("1", "color_020")

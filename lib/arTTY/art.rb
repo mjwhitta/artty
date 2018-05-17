@@ -3,6 +3,8 @@
 require "hilighter"
 
 class ArTTY::Art
+    attr_reader :ascii
+    attr_reader :colors
     attr_accessor :legend
     attr_accessor :name
     attr_accessor :sysinfo
@@ -13,7 +15,7 @@ class ArTTY::Art
         sysinfo = Array.new
         sysinfo = @sysinfo.info.clone if (@sysinfo)
 
-        ascii_map.zip(color_map).each do |line, colors|
+        @ascii.zip(@colors).each do |line, colors|
             colors ||= " " * line.length
             out += " "
 
@@ -65,15 +67,6 @@ class ArTTY::Art
     end
     private :ascii_draw
 
-    def ascii_map
-        return Array.new
-    end
-
-    def color_map
-        return ["λ"] if (@sysinfo && !@sysinfo.info.empty?)
-        return Array.new
-    end
-
     def draw
         @legend ||= Hash.new
         return ascii_draw if (@name.match(/-ascii$/))
@@ -81,12 +74,14 @@ class ArTTY::Art
     end
 
     def height
-        h = ascii_map.length
+        h = @ascii.length
         return h if (h > 0)
-        return (color_map.length + 1) / 2
+        return (@colors.length + 1) / 2
     end
 
     def initialize
+        @ascii = Array.new
+        @colors = ["λ"]
         @debug = false
         @name = "none"
         @sysinfo = nil
@@ -101,7 +96,7 @@ class ArTTY::Art
     def pixel_draw
         offset = nil
         out = ""
-        pixels = color_map
+        pixels = @colors
         sysinfo = Array.new
         sysinfo = @sysinfo.info.clone if (@sysinfo)
 
@@ -175,13 +170,21 @@ class ArTTY::Art
     end
     private :pixel_draw
 
+    def self.subclasses
+        ObjectSpace.each_object(Class).select do |clas|
+            (clas < self)
+        end
+    end
+
     def to_s
         return draw
     end
 
     def width
-        return color_map.map(&:length).max if (@name.match(/-ascii$/))
-        w = color_map.map(&:length).max || 0
+        return @colors.map(&:length).max if (@name.match(/-ascii$/))
+        w = @colors.map(&:length).max || 0
         return (w >= 1) ? (w - 1) : w
     end
 end
+
+require "arTTY/art/concatenated"

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldII233Porygon < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "          666555                   λ",
             "      678888777776a             11 ",
             "     67899887777776a          12430",
@@ -37,10 +37,6 @@ class ArTTY::Art::PkmnEmeraldII233Porygon < ArTTY::Art
             "                   02222aa         ",
             "                    00aa           ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-II-233-porygon"
         map_color("0", "color_024")
         map_color("1", "color_031")

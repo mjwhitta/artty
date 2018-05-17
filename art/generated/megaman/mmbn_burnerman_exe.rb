@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnBurnermanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                              0                       λ",
             "                              0                       ",
             "                             00         0             ",
@@ -72,10 +72,6 @@ class ArTTY::Art::MmbnBurnermanEXE < ArTTY::Art
             "                                            abddcca   ",
             "                                             aaaaa    ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-burnerman.EXE"
         map_color("0", "color_039")
         map_color("1", "color_081")

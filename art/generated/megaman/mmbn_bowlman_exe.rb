@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnBowlmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                       ccc              λ",
             "                      cdeec             ",
             "                     cdeeed             ",
@@ -75,10 +75,6 @@ class ArTTY::Art::MmbnBowlmanEXE < ArTTY::Art
             "           aaaaaaaaaaaaabddddddb        ",
             "              aaaaaaaaaaabbbbbb         ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-bowlman.EXE"
         map_color("0", "color_022")
         map_color("1", "color_028")

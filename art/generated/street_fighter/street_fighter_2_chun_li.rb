@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::StreetFighter2ChunLi < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "            0000   00                       λ",
             "          0266221111110                     ",
             "          0266661141111                     ",
@@ -67,10 +67,6 @@ class ArTTY::Art::StreetFighter2ChunLi < ArTTY::Art
             "0666661                         022211266620",
             "0444311                          111  111111",
         ]
-    end
-
-    def initialize
-        super
         @name = "street-fighter-2-chun-li"
         map_color("0", "color_018")
         map_color("1", "color_094")

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnGroundmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "            11                                                        λ",
             "         a1 1c1                                                       ",
             "         a111c1                                                       ",
@@ -83,10 +83,6 @@ class ArTTY::Art::MmbnGroundmanEXE < ArTTY::Art
             "                              99aa99999999999999999999999999          ",
             "                               9999999999999999999999999999           ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-groundman.EXE"
         map_color("0", "color_052")
         map_color("1", "color_059")

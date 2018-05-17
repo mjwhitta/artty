@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnNebulaGray < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                               b                                                                                    λ",
             "                                              b                                                                                     ",
             "                                             bb                                                                                     ",
@@ -144,10 +144,6 @@ class ArTTY::Art::MmbnNebulaGray < ArTTY::Art
             "                                                 5555555556555555555      555555                                                    ",
             "                                                    555555555555         5555                                                       ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-nebula-gray"
         map_color("0", "color_024")
         map_color("1", "color_026")

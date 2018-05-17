@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldII188Skiploom < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "           444 44444                λ",
             "        477766466665955544          ",
             "       44446655955546666659         ",
@@ -36,10 +36,6 @@ class ArTTY::Art::PkmnEmeraldII188Skiploom < ArTTY::Art
             "                91109               ",
             "                 999                ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-II-188-skiploom"
         map_color("0", "color_022")
         map_color("1", "color_070")

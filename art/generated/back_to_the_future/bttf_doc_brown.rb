@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::BttfDocBrown < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "        00000000         λ",
             "  00   0bbbbbbbb00   00  ",
             " 0660 0babaaabbbbb0 0660 ",
@@ -27,10 +27,6 @@ class ArTTY::Art::BttfDocBrown < ArTTY::Art
             "  088888880   088888880  ",
             "  000000000   000000000  ",
         ]
-    end
-
-    def initialize
-        super
         @name = "bttf-doc-brown"
         map_color("0", "color_016")
         map_color("1", "color_032")

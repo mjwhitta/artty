@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnMegamanEXENumberSoul < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                    aaabbb       λ",
             "                  aaccc77774     ",
             "                 abba4744bc74    ",
@@ -46,10 +46,6 @@ class ArTTY::Art::MmbnMegamanEXENumberSoul < ArTTY::Art
             "99022299                         ",
             " 999999                          ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-megaman.EXE-number-soul"
         map_color("0", "color_064")
         map_color("1", "color_094")

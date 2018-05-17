@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnNapalmEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                        33399999999                        λ",
             "                    3337ddd44422000999                     ",
             "                  337ddddddd222222000099                   ",
@@ -67,10 +67,6 @@ class ArTTY::Art::MmbnNapalmEXE < ArTTY::Art
             "                       888888888888     9a222222a          ",
             "                                         9999999           ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-napalm.EXE"
         map_color("0", "color_060")
         map_color("1", "color_094")

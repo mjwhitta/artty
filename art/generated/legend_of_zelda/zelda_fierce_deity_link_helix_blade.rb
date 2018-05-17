@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::ZeldaFierceDeityLinkHelixBlade < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                iii              λ",
             "                               i55i              ",
             "                              ji44i              ",
@@ -62,10 +62,6 @@ class ArTTY::Art::ZeldaFierceDeityLinkHelixBlade < ArTTY::Art
             "                            hllnh                ",
             "                             hhh                 ",
         ]
-    end
-
-    def initialize
-        super
         @name = "zelda-fierce-deity-link-helix-blade"
         map_color("0", "color_060")
         map_color("1", "color_066")

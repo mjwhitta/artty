@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::LinuxArchAscii < ArTTY::Art
-    def ascii_map
-        return [
+    def initialize
+        super
+        @ascii = [
             "                  A                  λ",
             "                 RCH                 ",
             "                ARCHA                ",
@@ -23,10 +23,7 @@ class ArTTY::Art::LinuxArchAscii < ArTTY::Art
             "CHARC                           HARCH",
             "AR                                 CH"
         ]
-    end
-
-    def color_map
-        return [
+        @colors = [
             "                  1                  ",
             "                 111                 ",
             "                11111                ",
@@ -48,10 +45,6 @@ class ArTTY::Art::LinuxArchAscii < ArTTY::Art
             "00000                           00000",
             "00                                 00"
         ]
-    end
-
-    def initialize
-        super
         @name = "linux-arch-ascii"
 
         blue = "color_033"

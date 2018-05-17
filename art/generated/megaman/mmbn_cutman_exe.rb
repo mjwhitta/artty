@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnCutmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "           a                          λ",
             "          ab              b           ",
             "          bda            bda          ",
@@ -55,10 +55,6 @@ class ArTTY::Art::MmbnCutmanEXE < ArTTY::Art
             "                    7777777779888888  ",
             "                         77777777     ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-cutman.EXE"
         map_color("0", "color_088")
         map_color("1", "color_124")

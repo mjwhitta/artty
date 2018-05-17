@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnKantoRedLarge < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "              7777              λ",
             "          77dddddddaa62         ",
             "         7ddddddddaa7772        ",
@@ -82,10 +82,6 @@ class ArTTY::Art::PkmnKantoRedLarge < ArTTY::Art
             " 0000000             0nnnnnmk0  ",
             "                      00lll00   ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-kanto-red-large"
         map_color("0", "color_016")
         map_color("1", "color_023")

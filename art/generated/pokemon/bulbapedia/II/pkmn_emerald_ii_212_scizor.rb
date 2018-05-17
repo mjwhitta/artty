@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldII212Scizor < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "             aaa     31                      aa             λ",
             "             a8ba   4641                   a88aa            ",
             "              a8a  36649                  a88ab8a           ",
@@ -66,10 +66,6 @@ class ArTTY::Art::PkmnEmeraldII212Scizor < ArTTY::Art
             "                           0b9                          000 ",
             "                            09                              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-II-212-scizor"
         map_color("0", "color_059")
         map_color("1", "color_088")

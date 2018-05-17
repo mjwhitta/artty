@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldI071VictreebelShiny < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                 000bbbb0             λ",
             "                      03777550b4400000bb004bb         ",
             "                    037777555b44033333b   044b        ",
@@ -56,10 +56,6 @@ class ArTTY::Art::PkmnEmeraldI071VictreebelShiny < ArTTY::Art
             "                 b6889bb                              ",
             "                  bbbb                                ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-I-071-victreebel-shiny"
         map_color("0", "color_058")
         map_color("1", "color_061")

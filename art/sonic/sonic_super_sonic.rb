@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::SonicSuperSonic < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "   0     000000     λ",
             "   00  0011111100   ",
             "   010011111111110  ",
@@ -31,10 +31,6 @@ class ArTTY::Art::SonicSuperSonic < ArTTY::Art
             "0220222242220       ",
             "0000000000000       "
         ]
-    end
-
-    def initialize
-        super
         @name = "sonic-super-sonic"
 
         black = "color_232"

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MarvelBabyGroot < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "           2 02    λ",
             "   2  20 0  00 2   ",
             "    0 002 002000 2 ",
@@ -38,10 +38,6 @@ class ArTTY::Art::MarvelBabyGroot < ArTTY::Art
             "       044550      ",
             "       000000      "
         ]
-    end
-
-    def initialize
-        super
         @name = "marvel-baby-groot"
 
         black = "color_232"

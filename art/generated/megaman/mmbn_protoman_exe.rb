@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnProtomanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                               3                     λ",
             "                               3                     ",
             "                               33                    ",
@@ -54,10 +54,6 @@ class ArTTY::Art::MmbnProtomanEXE < ArTTY::Art
             "  b48fff8baaaa                                       ",
             "   bbbbbbaa                                          ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-protoman.EXE"
         map_color("0", "color_016")
         map_color("1", "color_052")

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnElecmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                777                  λ",
             "               7770008  77           ",
             "              7713198887b98          ",
@@ -68,10 +68,6 @@ class ArTTY::Art::MmbnElecmanEXE < ArTTY::Art
             "           7777777777777777          ",
             "              7777777777             ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-elecman.EXE"
         map_color("0", "color_058")
         map_color("1", "color_094")

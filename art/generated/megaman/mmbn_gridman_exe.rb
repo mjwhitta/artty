@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnGridmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                    0000000                    λ",
             "        bb00000  0001111111000                 ",
             "       b3d44441001111111111111000000           ",
@@ -55,10 +55,6 @@ class ArTTY::Art::MmbnGridmanEXE < ArTTY::Art
             "                              9999999b33bbb33b ",
             "                                    99bb999bbb ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-gridman.EXE"
         map_color("0", "color_052")
         map_color("1", "color_088")

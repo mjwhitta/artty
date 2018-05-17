@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnNormalnavi < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "        344443                    λ",
             "      a00266d538                  ",
             "     a111126640a8                 ",
@@ -49,10 +49,6 @@ class ArTTY::Art::MmbnNormalnavi < ArTTY::Art
             "                      777788888887",
             "                         77777777 ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-normalnavi"
         map_color("0", "color_071")
         map_color("1", "color_077")

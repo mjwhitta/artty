@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::ZeldaLargeLink < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                    000000                λ",
             "                  FF6ddd6600              ",
             "                 0dddd66dddhhh            ",
@@ -55,10 +55,6 @@ class ArTTY::Art::ZeldaLargeLink < ArTTY::Art
             "     0aaffaJ0            00 000000        ",
             "     0000000                              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "zelda-large-link"
         map_color("0", "color_016")
         map_color("1", "color_025")

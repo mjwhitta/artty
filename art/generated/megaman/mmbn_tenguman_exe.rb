@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnTengumanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                     110                             λ",
             "                   1110                              ",
             "                 11110                               ",
@@ -81,10 +81,6 @@ class ArTTY::Art::MmbnTengumanEXE < ArTTY::Art
             "         99999999999999999999                        ",
             "             999999999999                            ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-tenguman.EXE"
         map_color("0", "color_023")
         map_color("1", "color_060")

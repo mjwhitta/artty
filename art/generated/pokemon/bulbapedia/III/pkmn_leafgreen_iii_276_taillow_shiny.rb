@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnLeafgreenIII276TaillowShiny < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             " 3   3333                                 λ",
             "699a638855500                             ",
             "63399635555220                            ",
@@ -32,10 +32,6 @@ class ArTTY::Art::PkmnLeafgreenIII276TaillowShiny < ArTTY::Art
             "                  0909b                   ",
             "                   0 b                    ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-leafgreen-III-276-taillow-shiny"
         map_color("0", "color_023")
         map_color("1", "color_065")

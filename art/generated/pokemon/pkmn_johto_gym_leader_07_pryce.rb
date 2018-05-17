@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnJohtoGymLeader07Pryce < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "             c0                   λ",
             "         c cdd0                   ",
             "        cdcddd0                   ",
@@ -77,10 +77,6 @@ class ArTTY::Art::PkmnJohtoGymLeader07Pryce < ArTTY::Art
             "  aaaaaa00                    00  ",
             "  000000                          ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-johto-gym-leader-07-pryce"
         map_color("0", "color_016")
         map_color("1", "color_024")

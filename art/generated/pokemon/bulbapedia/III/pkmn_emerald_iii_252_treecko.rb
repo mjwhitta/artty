@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnEmeraldIII252Treecko < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                   ecc                        λ",
             "            e55c  15333c                      ",
             "            1333cc55333e                      ",
@@ -50,10 +50,6 @@ class ArTTY::Art::PkmnEmeraldIII252Treecko < ArTTY::Art
             "         cccccc    e33e33ecc                  ",
             "                    cc cc                     ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-emerald-III-252-treecko"
         map_color("0", "color_065")
         map_color("1", "color_071")

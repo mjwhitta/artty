@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::LinuxTux < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "             000               λ",
             "           0000000             ",
             "          000000000            ",
@@ -41,10 +41,6 @@ class ArTTY::Art::LinuxTux < ArTTY::Art
             "     222222          22222     ",
             "                      222      "
         ]
-    end
-
-    def initialize
-        super
         @name = "linux-tux"
 
         black = "color_233"

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmLargeMegaman < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                        00000                λ",
             "                      002222200              ",
             "                     01111112220             ",
@@ -41,10 +41,6 @@ class ArTTY::Art::MmLargeMegaman < ArTTY::Art
             "011111111111110      0111111111111110        ",
             "000000000000000      0000000000000000        "
         ]
-    end
-
-    def initialize
-        super
         @name = "mm-large-megaman"
 
         black = "color_232"

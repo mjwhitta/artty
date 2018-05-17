@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnLeafgreenII158Totodile < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "        000  0000                      λ",
             "       421bb220011b                    ",
             "      04220220aab10                    ",
@@ -37,10 +37,6 @@ class ArTTY::Art::PkmnLeafgreenII158Totodile < ArTTY::Art
             "            0b11bb                     ",
             "             bbb                       ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-leafgreen-II-158-totodile"
         map_color("0", "color_060")
         map_color("1", "color_067")

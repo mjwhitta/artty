@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::PkmnLeafgreenIII344Claydol < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                     888                      λ",
             "                   9aaa998                    ",
             "                   9aaa998                    ",
@@ -57,10 +57,6 @@ class ArTTY::Art::PkmnLeafgreenIII344Claydol < ArTTY::Art
             "             80088  888888  88008             ",
             "              88              88              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "pkmn-leafgreen-III-344-claydol"
         map_color("0", "color_058")
         map_color("1", "color_103")

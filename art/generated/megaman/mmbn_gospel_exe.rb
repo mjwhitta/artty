@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnGospelEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                                                                                     b22222            λ",
             "                                                                                  bb2222222222         ",
             "                                                                               22aaab2227222722b       ",
@@ -93,10 +93,6 @@ class ArTTY::Art::MmbnGospelEXE < ArTTY::Art
             "                                              bbba                                                     ",
             "                                               b                                                       ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-gospel.EXE"
         map_color("0", "color_034")
         map_color("1", "color_046")

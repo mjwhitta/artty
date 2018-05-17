@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnVideomanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                       ccccc         λ",
             "                      cded44c        ",
             "                   cccdeddd44cc      ",
@@ -74,10 +74,6 @@ class ArTTY::Art::MmbnVideomanEXE < ArTTY::Art
             "             aaaaaaaaaaaaaaaaaaaa    ",
             "                 aaaaaaaaaaaa        ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-videoman.EXE"
         map_color("0", "color_022")
         map_color("1", "color_029")

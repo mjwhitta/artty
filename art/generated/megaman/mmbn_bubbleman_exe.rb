@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnBubblemanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "           88000000                 λ",
             "          8dbb772110e               ",
             "         8b9bb333111eee             ",
@@ -48,10 +48,6 @@ class ArTTY::Art::MmbnBubblemanEXE < ArTTY::Art
             "            eeeeeeeee88bbb98bb9898  ",
             "                eeeeeee8888888888   ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-bubbleman.EXE"
         map_color("0", "color_023")
         map_color("1", "color_024")

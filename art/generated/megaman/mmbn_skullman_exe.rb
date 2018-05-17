@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnSkullmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "               d                 λ",
             "               d                 ",
             "      cddb   d b                 ",
@@ -60,10 +60,6 @@ class ArTTY::Art::MmbnSkullmanEXE < ArTTY::Art
             "          8888888888001100       ",
             "              88888888           ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-skullman.EXE"
         map_color("0", "color_052")
         map_color("1", "color_088")

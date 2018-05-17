@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnJudgemanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                  5**$s52                 λ",
             "                 5)*s5330                 ",
             "                5H%s53ppN                 ",
@@ -76,10 +76,6 @@ class ArTTY::Art::MmbnJudgemanEXE < ArTTY::Art
             "                      L9999999KKK         ",
             "                         KKKKKK           ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-judgeman.EXE"
         map_color("0", "color_017")
         map_color("1", "color_018")

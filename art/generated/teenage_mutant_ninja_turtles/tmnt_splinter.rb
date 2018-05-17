@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::TmntSplinter < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "        0      0        λ",
             "       0100   010       ",
             "       0111000000       ",
@@ -27,10 +27,6 @@ class ArTTY::Art::TmntSplinter < ArTTY::Art
             "   0811111110 0111111180",
             "   0000000000 0000000000",
         ]
-    end
-
-    def initialize
-        super
         @name = "tmnt-splinter"
         map_color("0", "color_016")
         map_color("1", "color_052")

@@ -1,8 +1,8 @@
-# encoding: utf-8
 class ArTTY::Art::ZeldaLinkBlue < ArTTY::Art
-    def color_map
-        return [
-            "          0000000                       λ",
+    def initialize
+        super
+        @colors = [
+            "          0000000                     λ",
             "        00444444000                   ",
             "      00144444444440                  ",
             "     5555522222144400                 ",
@@ -34,10 +34,6 @@ class ArTTY::Art::ZeldaLinkBlue < ArTTY::Art
             "     035530       035530              ",
             "     00000         00000              "
         ]
-    end
-
-    def initialize
-        super
         @name = "zelda-link-blue"
 
         black = "color_232"

@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MarvelDeadpool < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "          333333       λ",
             "        3311111133     ",
             "       311111111113    ",
@@ -44,10 +44,6 @@ class ArTTY::Art::MarvelDeadpool < ArTTY::Art
             "    311113      333333 ",
             "    333333             ",
         ]
-    end
-
-    def initialize
-        super
         @name = "marvel-deadpool"
         map_color("0", "color_094")
         map_color("1", "color_196")

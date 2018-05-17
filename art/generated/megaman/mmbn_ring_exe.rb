@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnRingEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                      222                                    λ",
             "                     25652                                   ",
             "                     266d62                                  ",
@@ -71,10 +71,6 @@ class ArTTY::Art::MmbnRingEXE < ArTTY::Art
             "                   eeeeeeeeeeeeeee77e                        ",
             "                       eeeeeeeee                             ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-ring.EXE"
         map_color("0", "color_024")
         map_color("1", "color_031")

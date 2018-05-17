@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::ZeldaMajorasMask < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "                a                       a                λ",
             "               aca                     aca               ",
             "               aca                     aca               ",
@@ -58,10 +58,6 @@ class ArTTY::Art::ZeldaMajorasMask < ArTTY::Art
             "                aca                   aca                ",
             "                aa                     aa                ",
         ]
-    end
-
-    def initialize
-        super
         @name = "zelda-majoras-mask"
         map_color("0", "color_033")
         map_color("1", "color_035")

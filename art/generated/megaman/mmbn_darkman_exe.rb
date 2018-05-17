@@ -1,7 +1,7 @@
-# encoding: utf-8
 class ArTTY::Art::MmbnDarkmanEXE < ArTTY::Art
-    def color_map
-        return [
+    def initialize
+        super
+        @colors = [
             "  7                                  λ",
             "  7                               9  ",
             "  7                               9  ",
@@ -79,10 +79,6 @@ class ArTTY::Art::MmbnDarkmanEXE < ArTTY::Art
             "       77777777777777777777          ",
             "           777777777777              ",
         ]
-    end
-
-    def initialize
-        super
         @name = "mmbn-darkman.EXE"
         map_color("0", "color_029")
         map_color("1", "color_070")
