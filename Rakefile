@@ -5,7 +5,7 @@ task :default => :gem
 
 desc "Clean up"
 task :clean do
-    system("rm -rf *.gem Gemfile.lock lib/arTTY/art")
+    system("rm -rf *.gem Gemfile.lock")
     system("chmod -R go-rwx bin lib")
 end
 
@@ -30,7 +30,7 @@ task :concatenate do
 end
 
 desc "Build gem"
-task :gem => :concatenate do
+task :gem do
     system("chmod -R u=rwX,go=rX bin lib")
     system("gem build -V *.gemspec")
 end

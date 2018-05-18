@@ -21,6 +21,7 @@ def parse(args)
     options = Hash.new
     options["action"] = "draw"
     options["art"] = nil
+    options["categories"] = nil
     options["clear"] = false
     options["exclude"] = nil
     options["fit"] = false
@@ -45,6 +46,13 @@ def parse(args)
         end
 
         opts.on("", "OPTIONS")
+
+        opts.on(
+            "--categories=CATEGORIES",
+            "Use specified categories"
+        ) do |categories|
+            options["categories"] = categories.split(",")
+        end
 
         opts.on("-c", "--clear", "Clear screen first") do
             options["clear"] = true
@@ -84,8 +92,12 @@ def parse(args)
             options["generate"] = image
         end
 
-        opts.on("--ls", "--list-supported", "List supported art") do
+        opts.on("--ls", "--list-art", "List supported art") do
             options["action"] = "list"
+        end
+
+        opts.on("--list-categories", "List supported categories") do
+            options["action"] = "list-categories"
         end
 
         opts.on(
@@ -158,7 +170,7 @@ rescue Interrupt
 end
 
 begin
-    arTTY = ArTTY.new
+    arTTY = ArTTY.new(options["categories"])
     arTTY.exclude(options["exclude"]) if (options["exclude"])
     arTTY.match(options["match"]) if (options["match"])
 
@@ -194,6 +206,10 @@ begin
         puts ArTTY::Generator.new.generate(options["generate"])
     when "list"
         puts arTTY.available
+    when "list-categories"
+        ArTTY.all_categories.each do |cat|
+            puts cat
+        end
     else
         system("clear") if (options["clear"])
         art = arTTY.get(options["art"], options["sysinfo"]).draw

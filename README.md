@@ -43,6 +43,36 @@ Then I can put things like the following in `$HOME/.config/arTTY/rc`:
 And if the file doesn't exist, it defaults to using `none`. Use the
 `--list-supported` or `--ls` flags to see all included artwork.
 
+### Tab completion
+
+You can add one of the below to your `~/.bashrc` or `~/.zshrc` to get
+tab completion.
+
+#### bash
+
+```
+if [[ -n $(command -v arTTY) ]]; then
+    _arTTY_complete() {
+        mapfile -t COMPREPLY < <(
+            arTTY --ls | \grep -E "^$2" | sort -u
+        )
+    }
+    complete -F _arTTY_complete arTTY
+fi
+```
+
+#### zsh
+
+```
+if [[ -n $(command -v arTTY) ]]; then
+    compdef _gnu_generic arTTY
+    _arTTY_complete() {
+        reply=($(arTTY --ls))
+    }
+    compctl -K _arTTY_complete arTTY
+fi
+```
+
 ## Generating your own art
 
 ArTTY can generate source code for images so long as they are named
@@ -71,8 +101,14 @@ parse any image this way.
 ## TODO
 
 - Lots more art
-    - Can I automatically determine pixel size in the generator?
-        - No but convert (from imagemagick) can for many images
-    - Generate as much as possible of the original art I added
+    - Transformers
+    - Mega Man
 - Profile and try to make much more efficient
+    - Split into categories
+        - Only require specified categories
+        - Done
+        - FAST
+    - Cache art name and file path
+        - Only require specified art
+        - FASTER!!!
 - RDoc

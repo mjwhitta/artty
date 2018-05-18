@@ -39,23 +39,38 @@ done
 [[ -n $imgs ]] || usage 3
 
 for dir in \
+    arcade \
     back_to_the_future \
     dc \
     evil_dead \
     kirby \
     legend_of_zelda \
+    linux \
     marvel \
     megaman \
-    mighty_morphin_power_rangers \
-    pokemon \
-    pokemon/bulbapedia/I \
-    pokemon/bulbapedia/II \
-    pokemon/bulbapedia/III \
+    megaman_battle_network \
+    mighty_no_9 \
+    pokemon/characters \
+    pokemon/emerald/I \
+    pokemon/emerald/II \
+    pokemon/emerald/III \
+    pokemon/emerald/I-shiny \
+    pokemon/emerald/II-shiny \
+    pokemon/emerald/III-shiny \
+    pokemon/leafgreen/I \
+    pokemon/leafgreen/II \
+    pokemon/leafgreen/III \
+    pokemon/leafgreen/I-shiny \
+    pokemon/leafgreen/II-shiny \
+    pokemon/leafgreen/III-shiny \
+    pokemon/sprites \
+    portal \
+    power_rangers \
     sonic \
     street_fighter \
     teenage_mutant_ninja_turtles
 do
     info "$dir"
-    ./art_from_images $force -i $imgs/$dir -o ../art/generated/$dir -p
+    ./art_from_images $force -i $imgs/$dir -o ../lib/arTTY/art/$dir -p
     [[ $? -eq 0 ]] || exit 1
 done; unset dir
