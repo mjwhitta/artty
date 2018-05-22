@@ -51,15 +51,19 @@ class ArTTY::Cache
         @cache["art"] = Hash.new
         @cache["version"] = current_version
 
-        dir = "#{__FILE__.split("/")[0...-1].join("/")}/art"
-        Fagin.find_children_with_file_recursively(
-            "ArTTY::Art",
-            dir
-        ).values.each do |clas, file|
-            img = clas.new
-            @cache["art"][img.name] = {"file" => file}.merge(
-                img.to_json
-            )
+        [
+            "#{__FILE__.split("/")[0...-1].join("/")}/art",
+            "~/.config/arTTY/art"
+        ].each do |dir|
+            Fagin.find_children_with_file_recursively(
+                "ArTTY::Art",
+                dir
+            ).values.each do |clas, file|
+                img = clas.new
+                @cache["art"][img.name] = {"file" => file}.merge(
+                    img.to_json
+                )
+            end
         end
         write
     end

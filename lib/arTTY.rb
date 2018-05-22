@@ -1,7 +1,9 @@
-require "fagin"
-
 class ArTTY
     attr_reader :art
+
+    def cache
+        @cache.refresh
+    end
 
     def exclude(pattern)
         @art.delete_if do |name|
@@ -14,16 +16,8 @@ class ArTTY
             @art.clear
         else
             @art.keep_if do |name|
-                (
-                    @@all_art[name].nil? &&
-                    (@cache.get_height_for(name) <= height) &&
-                    (@cache.get_width_for(name) <= width)
-                ) ||
-                (
-                    @@all_art[name] &&
-                    (@@all_art[name].height <= height) &&
-                    (@@all_art[name].width <= width)
-                )
+                (@cache.get_height_for(name) <= height) &&
+                (@cache.get_width_for(name) <= width)
             end
         end
     end
@@ -33,15 +27,11 @@ class ArTTY
         when "none"
             img = ArTTY::Art.new
         else
-            if (!@@all_art.has_key?(name))
+            if (!@@all_art.include?(name))
                 raise ArTTY::Error::ArtNotFound.new(name)
             end
-            if (!@art.include?(name))
-                img = ArTTY::Art.new
-            else
-                img = @@all_art[name]
-                img ||= @cache.get_class_for(name).new
-            end
+            img = ArTTY::Art.new if (!@art.include?(name))
+            img ||= @cache.get_class_for(name).new
         end
         img.sysinfo = sysinfo
         return img
@@ -50,20 +40,12 @@ class ArTTY
     def initialize
         @cache = ArTTY::Cache.new
 
-        @@all_art ||= Hash.new
+        @@all_art ||= Array.new
         @cache.art.each do |name|
-            @@all_art[name] = nil
+            @@all_art.push(name)
         end
 
-        Fagin.find_children_recursively(
-            "ArTTY::Art",
-            "~/.config/arTTY/art"
-        ).values.each do |clas|
-            img = clas.new
-            @@all_art[img.name] = img
-        end
-
-        @art = @@all_art.keys.sort.clone
+        @art = @@all_art.sort.clone
     end
 
     def match(pattern)

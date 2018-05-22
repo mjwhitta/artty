@@ -46,6 +46,10 @@ def parse(args)
 
         opts.on("", "OPTIONS")
 
+        opts.on("--cache", "Refresh the cache") do
+            options["action"] = "cache"
+        end
+
         opts.on("-c", "--clear", "Clear screen first") do
             options["clear"] = true
         end
@@ -195,6 +199,8 @@ begin
     options["art"] ||= "none"
 
     case options["action"]
+    when "cache"
+        arTTY.cache
     when "demo"
         arTTY.art.each do |name|
             puts "### #{name} ###".white
