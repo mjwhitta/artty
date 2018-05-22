@@ -27,20 +27,21 @@ configs:
 
 ```
 if [[ -n $(command -v arTTY) ]]; then
-    arTTY -cfs $(head -n 1 $HOME/.config/arTTY/rc 2>/dev/null)
+    arTTY $(head -n 1 $HOME/.config/arTTY/rc 2>/dev/null)
 fi
 ```
 
 Then I can put things like the following in `$HOME/.config/arTTY/rc`:
 
-- `linux-arch`
-- `zelda-majoras-mask`
-- `--fit --random`
-- `--fit --matching=pkmn-.*large.*I- --random`
-- `--matching=pkmn-.*small.*I- --random`
-- `--matching=mm(bn)?- --random`
+- `-cf --fit -rs`
+- `-c --categories pokemon/leafgreen/I,pokemon/leafgreen/II --fit -rs`
+- `-c --categories megaman-battle-network -f --fit -rs`
+- `-cf --categories linux -s linux-arch`
+- `-c --categories legend-of-zelda --fit -s legend-of-zelda-majoras-mask`
+- `-c --categories street-fighter --fit -m 3 -rs`
 
 And if the file doesn't exist, it defaults to using `none`. Use the
+`--list-categories` flag to see all categories, and the
 `--list-supported` or `--ls` flags to see all included artwork.
 
 ### Tab completion
@@ -76,7 +77,7 @@ fi
 ## Generating your own art
 
 ArTTY can generate source code for images so long as they are named
-properly. It can then `require` any code in the
+properly. It will then `require` any code in the
 `$HOME/.config/arTTY/art` directory.
 
 ### Example

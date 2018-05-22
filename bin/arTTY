@@ -49,7 +49,8 @@ def parse(args)
 
         opts.on(
             "--categories=CATEGORIES",
-            "Use specified categories"
+            "Only use specified categories",
+            "(comma separated, default is all)"
         ) do |categories|
             options["categories"] = categories.split(",")
         end
@@ -58,7 +59,7 @@ def parse(args)
             options["clear"] = true
         end
 
-        opts.on("-d", "--demo", "Demo all supported art") do
+        opts.on("-d", "--demo", "Demo art matching criteria") do
             options["action"] = "demo"
         end
 
@@ -70,11 +71,18 @@ def parse(args)
             options["exclude"] = pattern
         end
 
-        opts.on("--fit", "Use art that fits in the current window") do
+        opts.on(
+            "--fit",
+            "Only use art that fits in the current window"
+        ) do
             options["fit"] = true
         end
 
-        opts.on("-f", "--fortune", "Display a fortune as well") do
+        opts.on(
+            "-f",
+            "--fortune",
+            "Display a fortune as well (if installed)"
+        ) do
             options["fortune"] = true
         end
 
@@ -92,18 +100,22 @@ def parse(args)
             options["generate"] = image
         end
 
-        opts.on("--ls", "--list-art", "List supported art") do
+        opts.on(
+            "--ls",
+            "--list-art",
+            "List art matching criteria"
+        ) do
             options["action"] = "list"
         end
 
-        opts.on("--list-categories", "List supported categories") do
+        opts.on("--list-categories", "List categories") do
             options["action"] = "list-categories"
         end
 
         opts.on(
             "-m",
             "--matching=PATTERN",
-            "Display art matching PATTERN"
+            "Only use art matching PATTERN"
         ) do |pattern|
             options["match"] = pattern
         end

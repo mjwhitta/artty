@@ -7,7 +7,9 @@ class ArTTY
 
         dir = "#{__FILE__.split("/")[0...-1].join("/")}/arTTY/art"
         Dir["#{dir}/**/*/"].sort.each do |cat|
-            @@all_categories.push(cat.gsub(%r{^#{dir}/|/$}, ""))
+            @@all_categories.push(
+                cat.gsub(%r{^#{dir}/|/$}, "").gsub("_", "-")
+            )
         end
 
         return @@all_categories
@@ -24,7 +26,7 @@ class ArTTY
             @@categories.push(cat)
             Fagin.find_children_recursively(
                 "ArTTY::Art",
-                "#{dir}/#{cat}"
+                "#{dir}/#{cat.gsub("-", "_")}"
             ).values.each do |clas|
                 img = clas.new
                 @@all_art[img.name] = img

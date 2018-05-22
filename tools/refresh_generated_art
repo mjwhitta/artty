@@ -54,15 +54,15 @@ for dir in \
     pokemon/emerald/I \
     pokemon/emerald/II \
     pokemon/emerald/III \
-    pokemon/emerald/I-shiny \
-    pokemon/emerald/II-shiny \
-    pokemon/emerald/III-shiny \
+    pokemon/emerald/I_shiny \
+    pokemon/emerald/II_shiny \
+    pokemon/emerald/III_shiny \
     pokemon/leafgreen/I \
     pokemon/leafgreen/II \
     pokemon/leafgreen/III \
-    pokemon/leafgreen/I-shiny \
-    pokemon/leafgreen/II-shiny \
-    pokemon/leafgreen/III-shiny \
+    pokemon/leafgreen/I_shiny \
+    pokemon/leafgreen/II_shiny \
+    pokemon/leafgreen/III_shiny \
     pokemon/sprites \
     portal \
     power_rangers \
