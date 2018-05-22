@@ -34,14 +34,13 @@ fi
 Then I can put things like the following in `$HOME/.config/arTTY/rc`:
 
 - `-cf --fit -rs`
-- `-c --categories pokemon/leafgreen/I,pokemon/leafgreen/II --fit -rs`
-- `-c --categories megaman-battle-network -f --fit -rs`
-- `-cf --categories linux -s linux-arch`
-- `-c --categories legend-of-zelda --fit -s legend-of-zelda-majoras-mask`
-- `-c --categories street-fighter --fit -m 3 -rs`
+- `-ce emerald|shiny|sprite --fit -m pokemon -rs`
+- `-cf --fit -m megaman-battle-network -rs`
+- `-cfs linux-arch`
+- `-c --fit -s legend-of-zelda-majoras-mask`
+- `-c --fit -m street-fighter-3 -rs`
 
-And if the file doesn't exist, it defaults to using `none`. Use the
-`--list-categories` flag to see all categories, and the
+And if that file doesn't exist, it defaults to using `none`. Use the
 `--list-supported` or `--ls` flags to see all included artwork.
 
 ### Tab completion
@@ -104,12 +103,4 @@ parse any image this way.
 - Lots more art
     - Transformers
     - Mega Man
-- Profile and try to make much more efficient
-    - Split into categories
-        - Only require specified categories
-        - Done
-        - FAST
-    - Cache art name and file path
-        - Only require specified art
-        - FASTER!!!
 - RDoc

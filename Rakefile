@@ -14,21 +14,6 @@ task :colors do
     Hilighter.sample
 end
 
-desc "Concatenate art source files"
-task :concatenate do
-    FileUtils.mkdir_p("lib/arTTY/art")
-    File.open("lib/arTTY/art/concatenated.rb", "w") do |f|
-        Dir["art/**/*.rb"].sort do |a, b|
-            left = a.gsub(%r{^art/(generated/)?}, "")
-            right = b.gsub(%r{^art/(generated/)?}, "")
-            left.downcase <=> right.downcase
-        end.each do |file|
-            f.write(File.read(file))
-            f.write("\n")
-        end
-    end
-end
-
 desc "Build gem"
 task :gem do
     system("chmod -R u=rwX,go=rX bin lib")

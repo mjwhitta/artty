@@ -105,6 +105,15 @@ class ArTTY::Art
         end
     end
 
+    def to_json
+        return {
+            "class" => self.class.to_s,
+            "height" => height,
+            "name" => @name,
+            "width" => width
+        }
+    end
+
     def to_s
         return draw
     end
