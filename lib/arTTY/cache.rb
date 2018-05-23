@@ -1,4 +1,5 @@
 require "fagin"
+require "fileutils"
 require "json"
 require "pathname"
 
