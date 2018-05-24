@@ -91,6 +91,8 @@ sample the color inside each cell. It will then generate a ruby class
 called `MyArtName`. This works best with pixel art, however, it can
 parse any image this way.
 
+**Note: Make sure to run `arTTY --cache` after generating new art**
+
 ## Links
 
 - [Source](https://gitlab.com/mjwhitta/arTTY)
