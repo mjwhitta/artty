@@ -103,6 +103,13 @@ parse any image this way.
 ## TODO
 
 - Lots more art
-    - Transformers
+    - Final Fantasy
+    - Linux
+        - Debian
+        - Gentoo
+        - OpenSUSE
+        - RedHat
+        - Ubuntu
     - Mega Man
+    - Transformers
 - RDoc
