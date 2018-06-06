@@ -96,7 +96,6 @@ parse any image this way.
 ## Links
 
 - [Source](https://gitlab.com/mjwhitta/arTTY)
-- [Mirror](https://github.com/mjwhitta/arTTY)
 - [RubyGems](https://rubygems.org/gems/arTTY)
 - [Images](https://gitlab.com/mjwhitta/arTTY_images)
 
