@@ -198,6 +198,7 @@ begin
     # Ensure art is not nil
     options["art"] ||= "none"
 
+    system("clear") if (options["clear"])
     case options["action"]
     when "cache"
         arTTY.cache
@@ -212,7 +213,6 @@ begin
     when "list"
         puts arTTY.art
     else
-        system("clear") if (options["clear"])
         art = arTTY.get(options["art"], options["sysinfo"]).draw
         puts "\n#{art}\n" if (!art.empty?)
         if (options["fortune"] && ScoobyDoo.where_are_you("fortune"))
