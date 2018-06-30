@@ -96,12 +96,15 @@ class ArTTY::Generator
                     )
                         c = (m[1].to_i / w_increment).to_i
                         r = (m[2].to_i / h_increment).to_i
+
                         clr = ""
-                        m[3].match(
-                            /#?([A-Fa-f0-9]{6})[A-Fa-f3-9][A-Fa-f0-9]/
-                        ) do |hex|
+                        code = "[A-Fa-f0-9]{6}"
+                        vis = "[A-Fa-f3-9][A-Fa-f0-9]"
+
+                        m[3].match(/^#?(#{code})(#{vis})?$/) do |hex|
                             clr = Hilighter.hex_to_x256(hex[1])
                         end
+
                         pixels.push(Array.new) if (pixels.length <= r)
                         pixels[r].push(clr) if (pixels[r].length <= c)
                     end

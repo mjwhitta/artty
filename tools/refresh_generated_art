@@ -50,6 +50,7 @@ for dir in \
     final_fantasy/tactics/moogle \
     final_fantasy/tactics/nu_mou \
     final_fantasy/tactics/viera \
+    halo \
     kirby \
     legend_of_zelda \
     linux \
