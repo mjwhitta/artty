@@ -1,0 +1,123 @@
+class ArTTY::Art::OverwatchReinhardt < ArTTY::Art
+    def initialize
+        super
+        @colors = [
+            "                                                            0                                                                    ",
+            "                                                            00                                                                   ",
+            "                                                            0e0                                                                  ",
+            "                                                            0e0                                                                  ",
+            "                                                            0ee0                                                                 ",
+            "                                                            0ee0                                                                 ",
+            "                                                            0ee0                                                                 ",
+            "                                                            0eee0                                                                ",
+            "                                                            0eee0                                                                ",
+            "                                                            0bee0          0                                                     ",
+            "                                                            0bee0          0                                                     ",
+            "                                                            0beee0        00                                                     ",
+            "                                                        0   0beee0        00                                                     ",
+            "                                                        0   0beee0       030                                                     ",
+            "                                                        00  0beee0       030   0                                                 ",
+            "                                                        00  0bbee0 000000e30   0                                                 ",
+            "                                                        00  0bbeee0eeeeebe3b00000                                                ",
+            "                                                        090 0bbeeeebeeeebe3beebe0                                                ",
+            "                                                        090 0bbeeeebee33be3beebe0                  00000                         ",
+            "                                                        09009bbeeeebe333be3b3bbeb0                0eeb990                        ",
+            "                                                        0999b9beeeeeb33bee3b3beebe0             00ebbb99c0                       ",
+            "                                                        0999b9beeeeeb33bee3bebeebbb000         0e3cbbbb9c0                       ",
+            "                                                      000999b9beeeebeeebee3bebbebbb8bb0000    0e3ccbbbb9c0                       ",
+            "                                                     0bbb09bb9bbeebeeeeebe3bbbbbbbbb899ebb0000e3cccbbbb9cc0                      ",
+            "                                                    09bbb09bbb9bebeeeeeebe3bbbcccccc8999ebbb9e3bccccbbbeeee00                    ",
+            "                                                   09bb9909bbb9bebeeeeeee9bbbcccbb8000999ebb9ebbccccbeeeeeeee00                  ",
+            "                                                  099b9980bbbb9bbeeeeee99bbcccb8880000099ebbe3bbbccceeeeeee99990000              ",
+            "                                                 099bb99099bbb9bbeeee99bbbcccbb8ea0000009ebbebbbbcce33eee99bbbbbbbb0000          ",
+            "                                              008999bb980008999beee99bccccccbb8e88088800ebb9ebbbbceee33e9bbbbbbbbbbbbbb0         ",
+            "                                            00998999b99000008889999bbccccccbbb8b88088880ebbe3bbbbeeeeee9bbbbbb9999999890         ",
+            "                                          009999899bb980000009988bbccccc000cbb8a8808880ebbbebbbbeeeee99bbbbbb99999999890         ",
+            "                                         0999999899b99000000008999bbbc0042ebbc8a8800880ebb9ebbbbeeee9bbbbbbbbbb999999890         ",
+            "                                        09999999899b990000000b40899b0065eebbc008880080ebbbebbbbeeee9bbbbbbbb999bb99998990        ",
+            "                                        0b999999899b980000000be5600065eeebbc0a0880000ebcbbebbbbeee9bbbbbbbb99999999998990        ",
+            "                                        0b999999899b900000090bbee676eebbbbc0aa800000ebccbbebbbeeee9bbbbbbb999999999988990        ",
+            "                                        0b999999989b9000000900bbe87ebbbbbcc0a8888000ebcccbebbbeee9bbb99999899999999988990        ",
+            "                                        0e899999989b90000090000be86bbbbbccc90888800ebccccebbbbbb0099800008999999999888990        ",
+            "                                        0e899999989b90000090000be84bbbbccccb9088800ebbcccebb000000800bbb00899999999888990        ",
+            "                                        0e889999989b980000b0000bbe0bbbbccccb9088800ebbccceb000b22000bbbbb0099999999888000        ",
+            "                                        0e8899999989b80000b0000bbe08bbbccccb088880ebbbbc9000bee2200bbbbbbb099999999000bb0        ",
+            "                                         09889999989b80000b00000ce08bbbcccc008880eb9bbbc900beee220000bbb00099999000bbb9b0        ",
+            "                                         0b888800089b80000b90000ce08bbccccb00880eb99bbbc90beeee22009bbbbb9099990ccbbbb9bb0       ",
+            "                                         0e888099808b80000b90000000009cccb00080ebb999bbc0beeeee221009bbb9089900ccccbbbb9b0       ",
+            "                                         0e880999008080000b9000eeeeee00c900000bbcbb990000eeeeee22210099900890bbbcccbbbeeee00     ",
+            "                                       00 0880990900100000bbeeebbbbeeee0000000bcccb008800eeeeeeb222100000890bbbbcccbeeeeeeee00   ",
+            "                                      0  b00809999011b000eeeeeeeeeebbeee00000bcccc0888200eeeeeeeb2221000000bbbbbbce3eeeeeeeeee00 ",
+            "                                      0cbbb080098011bb00eeeeeeeeeeeeebeeebb00bcccc08828a0eeeeeeeeb222221100bbbbbeeee33eeeeeeeeee0",
+            "                                       0cbbb0000011bbb0eeeeeeeeeeeeeeebbbee00bccc00828aa0cee99ee98b2221110bbbbbeeeeeee33eeb900000",
+            "                                       0ccbbb00111bbb0ebbbbbbbeeeeeeeeeeeeeee000088828aaa0ee9e9e9e8eebbc00bbbeeeeeeeeeeb900000000",
+            "                                        00cbbb011bbb0eb4444459beeeeeeeeeeeeeee08888848aaa0ce9e9e998bbbcc00ceeeeeeeeeb90000000000 ",
+            "                                         00ccc0ccbbb0b4dddde749beeeeeeeeeeeeeee0aaa848aaaa0b9e9e9e8bccc000eeeeeeeb9000888000000  ",
+            "                                           000c0ccb0d4d99999ee59beeeeeeeeebbbbb0aaa848aa8800b88bc88ccc000beeeeb90088088888000    ",
+            "                                             000ccc0bd8999999e79bbbbbbbbbbbbbbb90aa84088888800ccccccc0000bbb90000888088880       ",
+            "                                        00000eb90cc0b998999999e49bbbbbbbbbbbbb9d0aaa84008888880000000999900000808880888880       ",
+            "                                      00eeb89b998000b999999999e49bbbbbbbbbbbb9db0aaaa844000000000999999999990000000000080        ",
+            "                                     0eeebb899998880b999999999d49b9dddddddbb9dbc0aaaaa88aaa2200 0999999cccb0bbe9122222200        ",
+            "                                     0eebbb899998880b999999999d49b9bbbbbbbd9dbc08aaaaaaaa88880  0bbbbbbcccc0eeee1199992220       ",
+            "                                    0eebbb8899998880b999999989849b9ccbbbbbbdbcc00000aa88888880   0eeeebbcc00bbeee9eeeeb1220      ",
+            "                                   0eebbbb880999888808999999987499ccccccccbbbc088880888888880    0eeeeeb00809bbbee9bbee9120      ",
+            "                                   0ebbbbb8809988888028999998749b9ccccccccccc088888088888800      000000888bb99bbee9bbb9e120     ",
+            "          000000                  0ebbbbb9888088888800288888749b9cccccccccc008888800888800             08888bee999989bbbee120    ",
+            "        00444aaa00                0ebbb99998880000008092444489b9ccccccccb008888880000000              000008bbee9eeee99bbe120    ",
+            "      00447aa444400              0ebbb99999b8888888888008888888cccccccc009902888000000               0eeeee99b8800eeeee9b9990000 ",
+            "    00aa0aa444770a00            0ebbb9999999bbbbb998880800bbbbbbbbbbb00999990200000000               0ceeeee8899900beeee999eeeee0",
+            "   0aa4440447700ba80           00bbbb9999999999998888808880000000000099999bb90000000000              0cbbee89beee900bbeeeb8eeeb9 ",
+            "  044477aa0000aaaba80         0800bb99999999999988888808800      099999bbbb9000008888880              0ccbb8bbbeee9400bebbb8bb90 ",
+            " 04477aaaa80888aaba880       0aa80b9999999999998888888000        0bbbbbbbb0020088888880000            08cccb9cbbbee980b8bbb8900  ",
+            "000aa000aaa08888aaba00       0aa80999999999999888888800      0000000000000880088888880000800          0888cb9cc9bbeeeee8000000   ",
+            "0e0000eb08a80888aab0a80      0aa809999999999988888880       099990880999998808888880000000880         0888b000cc8bee08e88409990  ",
+            "0eeeeebb088a0888800aa880     0aa88099988888888888880       0999990800999998000888009bbbbb08880        088bb090bc8bbb9000899000   ",
+            "0bbbbbbbb088800008aaaa880    0aa8809999988888888880       0999999908089998088800009bbbbeeb0880   00000088bb0908b89bb98bbbbb0990  ",
+            "0bbbbbbbbb00008888aaaa880   00aa808099999988888000    00  0bb999990880888088888080bbbbeeeeb0880  0beee088bb9008b988000bbb9909990 ",
+            "0bbbbbbbbb088808888aaaa080 0ea008088008888800000    00bb00bbbb99990800000900880880bbbeeeeeb0880  0eeee98bbbccc8bbbbbb0bc88088880 ",
+            " 0bbbbbbbbb08000008aa80a880eaa88008998000008880     0eebb9bbbbb99800bb989bbb000880bbeeeee90000   0eeeb98bcccc98bcbbbb8880008800  ",
+            " 0bbbbbbbbbb088888000000080aa888808999888888800    0bbb9b98bbbb99880bb999bbb990880cbeeee9eeee00 0beeb99888b88888cbccbc8098000    ",
+            " 0bbbbbbbbbbb0888aaaaa888080888880899988888880     09bb9bb9bbb9988809bbbbbb9990880cbeee9eeeeee0 0eeeb9b9900189b889cc9c8098080    ",
+            " 09bbbbbbbbbbb0888888aaa880088888089998888800      0b99bbb9bbb9888809bbbbbb99900880cbe9eeebeeee00eebb9eeb9011898b88888080900     ",
+            "  0bbbbbbbbbbbb00888888aa8080888808888888000       0bbbbbbb99988888099bbbb9999008880cb9eebeeebee0eeb9beeeeb0118898b98908990      ",
+            "  09bbbbbbbbbbbb00000888aa8080800 0888800          0bbbbbbbb8880088099bbbb99990 088800eeecbbbcbe0b00beeeeebb011188888110890      ",
+            "   0bbbbbbbbbbb9999990088a00800    0000           0eebbbeebbc0088080999bb999990 088880eeb9ccc9be0088beeeebbbb0111111100c080      ",
+            "   09bbbbbbbbb999999990000a00880                  0bb999bb9bc008800099999999990  00880eebb999bbb0888beeeebbeeb0011100cbc000      ",
+            "    0bbbbbbbb99999999900aaaa088800                0bb999bb99c080080089999999980    000bbbbbbbbbb0880eeeeebbeebbc000cccbc0        ",
+            "    099999999999099999900aa08088880               0009999999c08889990999999980       00beebbbbee0880bbbbebeeebcccbbccbbc0        ",
+            "     099999999909999999000088808880                  099990008999999909999900         0bbbe99ebb08880008bbbbbbcccbbccbbc0        ",
+            "     00000009999999999000008aa80880                   000008899999999900000           0cccc99ccc0080bbee8bb000ccbbbccbbc0        ",
+            "     0099999009999999000088aaaa8080                      044999999999990              08cc0000cc8080beee088bee80000000000        ",
+            "     099999928009999000088aaaaa8080                       00999999998880              09884444889900bebb00beee80bee8bee80        ",
+            "     09999928808000000088aaaaab8080               00       0999999888880              099999999999990bbc00bebb8beee8beeb0        ",
+            "     049944880000000088aaaaabb88800               0e0     0099999888000                0099999909990 00000bbcc0bbbb0bbb0         ",
+            "     08448888000008888aaaaab8888800               0eb0  00bb0099880000                   089990c0990      0000 0000 000          ",
+            "     088888808888888aaaaaa088888800               0eb9b0111bbb08088000                   08880ecc080                             ",
+            "     088888808888888aaa0ba08888880               0eb999b80011088088000                    080ceccc0800                           ",
+            "      088888808888880ba080a888880                0eb9999bb8008888008800                   080eecccc000                           ",
+            "      08888880888888080a80888880                 0eb999999bb88888888880                    0ceeccccc00                           ",
+            "       0888888088880a8088a88880                  0eb99999999b8888888880                   0bbeecccccb0                           ",
+            "        088888088880888a888800                   0eb99999999b0000000000                   0bbeecccccb0                           ",
+            "        08888808888a88888000                     000000000000                             0bbeeeccccb0                           ",
+            "         0888880888888000                                                                 0bbeeeccccb0                           ",
+            "          088880000000                                                                     00000000000                           ",
+            "           00000                                                                                                                 ",
+        ]
+        @name = "overwatch-reinhardt"
+        map_color("0", "color_016")
+        map_color("1", "color_088")
+        map_color("2", "color_160")
+        map_color("3", "color_188")
+        map_color("4", "color_202")
+        map_color("5", "color_208")
+        map_color("6", "color_214")
+        map_color("7", "color_220")
+        map_color("8", "color_236")
+        map_color("9", "color_239")
+        map_color("a", "color_240")
+        map_color("b", "color_243")
+        map_color("c", "color_244")
+        map_color("d", "color_247")
+        map_color("e", "color_251")
+    end
+end

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name = "arTTY"
-    s.version = "0.6.12"
+    s.version = "0.6.13"
     s.date = Time.new.strftime("%Y-%m-%d")
     s.summary = "Art for your TTY."
     s.description = [
