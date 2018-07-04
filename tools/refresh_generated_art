@@ -76,7 +76,8 @@ for dir in \
     power_rangers \
     sonic \
     street_fighter \
-    teenage_mutant_ninja_turtles
+    teenage_mutant_ninja_turtles \
+    transformers
 do
     info "$dir"
     ./art_from_images $force -i $imgs/$dir -o ../lib/arTTY/art/$dir -p
