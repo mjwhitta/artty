@@ -106,7 +106,10 @@ class ArTTY::SystemInfo
     end
 
     def uptime
-        up = %x(uptime -p).gsub(/^up /, "").strip
+        up = %x(uptime).gsub(
+            /^.+up\s+0?(\d+):0?(\d+),.+/,
+            "\\1 hours, \\2 mins"
+        ).strip
         return up.gsub(/\s+/, " ")
     end
 
