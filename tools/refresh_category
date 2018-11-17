@@ -1,43 +1,70 @@
 #!/usr/bin/env bash
 
-info() { echo -e "\e[32m[+] $@\e[0m"; }
+### Helpers begin
+check_deps() {
+    for d in "${deps[@]}"; do
+        [[ -n $(command -v "$d") ]] || errx 128 "$d is not installed"
+    done; unset d
+}
+err() { echo -e "${color:+\e[31m}[!] $*\e[0m"; }
+errx() { echo -e "${color:+\e[31m}[!] ${*:2}\e[0m"; exit "$1"; }
+good() { echo -e "${color:+\e[32m}[+] $*\e[0m"; }
+info() { echo -e "${color:+\e[37m}[*] $*\e[0m"; }
+long_opt() {
+    local arg shift="0"
+    case "$1" in
+        "--"*"="*) arg="${1#*=}"; [[ -n $arg ]] || usage 127 ;;
+        *) shift="1"; shift; [[ $# -gt 0 ]] || usage 127; arg="$1" ;;
+    esac
+    echo "$arg"
+    return $shift
+}
+subinfo() { echo -e "${color:+\e[36m}[=] $*\e[0m"; }
+warn() { echo -e "${color:+\e[33m}[-] $*\e[0m"; }
+### Helpers end
 
 usage() {
-    echo "Usage: ${0/*\//} [OPTIONS] <category>"
-    echo
-    echo "Parse arTTY_images category and create ruby code for ArTTY"
-    echo
-    echo "Options:"
-    echo "    -f, --force       Regenerate all images"
-    echo "    -i, --imgs=DIR    Path to arTTY_images repo"
-    echo
-    exit $1
+    cat <<EOF
+Usage: ${0##*/} [OPTIONS] <category>
+
+Parse arTTY_images category and create ruby code for ArTTY.
+
+Options:
+    -f, --force       Regenerate all images
+    -h, --help        Display this help message
+    -i, --imgs=DIR    Path to arTTY_images repo
+    --nocolor         Disable colorized output
+
+EOF
+    exit "$1"
 }
 
-declare -a args
-unset force imgs
+declare -a args deps
+unset force help imgs
+color="true"
 
+# Check for missing dependencies
+check_deps
+
+# Parse command line options
 while [[ $# -gt 0 ]]; do
     case "$1" in
         "--") shift && args+=("$@") && break ;;
         "-f"|"--force") force="-f" ;;
-        "-h"|"--help") usage 0 ;;
-        "-i"|"--imgs"*)
-            case "$1" in
-                "--"*"="*) arg="${1#*=}"; [[ -n $arg ]] || usage 1 ;;
-                *) shift; [[ $# -gt 0 ]] || usage 1; arg="$1" ;;
-            esac
-            imgs="$arg"
-            ;;
+        "-h"|"--help") help="true" ;;
+        "-i"|"--imgs"*) imgs="$(long_opt "$@")" || shift ;;
+        "--nocolor") unset color ;;
         *) args+=("$1") ;;
     esac
     shift
 done
-[[ -z ${args[@]} ]] || set -- "${args[@]}"
+[[ ${#args[@]} -eq 0 ]] || set -- "${args[@]}"
 
-[[ $# -eq 1 ]] || usage 2
-[[ -n $imgs ]] || usage 3
+# Check for valid params
+[[ -z $help ]] || usage 0
+[[ $# -eq 1 ]] || usage 1
+[[ -n $imgs ]] || usage 2
 
 info "$1"
-./art_from_images $force -i $imgs/$1 -o ../lib/arTTY/art/$1 -p
+./art_from_images $force -i "$imgs/$1" -o "../lib/arTTY/art/$1"
 [[ $? -eq 0 ]] || exit 1
