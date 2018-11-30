@@ -41,7 +41,7 @@ Then I can put things like the following in `$HOME/.config/arTTY/rc`:
 - `-c --fit -m street-fighter-3 -rs`
 
 And if that file doesn't exist, it defaults to using `none`. Use the
-`--list-supported` or `--ls` flags to see all included artwork.
+`--list-supported` or `--ls` flags to see all included images.
 
 ### Tab completion
 
@@ -54,7 +54,7 @@ tab completion.
 if [[ -n $(command -v arTTY) ]]; then
     _arTTY_complete() {
         mapfile -t COMPREPLY < <(
-            arTTY --ls | \grep -E "^$2" | sort -u
+            arTTY --ls | grep -iPs "^$2" | sort -u
         )
     }
     complete -F _arTTY_complete arTTY
