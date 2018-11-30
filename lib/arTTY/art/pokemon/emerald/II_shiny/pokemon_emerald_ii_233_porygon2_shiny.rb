@@ -1,4 +1,4 @@
-class ArTTY::Art::PokemonEmeraldII233PorygonShiny < ArTTY::Art
+class ArTTY::Art::PokemonEmeraldII233Porygon2Shiny < ArTTY::Art
     def initialize
         super
         @colors = [
@@ -38,7 +38,7 @@ class ArTTY::Art::PokemonEmeraldII233PorygonShiny < ArTTY::Art
             "                    7999966         ",
             "                     7766           ",
         ]
-        @name = "pokemon-emerald-II-233-porygon-shiny"
+        @name = "pokemon-emerald-II-233-porygon2-shiny"
         map_color("0", "color_024")
         map_color("1", "color_026")
         map_color("2", "color_069")
