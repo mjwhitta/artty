@@ -34,7 +34,7 @@ def parse(args)
     info = "Art for your TTY."
 
     parser = OptionParser.new do |opts|
-        opts.summary_width = 30
+        opts.summary_width = 25
 
         opts.banner = "Usage: #{File.basename($0)} [OPTIONS] [art]"
 
@@ -111,7 +111,11 @@ def parse(args)
             options["match"] = pattern
         end
 
-        opts.on("-r", "--random", "Display random art") do
+        opts.on(
+            "-r",
+            "--random",
+            "Display random art matching criteria"
+        ) do
             options["random"] = true
         end
 
