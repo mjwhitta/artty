@@ -99,7 +99,7 @@ class ArTTY::Generator
 
                         clr = ""
                         code = "[A-Fa-f0-9]{6}"
-                        vis = "[A-Fa-f3-9][A-Fa-f0-9]"
+                        vis = "[A-Fa-f2-9][A-Fa-f0-9]"
 
                         m[3].match(/^#?(#{code})(#{vis})?$/) do |hex|
                             clr = Hilighter.hex_to_x256(hex[1])

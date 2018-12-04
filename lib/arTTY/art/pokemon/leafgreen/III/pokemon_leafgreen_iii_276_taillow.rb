@@ -2,35 +2,36 @@ class ArTTY::Art::PokemonLeafgreenIII276Taillow < ArTTY::Art
     def initialize
         super
         @colors = [
-            " 3   3333                                 ",
-            "78897366555aa                             ",
-            "7338873555522a                            ",
-            "33338830acc522a                           ",
-            " 73338790a9621a               a2a         ",
-            " 37333700a99111a             a21a         ",
-            " 37333370c991111aa          a21a          ",
-            "  373333739211111aa        a22a        1aa",
-            "  3733333771111a124aa     a21a        a21a",
-            "   73665338711a244442aa  a210        a21a ",
-            "  386663877111a442211110aaaa0      1a21a  ",
-            "  33663877351a24211111110aa0      a221a   ",
-            " 383538735555a221111111110a0    aa1110    ",
-            " 383387355555a2111111111110  aaaaaaa0     ",
-            "  38875555555a21111111111110aaaaaaa0      ",
-            "   33366555555a1111111111110aaaaaa0       ",
-            "      3666555ca11111111111110aaaa0        ",
-            "       39666999a1111111111110aaa0         ",
-            "        b9699999a1111111111110a0          ",
-            "         b9999999ba111111111100           ",
-            "         b9999999ccba111111111aaaaaa11    ",
-            "          bc999ccccccbaa11111112222244aa  ",
-            "           bbccccccccccbbaaa111111000a    ",
-            "           3000bccccccb00000000000        ",
-            "          383a300bbbb0000                 ",
-            "          30a800  0aa0a000                ",
-            "            a0   a303000                  ",
-            "                  a8a80                   ",
-            "                   a 0                    ",
+            " 33   3333                                 ",
+            "39a73368863b                               ",
+            "7399a7366555bb                             ",
+            "77339973555522b                            ",
+            "373339930bdd522b                           ",
+            " 3733397a0ba621b               b2b         ",
+            "  37333700baa111b             b21b         ",
+            "  37333370daa1111bb          b21b          ",
+            "   37333373a211111bb        b22b        1bb",
+            "   3733333771111b124bb     b21b        b21b",
+            "    73665339711b244442bb  b210        b21b ",
+            "   396663977111b442211110bbbb0      1b21b  ",
+            "   33663977351b24211111110bb0      b221b   ",
+            "  393539735555b221111111110b0    bb1110    ",
+            "  393397355555b2111111111110  bbbbbbb0     ",
+            "   39975555555b21111111111110bbbbbbb0      ",
+            "    33366555555b1111111111110bbbbbb0       ",
+            "       3666555db11111111111110bbbb0        ",
+            "        3a666aaab1111111111110bbb0         ",
+            "         ca6aaaaab1111111111110b0          ",
+            "          caaaaaaacb111111111100           ",
+            "          caaaaaaaddcb111111111bbbbbb11    ",
+            "           cdaaaddddddcbb11111112222244bb  ",
+            "            ccddddddddddccbbb111111000b    ",
+            "            3000cddddddc00000000000        ",
+            "           393b300cccc0000                 ",
+            "           30b900  0bb0b000                ",
+            "             b0   b303000                  ",
+            "                   b9b90                   ",
+            "                    b 0                    ",
         ]
         @name = "pokemon-leafgreen-III-276-taillow"
         map_color("0", "color_016")
@@ -41,10 +42,11 @@ class ArTTY::Art::PokemonLeafgreenIII276Taillow < ArTTY::Art
         map_color("5", "color_131")
         map_color("6", "color_167")
         map_color("7", "color_179")
-        map_color("8", "color_221")
-        map_color("9", "color_231")
-        map_color("a", "color_237")
-        map_color("b", "color_246")
-        map_color("c", "color_252")
+        map_color("8", "color_210")
+        map_color("9", "color_221")
+        map_color("a", "color_231")
+        map_color("b", "color_237")
+        map_color("c", "color_246")
+        map_color("d", "color_252")
     end
 end
