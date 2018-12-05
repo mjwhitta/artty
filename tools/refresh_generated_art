@@ -100,7 +100,9 @@ for dir in \
     pokemon/leafgreen/I_shiny \
     pokemon/leafgreen/II_shiny \
     pokemon/leafgreen/III_shiny \
-    pokemon/sprites \
+    pokemon/sprites/I \
+    pokemon/sprites/II \
+    pokemon/sprites/III \
     portal \
     power_rangers \
     sonic \
