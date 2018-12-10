@@ -34,7 +34,7 @@ fi
 Then I can put things like the following in `$HOME/.config/arTTY/rc`:
 
 - `-cf --fit -rs`
-- `-ce emerald|shiny|sprite --fit -m pokemon -rs`
+- `-ce jynx|nosepass|smoochum --fit -m pokemon(-leafgreen)?-I+- -rs`
 - `-cf --fit -m megaman-battle-network -rs`
 - `-cfs linux-arch`
 - `-c --fit -s legend-of-zelda-majoras-mask`
@@ -88,7 +88,7 @@ $ arTTY -g my-art-name_WIDTHxHEIGHT.png \
 
 This will use imagemagick to traverse a `WIDTH` by `HEIGHT` grid and
 sample the color inside each cell. It will then generate a ruby class
-called `MyArtName`. This works best with pixel art, however, it can
+called `MyArtName`. This works best with sprites, however, it can
 parse any image this way.
 
 **Note: Make sure to run `arTTY --cache` after generating new art**
@@ -102,11 +102,7 @@ parse any image this way.
 ## TODO
 
 - Lots more art
-    - Final Fantasy
-    - Linux
-        - Gentoo
-        - OpenSUSE
-        - Ubuntu
-    - Mega Man
-    - Transformers
+    - See [arTTY_images] repo
 - RDoc
+
+[arTTY_images]: https://gitlab.com/mjwhitta/arTTY_images#todo
