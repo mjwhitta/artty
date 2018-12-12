@@ -1,9 +1,10 @@
-class ArTTY::Art::PokemonII201UnownSprite < ArTTY::Art
+class ArTTY::Art::PokemonII201UnownISprite < ArTTY::Art
     def initialize
         super
         @colors = [
             "    32    ",
             "   3862   ",
+            "   3742   ",
             "   3742   ",
             "   3742   ",
             "  347422  ",
@@ -15,16 +16,14 @@ class ArTTY::Art::PokemonII201UnownSprite < ArTTY::Art
             " 312411572",
             " 39111952 ",
             "  391952  ",
-            " 37422472 ",
-            " 372  372 ",
-            " 37422472 ",
-            "3762662672",
-            "372 32 372",
-            "372    372",
-            " 3     372",
-            "        3 ",
+            "   3442   ",
+            "   3742   ",
+            "   3742   ",
+            "   3742   ",
+            "   3742   ",
+            "    32    ",
         ]
-        @name = "pokemon-II-201-unown-sprite"
+        @name = "pokemon-II-201-unown-I-sprite"
         map_color("0", "color_102")
         map_color("1", "color_231")
         map_color("2", "color_236")
