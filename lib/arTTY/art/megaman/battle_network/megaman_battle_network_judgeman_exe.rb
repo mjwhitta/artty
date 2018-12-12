@@ -2,79 +2,79 @@ class ArTTY::Art::MegamanBattleNetworkJudgemanEXE < ArTTY::Art
     def initialize
         super
         @colors = [
-            "                  5**$s52                 ",
-            "                 5)*s5330                 ",
-            "                5H%s53ppN                 ",
-            "               5HB533pw30                 ",
-            "              5HB53ppQpN                  ",
-            "             5BB53l313pN                  ",
-            "             5753m321pcN                  ",
-            "             zz3pQ223p3                   ",
-            "             553pc123pN                   ",
-            "              563p113pN                   ",
-            "              563pQppcM                   ",
-            "           554553ppc31On                  ",
-            "          54ppz4q4410kkOV                 ",
-            "          5pc4521o%Pkj9PZ4                ",
-            "         54p4541OOQxvjZZ31                ",
-            "         4q455YlD!()BZ430057FF7888        ",
-            "        4pc55ZlCw)554Q3z455z4$*)**T       ",
-            "        4p455!lpdH5zQPpf554z5**UU*X       ",
-            "        4q455A55G54z40zz54q4B*$Vr*%       ",
-            "        1Npp(e55H5z424455zz5**PnW%*T      ",
-            "        00OQ(TZsH5z40Dz55455*!0NnX*T      ",
-            "        0OQGWPAYH5z4Op45zz5B*QN0NW*T      ",
-            "       00NQ)TQAXH5q3z4554D5**PO00W*X      ",
-            "      0000Z*U($X)54ODDp44zg*$PO0NW*%      ",
-            "    555555*!Q)XX)55044DFz4B*QO00nW%*T     ",
-            "    q55555*TR(X)B55500O445!APO0NrrX*T     ",
-            "    555555)U($X)5554111000OO0OONnrX)T     ",
-            "    655555(U*$X)54zq1211100QNOO0OVX*X     ",
-            "    65555H$T($XH5z442111210RR0OO0nX*%     ",
-            "     7555*XRQZXH5D452111210RR3551Nr**T    ",
-            "     z555)WROOP(5&x4311111NR3z7850V%*T    ",
-            "     7555)WPO0O)54FDpc11Pc0457z520nX)T    ",
-            "     6B!)$VOO0OH5zpQcp3P1135665411nX*X    ",
-            "      nj)XROO0P(5z421P3P14z7652111nX*%    ",
-            "      9j)WOONO(B55521111057z521111nX**T   ",
-            "      9j)WOONO)555521210Rnh7411113nW%*T   ",
-            "       )%VOONO)5555211a999Se11111nrr$*T   ",
-            "       *XnPONO)555521kvvk99n31111VrVX*X   ",
-            "       *XROO0O)555521kjvvk9R11113VrVW*%   ",
-            "       *WOOO0O)55552199vvvv91113nrrVW**T  ",
-            "      *%VOO00O)5555211kvvvv9113nrrrVW**S  ",
-            "      *Xn0000O)5555211aivv9R11nrrrrrr%*T  ",
-            "      *Xn4000O)55552111999000drrrrrrVX*X  ",
-            "      *s56500O)55552112100001dVrrrrrVW*%  ",
-            "     *%r58500O)55552111111111OVrrrrrVW**T ",
-            "     *XV565O0O)555521111111211nrrrrrVW**S ",
-            "     *Xn565n0O)555521111111121OVrrrrrr%*T ",
-            "    *%WV555Z1O)54z552112123p321nrrrrrVX*X ",
-            "   *%WrWt5u523)54D552111123pc31OVrrrrVW*% ",
-            "  *%WrrV5B5514*B4D45211P121cwppcnrrrrVW**T",
-            "**%WrVSd5B5521$*5zp5521pc123wwc1OVrrrVW**S",
-            "%%WVSd  5B5521f)54D4521cwc11pc121VrrrVW**T",
-            "rrSd    5!q4211$H5Cp453cwwc11121OVrrrrr%*W",
-            "        5!w4521fH5pEFFFwwwp12110RrrrrrVX*%",
-            "        5!w45214)54DFFFwc11100  SrrrrrVW**",
-            "        5!w55213$H5554411000    dVrrrrVW**",
-            "       55)q45211P)42210001cN     SrrrrVW**",
-            "       5B*7q4221M    3p4f4P10    drrrrVW**",
-            "      5ZXH7p411cc    3p4s54P1    drWrrrr$*",
-            "     5yj9s)ppccc31   3p4sA4c1     SrrWrVX*",
-            "     bjkvv)54433nV   3p58B4l30      SrrrW*",
-            "    9vvvvkXH55nn9   24z78H51P10       SVWI",
-            "   99jvv99j(sn999K  25F78*)41P1         T*",
-            "   vvva99999999KKKKK14z78)YG41PN          ",
-            "   vvk9999KKKKKKKKKK4z78(W9XG411K         ",
-            "    LLKKKKKKKKKKKKKK578(yvk9XGf3KKK       ",
-            "     JKKKKKKKKKKKKJL&H)yvvvkaW(&LJKK      ",
-            "        KKKKKKKKKKKKMjvvvvvvk9MMKKKK      ",
-            "             KKKKKKKK9kkj9aa999KKKKK      ",
-            "                 KKKK99jkvvk999KKKK       ",
-            "                    KK9kvvvvk99KKKK       ",
-            "                      L9999999KKK         ",
-            "                         KKKKKK           ",
+            "                  5))!r52                 ",
+            "                 5()r5330                 ",
+            "                5G$r53ooM                 ",
+            "               5GA533ov30                 ",
+            "              5GA53ooPoM                  ",
+            "             5AA53k313oM                  ",
+            "             5753l321obM                  ",
+            "             yy3oP223o3                   ",
+            "             553ob123oM                   ",
+            "              563o113oM                   ",
+            "              563oPoobL                   ",
+            "           554553oob31Nm                  ",
+            "          54ooy4p4410jjNU                 ",
+            "          5ob4521n$Oji9OY4                ",
+            "         54o4541NNPwuiYY31                ",
+            "         4p455XkCZ&(AY430057EE7888        ",
+            "        4ob55YkBv(554P3y455y4!)())S       ",
+            "        4o455ZkocG5yPOoe554y5))TT)W       ",
+            "        4p455z55F54y40yy54p4A)!Uq)$       ",
+            "         Moo&d55G5y424455yy5))OmV$)S      ",
+            "        00NP&SYrG5y40Cy55455)Z0MmW)S      ",
+            "        0NPFVOzXG5y4No45yy5A)PM0MV)S      ",
+            "       00MP(SPzWG5p3y4554C5))ON00V)W      ",
+            "      0000Y)T&!W(54NCCo44yf)!ON0MV)$      ",
+            "    555555)ZP(WW(55044CEy4A)PN00mV$)S     ",
+            "    p55555)SQ&W(A55500N445ZzON0MqqW)S     ",
+            "    555555(T&!W(5554111000NN0NNMmqW(S     ",
+            "    655555&T)!W(54yp1211100PMNN0NUW)W     ",
+            "    65555G!S&!WG5y442111210QQ0NN0mW)$     ",
+            "     7555)WQPYWG5C452111210QQ3551Mq))S    ",
+            "     y555(VQNNO&5%w4311111MQ3y7850U$)S    ",
+            "     7555(VON0N(54ECob11Ob0457y520mW(S    ",
+            "     6AZ(!UNN0NG5yoPbo3O1135665411mW)W    ",
+            "      mi(WQNN0O&5y421O3O14y7652111mW)$    ",
+            "      9i(VNNMN&A55521111057y521111mW))S   ",
+            "      9i(VNNMN(555521210Qmg7411113mV$)S   ",
+            "       ($UNNMN(5555211a999Rd11111mqq!)S   ",
+            "       )WmONMN(555521juuj99m31111UqUW)W   ",
+            "       )WQNN0N(555521jiuuj9Q11113UqUV)$   ",
+            "       )VNNN0N(55552199uuuu91113mqqUV))S  ",
+            "      )$UNN00N(5555211juuuu9113mqqqUV))R  ",
+            "      )Wm0000N(5555211ahuu9Q11mqqqqqq$)S  ",
+            "      )Wm4000N(55552111999000cqqqqqqUW)W  ",
+            "      )r56500N(55552112100001cUqqqqqUV)$  ",
+            "     )$q58500N(55552111111111NUqqqqqUV))S ",
+            "     )WU565N0N(555521111111211mqqqqqUV))R ",
+            "     )Wm565m0N(555521111111121NUqqqqqq$)S ",
+            "    )$VU555Y1N(54y552112123o321mqqqqqUW)W ",
+            "   )$VqVs5t523(54C552111123ob31NUqqqqUV)$ ",
+            "  )$VqqU5A5514)A4C45211O121bvoobmqqqqUV))S",
+            "))$VqURc5A5521!)5yo5521ob123vvb1NUqqqUV))R",
+            "$$VURc  5A5521e(54C4521bvb11ob121UqqqUV))S",
+            "qqRc    5Zp4211!G5Bo453bvvb11121NUqqqqq$)V",
+            "        5Zv4521eG5oDEEEvvvo12110QqqqqqUW)$",
+            "        5Zv45214(54CEEEvb11100  RqqqqqUV))",
+            "        5Zv55213!G5554411000    cUqqqqUV))",
+            "       55(p45211O(42210001bM     RqqqqUV))",
+            "       5A)7p4221L    3o4e4O10    cqqqqUV))",
+            "      5YWG7o411bb    3o4r54O1    cqVqqqq!)",
+            "     5xi9r(oobbb31   3o4rz4b1     RqqVqUW)",
+            "      ijuu(54433mU   3o58A4k30      RqqqV)",
+            "    9uuuujWG55mm9   24y78G51O10       RUVH",
+            "   99iuu99i&rm999J  25E78)(41O1         S)",
+            "   uuua99999999JJJJJ14y78(XF41OM          ",
+            "   uuj9999JJJJJJJJJJ4y78&V9WF411J         ",
+            "    KKJJJJJJJJJJJJJJ578&xuj9WFe3JJJ       ",
+            "     IJJJJJJJJJJJJIK%G(xuuujaV&%KIJJ      ",
+            "        JJJJJJJJJJJJLiuuuuuuj9LLJJJJ      ",
+            "             JJJJJJJJ9jji9aa999JJJJJ      ",
+            "                 JJJJ99ijuuj999JJJJ       ",
+            "                    JJ9juuuuj99JJJJ       ",
+            "                      K9999999JJJ         ",
+            "                         JJJJJJ           ",
         ]
         @name = "megaman-battle-network-judgeman.EXE"
         map_color("0", "color_017")
@@ -88,63 +88,62 @@ class ArTTY::Art::MegamanBattleNetworkJudgemanEXE < ArTTY::Art
         map_color("8", "color_033")
         map_color("9", "color_053")
         map_color("a", "color_054")
-        map_color("b", "color_055")
-        map_color("c", "color_058")
-        map_color("d", "color_059")
-        map_color("e", "color_060")
-        map_color("f", "color_061")
-        map_color("g", "color_062")
-        map_color("h", "color_067")
-        map_color("i", "color_089")
-        map_color("j", "color_090")
-        map_color("k", "color_091")
-        map_color("l", "color_094")
-        map_color("m", "color_095")
-        map_color("n", "color_096")
-        map_color("o", "color_097")
-        map_color("p", "color_100")
-        map_color("q", "color_101")
-        map_color("r", "color_102")
-        map_color("s", "color_103")
-        map_color("t", "color_109")
-        map_color("u", "color_110")
-        map_color("v", "color_127")
-        map_color("w", "color_136")
-        map_color("x", "color_137")
-        map_color("y", "color_139")
-        map_color("z", "color_143")
-        map_color("A", "color_145")
-        map_color("B", "color_146")
-        map_color("C", "color_178")
-        map_color("D", "color_179")
-        map_color("E", "color_184")
-        map_color("F", "color_185")
-        map_color("G", "color_188")
-        map_color("H", "color_189")
-        map_color("I", "color_231")
-        map_color("J", "color_232")
-        map_color("K", "color_233")
-        map_color("L", "color_234")
-        map_color("M", "color_235")
-        map_color("N", "color_236")
-        map_color("O", "color_237")
-        map_color("P", "color_238")
-        map_color("Q", "color_239")
-        map_color("R", "color_240")
-        map_color("S", "color_241")
-        map_color("T", "color_242")
-        map_color("U", "color_243")
-        map_color("V", "color_244")
-        map_color("W", "color_245")
-        map_color("X", "color_246")
-        map_color("Y", "color_247")
-        map_color("Z", "color_248")
-        map_color("!", "color_249")
-        map_color("$", "color_250")
-        map_color("%", "color_251")
-        map_color("&", "color_252")
-        map_color("(", "color_253")
-        map_color(")", "color_254")
-        map_color("*", "color_255")
+        map_color("b", "color_058")
+        map_color("c", "color_059")
+        map_color("d", "color_060")
+        map_color("e", "color_061")
+        map_color("f", "color_062")
+        map_color("g", "color_067")
+        map_color("h", "color_089")
+        map_color("i", "color_090")
+        map_color("j", "color_091")
+        map_color("k", "color_094")
+        map_color("l", "color_095")
+        map_color("m", "color_096")
+        map_color("n", "color_097")
+        map_color("o", "color_100")
+        map_color("p", "color_101")
+        map_color("q", "color_102")
+        map_color("r", "color_103")
+        map_color("s", "color_109")
+        map_color("t", "color_110")
+        map_color("u", "color_127")
+        map_color("v", "color_136")
+        map_color("w", "color_137")
+        map_color("x", "color_139")
+        map_color("y", "color_143")
+        map_color("z", "color_145")
+        map_color("A", "color_146")
+        map_color("B", "color_178")
+        map_color("C", "color_179")
+        map_color("D", "color_184")
+        map_color("E", "color_185")
+        map_color("F", "color_188")
+        map_color("G", "color_189")
+        map_color("H", "color_231")
+        map_color("I", "color_232")
+        map_color("J", "color_233")
+        map_color("K", "color_234")
+        map_color("L", "color_235")
+        map_color("M", "color_236")
+        map_color("N", "color_237")
+        map_color("O", "color_238")
+        map_color("P", "color_239")
+        map_color("Q", "color_240")
+        map_color("R", "color_241")
+        map_color("S", "color_242")
+        map_color("T", "color_243")
+        map_color("U", "color_244")
+        map_color("V", "color_245")
+        map_color("W", "color_246")
+        map_color("X", "color_247")
+        map_color("Y", "color_248")
+        map_color("Z", "color_249")
+        map_color("!", "color_250")
+        map_color("$", "color_251")
+        map_color("%", "color_252")
+        map_color("&", "color_253")
+        map_color("(", "color_254")
+        map_color(")", "color_255")
     end
 end

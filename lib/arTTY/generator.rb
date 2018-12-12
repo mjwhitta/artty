@@ -78,7 +78,7 @@ class ArTTY::Generator
         pixels = Array.new
         w_increment = w_total = 0
 
-        %x(convert #{file} txt:-).each_line do |line|
+        %x(convert #{file} txt:- 2>/dev/null).each_line do |line|
             case line
             when /^#\s*ImageMagick.+/
                 line.match(/:\s+([0-9]+),([0-9]+),/) do |m|
@@ -99,7 +99,7 @@ class ArTTY::Generator
 
                         clr = ""
                         code = "[A-Fa-f0-9]{6}"
-                        vis = "[A-Fa-f2-9][A-Fa-f0-9]"
+                        vis = "[A-Fa-f4-9][A-Fa-f0-9]"
 
                         m[3].match(/^#?(#{code})(#{vis})?$/) do |hex|
                             clr = Hilighter.hex_to_x256(hex[1])
