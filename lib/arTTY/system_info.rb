@@ -108,12 +108,9 @@ class ArTTY::SystemInfo
     def uptime
         up = %x(uptime).gsub(/^.+up\s+|,\s+\d+\s+user.+$/, "").strip
         up.gsub!(/(days?)\s+/, "\\1, ")
-        up.gsub!(/0?(\d+):0?(\d+)/, "\\1 hours, \\2 mins")
-        up.gsub!(/0 hours, /, "")
-        up.gsub!(/(1 hour)s/, "\\1")
-        up.gsub!(/(\d+ min)$/, "\\1s")
-        up.gsub!(/(.+), 0 mins/, "\\1")
-        up.gsub!(/(1 min)s/, "\\1")
+        up.gsub!(/0?(\d+):0?(\d+)/, "\\1 hour, \\2 min")
+        up.gsub!(/(0 hour, |, 0 min)/, "")
+        up.gsub!(/((\d\d+|[2-9]) (hour|min))/, "\\1s")
         return up.gsub(/\s+/, " ")
     end
 
