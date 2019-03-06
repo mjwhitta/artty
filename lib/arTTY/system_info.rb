@@ -2,6 +2,7 @@
 
 require "hilighter"
 require "pathname"
+require "scoobydoo"
 
 class ArTTY::SystemInfo
     attr_accessor :info
@@ -19,10 +20,13 @@ class ArTTY::SystemInfo
     end
 
     def fs_usage(fs = "/")
+        return "" if (ScoobyDoo.where_are_you("df").nil?)
+
         df = %x(df -h #{fs} | tail -n 1)
         df.match(/^[^\s]+\s+([^\s]+)\s+([^\s]+)/) do |m|
             return "#{m[2]} / #{m[1]}"
         end
+
         return ""
     end
 
@@ -31,6 +35,7 @@ class ArTTY::SystemInfo
     end
 
     def hostname
+        return "" if (ScoobyDoo.where_are_you("hostname").nil?)
         return %x(hostname).split(".")[0].strip
     end
 
@@ -40,10 +45,13 @@ class ArTTY::SystemInfo
     end
 
     def kernel
+        return "" if (ScoobyDoo.where_are_you("uname").nil?)
         return %x(uname -r).strip
     end
 
     def os
+        return "" if (ScoobyDoo.where_are_you("uname").nil?)
+
         os = Pathname.new("/etc/os-release").expand_path
         if (os.exist?)
             File.read(os).each_line do |line|
@@ -52,15 +60,17 @@ class ArTTY::SystemInfo
                 end
             end
         end
+
         return "#{%x(uname -s).strip} #{%x(uname -m).strip}"
     end
 
     def ram
-        if (ScoobyDoo.where_are_you("free"))
-            %x(free -m).match(/Mem:\s+(\d+)\s+(\d+)/) do |m|
-                return "#{m[2]} MB / #{m[1]} MB"
-            end
+        return "" if (ScoobyDoo.where_are_you("free").nil?)
+
+        %x(free -m).match(/Mem:\s+(\d+)\s+(\d+)/) do |m|
+            return "#{m[2]} MB / #{m[1]} MB"
         end
+
         return ""
     end
 
@@ -72,17 +82,17 @@ class ArTTY::SystemInfo
         home_fs = fs_usage(ENV["HOME"])
 
         @info.clear
-        @info.push("#{"Hostname:".blue} #{hostname.white}")
-        @info.push("#{"OS:".blue} #{os.white}")
+        @info.push("  #{"Host:".blue} #{hostname.white}")
+        @info.push("    #{"OS:".blue} #{os.white}")
         @info.push("#{"Kernel:".blue} #{kernel.white}")
         @info.push("#{"Uptime:".blue} #{uptime.white}")
-        @info.push("#{"Shell:".blue} #{shell.white}")
-        @info.push("#{"TTY:".blue} #{t.white}") if (!t.empty?)
-        @info.push("#{"CPU:".blue} #{c.white}") if (!c.empty?)
-        @info.push("#{"RAM:".blue} #{r.white}") if (!r.empty?)
-        @info.push("#{"Root FS:".blue} #{root_fs.white}")
+        @info.push(" #{"Shell:".blue} #{shell.white}")
+        @info.push("   #{"TTY:".blue} #{t.white}") if (!t.empty?)
+        @info.push("   #{"CPU:".blue} #{c.white}") if (!c.empty?)
+        @info.push("   #{"RAM:".blue} #{r.white}") if (!r.empty?)
+        @info.push("#{"RootFS:".blue} #{root_fs.white}")
         if (home_fs != root_fs)
-            @info.push("#{"Home FS:".blue} #{home_fs.white}")
+            @info.push("#{"HomeFS:".blue} #{home_fs.white}")
         end
         @info.push("")
         @info.push([
@@ -102,10 +112,13 @@ class ArTTY::SystemInfo
     end
 
     def tty
+        return "" if (ScoobyDoo.where_are_you("tty").nil?)
         return %x(tty 2>/dev/null).strip
     end
 
     def uptime
+        return "" if (ScoobyDoo.where_are_you("uptime").nil?)
+
         up = %x(uptime).gsub(/^.+up\s+|,\s+\d+\s+user.+$/, "").strip
         up.gsub!(/(days?)\s+/, "\\1, ")
         up.gsub!(/0?(\d+):0?(\d+)/, "\\1 hour, \\2 min")
