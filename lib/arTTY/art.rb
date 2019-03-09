@@ -16,7 +16,7 @@ class ArTTY::Art
         sysinfo = Array.new
         if (@sysinfo)
             offset = @colors[0] ? @colors[0].length + 2 : 0
-            sysinfo = @sysinfo.info.clone
+            sysinfo = @sysinfo.info
         end
 
         if ((pixels.length % 2) != 0)

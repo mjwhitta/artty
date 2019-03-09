@@ -67,6 +67,20 @@ def parse(args)
         end
 
         opts.on(
+            "--fields=FIELDS",
+            "Specify order of sysinfo (comma-separated): colors,",
+            "cpu, fs, host, hostname, ip, ipv4, ipv6, kernel, os,",
+            "ram, shell, tty, uptime"
+        ) do |fields|
+            f = fields.split(",")
+            if (options["sysinfo"].nil?)
+                options["sysinfo"] = ArTTY::SystemInfo.new(f)
+            else
+                options["sysinfo"].fields(f)
+            end
+        end
+
+        opts.on(
             "--fit",
             "Only use art that fits in the current window"
         ) do
@@ -120,7 +134,7 @@ def parse(args)
         end
 
         opts.on("-s", "--sysinfo", "Display system info as well") do
-            options["sysinfo"] = ArTTY::SystemInfo.new
+            options["sysinfo"] ||= ArTTY::SystemInfo.new
         end
 
         opts.on(

@@ -5,8 +5,6 @@ require "pathname"
 require "scoobydoo"
 
 class ArTTY::SystemInfo
-    attr_accessor :info
-
     def cpu
         if (Pathname.new("/proc/cpuinfo").exist?)
             File.read("/proc/cpuinfo").each_line do |line|
@@ -17,6 +15,11 @@ class ArTTY::SystemInfo
             end
         end
         return ""
+    end
+
+    def fields(fields)
+        @fields = fields
+        refresh
     end
 
     def fs_usage(fs = "/")
@@ -31,7 +34,7 @@ class ArTTY::SystemInfo
     end
 
     def height
-        return @info.length
+        return @info.keys.length
     end
 
     def hostname
@@ -39,8 +42,39 @@ class ArTTY::SystemInfo
         return %x(hostname).split(".")[0].strip
     end
 
-    def initialize
-        @info = Array.new
+    def info
+        info = Array.new
+
+        fillto = @info.keys.map(&:length).max
+        @info.each do |k, v|
+            if (k.empty?)
+                info.push("")
+                info.push(v.white)
+            else
+                lfill = " " * (fillto - k.length)
+                info.push("#{lfill}#{k.blue}: #{v.white}")
+            end
+        end
+
+        return info
+    end
+
+    def initialize(fields = nil)
+        @info = Hash.new
+        @fields = fields
+        @fields ||= [
+            "hostname",
+            "os",
+            "kernel",
+            "uptime",
+            "ip",
+            "shell",
+            "tty",
+            "cpu",
+            "ram",
+            "fs",
+            "colors"
+        ]
         refresh
     end
 
@@ -97,40 +131,53 @@ class ArTTY::SystemInfo
     end
 
     def refresh
-        t = tty
-        c = cpu
-        r = ram
-        root_fs = fs_usage
-        home_fs = fs_usage(ENV["HOME"])
-        v4 = ipv4
-        v6 = ipv6
-
         @info.clear
-        @info.push("  #{"Host:".blue} #{hostname.white}")
-        @info.push("    #{"OS:".blue} #{os.white}")
-        @info.push("#{"Kernel:".blue} #{kernel.white}")
-        @info.push("  #{"IPv4:".blue} #{v4.white}") if (!v4.empty?)
-        @info.push("  #{"IPv6:".blue} #{v6.white}") if (!v6.empty?)
-        @info.push("#{"Uptime:".blue} #{uptime.white}")
-        @info.push(" #{"Shell:".blue} #{shell.white}")
-        @info.push("   #{"TTY:".blue} #{t.white}") if (!t.empty?)
-        @info.push("   #{"CPU:".blue} #{c.white}") if (!c.empty?)
-        @info.push("   #{"RAM:".blue} #{r.white}") if (!r.empty?)
-        @info.push("#{"RootFS:".blue} #{root_fs.white}")
-        if (home_fs != root_fs)
-            @info.push("#{"HomeFS:".blue} #{home_fs.white}")
+        @fields.each do |field|
+            case field
+            when /^colors$/i
+                @info[""] = [
+                    "▄▄▄".light_black.on_black,
+                    "▄▄▄".light_red.on_red,
+                    "▄▄▄".light_green.on_green,
+                    "▄▄▄".light_yellow.on_yellow,
+                    "▄▄▄".light_blue.on_blue,
+                    "▄▄▄".light_magenta.on_magenta,
+                    "▄▄▄".light_cyan.on_cyan,
+                    "▄▄▄".light_white.on_white
+                ].join
+            when /^cpu$/i
+                @info["CPU"] = cpu
+            when /^fs$/i
+                rootfs = fs_usage
+                homefs = fs_usage(ENV["HOME"])
+                @info["RootFS"] = rootfs
+                @info["HomeFS"] = homefs if (homefs != rootfs)
+            when /^host(name)?$/i
+                @info["Host"] = hostname
+            when /^ip$/i
+                @info["IPv4"] = ipv4
+                @info["IPv6"] = ipv6
+            when /^ipv4$/i
+                @info["IPv4"] = ipv4
+            when /^ipv6$/i
+                @info["IPv6"] = ipv6
+            when /^kernel$/i
+                @info["Kernel"] = kernel
+            when /^os$/i
+                @info["OS"] = os
+            when /^ram$/i
+                @info["RAM"] = ram
+            when /^shell$/i
+                @info["Shell"] = shell
+            when /^tty$/i
+                @info["TTY"] = tty
+            when /^uptime$/i
+                @info["Uptime"] = uptime
+            end
         end
-        @info.push("")
-        @info.push([
-            "▄▄▄".light_black.on_black,
-            "▄▄▄".light_red.on_red,
-            "▄▄▄".light_green.on_green,
-            "▄▄▄".light_yellow.on_yellow,
-            "▄▄▄".light_blue.on_blue,
-            "▄▄▄".light_magenta.on_magenta,
-            "▄▄▄".light_cyan.on_cyan,
-            "▄▄▄".light_white.on_white
-        ].join)
+        @info.delete_if do |k, v|
+            v.empty?
+        end
     end
 
     def shell
@@ -155,6 +202,8 @@ class ArTTY::SystemInfo
 
     def width
         return 0 if (@info.empty?)
-        return @info.map(&:plain).map(&:length).max
+        k = @info.keys.map(&:plain).map(&:length).max
+        v = @info.values.map(&:plain).map(&:length).max
+        return k + v + 2
     end
 end
