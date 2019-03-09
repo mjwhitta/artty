@@ -46,10 +46,9 @@ class ArTTY::SystemInfo
 
     def ipv4
         return "" if (ScoobyDoo.where_are_you("ip").nil?)
-        dev = %x(ip r).split(" ")[4]
-        %x(ip -o a show #{dev}).each_line do |line|
-            line.match(/\s+inet\s+(\S+)/) do |m|
-                return m[1]
+        %x(ip r).match(/^default.+dev\s+(\S+)/) do |dev|
+            %x(ip -o a s #{dev[1]}).match(/\s+inet\s+(\S+)/) do |ip|
+                return ip[1]
             end
         end
         return ""
@@ -57,11 +56,11 @@ class ArTTY::SystemInfo
 
     def ipv6
         return "" if (ScoobyDoo.where_are_you("ip").nil?)
-        dev = %x(ip r).split(" ")[4]
-        %x(ip -o a show #{dev}).each_line do |line|
-            line.match(/\s+inet6\s+(\S+)/) do |m|
-                next if (m[1].match?(/^fe[89ABab]/))
-                return m[1]
+        %x(ip r).match(/^default.+dev\s+(\S+)/) do |dev|
+            %x(ip -o a s #{dev[1]}).match(
+                /\s+inet6\s+((?!fe[89ab])\S+)/i
+            ) do |ip|
+                return ip[1]
             end
         end
         return ""
