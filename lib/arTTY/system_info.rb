@@ -44,6 +44,29 @@ class ArTTY::SystemInfo
         refresh
     end
 
+    def ipv4
+        return "" if (ScoobyDoo.where_are_you("ip").nil?)
+        dev = %x(ip r).split(" ")[4]
+        %x(ip -o a show #{dev}).each_line do |line|
+            line.match(/\s+inet\s+(\S+)/) do |m|
+                return m[1]
+            end
+        end
+        return ""
+    end
+
+    def ipv6
+        return "" if (ScoobyDoo.where_are_you("ip").nil?)
+        dev = %x(ip r).split(" ")[4]
+        %x(ip -o a show #{dev}).each_line do |line|
+            line.match(/\s+inet6\s+(\S+)/) do |m|
+                next if (m[1].match?(/^fe[89ABab]/))
+                return m[1]
+            end
+        end
+        return ""
+    end
+
     def kernel
         return "" if (ScoobyDoo.where_are_you("uname").nil?)
         return %x(uname -r).strip
@@ -80,11 +103,15 @@ class ArTTY::SystemInfo
         r = ram
         root_fs = fs_usage
         home_fs = fs_usage(ENV["HOME"])
+        v4 = ipv4
+        v6 = ipv6
 
         @info.clear
         @info.push("  #{"Host:".blue} #{hostname.white}")
         @info.push("    #{"OS:".blue} #{os.white}")
         @info.push("#{"Kernel:".blue} #{kernel.white}")
+        @info.push("  #{"IPv4:".blue} #{v4.white}") if (!v4.empty?)
+        @info.push("  #{"IPv6:".blue} #{v6.white}") if (!v6.empty?)
         @info.push("#{"Uptime:".blue} #{uptime.white}")
         @info.push(" #{"Shell:".blue} #{shell.white}")
         @info.push("   #{"TTY:".blue} #{t.white}") if (!t.empty?)
