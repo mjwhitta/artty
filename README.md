@@ -26,22 +26,23 @@ I typically add something like the following to the end of my bash/zsh
 configs:
 
 ```
-if [[ -n $(command -v arTTY) ]]; then
-    arTTY $(head -n 1 $HOME/.config/arTTY/rc 2>/dev/null)
-fi
+[[ -z $(command -v arTTY) ]] || arTTY
 ```
 
-Then I can put things like the following in `$HOME/.config/arTTY/rc`:
+Then I create an arTTY config using something like one of the
+following commands:
 
-- `-cf --fit -rs`
-- `-ce jynx|nosepass|smoochum --fit -m pokemon(-leafgreen)?-I+- -rs`
-- `-cf --fit -m megaman-battle-network -rs`
-- `-cfs linux-arch`
-- `-c --fit -s legend-of-zelda-majoras-mask`
-- `-c --fit -m street-fighter-3 -rs`
+```
+$ arTTY -cf --fit -rs --save
+$ arTTY -ce "jynx|nosepass|smoochum" --fit \
+    -m "pokemon(-leafgreen)?-I+-" -rs --save
+$ arTTY -cf --fit -m "megaman-battle-network" -rs --save
+$ arTTY -cfs --save linux-arch
+$ arTTY -c --fit -s --save legend-of-zelda-majoras-mask
+$ arTTY -c --fit -m "street-fighter-3" -rs --save
+```
 
-And if that file doesn't exist, it defaults to using `none`. Use the
-`--list-supported` or `--ls` flags to see all included images.
+Use the `--list-supported` or `--ls` flags to see all included images.
 
 ### Tab completion
 

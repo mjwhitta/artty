@@ -62,19 +62,21 @@ class ArTTY::SystemInfo
     def initialize(fields = nil)
         @info = Hash.new
         @fields = fields
-        @fields ||= [
-            "hostname",
-            "os",
-            "kernel",
-            "uptime",
-            "ip",
-            "shell",
-            "tty",
-            "cpu",
-            "ram",
-            "fs",
-            "colors"
-        ]
+        if (fields.nil? || fields.empty?)
+            @fields = [
+                "hostname",
+                "os",
+                "kernel",
+                "uptime",
+                "ip",
+                "shell",
+                "tty",
+                "cpu",
+                "ram",
+                "fs",
+                "colors"
+            ]
+        end
         refresh
     end
 

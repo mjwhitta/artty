@@ -3,8 +3,39 @@
 require "arTTY"
 require "hilighter"
 require "io/wait"
+require "json_config"
 require "optparse"
 require "scoobydoo"
+
+class ArTTYConfig < JSONConfig
+    extend JSONConfig::Keys
+
+    add_key("art")
+    add_bool_key("clear_screen")
+    add_key("exclude")
+    add_key("fields")
+    add_bool_key("fit")
+    add_bool_key("fortune")
+    add_key("match")
+    add_bool_key("random")
+    add_bool_key("sysinfo")
+
+    def initialize(file = nil)
+        file ||= "~/.config/arTTY/rc"
+        @defaults = {
+            "art" => nil,
+            "clear_screen" => false,
+            "exclude" => nil,
+            "fields" => Array.new,
+            "fit" => false,
+            "fortune" => false,
+            "match" => nil,
+            "random" => false,
+            "sysinfo" => false
+        }
+        super(file, false)
+    end
+end
 
 class ArTTYExit
     GOOD = 0
@@ -20,15 +51,8 @@ end
 def parse(args)
     options = Hash.new
     options["action"] = "draw"
-    options["art"] = nil
-    options["clear"] = false
-    options["exclude"] = nil
-    options["fit"] = false
-    options["fortune"] = false
+    options["conf"] = ArTTYConfig.new
     options["generate"] = nil
-    options["match"] = nil
-    options["random"] = false
-    options["sysinfo"] = nil
     options["verbose"] = false
 
     info = "Art for your TTY."
@@ -50,12 +74,21 @@ def parse(args)
             options["action"] = "cache"
         end
 
-        opts.on("-c", "--clear", "Clear screen first") do
-            options["clear"] = true
+        opts.on("-c", "--[no-]clear", "Clear screen first") do |c|
+            options["conf"].clear_screen if (c)
+            options["conf"].no_clear_screen unless (c)
+        end
+
+        opts.on("--delete", "Reset the default config") do
+            options["action"] = "delete"
         end
 
         opts.on("-d", "--demo", "Demo art matching criteria") do
             options["action"] = "demo"
+        end
+
+        opts.on("--edit", "Amend default config with new options") do
+            options["action"] = "edit"
         end
 
         opts.on(
@@ -63,7 +96,7 @@ def parse(args)
             "--exclude=PATTERN",
             "Exclude art matching PATTERN"
         ) do |pattern|
-            options["exclude"] = pattern
+            options["conf"].set_exclude(pattern)
         end
 
         opts.on(
@@ -72,27 +105,23 @@ def parse(args)
             "cpu, fs, host, hostname, ip, ipv4, ipv6, kernel, os,",
             "ram, shell, tty, uptime"
         ) do |fields|
-            f = fields.split(",")
-            if (options["sysinfo"].nil?)
-                options["sysinfo"] = ArTTY::SystemInfo.new(f)
-            else
-                options["sysinfo"].fields(f)
-            end
+            options["conf"].set_fields(fields.split(","))
+            options["conf"].sysinfo
         end
 
         opts.on(
-            "--fit",
+            "--[no-]fit",
             "Only use art that fits in the current window"
-        ) do
-            options["fit"] = true
+        ) do |f|
+            f ? options["conf"].fit : options["conf"].no_fit
         end
 
         opts.on(
             "-f",
-            "--fortune",
+            "--[no-]fortune",
             "Display a fortune as well (if installed)"
-        ) do
-            options["fortune"] = true
+        ) do |f|
+            f ? options["conf"].fortune : options["conf"].no_fortune
         end
 
         opts.on("-h", "--help", "Display this help message") do
@@ -122,27 +151,35 @@ def parse(args)
             "--matching=PATTERN",
             "Only use art matching PATTERN"
         ) do |pattern|
-            options["match"] = pattern
+            options["conf"].set_match(pattern)
         end
 
         opts.on(
             "-r",
-            "--random",
+            "--[no-]random",
             "Display random art matching criteria"
-        ) do
-            options["random"] = true
+        ) do |r|
+            r ? options["conf"].random : options["conf"].no_random
         end
 
-        opts.on("-s", "--sysinfo", "Display system info as well") do
-            options["sysinfo"] ||= ArTTY::SystemInfo.new
+        opts.on("--save", "Save current options as default") do
+            options["action"] = "save"
+        end
+
+        opts.on(
+            "-s",
+            "--[no-]sysinfo",
+            "Display system info as well"
+        ) do |s|
+            s ? options["conf"].sysinfo : options["conf"].no_sysinfo
         end
 
         opts.on(
             "-v",
-            "--verbose",
+            "--[no-]verbose",
             "Show backtrace when error occurs"
-        ) do
-            options["verbose"] = true
+        ) do |v|
+            options["verbose"] = v
         end
 
         opts.on("--version", "Show version") do
@@ -174,7 +211,9 @@ def parse(args)
     end
 
     if (args.length == 1)
-        options["art"] = args[0]
+        if (!options["conf"].random?)
+            options["conf"].set_art(args[0])
+        end
     elsif (args.length > 1)
         puts parser
         exit ArTTYExit::EXTRA_ARGUMENTS
@@ -192,48 +231,57 @@ end
 
 begin
     arTTY = ArTTY.new
-    arTTY.exclude(options["exclude"]) if (options["exclude"])
-    arTTY.match(options["match"]) if (options["match"])
+    config = options["conf"]
+    arTTY.exclude(config.get_exclude) if (config.exclude?)
+    arTTY.match(config.get_match) if (config.match?)
+    info = nil
+    if (config.sysinfo?)
+        info = ArTTY::SystemInfo.new(config.get_fields)
+    end
 
     # Remove all that do not fit
-    if (options["fit"])
+    if (config.fit?)
         height = %x(tput lines).to_i - 4 # Leave some space for prompt
         width = %x(tput cols).to_i - 1
-
-        if (options["sysinfo"])
-            width -= (options["sysinfo"].width + 2)
-            if ((height <= options["sysinfo"].height) || (width <= 0))
-                options["sysinfo"] = nil
-            end
+        if (config.sysinfo?)
+            width -= (info.width + 2)
+            info = nil if ((height <= info.height) || (width <= 0))
         end
-
         arTTY.fits(width, height)
     end
 
-    # Randomize
-    options["art"] = arTTY.random if (options["random"])
-
-    # Ensure art is not nil
-    options["art"] ||= "none"
-
-    system("clear") if (options["clear"])
     case options["action"]
     when "cache"
         arTTY.cache
+    when "delete"
+        config.default
     when "demo"
         arTTY.art.each do |name|
             puts "### #{name} ###".white
-            art = arTTY.get(name, options["sysinfo"]).draw
+            art = arTTY.get(name, info).draw
             puts "\n#{art}\n" if (!art.empty?)
         end
+    when "edit"
+        config.save # Save modified config
     when "generate"
         puts ArTTY::Generator.new.generate(options["generate"])
     when "list"
         puts arTTY.art
+    when "save"
+        config.savediff # Overwrite old save with new changes
     else
-        art = arTTY.get(options["art"], options["sysinfo"]).draw
+        # Randomize
+        config.set_art(arTTY.random) if (config.random?)
+
+        # Ensure art is not nil
+        config.set_art("none") if (!config.art?)
+
+        # Clear screen if requested
+        system("clear") if (config.clear_screen?)
+
+        art = arTTY.get(config.get_art, info).draw
         puts "\n#{art}\n" if (!art.empty?)
-        if (options["fortune"] && ScoobyDoo.where_are_you("fortune"))
+        if (config.fortune? && ScoobyDoo.where_are_you("fortune"))
             system("fortune -s")
         end
     end

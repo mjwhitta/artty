@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name = "arTTY"
-    s.version = "0.8.0"
+    s.version = "0.9.0"
     s.date = Time.new.strftime("%Y-%m-%d")
     s.summary = "Art for your TTY."
     s.description = [
@@ -18,5 +18,6 @@ Gem::Specification.new do |s|
     s.add_development_dependency("rake", "~> 12.3", ">= 12.3.1")
     s.add_runtime_dependency("fagin", "~> 1.2", ">= 1.2.1")
     s.add_runtime_dependency("hilighter", "~> 1.2", ">= 1.2.3")
+    s.add_runtime_dependency("json_config", "~> 0.3", ">= 0.3.0")
     s.add_runtime_dependency("scoobydoo", "~> 0.1", ">= 0.1.6")
 end
