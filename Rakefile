@@ -31,3 +31,8 @@ desc "Push gem to rubygems.org"
 task :push => [:clean, :gem] do
     system("gem push *.gem")
 end
+
+desc "Refresh art"
+task :refresh, [:pattern] do |task, args|
+    system("tools/refresh_art #{args[:pattern]}")
+end
