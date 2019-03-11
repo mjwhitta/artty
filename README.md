@@ -54,9 +54,7 @@ tab completion.
 ```
 if [[ -n $(command -v arTTY) ]]; then
     _arTTY_complete() {
-        mapfile -t COMPREPLY < <(
-            arTTY --ls | grep -iPs "^$2" | sort -u
-        )
+        mapfile -t COMPREPLY < <(arTTY -e "^$" --ls -m "^$2" --no-fit)
     }
     complete -F _arTTY_complete arTTY
 fi
@@ -68,7 +66,7 @@ fi
 if [[ -n $(command -v arTTY) ]]; then
     compdef _gnu_generic arTTY
     _arTTY_complete() {
-        reply=($(arTTY --ls))
+        reply=($(arTTY -e "^$" --ls --no-fit))
     }
     compctl -K _arTTY_complete arTTY
 fi
@@ -80,10 +78,12 @@ ArTTY can generate source code for images so long as they are named
 properly. It will then `require` any code in the
 `$HOME/.config/arTTY/art` directory.
 
-### Example
+### Examples
 
 ```
 $ arTTY -g my-art-name_WIDTHxHEIGHT.png \
+    >$HOME/.config/arTTY/art/my_art_name.rb
+$ arTTY -g some_image_WIDTHxHEIGHT.png my-art-name \
     >$HOME/.config/arTTY/art/my_art_name.rb
 ```
 
