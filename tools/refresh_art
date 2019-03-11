@@ -87,6 +87,7 @@ Refresh art for ArTTY. Optionally provide a pattern to only refresh
 selected categories.
 
 Options:
+    -f, --force          Generate images even if they already exist
     -h, --help           Display this help message
     --nocolor            Disable colorized output
     -r, --resume         Resume from a previous run
@@ -111,7 +112,7 @@ EOF
 }
 
 declare -a args deps
-unset help pattern
+unset force help pattern
 color="true"
 deps+=("git")
 deps+=("jq")
@@ -125,6 +126,7 @@ check_deps
 while [[ $# -gt 0 ]]; do
     case "$1" in
         "--") shift && args+=("$@") && break ;;
+        "-f"|"--force") force="true" ;;
         "-h"|"--help") help="true" ;;
         "--nocolor") unset color ;;
         "-r"|"--resume") resume="--resume" ;;
@@ -241,8 +243,13 @@ filename="\$(echo "\${name//[-.]/_}.rb" | tr [:upper:] [:lower:])"
 
 # Generate art
 good "\$img => \$dir/\$filename"
-mkdir -p "\$output/\$dir"
-arTTY -g "\$img" "\$name" >"\$output/\$dir/\$filename"
+if [[ ! -f "\$output/\$dir/\$filename" ]] || [[ "x$force" != "x"]]
+then
+    mkdir -p "\$output/\$dir"
+    arTTY -g "\$img" "\$name" >"\$output/\$dir/\$filename"
+    failed="\$(find "\$output/\$dir/\$filename" -empty)"
+    [[ -z \$failed ]] || err "Failed: \$dir/\$filename"
+fi
 EOF
 chmod 700 "$script"
 
