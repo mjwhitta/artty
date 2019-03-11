@@ -4,15 +4,14 @@ class ArTTY::Generator
     end
     private :class_from_name
 
-    def generate(image)
+    def generate(image, name = nil)
         clas = nil
         file = Pathname.new(image).expand_path
-        name = nil
         pixels = nil
 
         file.to_s.match(%r{([^/]+)_([0-9]+)x([0-9]+)}) do |m|
-            clas = class_from_name(m[1])
-            name = m[1]
+            name ||= m[1]
+            clas = class_from_name(name)
             pixels = get_pixel_info(file, m[2].to_i, m[3].to_i)
         end
 

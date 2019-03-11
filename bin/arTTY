@@ -24,14 +24,14 @@ class ArTTYConfig < JSONConfig
         file ||= "~/.config/arTTY/rc"
         @defaults = {
             "art" => nil,
-            "clear_screen" => false,
+            "clear_screen" => true,
             "exclude" => nil,
             "fields" => Array.new,
-            "fit" => false,
+            "fit" => true,
             "fortune" => false,
             "match" => nil,
-            "random" => false,
-            "sysinfo" => false
+            "random" => true,
+            "sysinfo" => true
         }
         super(file, false)
     end
@@ -71,7 +71,13 @@ def parse(args)
         opts.on("", "OPTIONS")
 
         opts.on("--cache", "Refresh the cache") do
-            options["action"] = "cache"
+            case options["action"]
+            when "draw"
+                options["action"] = "cache"
+            else
+                puts opts
+                exit ArTTYExit::INVALID_OPTION
+            end
         end
 
         opts.on("-c", "--[no-]clear", "Clear screen first") do |c|
@@ -80,15 +86,33 @@ def parse(args)
         end
 
         opts.on("--delete", "Reset the default config") do
-            options["action"] = "delete"
+            case options["action"]
+            when "draw"
+                options["action"] = "delete"
+            else
+                puts opts
+                exit ArTTYExit::INVALID_OPTION
+            end
         end
 
         opts.on("-d", "--demo", "Demo art matching criteria") do
-            options["action"] = "demo"
+            case options["action"]
+            when "draw"
+                options["action"] = "demo"
+            else
+                puts opts
+                exit ArTTYExit::INVALID_OPTION
+            end
         end
 
         opts.on("--edit", "Amend default config with new options") do
-            options["action"] = "edit"
+            case options["action"]
+            when "draw"
+                options["action"] = "edit"
+            else
+                puts opts
+                exit ArTTYExit::INVALID_OPTION
+            end
         end
 
         opts.on(
@@ -134,7 +158,13 @@ def parse(args)
             "--generate=IMAGE",
             "Generate ArTTY art from IMAGE (NAME_WxH.png)"
         ) do |image|
-            options["action"] = "generate"
+            case options["action"]
+            when "draw"
+                options["action"] = "generate"
+            else
+                puts opts
+                exit ArTTYExit::INVALID_OPTION
+            end
             options["generate"] = image
         end
 
@@ -143,7 +173,13 @@ def parse(args)
             "--list-art",
             "List art matching criteria"
         ) do
-            options["action"] = "list"
+            case options["action"]
+            when "draw"
+                options["action"] = "list"
+            else
+                puts opts
+                exit ArTTYExit::INVALID_OPTION
+            end
         end
 
         opts.on(
@@ -163,7 +199,13 @@ def parse(args)
         end
 
         opts.on("--save", "Save current options as default") do
-            options["action"] = "save"
+            case options["action"]
+            when "draw"
+                options["action"] = "save"
+            else
+                puts opts
+                exit ArTTYExit::INVALID_OPTION
+            end
         end
 
         opts.on(
@@ -211,9 +253,7 @@ def parse(args)
     end
 
     if (args.length == 1)
-        if (!options["conf"].random?)
-            options["conf"].set_art(args[0])
-        end
+        options["conf"].set_art(args[0])
     elsif (args.length > 1)
         puts parser
         exit ArTTYExit::EXTRA_ARGUMENTS
@@ -262,12 +302,17 @@ begin
             puts "\n#{art}\n" if (!art.empty?)
         end
     when "edit"
+        config.set_art(nil) if (config.random?)
         config.save # Save modified config
     when "generate"
-        puts ArTTY::Generator.new.generate(options["generate"])
+        puts ArTTY::Generator.new.generate(
+            options["generate"],
+            options["conf"].getdiff("art")
+        )
     when "list"
         puts arTTY.art
     when "save"
+        config.set_art(nil) if (config.random?)
         config.savediff # Overwrite old save with new changes
     else
         # Randomize
