@@ -159,7 +159,7 @@ pattern="$1"
 [[ -f "./tools/${0##*/}" ]] || errx 2 "Use rake to call this script"
 
 # Ensure directory exists and the submodule is updated
-[[ ! -d "arTTY_images" ]] || mkdir -p arTTY_images
+[[ -d "arTTY_images" ]] || mkdir -p arTTY_images
 empty="$(find arTTY_images -maxdepth 1 -empty -print)"
 [[ -z $empty ]] || git submodule update --init --recursive
 
