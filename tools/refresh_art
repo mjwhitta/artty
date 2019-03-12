@@ -243,7 +243,7 @@ filename="\$(echo "\${name//[-.]/_}.rb" | tr [:upper:] [:lower:])"
 
 # Generate art
 good "\$img => \$dir/\$filename"
-if [[ ! -f "\$output/\$dir/\$filename" ]] || [[ "x$force" != "x"]]
+if [[ ! -f "\$output/\$dir/\$filename" ]] || [[ "x$force" != "x" ]]
 then
     mkdir -p "\$output/\$dir"
     arTTY -g "\$img" "\$name" >"\$output/\$dir/\$filename"
