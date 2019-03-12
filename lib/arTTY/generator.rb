@@ -9,10 +9,12 @@ class ArTTY::Generator
         file = Pathname.new(image).expand_path
         pixels = nil
 
-        file.to_s.match(%r{([^/]+)_([0-9]+)x([0-9]+)}) do |m|
+        file.to_s.match(%r{([^/]+?)(_(\d+)x(\d+))?\.}) do |m|
             name ||= m[1]
             clas = class_from_name(name)
-            pixels = get_pixel_info(file, m[2].to_i, m[3].to_i)
+            width = m[3].nil? ? nil : m[3].to_i
+            height = m[4].nil? ? nil : m[4].to_i
+            pixels = get_pixel_info(file, width, height)
         end
 
         if (clas.nil? || name.nil? || pixels.nil?)
@@ -71,21 +73,23 @@ class ArTTY::Generator
     end
     private :generate_ruby_code
 
-    def get_pixel_info(file, width, height)
-        h_increment = h_total = 0
+    def get_pixel_info(file, width = nil, height = nil)
+        h_increment = w_increment = 1
+        h_total = w_total = 0
         offset = 0
         pixels = Array.new
-        w_increment = w_total = 0
 
         %x(convert #{file} txt:- 2>/dev/null).each_line do |line|
             case line
             when /^#\s*ImageMagick.+/
-                line.match(/:\s+([0-9]+),([0-9]+),/) do |m|
-                    h_total = m[2].to_i
-                    h_increment = h_total.to_f / height.to_f
-                    offset = (h_increment / 2).to_i
-                    w_total = m[1].to_i
-                    w_increment = w_total.to_f / width.to_f
+                if (height && width)
+                    line.match(/:\s+([0-9]+),([0-9]+),/) do |m|
+                        h_total = m[2].to_i
+                        h_increment = h_total.to_f / height.to_f
+                        offset = (h_increment / 2).to_i
+                        w_total = m[1].to_i
+                        w_increment = w_total.to_f / width.to_f
+                    end
                 end
             else
                 line.match(/^([0-9]+),([0-9]+):\s+\S+\s+(\S+)/) do |m|
