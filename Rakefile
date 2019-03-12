@@ -35,5 +35,5 @@ end
 desc "Refresh art"
 task :refresh, [:pattern, :force] do |task, args|
     force = args[:force].nil? ? "" : "-f"
-    system("tools/refresh_art #{force} #{args[:pattern]}")
+    system("tools/refresh_art #{force} \"#{args[:pattern]}\"")
 end
