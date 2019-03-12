@@ -1,0 +1,3 @@
+[submodule "arTTY_images"]
+	path = arTTY_images
+	url = git@gitlab.com:mjwhitta/arTTY_images.git
