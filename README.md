@@ -54,9 +54,10 @@ tab completion.
 ```
 if [[ -n $(command -v arTTY) ]]; then
     _arTTY_complete() {
-        mapfile -t COMPREPLY < <(arTTY -e "^$" --ls -m "^$2" --no-fit)
+        mapfile -t COMPREPLY < <(arTTY -p --ls -m "^$2")
     }
     complete -F _arTTY_complete arTTY
+    complete -F _arTTY_complete artty
 fi
 ```
 
@@ -65,10 +66,12 @@ fi
 ```
 if [[ -n $(command -v arTTY) ]]; then
     compdef _gnu_generic arTTY
+    compdef _gnu_generic artty
     _arTTY_complete() {
-        reply=($(arTTY -e "^$" --ls --no-fit))
+        reply=($(arTTY -p --ls))
     }
     compctl -K _arTTY_complete arTTY
+    compctl -K _arTTY_complete artty
 fi
 ```
 
