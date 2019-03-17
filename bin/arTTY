@@ -73,7 +73,7 @@ def parse(args)
         opts.on(
             "-a",
             "--all",
-            "Ignore any filters, implies no-fit optionn (use first)"
+            "Ignore previous filters, implies: --no-fit (use first)"
         ) do
             options["conf"].no_fit
             options["conf"].set_exclude(nil)
@@ -125,9 +125,7 @@ def parse(args)
 
         opts.on(
             "--fields=FIELDS",
-            "Specify order of sysinfo (comma-separated): colors,",
-            "cpu, fs, host, hostname, ip, ipv4, ipv6, kernel, os,",
-            "ram, shell, tty, uptime"
+            "Specify order of sysinfo (comma-separated, see FIELDS)"
         ) do |fields|
             options["conf"].set_fields(fields.split(","))
             options["conf"].sysinfo
@@ -193,11 +191,12 @@ def parse(args)
         opts.on(
             "-p",
             "--plain",
-            "Ignore any filters, implies clear, no-fit, no-fortune",
-            "no-random, and no-sysinfo options (use first, useful",
-            "for tab-completion with --list-art)"
+            "Implies: --all, --no-clear, --no-fortune, --no-random,",
+            "and --no-sysinfo (use first, useful for tab-completion",
+            "with --list-art)"
         ) do
             options["conf"].default
+            options["conf"].no_clear_screen
             options["conf"].no_fit
             options["conf"].no_fortune
             options["conf"].no_random
@@ -244,6 +243,24 @@ def parse(args)
             end
             exit ArTTYExit::GOOD
         end
+
+        opts.on(
+            "",
+            "FIELDS",
+            "    colors            Show terminal colors",
+            "    cpu               Show cpu info",
+            "    fs                Show filesystem usage",
+            "    host, hostname    Show hostname",
+            "    ip                Show IPv4 and IPv6 addresses",
+            "    ipv4              Show only IPv4 addresses",
+            "    ipv6              Show only IPv6 addresses",
+            "    kernel            Show kernel info",
+            "    os                Show operating system info",
+            "    ram               Show RAM usage",
+            "    shell             Show current shell",
+            "    tty               Show TTY info",
+            "    uptime            Show uptime"
+        )
     end
 
     begin

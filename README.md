@@ -56,8 +56,7 @@ if [[ -n $(command -v arTTY) ]]; then
     _arTTY_complete() {
         mapfile -t COMPREPLY < <(arTTY -p --ls -m "^$2")
     }
-    complete -F _arTTY_complete arTTY
-    complete -F _arTTY_complete artty
+    complete -F _arTTY_complete art artty arTTY
 fi
 ```
 
@@ -65,28 +64,30 @@ fi
 
 ```
 if [[ -n $(command -v arTTY) ]]; then
-    compdef _gnu_generic arTTY
-    compdef _gnu_generic artty
+    compdef _gnu_generic art artty arTTY
     _arTTY_complete() {
         reply=($(arTTY -p --ls))
     }
-    compctl -K _arTTY_complete arTTY
-    compctl -K _arTTY_complete artty
+    compctl -K _arTTY_complete art artty arTTY
 fi
 ```
 
 ## Generating your own art
 
-ArTTY can generate source code for images so long as they are named
-properly. It will then `require` any code in the
-`$HOME/.config/arTTY/art` directory.
+ArTTY can generate source code from images too. It will automatically
+determine the size, but you can specify a size manually by appending
+`_WIDTHxHEIGHT` to the filename. It uses the filename to name the art
+unless you manually specify one. It will then `require` any code in
+the `$HOME/.config/arTTY/art` directory.
 
 ### Examples
 
 ```
+$ arTTY -g my-art-name.png \
+    >$HOME/.config/arTTY/art/my_art_name.rb
 $ arTTY -g my-art-name_WIDTHxHEIGHT.png \
     >$HOME/.config/arTTY/art/my_art_name.rb
-$ arTTY -g some_image_WIDTHxHEIGHT.png my-art-name \
+$ arTTY -g some_image.png my-art-name \
     >$HOME/.config/arTTY/art/my_art_name.rb
 ```
 

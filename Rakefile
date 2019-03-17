@@ -1,7 +1,7 @@
 require "fileutils"
 require "hilighter"
 
-aliases = ["artty"].map do |aliaz|
+aliases = ["art", "artty"].map do |aliaz|
     "bin/#{aliaz}"
 end
 
