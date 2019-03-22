@@ -199,11 +199,11 @@ if [[ ! -f "$dataset" ]]; then
         info "Processing ${category////-}"
         while read -r img; do
             echo "$dir|$img" >>"$dataset"
-        done < <(find $dir -maxdepth 1 -name "*.png"); unset img
+        done < <(find "$dir" -maxdepth 1 -name "*.png"); unset img
     done < <(
-        find . -mindepth 1 -regextype posix-extended -name "todo" \
-        -prune -o -name "tools" -prune -o -type d \
-        -iregex ".*${pattern}.*" -print
+        find . -mindepth 1 -regextype posix-extended \
+        -name "generated" -prune -o -name "todo" -prune -o \
+        -name "tools" -prune -o -type d -iregex ".*$pattern.*" -print
     ); unset dir
 fi
 total="$(wc -l "$dataset" | awk '{print $1}')"
@@ -227,7 +227,7 @@ warn() { echo -e "\r${color:+\e[33m}[-] \$*\e[0m\e[K"; }
 ### Helpers end
 
 # Contants
-output="../lib/arTTY/art"
+output="../arTTY_images/generated"
 
 # Parse input
 dir="\${1%%|*}"

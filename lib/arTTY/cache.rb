@@ -1,7 +1,10 @@
 require "fagin"
 require "fileutils"
 require "json"
+require "minitar"
 require "pathname"
+require "typhoeus"
+require "zlib"
 
 class ArTTY::Cache
     def art
@@ -15,6 +18,61 @@ class ArTTY::Cache
         return "error" # Shouldn't happen
     end
     private :current_version
+
+    def download_and_extract
+        # Delete existing tarball
+        tgz = Pathname.new("/tmp/arTTY_images.tgz").expand_path
+        tgz.delete if (tgz.exist?)
+
+        # Download newest tarball
+        tarball = File.open(tgz, "wb")
+        request = Typhoeus::Request.new(
+            [
+                "https://gitlab.com/mjwhitta/arTTY_images/-/archive",
+                "master/arTTY_images-master.tar.gz"
+            ].join("/"),
+            timeout: 10
+        )
+        request.on_headers do |response|
+            if (response.code != 200)
+                raise ArTTY::Error::FailedToDownload.new
+            end
+        end
+        request.on_body do |chunk|
+            tarball.write(chunk)
+        end
+        request.on_complete do
+            tarball.close
+        end
+        request.run
+
+        # Throw error if download failed
+        if (!tgz.exist? || (tgz.size == 00))
+            raise ArTTY::Error::FailedToDownload.new
+        end
+
+        # Ensure extracted art doesn't exist in /tmp
+        untar = Pathname.new("/tmp/arTTY_images-master").expand_path
+        FileUtils.rm_rf(untar) if (untar.exist?)
+
+        # Extract new art
+        File.open(tgz, "rb") do |gz|
+            tar = Zlib::GzipReader.new(gz)
+            Minitar.unpack(tar, "/tmp")
+        end
+        FileUtils.rm_f("/tmp/pax_global_header")
+
+        # Remove old art
+        imgs = Pathname.new("~/.cache/arTTY/arTTY_images").expand_path
+        FileUtils.rm_rf(imgs)
+
+        # Move to final location
+        FileUtils.mv(untar, imgs)
+
+        # Cleanup
+        FileUtils.rm_f(tgz) if (tgz.exist?)
+    end
+    private :download_and_extract
 
     def get_class_for(name)
         if (@cache["art"][name].nil?)
@@ -48,12 +106,14 @@ class ArTTY::Cache
     end
 
     def refresh
+        download_and_extract
+
         @cache = Hash.new
         @cache["art"] = Hash.new
         @cache["version"] = current_version
 
         [
-            "#{__FILE__.split("/")[0...-1].join("/")}/art",
+            "~/.cache/arTTY/arTTY_images/generated",
             "~/.config/arTTY/art"
         ].each do |dir|
             Fagin.find_children_with_file_recursively(
