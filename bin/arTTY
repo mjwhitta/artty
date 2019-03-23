@@ -85,7 +85,7 @@ def parse(args)
             when "draw"
                 options["action"] = "cache"
             else
-                puts opts
+                puts(opts)
                 exit ArTTYExit::INVALID_OPTION
             end
         end
@@ -100,7 +100,7 @@ def parse(args)
             when "draw"
                 options["action"] = "demo"
             else
-                puts opts
+                puts(opts)
                 exit ArTTYExit::INVALID_OPTION
             end
         end
@@ -110,7 +110,7 @@ def parse(args)
             when "draw"
                 options["action"] = "edit"
             else
-                puts opts
+                puts(opts)
                 exit ArTTYExit::INVALID_OPTION
             end
         end
@@ -147,7 +147,7 @@ def parse(args)
         end
 
         opts.on("-h", "--help", "Display this help message") do
-            puts opts
+            puts(opts)
             exit ArTTYExit::GOOD
         end
 
@@ -160,7 +160,7 @@ def parse(args)
             when "draw"
                 options["action"] = "generate"
             else
-                puts opts
+                puts(opts)
                 exit ArTTYExit::INVALID_OPTION
             end
             options["generate"] = image
@@ -175,7 +175,7 @@ def parse(args)
             when "draw"
                 options["action"] = "list"
             else
-                puts opts
+                puts(opts)
                 exit ArTTYExit::INVALID_OPTION
             end
         end
@@ -216,7 +216,7 @@ def parse(args)
             when "draw"
                 options["action"] = "save"
             else
-                puts opts
+                puts(opts)
                 exit ArTTYExit::INVALID_OPTION
             end
         end
@@ -239,7 +239,7 @@ def parse(args)
 
         opts.on("--version", "Show version") do
             __FILE__.match(/arTTY-(\d+\.\d+\.\d+)/) do |m|
-                puts m[1]
+                puts(m[1])
             end
             exit ArTTYExit::GOOD
         end
@@ -266,20 +266,20 @@ def parse(args)
     begin
         parser.parse!
     rescue OptionParser::InvalidOption => e
-        puts e.message
-        puts parser
+        puts(e.message)
+        puts(parser)
         exit ArTTYExit::INVALID_OPTION
     rescue OptionParser::InvalidArgument => e
-        puts e.message
-        puts parser
+        puts(e.message)
+        puts(parser)
         exit ArTTYExit::INVALID_ARGUMENT
     rescue OptionParser::MissingArgument => e
-        puts e.message
-        puts parser
+        puts(e.message)
+        puts(parser)
         exit ArTTYExit::MISSING_ARGUMENT
     rescue OptionParser::AmbiguousOption => e
-        puts e.message
-        puts parser
+        puts(e.message)
+        puts(parser)
         exit ArTTYExit::AMBIGUOUS_ARGUMENT
     end
 
@@ -287,7 +287,7 @@ def parse(args)
         options["conf"].no_random
         options["conf"].set_art(args[0])
     elsif (args.length > 1)
-        puts parser
+        puts(parser)
         exit ArTTYExit::EXTRA_ARGUMENTS
     end
 
@@ -303,6 +303,10 @@ end
 
 begin
     config = options["conf"]
+    fortune = nil
+    if (config.fortune? && ScoobyDoo.where_are_you("fortune"))
+        fortune = %x(fortune -s)
+    end
 
     arTTY = ArTTY.new
     arTTY.exclude(config.get_exclude) if (config.exclude?)
@@ -321,6 +325,7 @@ begin
             width -= (info.width + 2)
             info = nil if ((height <= info.height) || (width <= 0))
         end
+        height -= fortune.split("\n").length if (config.fortune?)
         arTTY.fits(width, height)
     end
 
@@ -329,20 +334,22 @@ begin
         arTTY.cache
     when "demo"
         arTTY.art.each do |name|
-            puts "### #{name} ###".white
+            puts("### #{name} ###".white)
             art = arTTY.get(name, info).draw
-            puts "\n#{art}\n" if (!art.empty?)
+            puts("\n#{art}\n") if (!art.empty?)
         end
     when "edit"
         config.set_art(nil) if (config.random?)
         config.save # Save modified config
     when "generate"
-        puts ArTTY::Generator.new.generate(
-            options["generate"],
-            options["conf"].getdiff("art")
+        puts(
+            ArTTY::Generator.new.generate(
+                options["generate"],
+                options["conf"].getdiff("art")
+            )
         )
     when "list"
-        puts arTTY.art
+        puts(arTTY.art)
     when "save"
         config.set_art(nil) if (config.random?)
         config.savediff # Overwrite old save with new changes
@@ -357,16 +364,14 @@ begin
         system("clear") if (config.clear_screen?)
 
         art = arTTY.get(config.get_art, info).draw
-        puts "\n#{art}\n" if (!art.empty?)
-        if (config.fortune? && ScoobyDoo.where_are_you("fortune"))
-            system("fortune -s")
-        end
+        puts("\n#{art}\n") if (!art.empty?)
+        puts(fortune) if (fortune)
     end
 rescue ArTTY::Error => e
-    $stderr.puts e.message.white.on_red
+    $stderr.puts(e.message.white.on_red)
     if (options["verbose"])
         e.backtrace.each do |line|
-            $stderr.puts line.yellow
+            $stderr.puts(line.yellow)
         end
     end
     exit ArTTYExit::EXCEPTION
@@ -376,18 +381,26 @@ rescue Errno::EPIPE
     # Do nothing. This can happen if piping to another program such as
     # less. Usually if less is closed before we're done with STDOUT.
 rescue Exception => e
-    $stderr.puts "Oops! Looks like an error has occured! If the " \
-        "error persists, file a bug at:".wrap
+    $stderr.puts(
+        [
+            "Oops! Looks like an error has occured! If the error",
+            "persists, file a bug at:"
+        ].join(" ").wrap
+    )
     $stderr.puts
-    $stderr.puts "    https://gitlab.com/mjwhitta/arTTY/issues"
+    $stderr.puts("    https://gitlab.com/mjwhitta/arTTY/issues")
     $stderr.puts
-    $stderr.puts "Maybe the message below will help. If not, you " \
-        "can use the --verbose flag to get a backtrace.".wrap
+    $stderr.puts(
+        [
+            "Maybe the message below will help. If not, you can use",
+            "the --verbose flag to get a backtrace."
+        ].join(" ").wrap
+    )
 
-    $stderr.puts e.message.white.on_red
+    $stderr.puts(e.message.white.on_red)
     if (options["verbose"])
         e.backtrace.each do |line|
-            $stderr.puts line.light_yellow
+            $stderr.puts(line.light_yellow)
         end
     end
     exit ArTTYExit::EXCEPTION
