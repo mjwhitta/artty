@@ -20,47 +20,58 @@ class ArTTY::Cache
     private :current_version
 
     def download_and_extract
-        # Delete existing tarball
         tgz = Pathname.new("/tmp/arTTY_images.tgz").expand_path
-        tgz.delete if (tgz.exist?)
+        untar = Pathname.new("/tmp/arTTY_images-master").expand_path
 
-        # Download newest tarball
-        tarball = File.open(tgz, "wb")
-        request = Typhoeus::Request.new(
-            [
-                "https://gitlab.com/mjwhitta/arTTY_images/-/archive",
-                "master/arTTY_images-master.tar.gz"
-            ].join("/"),
-            timeout: 10
-        )
-        request.on_headers do |response|
-            if (response.code != 200)
+        begin
+            # Delete existing tarball
+            FileUtils.rm_f(tgz) if (tgz.exist?)
+
+            # Ensure extracted art doesn't exist in /tmp
+            FileUtils.rm_rf(untar) if (untar.exist?)
+
+            # Download newest tarball
+            tarball = File.open(tgz, "wb")
+            request = Typhoeus::Request.new(
+                [
+                    "https://gitlab.com/mjwhitta/arTTY_images/-",
+                    "archive/master/arTTY_images-master.tar.gz"
+                ].join("/"),
+                timeout: 10
+            )
+            request.on_headers do |response|
+                if (response.code != 200)
+                    tarball.close
+                    FileUtils.rm_f(tgz) if (tgz.exist?)
+                    raise ArTTY::Error::FailedToDownload.new
+                end
+            end
+            request.on_body do |chunk|
+                tarball.write(chunk)
+            end
+            request.on_complete do
+                tarball.close
+            end
+            request.run
+
+            # Throw error if download failed
+            if (!tgz.exist? || (tgz.size == 0))
+                FileUtils.rm_f(tgz) if (tgz.exist?)
                 raise ArTTY::Error::FailedToDownload.new
             end
-        end
-        request.on_body do |chunk|
-            tarball.write(chunk)
-        end
-        request.on_complete do
-            tarball.close
-        end
-        request.run
 
-        # Throw error if download failed
-        if (!tgz.exist? || (tgz.size == 0))
-            raise ArTTY::Error::FailedToDownload.new
+            # Extract new art
+            File.open(tgz, "rb") do |gz|
+                tar = Zlib::GzipReader.new(gz)
+                Minitar.unpack(tar, "/tmp")
+            end
+            FileUtils.rm_f("/tmp/pax_global_header")
+        rescue Interrupt
+            FileUtils.rm_f(tgz)
+            FileUtils.rm_rf(untar)
+            FileUtils.rm_f("/tmp/pax_global_header")
+            raise
         end
-
-        # Ensure extracted art doesn't exist in /tmp
-        untar = Pathname.new("/tmp/arTTY_images-master").expand_path
-        FileUtils.rm_rf(untar) if (untar.exist?)
-
-        # Extract new art
-        File.open(tgz, "rb") do |gz|
-            tar = Zlib::GzipReader.new(gz)
-            Minitar.unpack(tar, "/tmp")
-        end
-        FileUtils.rm_f("/tmp/pax_global_header")
 
         # Remove old art
         imgs = Pathname.new("~/.cache/arTTY/arTTY_images").expand_path
