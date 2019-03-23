@@ -47,7 +47,7 @@ class ArTTY::Cache
         request.run
 
         # Throw error if download failed
-        if (!tgz.exist? || (tgz.size == 00))
+        if (!tgz.exist? || (tgz.size == 0))
             raise ArTTY::Error::FailedToDownload.new
         end
 
