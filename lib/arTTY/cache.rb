@@ -20,68 +20,68 @@ class ArTTY::Cache
     private :current_version
 
     def download_and_extract
+        # Use tmpfs for speed
+        pax = Pathname.new("/tmp/pax_global_header").expand_path
         tgz = Pathname.new("/tmp/arTTY_images.tgz").expand_path
         untar = Pathname.new("/tmp/arTTY_images-master").expand_path
 
-        begin
-            # Delete existing tarball
-            FileUtils.rm_f(tgz) if (tgz.exist?)
+        # Delete existing tarball
+        FileUtils.rm_f(tgz) if (tgz.exist?)
 
-            # Ensure extracted art doesn't exist in /tmp
-            FileUtils.rm_rf(untar) if (untar.exist?)
+        # Ensure extracted art doesn't exist in /tmp
+        FileUtils.rm_rf(untar) if (untar.exist?)
 
-            # Download newest tarball
-            tarball = File.open(tgz, "wb")
-            request = Typhoeus::Request.new(
-                [
-                    "https://gitlab.com/mjwhitta/arTTY_images/-",
-                    "archive/master/arTTY_images-master.tar.gz"
-                ].join("/"),
-                timeout: 10
-            )
-            request.on_headers do |response|
-                if (response.code != 200)
-                    tarball.close
-                    FileUtils.rm_f(tgz) if (tgz.exist?)
-                    raise ArTTY::Error::FailedToDownload.new
-                end
-            end
-            request.on_body do |chunk|
-                tarball.write(chunk)
-            end
-            request.on_complete do
+        # Download newest tarball
+        tarball = File.open(tgz, "wb")
+        request = Typhoeus::Request.new(
+            [
+                "https://gitlab.com/mjwhitta/arTTY_images/-",
+                "archive/master/arTTY_images-master.tar.gz"
+            ].join("/"),
+            timeout: 10
+        )
+        request.on_headers do |response|
+            if (response.code != 200)
                 tarball.close
-            end
-            request.run
-
-            # Throw error if download failed
-            if (!tgz.exist? || (tgz.size == 0))
                 FileUtils.rm_f(tgz) if (tgz.exist?)
                 raise ArTTY::Error::FailedToDownload.new
             end
-
-            # Extract new art
-            File.open(tgz, "rb") do |gz|
-                tar = Zlib::GzipReader.new(gz)
-                Minitar.unpack(tar, "/tmp")
-            end
-            FileUtils.rm_f("/tmp/pax_global_header")
-        rescue Interrupt
-            FileUtils.rm_f(tgz)
-            FileUtils.rm_rf(untar)
-            FileUtils.rm_f("/tmp/pax_global_header")
-            raise
         end
+        request.on_body do |chunk|
+            tarball.write(chunk)
+        end
+        request.on_complete do
+            tarball.close
+        end
+        request.run
+
+        # Throw error if download failed
+        if (!tgz.exist? || (tgz.size == 0))
+            FileUtils.rm_f(tgz) if (tgz.exist?)
+            raise ArTTY::Error::FailedToDownload.new
+        end
+
+        # Extract new art
+        File.open(tgz, "rb") do |gz|
+            tar = Zlib::GzipReader.new(gz)
+            Minitar.unpack(tar, "/tmp")
+        end
+        FileUtils.rm_f(pax) if (pax.exist?)
 
         # Remove old art
         imgs = Pathname.new("~/.cache/arTTY/arTTY_images").expand_path
-        FileUtils.rm_rf(imgs)
+        FileUtils.rm_rf(imgs) if (imgs.exist?)
 
         # Move to final location
-        FileUtils.mv(untar, imgs)
+        FileUtils.mv("#{untar}/generated", imgs)
 
         # Cleanup
         FileUtils.rm_f(tgz) if (tgz.exist?)
+    rescue Interrupt
+        FileUtils.rm_f(pax) if (pax && pax.exist?)
+        FileUtils.rm_f(tgz) if (tgz && tgz.exist?)
+        FileUtils.rm_rf(untar) if (untar && untar.exist?)
+        raise
     end
     private :download_and_extract
 
@@ -124,7 +124,7 @@ class ArTTY::Cache
         @cache["version"] = current_version
 
         [
-            "~/.cache/arTTY/arTTY_images/generated",
+            "~/.cache/arTTY/arTTY_images",
             "~/.config/arTTY/art"
         ].each do |dir|
             Fagin.find_children_with_file_recursively(
