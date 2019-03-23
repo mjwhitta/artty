@@ -325,7 +325,9 @@ begin
             width -= (info.width + 2)
             info = nil if ((height <= info.height) || (width <= 0))
         end
-        height -= fortune.split("\n").length if (config.fortune?)
+        if (config.fortune? && fortune)
+            height -= fortune.split("\n").length
+        end
         arTTY.fits(width, height)
     end
 
