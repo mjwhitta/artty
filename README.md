@@ -43,6 +43,8 @@ $ arTTY -c --fit -m "street-fighter-3" -rs --save
 ```
 
 Use the `--list-supported` or `--ls` flags to see all included images.
+Occasionally you may want to run `arTTY --update` to download any new
+art.
 
 ### Tab completion
 

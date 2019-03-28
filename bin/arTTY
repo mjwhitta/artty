@@ -80,6 +80,16 @@ def parse(args)
             options["conf"].set_match(nil)
         end
 
+        opts.on("--cache", "Refresh the cache") do
+            case options["action"]
+            when "draw"
+                options["action"] = "cache"
+            else
+                puts(opts)
+                exit ArTTYExit::INVALID_OPTION
+            end
+        end
+
         opts.on("-c", "--[no-]clear", "Clear screen first") do |c|
             options["conf"].clear_screen if (c)
             options["conf"].no_clear_screen unless (c)
@@ -339,6 +349,8 @@ begin
     end
 
     case options["action"]
+    when "cache"
+        arTTY.cache
     when "demo"
         arTTY.art.each do |name|
             puts("### #{name} ###".white)
@@ -361,7 +373,7 @@ begin
         config.set_art(nil) if (config.random?)
         config.savediff # Overwrite old save with new changes
     when "update"
-        arTTY.cache
+        arTTY.cache(true)
     else
         # Randomize
         config.set_art(arTTY.random) if (config.random?)

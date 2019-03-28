@@ -1,8 +1,8 @@
 class ArTTY
     attr_reader :art
 
-    def cache
-        @cache.refresh
+    def cache(download = false)
+        @cache.refresh(download)
     end
 
     def exclude(pattern)

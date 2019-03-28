@@ -116,8 +116,8 @@ class ArTTY::Cache
         refresh if (@cache["version"] != current_version)
     end
 
-    def refresh
-        download_and_extract
+    def refresh(download = false)
+        download_and_extract if (download)
 
         @cache = Hash.new
         @cache["art"] = Hash.new
