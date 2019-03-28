@@ -113,8 +113,7 @@ class ArTTY::Cache
         @cachefile = Pathname.new(filename).expand_path
         refresh if (!@cachefile.exist?)
         @cache = JSON.parse(File.read(@cachefile))
-        refresh if (@cache["version"].nil?)
-        # refresh if (@cache["version"] != current_version)
+        refresh if (@cache["version"] != current_version)
     end
 
     def refresh(download = false)
