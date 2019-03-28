@@ -111,7 +111,7 @@ class ArTTY::Cache
 
     def initialize(filename = "~/.cache/arTTY/art.json")
         @cachefile = Pathname.new(filename).expand_path
-        refresh if (!@cachefile.exist?)
+        refresh(true) if (!@cachefile.exist?)
         @cache = JSON.parse(File.read(@cachefile))
         refresh if (@cache["version"] != current_version)
     end
