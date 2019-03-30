@@ -77,6 +77,7 @@ class ArTTY::Cache
 
         # Cleanup
         FileUtils.rm_f(tgz) if (tgz.exist?)
+        FileUtils.rm_rf(untar) if (untar.exist?)
     rescue Interrupt
         FileUtils.rm_f(pax) if (pax && pax.exist?)
         FileUtils.rm_f(tgz) if (tgz && tgz.exist?)
