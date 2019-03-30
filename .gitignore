@@ -1,4 +1,5 @@
 *.gem
+bin/art
 bin/artty
 Gemfile.lock
 tags

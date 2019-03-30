@@ -20,69 +20,50 @@ class ArTTY::Cache
     private :current_version
 
     def download_and_extract
-        # Use tmpfs for speed
-        pax = Pathname.new("/tmp/pax_global_header").expand_path
-        tgz = Pathname.new("/tmp/arTTY_images.tgz").expand_path
-        untar = Pathname.new("/tmp/arTTY_images-master").expand_path
-
-        # Delete existing tarball
-        FileUtils.rm_f(tgz) if (tgz.exist?)
-
-        # Ensure extracted art doesn't exist in /tmp
-        FileUtils.rm_rf(untar) if (untar.exist?)
+        # Temporary working directory
+        tmp = Pathname.new("/tmp/arTTY").expand_path
 
         # Download newest tarball
-        tarball = File.open(tgz, "wb")
         request = Typhoeus::Request.new(
             [
                 "https://gitlab.com/mjwhitta/arTTY_images/-",
-                "archive/master/arTTY_images-master.tar.gz"
+                "archive/master/arTTY_images.tgz"
             ].join("/"),
             timeout: 10
         )
         request.on_headers do |response|
             if (response.code != 200)
-                tarball.close
-                FileUtils.rm_f(tgz) if (tgz.exist?)
                 raise ArTTY::Error::FailedToDownload.new
             end
         end
-        request.on_body do |chunk|
-            tarball.write(chunk)
-        end
-        request.on_complete do
-            tarball.close
-        end
-        request.run
-
-        # Throw error if download failed
-        if (!tgz.exist? || (tgz.size == 0))
-            FileUtils.rm_f(tgz) if (tgz.exist?)
-            raise ArTTY::Error::FailedToDownload.new
-        end
+        tgz = StringIO.new(request.run.body)
+        raise ArTTY::Error::FailedToDownload.new if (tgz.eof?)
 
         # Extract new art
-        File.open(tgz, "rb") do |gz|
-            tar = Zlib::GzipReader.new(gz)
-            Minitar.unpack(tar, "/tmp")
+        tar = Minitar::Input.new(Zlib::GzipReader.new(tgz))
+        untar = nil
+        tar.each do |entry|
+            case entry.name
+            when %r{^arTTY_images[^/]+/?$}
+                untar = Pathname.new(
+                    "#{tmp}/#{entry.name}/generated"
+                ).expand_path
+            when /.+\.rb$/
+                tar.extract_entry(tmp, entry)
+            end
         end
-        FileUtils.rm_f(pax) if (pax.exist?)
 
-        # Remove old art
+        # Move new art to final location
         imgs = Pathname.new("~/.cache/arTTY/arTTY_images").expand_path
-        FileUtils.rm_rf(imgs) if (imgs.exist?)
-
-        # Move to final location
-        FileUtils.mv("#{untar}/generated", imgs)
-
-        # Cleanup
-        FileUtils.rm_f(tgz) if (tgz.exist?)
-        FileUtils.rm_rf(untar) if (untar.exist?)
+        if (untar && untar.exist?)
+            FileUtils.rm_rf(imgs) if (imgs.exist?)
+            FileUtils.mv(untar, imgs)
+        end
     rescue Interrupt
-        FileUtils.rm_f(pax) if (pax && pax.exist?)
-        FileUtils.rm_f(tgz) if (tgz && tgz.exist?)
-        FileUtils.rm_rf(untar) if (untar && untar.exist?)
         raise
+    ensure
+        # Cleanup
+        FileUtils.rm_rf(tmp) if (tmp && tmp.exist?)
     end
     private :download_and_extract
 
