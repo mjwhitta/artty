@@ -10,7 +10,7 @@ class ArTTY::SystemInfo
             File.read("/proc/cpuinfo").each_line do |line|
                 line.match(/name\s+:\s+(.+)/) do |m|
                     out = m[1].gsub(/\((R|TM)\)| (@|CPU)/, "")
-                    return out.gsub(/\s+/, " ")
+                    return out.gsub(/\s+/, " ").strip
                 end
             end
         end
@@ -27,7 +27,7 @@ class ArTTY::SystemInfo
 
         df = %x(df -h #{fs} | tail -n 1)
         df.match(/^[^\s]+\s+([^\s]+)\s+([^\s]+)/) do |m|
-            return "#{m[2]} / #{m[1]}"
+            return "#{m[2]} / #{m[1]}".strip
         end
 
         return ""
@@ -84,7 +84,7 @@ class ArTTY::SystemInfo
         return "" if (ScoobyDoo.where_are_you("ip").nil?)
         %x(ip r).match(/^default.+dev\s+(\S+)/) do |dev|
             %x(ip -o a s #{dev[1]}).match(/\s+inet\s+(\S+)/) do |ip|
-                return ip[1]
+                return ip[1].strip
             end
         end
         return ""
@@ -96,7 +96,7 @@ class ArTTY::SystemInfo
             %x(ip -o a s #{dev[1]}).match(
                 /\s+inet6\s+((?!fe[89ab])\S+)/i
             ) do |ip|
-                return ip[1]
+                return ip[1].strip
             end
         end
         return ""
@@ -114,7 +114,7 @@ class ArTTY::SystemInfo
         if (os.exist?)
             File.read(os).each_line do |line|
                 line.match(/^PRETTY_NAME="(.+)"/) do |m|
-                    return "#{m[1]} #{%x(uname -m).strip}"
+                    return "#{m[1].strip} #{%x(uname -m).strip}"
                 end
             end
         end
@@ -126,7 +126,7 @@ class ArTTY::SystemInfo
         return "" if (ScoobyDoo.where_are_you("free").nil?)
 
         %x(free -m).match(/Mem:\s+(\d+)\s+(\d+)/) do |m|
-            return "#{m[2]} MB / #{m[1]} MB"
+            return "#{m[2]} MB / #{m[1]} MB".strip
         end
 
         return ""
@@ -183,7 +183,8 @@ class ArTTY::SystemInfo
     end
 
     def shell
-        return ENV["SHELL"]
+        return "" if (ENV["SHELL"].nil?)
+        return ENV["SHELL"].strip
     end
 
     def tty
@@ -199,7 +200,7 @@ class ArTTY::SystemInfo
         up.gsub!(/0?(\d+):0?(\d+)/, "\\1 hour, \\2 min")
         up.gsub!(/(0 hour, |, 0 min)/, "")
         up.gsub!(/((\d\d+|[2-9]) (hour|min))/, "\\1s")
-        return up.gsub(/\s+/, " ")
+        return up.gsub(/\s+/, " ").strip
     end
 
     def width
