@@ -54,7 +54,7 @@ class ArTTY::Cache
         end
 
         # Move new art to final location
-        imgs = Pathname.new("~/.cache/arTTY/arTTY_images").expand_path
+        imgs = Pathname.new("#{@cachedir}/arTTY_images").expand_path
         if (untar && untar.exist?)
             FileUtils.rm_rf(imgs) if (imgs.exist?)
             FileUtils.mv(untar, imgs)
@@ -93,12 +93,15 @@ class ArTTY::Cache
 
     def initialize(filename = "~/.cache/arTTY/art.json")
         @cachefile = Pathname.new(filename).expand_path
+        @cachedir = Pathname.new(@cachefile.dirname).expand_path
         refresh(true) if (!@cachefile.exist?)
         @cache = JSON.parse(File.read(@cachefile))
         refresh if (@cache["version"] != current_version)
     end
 
     def refresh(download = false)
+        FileUtils.mkdir_p(@cachedir)
+
         download_and_extract if (download)
 
         @cache = Hash.new
@@ -106,7 +109,7 @@ class ArTTY::Cache
         @cache["version"] = current_version
 
         [
-            "~/.cache/arTTY/arTTY_images",
+            "#{@cachedir}/arTTY_images",
             "~/.config/arTTY/art"
         ].each do |dir|
             Fagin.find_children_with_file_recursively(
