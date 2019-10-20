@@ -49,7 +49,7 @@ class ArTTY::SystemInfo
         @info.each do |k, v|
             if (k.empty?)
                 info.push("")
-                info.push(v.white)
+                info.push(v)
             else
                 lfill = " " * (fillto - k.length)
                 info.push("#{lfill}#{k.blue}: #{v.white}")
