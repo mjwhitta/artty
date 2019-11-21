@@ -42,7 +42,7 @@ check_resume_file() {
     fi
 }
 clean() {
-    if [[ ${1:-0} -eq 0 ]]; then
+    if [[ ${1:-0} -eq 0 ]] || [[ ${1:-0} -eq 122 ]]; then
         [[ -z $cache ]] || [[ ! -d "$cache" ]] || rm -rf "$cache"
     fi
     [[ -z $script ]] || [[ ! -f "$script" ]] || rm -f "$script"
@@ -89,7 +89,7 @@ selected categories.
 Options:
     -f, --force          Generate images even if they already exist
     -h, --help           Display this help message
-    --nocolor            Disable colorized output
+    --no color           Disable colorized output
     -r, --resume         Resume from a previous run
     -t, --threads=NUM    Use specified number of threads (default: 32)
     -v, --verbose        Do not hide parallel errors
@@ -128,7 +128,7 @@ while [[ $# -gt 0 ]]; do
         "--") shift && args+=("$@") && break ;;
         "-f"|"--force") force="true" ;;
         "-h"|"--help") help="true" ;;
-        "--nocolor") unset color ;;
+        "--no-color") unset color ;;
         "-r"|"--resume") resume="--resume" ;;
         "-t"|"--threads"*) threads="$(long_opt "$@")" || shift ;;
         "-v"|"--verbose") verbose="true" ;;
@@ -150,8 +150,12 @@ fi
 
 # Cite if needed
 if [[ -n $parallel ]] && [[ ! -f "$HOME/.parallel/will-cite" ]]; then
-    mkdir -p "$HOME/.parallel"
-    parallel --citation
+    pvers="$(parallel --version | grep -ioPs "parallel \K\d+")"
+    if [[ $pvers -lt 20181122 ]]; then
+        mkdir -p "$HOME/.parallel"
+        parallel --citation
+    fi
+    unset pvers
 fi
 
 # Save command line args
@@ -207,7 +211,7 @@ if [[ ! -f "$dataset" ]]; then
     ); unset dir
 fi
 total="$(wc -l "$dataset" | awk '{print $1}')"
-[[ $total -gt 0 ]] || errx 2 "No dataset provided"
+[[ $total -gt 0 ]] || errx 122 "No dataset provided"
 
 subinfo "$total jobs to run"
 
@@ -226,7 +230,7 @@ subinfo() { echo -e "\r${color:+\e[36m}[=] \$*\e[0m\e[K"; }
 warn() { echo -e "\r${color:+\e[33m}[-] \$*\e[0m\e[K"; }
 ### Helpers end
 
-# Contants
+# Constants
 output="../arTTY_images/generated"
 
 # Parse input
