@@ -236,18 +236,28 @@ output="../arTTY_images/generated"
 # Parse input
 dir="\${1%%|*}"
 dir="\${dir#./}"
+dir="\${dir//_/-}"
 img="\${1##*|}"
 
 # Determine category
 category="\${dir#./}"
 
 # Determine art name
-name="\${category////-}-\$(basename -s .png "\$img")"
+name="\${category////-}"
+case "\$img" in
+    *".jpg") name="\$name-\$(basename -s .jpg "\$img")" ;;
+    *".png") name="\$name-\$(basename -s .png "\$img")" ;;
+esac
 name="\${name%_[0-9]*x[0-9]*}"
 name="\${name//_/-}"
 
-# Determine ruby filename
-filename="\$(echo "\${name//[-.]/_}.rb" | tr [:upper:] [:lower:])"
+# Determine json filename
+case "\$img" in
+    *".jpg") filename="\$(basename -s .jpg "\$img")" ;;
+    *".png") filename="\$(basename -s .png "\$img")" ;;
+esac
+filename="\${filename%_[0-9]*x[0-9]*}"
+filename="\${filename//_/-}.json"
 
 # Generate art
 good "\$img => \$dir/\$filename"

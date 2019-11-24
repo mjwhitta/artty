@@ -3,19 +3,18 @@
 require "hilighter"
 
 class ArTTY::Art
-    attr_reader :colors
+    attr_reader :pixels
     attr_accessor :legend
     attr_accessor :name
     attr_accessor :sysinfo
 
     def draw
-        @legend ||= Hash.new
         offset = nil
         out = ""
-        pixels = @colors
+        pixels = @pixels
         sysinfo = Array.new
         if (@sysinfo)
-            offset = @colors[0] ? @colors[0].length + 2 : 0
+            offset = @pixels[0] ? @pixels[0].length + 2 : 0
             sysinfo = @sysinfo.info
         end
 
@@ -83,31 +82,28 @@ class ArTTY::Art
     end
 
     def height
-        return (@colors.length + 1) / 2
+        return @json["height"]
     end
 
-    def initialize
-        @colors = Array.new
-        @debug = false
-        @name = "none"
-        @sysinfo = nil
-    end
-
-    def map_color(fgk, color)
-        @legend ||= Hash.new
-        @legend[fgk] = color
-    end
-    private :map_color
-
-    def self.subclasses
-        ObjectSpace.each_object(Class).select do |clas|
-            (clas < self)
+    def initialize(file = nil)
+        if (!file.nil?)
+            @file = Pathname.new(file).expand_path
+            @json = JSON.parse(File.read(@file))
+        else
+            @file = nil
+            @json = Hash.new
         end
+
+        @debug = false
+        @legend = @json["legend"] || Hash.new
+        @name = @json["name"] || "none"
+        @pixels = @json["pixels"] || Array.new
+        @sysinfo = nil
     end
 
     def to_json
         return {
-            "class" => self.class.to_s,
+            "file" => @file,
             "height" => height,
             "name" => @name,
             "width" => width
@@ -119,6 +115,6 @@ class ArTTY::Art
     end
 
     def width
-        return @colors.map(&:length).max
+        return @json["width"]
     end
 end

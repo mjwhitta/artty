@@ -1,4 +1,3 @@
-require "fagin"
 require "fileutils"
 require "json"
 require "minitar"
@@ -48,7 +47,7 @@ class ArTTY::Cache
                 untar = Pathname.new(
                     "#{tmp}/#{entry.name}/generated"
                 ).expand_path
-            when /.+\.rb$/
+            when /.+\.json$/
                 tar.extract_entry(tmp, entry)
             end
         end
@@ -67,18 +66,6 @@ class ArTTY::Cache
     end
     private :download_and_extract
 
-    def get_class_for(name)
-        if (@cache["art"][name].nil?)
-            raise ArTTY::Error::ArtNotFound.new(name)
-        end
-
-        require_relative get_file_for(name)
-        classname = @cache["art"][name]["class"]
-        return classname.split("::").inject(Object) do |m, c|
-            m.const_get(c)
-        end
-    end
-
     def get_file_for(name)
         return @cache["art"][name]["file"]
     end
@@ -91,7 +78,7 @@ class ArTTY::Cache
         return @cache["art"][name]["width"]
     end
 
-    def initialize(filename = "~/.cache/arTTY/art.json")
+    def initialize(filename = "#{ENV["HOME"]}/.cache/arTTY/art.json")
         @cachefile = Pathname.new(filename).expand_path
         @cachedir = Pathname.new(@cachefile.dirname).expand_path
         refresh(true) if (!@cachefile.exist?)
@@ -110,16 +97,11 @@ class ArTTY::Cache
 
         [
             "#{@cachedir}/arTTY_images",
-            "~/.config/arTTY/art"
+            "#{ENV["HOME"]}/.config/arTTY/art"
         ].each do |dir|
-            Fagin.find_children_with_file_recursively(
-                "ArTTY::Art",
-                dir
-            ).values.each do |clas, file|
-                img = clas.new
-                @cache["art"][img.name] = {"file" => file}.merge(
-                    img.to_json
-                )
+            Dir["#{dir}/**/*.json"].each do |file|
+                img = ArTTY::Art.new(file)
+                @cache["art"][img.name] = img.to_json
             end
         end
         write

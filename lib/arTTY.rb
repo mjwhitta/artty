@@ -30,8 +30,9 @@ class ArTTY
             if (!@@all_art.include?(name))
                 raise ArTTY::Error::ArtNotFound.new(name)
             end
-            img = ArTTY::Art.new if (!@art.include?(name))
-            img ||= @cache.get_class_for(name).new
+            file = @cache.get_file_for(name)
+            file = nil if (!@art.include?(name))
+            img = ArTTY::Art.new(file)
         end
         img.sysinfo = sysinfo
         return img

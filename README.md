@@ -34,8 +34,7 @@ following commands:
 
 ```
 $ arTTY -cf --fit -rs --save
-$ arTTY -ce "jynx|nosepass|smoochum" --fit \
-    -m "pokemon(-leafgreen)?-I+-" -rs --save
+$ arTTY -ce "emerald|III|shiny" --fit -m pokemon -rs --save
 $ arTTY -cf --fit -m "megaman-battle-network" -rs --save
 $ arTTY -cfs --save linux-arch
 $ arTTY -c --fit -s --save legend-of-zelda-majoras-mask
@@ -79,24 +78,24 @@ fi
 ArTTY can generate source code from images too. It will automatically
 determine the size, but you can specify a size manually by appending
 `_WIDTHxHEIGHT` to the filename. It uses the filename to name the art
-unless you manually specify one. It will then `require` any code in
+unless you manually specify one. It will then cache any json files in
 the `$HOME/.config/arTTY/art` directory.
 
 ### Examples
 
 ```
 $ arTTY -g my-art-name.png \
-    >$HOME/.config/arTTY/art/my_art_name.rb
+    >$HOME/.config/arTTY/art/my-art-name.json
 $ arTTY -g my-art-name_WIDTHxHEIGHT.png \
-    >$HOME/.config/arTTY/art/my_art_name.rb
+    >$HOME/.config/arTTY/art/my-art-name.json
 $ arTTY -g some_image.png my-art-name \
-    >$HOME/.config/arTTY/art/my_art_name.rb
+    >$HOME/.config/arTTY/art/my-art-name.json
 ```
 
 This will use imagemagick to traverse a `WIDTH` by `HEIGHT` grid and
-sample the color inside each cell. It will then generate a ruby class
-called `MyArtName`. This works best with sprites, however, it can
-parse any image this way.
+sample the color inside each cell. It will then generate a json file.
+This works best with sprites, however, it can parse any image this
+way.
 
 **Note: Make sure to run `arTTY --cache` after generating new art**
 

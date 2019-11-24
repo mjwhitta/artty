@@ -1,33 +1,23 @@
 class ArTTY::Generator
-    def class_from_name(name)
-        return name.gsub(/(^|[-_]+)(\S)/, &:upcase).gsub(/[-_.]+/, "")
-    end
-    private :class_from_name
-
     def generate(image, name = nil)
-        clas = nil
         file = Pathname.new(image).expand_path
         pixels = nil
 
         file.to_s.match(%r{([^/]+?)(_(\d+)x(\d+))?\.}) do |m|
             name ||= m[1]
-            clas = class_from_name(name)
             width = m[3].nil? ? nil : m[3].to_i
             height = m[4].nil? ? nil : m[4].to_i
             pixels = get_pixel_info(file, width, height)
         end
 
-        if (clas.nil? || name.nil? || pixels.nil?)
-            raise ArTTY::Error::ImageNamedImproperly.new(file)
-        end
         raise ArTTY::Error::NoPixelDataFound.new if (pixels.empty?)
 
-        color_map = generate_color_map(pixels)
-        return generate_ruby_code(clas, name, pixels, color_map)
+        legend = generate_color_map(pixels)
+        return generate_json(name, pixels, legend)
     end
 
     def generate_color_map(pixels)
-        color_map = {"" => " "}
+        legend = {"" => " "}
 
         colors = pixels.flatten.uniq.sort.delete_if(&:empty?)
         if (colors.length > @keys.length)
@@ -37,41 +27,51 @@ class ArTTY::Generator
         end
 
         colors.zip(@keys) do |map|
-            color_map[map[0]] = map[1]
+            legend[map[0]] = map[1]
         end
 
-        return color_map
+        return legend
     end
     private :generate_color_map
 
-    def generate_ruby_code(clas, name, pixels, color_map)
+    def generate_json(name, pixels, legend)
         ret = [
-            "class ArTTY::Art::#{clas} < ArTTY::Art",
-            "    def initialize",
-            "        super",
-            "        @colors = ["
+            "{",
+            "  \"height\": #{(pixels.length + 1) / 2},",
+            "  \"legend\": {",
         ]
-        pixels.each do |row|
+
+        stop = legend.length - 1
+        legend.each_with_index do |map, i|
+            next if (i == 0)
+            clr = map[0]
+            key = map[1]
+            ret.push("    \"#{key}\": \"#{clr}\"#{"," if (i < stop)}")
+        end
+
+        ret.concat([
+            "  },",
+            "  \"name\": \"#{name}\",",
+            "  \"pixels\": ["
+        ])
+
+        stop = pixels.length - 1
+        pixels.each_with_index do |row, i|
             line = row.map do |color|
-                color_map[color]
+                legend[color]
             end.join
-            ret.push("            \"#{line}\",")
+            ret.push("    \"#{line}\"#{"," if (i < stop)}")
         end
+
         ret.concat([
-            "        ]",
-            "        @name = \"#{name}\""
+            "  ],",
+            "  \"width\": #{pixels.map(&:length).max}",
+            "}"
         ])
-        color_map.delete("")
-        color_map.each do |color, key|
-            ret.push("        map_color(\"#{key}\", \"#{color}\")")
-        end
-        ret.concat([
-            "    end",
-            "end"
-        ])
+
         return ret
     end
-    private :generate_ruby_code
+    private :generate_json
 
     def get_pixel_info(file, width = nil, height = nil)
         h_increment = w_increment = 1

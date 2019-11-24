@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name = "arTTY"
-    s.version = "0.9.25"
+    s.version = "0.9.26"
     s.date = Time.new.strftime("%Y-%m-%d")
     s.summary = "Art for your TTY."
     s.description = [
@@ -16,8 +16,7 @@ Gem::Specification.new do |s|
     s.license = "GPL-3.0"
     s.add_development_dependency("minitest", "~> 5.12", ">= 5.12.2")
     s.add_development_dependency("rake", "~> 13.0", ">= 13.0.0")
-    s.add_runtime_dependency("fagin", "~> 1.2", ">= 1.2.2")
-    s.add_runtime_dependency("hilighter", "~> 1.4", ">= 1.4.1")
+    s.add_runtime_dependency("hilighter", "~> 1.4", ">= 1.4.7")
     s.add_runtime_dependency("json_config", "~> 1.1", ">= 1.1.1")
     s.add_runtime_dependency("minitar", "~> 0.9", ">= 0.9.0")
     s.add_runtime_dependency("scoobydoo", "~> 1.0", ">= 1.0.1")
