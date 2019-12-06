@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "hilighter"
-gem "json_conig"
+gem "jsoncfg"
 gem "minitest"
 gem "rake"
 gem "scoobydoo"

@@ -3,7 +3,7 @@
 require "arTTY"
 require "hilighter"
 require "io/wait"
-require "json_config"
+require "jsoncfg"
 require "optparse"
 require "scoobydoo"
 
