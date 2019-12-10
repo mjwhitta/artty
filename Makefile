@@ -1,15 +1,16 @@
 all: build
 
-build: check fmt
-	@go build ./cmd/arTTY
+build: fmt
+	@mkdir -p ./build
+	@go build -o ./build ./cmd/*
 
 check:
 	@which go >/dev/null 2>&1
 
 clean: fmt
-	@rm -f arTTY
+	@rm -rf build
 
 clena: clean
 
 fmt: check
-	@go fmt . ./cmd/arTTY
+	@go fmt . ./cmd/*

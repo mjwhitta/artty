@@ -83,7 +83,7 @@ func main() {
 	}()
 
 	if version {
-		hl.Printf("Version: %s\n", arTTY.Version)
+		hl.Printf("arTTY version %s\n", arTTY.Version)
 	} else {
 	}
 }
