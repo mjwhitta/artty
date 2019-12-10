@@ -15,7 +15,7 @@ $ gem install arTTY
 Or install from source:
 
 ```
-$ git clone https://gitlab.com/mjwhitta/arTTY.git
+$ git clone -b ruby https://gitlab.com/mjwhitta/arTTY.git
 $ cd arTTY
 $ bundle install && rake install
 ```
@@ -101,7 +101,7 @@ way.
 
 ## Links
 
-- [Source](https://gitlab.com/mjwhitta/arTTY)
+- [Source](https://gitlab.com/mjwhitta/arTTY/tree/ruby)
 - [RubyGems](https://rubygems.org/gems/arTTY)
 - [Images](https://gitlab.com/mjwhitta/arTTY_images)
 
