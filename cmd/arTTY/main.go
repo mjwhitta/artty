@@ -55,9 +55,9 @@ var matching string
 var nocolor bool
 var plain bool
 var random bool
+var save bool
 var sysinfo bool
 var update bool
-var verbose bool
 var version bool
 
 func init() {
@@ -82,18 +82,39 @@ func init() {
 	cli.ExitStatus = strings.Join(
 		[]string{
 			"Normally the exit status is 0. In the event of an error",
-			"the exit status will be one of the below:\n",
-			"  1: Invalid option\n",
-			"  2: Invalid argument\n",
-			"  3: Missing argument\n",
-			"  4: Extra arguments\n",
-			"  5: Exception\n",
-			"  6: Ambiguous argument\n",
-			"  7: Unsupported art\n",
+			"the exit status will be one of the below:\n\n",
+			"1: Invalid option\n",
+			"2: Invalid argument\n",
+			"3: Missing argument\n",
+			"4: Extra arguments\n",
+			"5: Exception\n",
+			"6: Ambiguous argument\n",
+			"7: Unsupported art",
 		},
 		" ",
 	)
 	cli.Info = "Art for your TTY."
+	cli.Section(
+		"FIELDS",
+		strings.Join(
+			[]string{
+				"colors: Show terminal colors\n",
+				"cpu: Show cpu info\n",
+				"fs: Show filesystem usage\n",
+				"host, hostname: Show hostname\n",
+				"ip: Show IPv4 and IPv6 addresses\n",
+				"ipv4: Show only IPv4 addresses\n",
+				"ipv6: Show only IPv6 addresses\n",
+				"kernel: Show kernel info\n",
+				"os: Show operating system info\n",
+				"ram: Show RAM usage\n",
+				"shell: Show current shell\n",
+				"tty: Show TTY info\n",
+				"uptime: Show uptime",
+			},
+			" ",
+		),
+	)
 	cli.Title = "ArTTY"
 
 	// Parse cli flags
@@ -102,18 +123,18 @@ func init() {
 		"a",
 		"all",
 		false,
-		"Ignore previous filters, implies --no-fit (use first).",
+		"Ignore previous filters, (use first).",
 	)
 	cli.Flag(&cache, "cache", false, "Refresh the cache.")
 	cli.Flag(&clear, "c", "clear", false, "Clear screen first.")
-	cli.Flag(&demo, "d", "demo", false, "Demo art matching criteria.")
+	cli.Flag(&demo, "d", "demo", false, "Demo art matching filters.")
 	cli.Flag(&edit, "edit", false, "Amend config with new options.")
 	cli.Flag(
 		&exclude,
 		"e",
 		"exclude",
 		"",
-		"Exclude art matching STRING.",
+		"Exclude art matching pattern.",
 	)
 	cli.Flag(
 		&fields,
@@ -139,15 +160,15 @@ func init() {
 		"g",
 		"generate",
 		"",
-		"Generate ArTTY art from STRING (NAME_WxH.png).",
+		"Generate ArTTY art from image (NAME_WxH.png).",
 	)
-	cli.Flag(&list, "ls", false, "List art matching criteria.")
+	cli.Flag(&list, "ls", false, "List art matching filters.")
 	cli.Flag(
 		&matching,
 		"m",
 		"matching",
 		"",
-		"Only use art matching STRING.",
+		"Only use art matching pattern.",
 	)
 	cli.Flag(&nocolor, "no-color", false, "Disable colorized output.")
 	cli.Flag(
@@ -157,9 +178,8 @@ func init() {
 		false,
 		strings.Join(
 			[]string{
-				"Implies: --all, --no-clear, --no-fortune,",
-				"--no-random, and --no-sysinfo (use first, useful",
-				"for tab-completion with --ls).",
+				"Turns off all flags and filtering (use first,",
+				"useful for tab-completion with --ls).",
 			},
 			" ",
 		),
@@ -169,7 +189,13 @@ func init() {
 		"r",
 		"random",
 		false,
-		"Display random art matching criteria.",
+		"Display random art matching filters.",
+	)
+	cli.Flag(
+		&save,
+		"save",
+		false,
+		"Save specified options as default.",
 	)
 	cli.Flag(&sysinfo, "s", "sysinfo", false, "Display system info.")
 	cli.Flag(
@@ -178,13 +204,6 @@ func init() {
 		"update",
 		false,
 		"Download new art and refresh the cache.",
-	)
-	cli.Flag(
-		&verbose,
-		"v",
-		"verbose",
-		false,
-		"Show backtrace when error occurs.",
 	)
 	cli.Flag(&version, "V", "version", false, "Show version.")
 	cli.Parse()
