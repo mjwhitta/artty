@@ -7,6 +7,7 @@ import (
 	"gitlab.com/mjwhitta/arTTY"
 	"gitlab.com/mjwhitta/cli"
 	hl "gitlab.com/mjwhitta/hilighter"
+	"gitlab.com/mjwhitta/jsoncfg"
 )
 
 // Helpers begin
@@ -35,10 +36,44 @@ const (
 	UnsupportedArt    int = 7
 )
 
+// Create a jsoncfg object
+var config = jsoncfg.New("~/.config/arTTY/rc")
+
+// Flags
+var all bool
+var cache bool
+var clear bool
+var demo bool
+var edit bool
+var exclude string
+var fields string
+var fit bool
+var fortune bool
+var generate string
+var list bool
+var matching string
 var nocolor bool
+var plain bool
+var random bool
+var sysinfo bool
+var update bool
+var verbose bool
 var version bool
 
 func init() {
+	// Initialize default values for config
+	config.SetDefault("art", "")
+	config.SetDefault("clear_screen", true)
+	config.SetDefault("exclude", "")
+	config.SetDefault("fields", []string{})
+	config.SetDefault("fit", true)
+	config.SetDefault("fortune", false)
+	config.SetDefault("match", "")
+	config.SetDefault("random", true)
+	config.SetDefault("sysinfo", true)
+	config.SaveDefault()
+	config.Reset()
+
 	// Configure cli package
 	cli.Align = true
 	cli.Authors = []string{"Miles Whittaker <mj@whitta.dev>"}
@@ -62,14 +97,106 @@ func init() {
 	cli.Title = "ArTTY"
 
 	// Parse cli flags
+	cli.Flag(
+		&all,
+		"a",
+		"all",
+		false,
+		"Ignore previous filters, implies --no-fit (use first).",
+	)
+	cli.Flag(&cache, "cache", false, "Refresh the cache.")
+	cli.Flag(&clear, "c", "clear", false, "Clear screen first.")
+	cli.Flag(&demo, "d", "demo", false, "Demo art matching criteria.")
+	cli.Flag(&edit, "edit", false, "Amend config with new options.")
+	cli.Flag(
+		&exclude,
+		"e",
+		"exclude",
+		"",
+		"Exclude art matching STRING.",
+	)
+	cli.Flag(
+		&fields,
+		"fields",
+		"",
+		"Specify order of sysinfo (comma-separated, see FIELDS).",
+	)
+	cli.Flag(
+		&fit,
+		"fit",
+		false,
+		"Only use art that fits in the current window.",
+	)
+	cli.Flag(
+		&fortune,
+		"f",
+		"fortune",
+		false,
+		"Display a fortune (if installed).",
+	)
+	cli.Flag(
+		&generate,
+		"g",
+		"generate",
+		"",
+		"Generate ArTTY art from STRING (NAME_WxH.png).",
+	)
+	cli.Flag(&list, "ls", false, "List art matching criteria.")
+	cli.Flag(
+		&matching,
+		"m",
+		"matching",
+		"",
+		"Only use art matching STRING.",
+	)
 	cli.Flag(&nocolor, "no-color", false, "Disable colorized output.")
+	cli.Flag(
+		&plain,
+		"p",
+		"plain",
+		false,
+		strings.Join(
+			[]string{
+				"Implies: --all, --no-clear, --no-fortune,",
+				"--no-random, and --no-sysinfo (use first, useful",
+				"for tab-completion with --ls).",
+			},
+			" ",
+		),
+	)
+	cli.Flag(
+		&random,
+		"r",
+		"random",
+		false,
+		"Display random art matching criteria.",
+	)
+	cli.Flag(&sysinfo, "s", "sysinfo", false, "Display system info.")
+	cli.Flag(
+		&update,
+		"u",
+		"update",
+		false,
+		"Download new art and refresh the cache.",
+	)
+	cli.Flag(
+		&verbose,
+		"v",
+		"verbose",
+		false,
+		"Show backtrace when error occurs.",
+	)
 	cli.Flag(&version, "V", "version", false, "Show version.")
 	cli.Parse()
 
 	// Validate cli flags
-	if cli.NArg() > 1 {
+	if cli.NArg() == 1 {
+		// TODO
+	} else if cli.NArg() > 1 {
 		cli.Usage(ExtraArguments)
 	}
+
+	// TODO process cli flags
 }
 
 func main() {
