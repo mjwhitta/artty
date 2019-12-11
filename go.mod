@@ -4,6 +4,6 @@ go 1.13
 
 require (
 	gitlab.com/mjwhitta/cli v1.7.7
-	gitlab.com/mjwhitta/hilighter v1.5.5
+	gitlab.com/mjwhitta/hilighter v1.5.9
 	gitlab.com/mjwhitta/jsoncfg v1.1.5
 )

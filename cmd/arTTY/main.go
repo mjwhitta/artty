@@ -26,20 +26,18 @@ func warn(msg string)    { hl.PrintlnYellow("[-] %s", msg) }
 
 // Exit status
 const (
-	Good              int = 0
-	InvalidOption     int = 1
-	InvalidArgument   int = 2
-	MissingArgument   int = 3
-	ExtraArguments    int = 4
-	Exception         int = 5
-	AmbiguousArgument int = 6
-	UnsupportedArt    int = 7
+	Good            int = 0
+	InvalidOption   int = 1
+	InvalidArgument int = 2
+	ExtraArguments  int = 3
+	Exception       int = 4
 )
 
 // Create a jsoncfg object
 var config = jsoncfg.New("~/.config/arTTY/rc")
 
 // Flags
+var action = "draw"
 var all bool
 var cache bool
 var clear bool
@@ -85,11 +83,8 @@ func init() {
 			"the exit status will be one of the below:\n\n",
 			"1: Invalid option\n",
 			"2: Invalid argument\n",
-			"3: Missing argument\n",
-			"4: Extra arguments\n",
-			"5: Exception\n",
-			"6: Ambiguous argument\n",
-			"7: Unsupported art",
+			"3: Extra arguments\n",
+			"4: Exception",
 		},
 		" ",
 	)
@@ -202,14 +197,110 @@ func init() {
 	cli.Flag(&version, "V", "version", false, "Show version.")
 	cli.Parse()
 
+	// Process cli flags
+	if all {
+		config.Set("exclude", "")
+		config.Set("fit", false)
+		config.Set("match", "")
+	}
+
+	if cache {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "cache"
+	}
+
+	if clear {
+		config.Set("clear", true)
+	}
+
+	if demo {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "demo"
+	}
+
+	if edit {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "edit"
+	}
+
+	if len(exclude) != 0 {
+		config.Set("exclude", exclude)
+	}
+
+	if len(fields) != 0 {
+		config.Set("fields", strings.Split(fields, ","))
+		config.Set("sysinfo", true)
+	}
+
+	if fit {
+		config.Set("fit", true)
+	}
+
+	if fortune {
+		config.Set("fortune", true)
+	}
+
+	if len(generate) != 0 {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "generate"
+	}
+
+	if list {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "list"
+	}
+
+	if len(matching) != 0 {
+		config.Set("matching", matching)
+	}
+
+	if plain {
+		config.Default()
+		config.Set("clear_screen", false)
+		config.Set("fit", false)
+		config.Set("random", false)
+		config.Set("sysinfo", false)
+	}
+
+	if random {
+		config.Set("random", true)
+	}
+
+	if save {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "save"
+	}
+
+	if sysinfo {
+		config.Set("sysinfo", true)
+	}
+
+	if update {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "update"
+	}
+
 	// Validate cli flags
 	if cli.NArg() == 1 {
-		// TODO
+		config.Set("art", cli.Arg(0))
+		config.Set("random", false)
 	} else if cli.NArg() > 1 {
 		cli.Usage(ExtraArguments)
 	}
-
-	// TODO process cli flags
 }
 
 func main() {
@@ -217,8 +308,7 @@ func main() {
 
 	defer func() {
 		if r := recover(); r != nil {
-			err(r.(error).Error())
-			os.Exit(Exception)
+			errx(Exception, r.(error).Error())
 		}
 	}()
 
