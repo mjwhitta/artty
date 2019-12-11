@@ -44,6 +44,7 @@ var clear bool
 var demo bool
 var edit bool
 var exclude string
+var devexcuse bool
 var fields string
 var fit bool
 var fortune bool
@@ -63,6 +64,7 @@ func init() {
 	config.SetDefault("art", "")
 	config.SetDefault("clear_screen", true)
 	config.SetDefault("exclude", "")
+	config.SetDefault("excuse", false)
 	config.SetDefault("fields", []string{})
 	config.SetDefault("fit", true)
 	config.SetDefault("fortune", false)
@@ -117,6 +119,7 @@ func init() {
 	cli.Flag(&cache, "cache", false, "Refresh the cache.")
 	cli.Flag(&clear, "c", "clear", false, "Clear screen first.")
 	cli.Flag(&demo, "d", "demo", false, "Demo art matching filters.")
+	cli.Flag(&devexcuse, "devexcuse", false, "Display a dev excuse.")
 	cli.Flag(&edit, "edit", false, "Amend config with new options.")
 	cli.Flag(
 		&exclude,
@@ -220,6 +223,10 @@ func init() {
 			cli.Usage(InvalidOption)
 		}
 		action = "demo"
+	}
+
+	if devexcuse {
+		config.Set("excuse", true)
 	}
 
 	if edit {
