@@ -33,31 +33,37 @@ const (
 	Exception       int = 4
 )
 
+// Default action
+var action = "draw"
+
 // Create a jsoncfg object
 var config = jsoncfg.New("~/.config/arTTY/rc")
 
 // Flags
-var action = "draw"
-var all bool
-var cache bool
-var clear bool
-var demo bool
-var edit bool
-var exclude string
-var devexcuse bool
-var fields string
-var fit bool
-var fortune bool
-var generate string
-var list bool
-var matching string
-var nocolor bool
-var plain bool
-var random bool
-var save bool
-var sysinfo bool
-var update bool
-var version bool
+type cliFlags struct {
+	all       bool
+	cache     bool
+	clear     bool
+	demo      bool
+	edit      bool
+	exclude   string
+	devexcuse bool
+	fields    string
+	fit       bool
+	fortune   bool
+	generate  string
+	list      bool
+	matching  string
+	nocolor   bool
+	plain     bool
+	random    bool
+	save      bool
+	sysinfo   bool
+	update    bool
+	version   bool
+}
+
+var flags cliFlags
 
 func init() {
 	// Initialize default values for config
@@ -115,56 +121,83 @@ func init() {
 	cli.Title = "ArTTY"
 
 	// Parse cli flags
-	cli.Flag(&all, "a", "all", false, "Ignore previous filtering.")
-	cli.Flag(&cache, "cache", false, "Refresh the cache.")
-	cli.Flag(&clear, "c", "clear", false, "Clear screen first.")
-	cli.Flag(&demo, "d", "demo", false, "Demo art matching filters.")
-	cli.Flag(&devexcuse, "devexcuse", false, "Display a dev excuse.")
-	cli.Flag(&edit, "edit", false, "Amend config with new options.")
 	cli.Flag(
-		&exclude,
+		&flags.all,
+		"a",
+		"all",
+		false,
+		"Ignore previous filtering.",
+	)
+	cli.Flag(&flags.cache, "cache", false, "Refresh the cache.")
+	cli.Flag(&flags.clear, "c", "clear", false, "Clear screen first.")
+	cli.Flag(
+		&flags.demo,
+		"d",
+		"demo",
+		false,
+		"Demo art matching filters.",
+	)
+	cli.Flag(
+		&flags.devexcuse,
+		"devexcuse",
+		false,
+		"Display a dev excuse.",
+	)
+	cli.Flag(
+		&flags.edit,
+		"edit",
+		false,
+		"Amend config with new options.",
+	)
+	cli.Flag(
+		&flags.exclude,
 		"e",
 		"exclude",
 		"",
 		"Exclude art matching pattern.",
 	)
 	cli.Flag(
-		&fields,
+		&flags.fields,
 		"fields",
 		"",
 		"Specify order of sysinfo (comma-separated, see FIELDS).",
 	)
 	cli.Flag(
-		&fit,
+		&flags.fit,
 		"fit",
 		false,
 		"Only use art that fits in the current window.",
 	)
 	cli.Flag(
-		&fortune,
+		&flags.fortune,
 		"f",
 		"fortune",
 		false,
 		"Display a fortune (if installed).",
 	)
 	cli.Flag(
-		&generate,
+		&flags.generate,
 		"g",
 		"generate",
 		"",
 		"Generate ArTTY art from image (NAME_WxH.png).",
 	)
-	cli.Flag(&list, "ls", false, "List art matching filters.")
+	cli.Flag(&flags.list, "ls", false, "List art matching filters.")
 	cli.Flag(
-		&matching,
+		&flags.matching,
 		"m",
 		"matching",
 		"",
 		"Only use art matching pattern.",
 	)
-	cli.Flag(&nocolor, "no-color", false, "Disable colorized output.")
 	cli.Flag(
-		&plain,
+		&flags.nocolor,
+		"no-color",
+		false,
+		"Disable colorized output.",
+	)
+	cli.Flag(
+		&flags.plain,
 		"p",
 		"plain",
 		false,
@@ -177,101 +210,60 @@ func init() {
 		),
 	)
 	cli.Flag(
-		&random,
+		&flags.random,
 		"r",
 		"random",
 		false,
 		"Display random art matching filters.",
 	)
 	cli.Flag(
-		&save,
+		&flags.save,
 		"save",
 		false,
 		"Save specified options as default.",
 	)
-	cli.Flag(&sysinfo, "s", "sysinfo", false, "Display system info.")
 	cli.Flag(
-		&update,
+		&flags.sysinfo,
+		"s",
+		"sysinfo",
+		false,
+		"Display system info.",
+	)
+	cli.Flag(
+		&flags.update,
 		"u",
 		"update",
 		false,
 		"Download new art and refresh the cache.",
 	)
-	cli.Flag(&version, "V", "version", false, "Show version.")
+	cli.Flag(&flags.version, "V", "version", false, "Show version.")
 	cli.Parse()
+}
 
-	// Process cli flags
-	if all {
+func main() {
+	hl.Disable = flags.nocolor
+
+	defer func() {
+		if r := recover(); r != nil {
+			errx(Exception, r.(error).Error())
+		}
+	}()
+
+	validate()
+
+	// TODO
+}
+
+// Process cli flags and ensure no issues
+func validate() {
+	// Check all and plain first
+	if flags.all {
 		config.Set("exclude", "")
 		config.Set("fit", false)
 		config.Set("match", "")
 	}
 
-	if cache {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "cache"
-	}
-
-	if clear {
-		config.Set("clear", true)
-	}
-
-	if demo {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "demo"
-	}
-
-	if devexcuse {
-		config.Set("excuse", true)
-	}
-
-	if edit {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "edit"
-	}
-
-	if len(exclude) != 0 {
-		config.Set("exclude", exclude)
-	}
-
-	if len(fields) != 0 {
-		config.Set("fields", strings.Split(fields, ","))
-		config.Set("sysinfo", true)
-	}
-
-	if fit {
-		config.Set("fit", true)
-	}
-
-	if fortune {
-		config.Set("fortune", true)
-	}
-
-	if len(generate) != 0 {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "generate"
-	}
-
-	if list {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "list"
-	}
-
-	if len(matching) != 0 {
-		config.Set("matching", matching)
-	}
-
-	if plain {
+	if flags.plain {
 		config.Default()
 		config.Set("clear_screen", false)
 		config.Set("fit", false)
@@ -279,22 +271,93 @@ func init() {
 		config.Set("sysinfo", false)
 	}
 
-	if random {
+	// Short circuit if version was requested
+	if flags.version {
+		hl.Printf("arTTY version %s\n", arTTY.Version)
+		os.Exit(Good)
+	}
+
+	// Check all other flags
+	if flags.cache {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "cache"
+	}
+
+	if flags.clear {
+		config.Set("clear_screen", true)
+	}
+
+	if flags.demo {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "demo"
+	}
+
+	if flags.devexcuse {
+		config.Set("excuse", true)
+	}
+
+	if flags.edit {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "edit"
+	}
+
+	if len(flags.exclude) != 0 {
+		config.Set("exclude", flags.exclude)
+	}
+
+	if len(flags.fields) != 0 {
+		config.Set("fields", strings.Split(flags.fields, ","))
+		config.Set("sysinfo", true)
+	}
+
+	if flags.fit {
+		config.Set("fit", true)
+	}
+
+	if flags.fortune {
+		config.Set("fortune", true)
+	}
+
+	if len(flags.generate) != 0 {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "generate"
+	}
+
+	if flags.list {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "list"
+	}
+
+	if len(flags.matching) != 0 {
+		config.Set("matching", flags.matching)
+	}
+
+	if flags.random {
 		config.Set("random", true)
 	}
 
-	if save {
+	if flags.save {
 		if action != "draw" {
 			cli.Usage(InvalidOption)
 		}
 		action = "save"
 	}
 
-	if sysinfo {
+	if flags.sysinfo {
 		config.Set("sysinfo", true)
 	}
 
-	if update {
+	if flags.update {
 		if action != "draw" {
 			cli.Usage(InvalidOption)
 		}
@@ -307,20 +370,5 @@ func init() {
 		config.Set("random", false)
 	} else if cli.NArg() > 1 {
 		cli.Usage(ExtraArguments)
-	}
-}
-
-func main() {
-	hl.Disable = nocolor
-
-	defer func() {
-		if r := recover(); r != nil {
-			errx(Exception, r.(error).Error())
-		}
-	}()
-
-	if version {
-		hl.Printf("arTTY version %s\n", arTTY.Version)
-	} else {
 	}
 }
