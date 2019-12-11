@@ -16,10 +16,10 @@ Gem::Specification.new do |s|
         Dir["*"]
     end
     s.files = Dir["lib/**/*.rb"]
-    s.homepage = "https://gitlab.com/mjwhitta/arTTY/tree/ruby"
+    s.homepage = "https://gitlab.com/mjwhitta/artty/tree/ruby"
     s.license = "GPL-3.0"
     s.metadata = {"source_code_uri" => s.homepage}
     s.name = "arTTY"
     s.summary = "Art for your TTY."
-    s.version = "0.9.31"
+    s.version = "0.9.32"
 end
