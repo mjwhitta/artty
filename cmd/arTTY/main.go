@@ -118,13 +118,7 @@ func init() {
 	cli.Title = "ArTTY"
 
 	// Parse cli flags
-	cli.Flag(
-		&all,
-		"a",
-		"all",
-		false,
-		"Ignore previous filters, (use first).",
-	)
+	cli.Flag(&all, "a", "all", false, "Ignore previous filtering.")
 	cli.Flag(&cache, "cache", false, "Refresh the cache.")
 	cli.Flag(&clear, "c", "clear", false, "Clear screen first.")
 	cli.Flag(&demo, "d", "demo", false, "Demo art matching filters.")
@@ -178,8 +172,8 @@ func init() {
 		false,
 		strings.Join(
 			[]string{
-				"Turns off all flags and filtering (use first,",
-				"useful for tab-completion with --ls).",
+				"Ignore previous flags and filtering (useful for",
+				"tab-completion with --ls).",
 			},
 			" ",
 		),
