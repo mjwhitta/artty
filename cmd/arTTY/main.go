@@ -251,11 +251,25 @@ func main() {
 
 	validate()
 
+	var excuse string
+	if config.Get("excuse") == true {
+		excuse = arTTY.DevExcuse()
+	}
+
 	// TODO
+	if len(excuse) > 0 {
+		hl.Println(excuse)
+	}
 }
 
 // Process cli flags and ensure no issues
 func validate() {
+	// Short circuit if version was requested
+	if flags.version {
+		hl.Printf("arTTY version %s\n", arTTY.Version)
+		os.Exit(Good)
+	}
+
 	// Check all and plain first
 	if flags.all {
 		config.Set("exclude", "")
@@ -269,12 +283,6 @@ func validate() {
 		config.Set("fit", false)
 		config.Set("random", false)
 		config.Set("sysinfo", false)
-	}
-
-	// Short circuit if version was requested
-	if flags.version {
-		hl.Printf("arTTY version %s\n", arTTY.Version)
-		os.Exit(Good)
 	}
 
 	// Check all other flags
@@ -307,11 +315,11 @@ func validate() {
 		action = "edit"
 	}
 
-	if len(flags.exclude) != 0 {
+	if len(flags.exclude) > 0 {
 		config.Set("exclude", flags.exclude)
 	}
 
-	if len(flags.fields) != 0 {
+	if len(flags.fields) > 0 {
 		config.Set("fields", strings.Split(flags.fields, ","))
 		config.Set("sysinfo", true)
 	}
@@ -324,7 +332,7 @@ func validate() {
 		config.Set("fortune", true)
 	}
 
-	if len(flags.generate) != 0 {
+	if len(flags.generate) > 0 {
 		if action != "draw" {
 			cli.Usage(InvalidOption)
 		}
@@ -338,7 +346,7 @@ func validate() {
 		action = "list"
 	}
 
-	if len(flags.matching) != 0 {
+	if len(flags.matching) > 0 {
 		config.Set("matching", flags.matching)
 	}
 

@@ -1,7 +1,7 @@
-gitlab.com/mjwhitta/cli v1.7.7 h1:YxaLuEGoIDnp+2adeuue16KarYnlAlrW5yN3XGtadq0=
-gitlab.com/mjwhitta/cli v1.7.7/go.mod h1:0nzOLJZWsbgzJp/EQoLHcCLvKXX/iakyOZIqg94xAzo=
-gitlab.com/mjwhitta/hilighter v1.5.9 h1:7cn76BJ7CyPVhdY5L/JCFp86aA21W4oDI9PutfXkqak=
-gitlab.com/mjwhitta/hilighter v1.5.9/go.mod h1:sv1eny2aOgUqNsf/0O82KD4aqFRY1glsycaE7jkRu+4=
+gitlab.com/mjwhitta/cli v1.7.8 h1:chk3CpSOVOoFs+y/acBV4OfEY7L8dYh2K7C3Mbg4T8I=
+gitlab.com/mjwhitta/cli v1.7.8/go.mod h1:0nzOLJZWsbgzJp/EQoLHcCLvKXX/iakyOZIqg94xAzo=
+gitlab.com/mjwhitta/hilighter v1.5.10 h1:kNZHdKkHOhGWpvRUYLod07mF+7i2mKK52NW1ns+VlsY=
+gitlab.com/mjwhitta/hilighter v1.5.10/go.mod h1:kBkdTTpk0ynQhSAtvzLgvK21B7bhZQl39ff7jX2wSfQ=
 gitlab.com/mjwhitta/jsoncfg v1.1.5 h1:OcGHk0VlYBoj6Dwshagyi0/gmyq1ohbYUXwF2gqKzNQ=
 gitlab.com/mjwhitta/jsoncfg v1.1.5/go.mod h1:8F/QHQE0sL8GDqMNkL9/6RUMhi9O5z6cKT8OCBTjq08=
 gitlab.com/mjwhitta/pathname v1.0.5 h1:OjU4/pqTOc5yT/V31UMeF0Cv/RZMy0jbXrrIkhKxa7o=
