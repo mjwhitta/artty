@@ -4,7 +4,7 @@ import (
 	"os"
 	"strings"
 
-	"gitlab.com/mjwhitta/arTTY"
+	"gitlab.com/mjwhitta/artty"
 	"gitlab.com/mjwhitta/cli"
 	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/jsoncfg"
@@ -253,7 +253,7 @@ func main() {
 
 	var excuse string
 	if config.Get("excuse") == true {
-		excuse = arTTY.DevExcuse()
+		excuse = artty.DevExcuse()
 	}
 
 	// TODO
@@ -266,7 +266,7 @@ func main() {
 func validate() {
 	// Short circuit if version was requested
 	if flags.version {
-		hl.Printf("arTTY version %s\n", arTTY.Version)
+		hl.Printf("arTTY version %s\n", artty.Version)
 		os.Exit(Good)
 	}
 

@@ -1,4 +1,4 @@
-package arTTY
+package artty
 
 import (
 	"io/ioutil"

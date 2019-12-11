@@ -1,4 +1,4 @@
-module gitlab.com/mjwhitta/arTTY
+module gitlab.com/mjwhitta/artty
 
 go 1.13
 
