@@ -6,6 +6,7 @@ require "io/wait"
 require "jsoncfg"
 require "optparse"
 require "scoobydoo"
+require "typhoeus"
 
 class ArTTYConfig < JSONConfig
     extend JSONConfig::Keys
@@ -13,6 +14,7 @@ class ArTTYConfig < JSONConfig
     add_key("art")
     add_bool_key("clear_screen")
     add_key("exclude")
+    add_bool_key("excuse")
     add_key("fields")
     add_bool_key("fit")
     add_bool_key("fortune")
@@ -26,6 +28,7 @@ class ArTTYConfig < JSONConfig
             "art" => nil,
             "clear_screen" => true,
             "exclude" => nil,
+            "excuse" => false,
             "fields" => Array.new,
             "fit" => true,
             "fortune" => false,
@@ -46,6 +49,18 @@ class ArTTYExit
     EXCEPTION = 5
     AMBIGUOUS_ARGUMENT = 6
     UNSUPPORTED_ART = 7
+end
+
+def devexcuse
+    begin
+        Typhoeus::Request.get(
+            "http://developerexcuses.com"
+        ).body.match(/<a href.+>(.+)<\/a>/) do |m|
+            return m[1]
+        end
+    rescue
+        return nil
+    end
 end
 
 def parse(args)
@@ -99,6 +114,10 @@ def parse(args)
                 puts(opts)
                 exit ArTTYExit::INVALID_OPTION
             end
+        end
+
+        opts.on("--[no-]devexcuse", "Display a dev excuse") do |e|
+            e ? options["conf"].excuse : options["conf"].no_excuse
         end
 
         opts.on("--edit", "Amend config with new options") do
@@ -193,7 +212,6 @@ def parse(args)
             options["conf"].default
             options["conf"].no_clear_screen
             options["conf"].no_fit
-            options["conf"].no_fortune
             options["conf"].no_random
             options["conf"].no_sysinfo
         end
@@ -312,6 +330,12 @@ end
 
 begin
     config = options["conf"]
+
+    excuse = nil
+    if (config.excuse?)
+        excuse = devexcuse
+    end
+
     fortune = nil
     if (config.fortune? && ScoobyDoo.where_are_you("fortune"))
         fortune = %x(fortune -s)
@@ -333,6 +357,12 @@ begin
         if (config.sysinfo?)
             width -= (info.width + 2)
             info = nil if ((height <= info.height) || (width <= 0))
+        end
+        if (excuse)
+            eheight = excuse.split("\n").length
+            ewidth = excuse.split("\n").map(&:length).max
+            excuse = nil if (height <= eheight || ewidth > width)
+            height -= eheight if (excuse)
         end
         if (fortune)
             fheight = fortune.split("\n").length
@@ -381,6 +411,7 @@ begin
 
         art = arTTY.get(config.get_art, info).draw
         puts("\n#{art}\n") if (!art.empty?)
+        puts(excuse) if (excuse)
         puts(fortune) if (fortune)
     end
 rescue ArTTY::Error => e
