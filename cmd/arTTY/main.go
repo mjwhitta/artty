@@ -252,13 +252,25 @@ func main() {
 	validate()
 
 	var excuse string
+	var fortune string
+
 	if config.Get("excuse") == true {
 		excuse = artty.DevExcuse()
 	}
 
-	// TODO
+	if config.Get("fortune") == true {
+		fortune = artty.Fortune()
+	}
+
+	// TODO filter art
+	// TODO display art
+
 	if len(excuse) > 0 {
 		hl.Println(excuse)
+	}
+
+	if len(fortune) > 0 {
+		hl.Println(fortune)
 	}
 }
 

@@ -3,7 +3,11 @@ package artty
 import (
 	"io/ioutil"
 	"net/http"
+	"os/exec"
 	"regexp"
+	"strings"
+
+	"gitlab.com/mjwhitta/where"
 )
 
 // DevExcuse will parse the HTML response from
@@ -30,4 +34,26 @@ func DevExcuse() string {
 	}
 
 	return ""
+}
+
+// Fortune will return the output from the fortune command if it is
+// installed.
+func Fortune() string {
+	var fortune = where.Is("fortune")
+	if len(fortune) == 0 {
+		return ""
+	}
+
+	var cmd *exec.Cmd
+	var e error
+	var output []byte
+
+	cmd = exec.Command(fortune, "-s")
+
+	output, e = cmd.Output()
+	if e != nil {
+		return ""
+	}
+
+	return strings.TrimSpace(string(output))
 }
