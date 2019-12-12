@@ -105,7 +105,6 @@ class ArTTY::Art
         return {
             "file" => @file,
             "height" => height,
-            "name" => @name,
             "width" => width
         }
     end
