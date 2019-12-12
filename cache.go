@@ -22,7 +22,7 @@ type cachedArt struct {
 func newArtCache() *artCache {
 	var c = &artCache{
 		Arts:  map[string]cachedArt{},
-		Cache: jsoncfg.NewAutosave(cacheFile),
+		Cache: jsoncfg.New(cacheFile),
 	}
 
 	// Initialize defaults
@@ -44,10 +44,11 @@ func (c *artCache) downloadExtract() {
 }
 
 func (c *artCache) refresh() {
-	var walk = func(path string, info os.FileInfo, e error) error {
+	var addArt = func(path string, info os.FileInfo, e error) error {
 		if e != nil {
 			return e
 		}
+
 		if strings.HasSuffix(path, ".json") {
 			var art = NewArt(path)
 			c.Arts[art.Name] = cachedArt{
@@ -56,15 +57,17 @@ func (c *artCache) refresh() {
 				Width:  art.Width,
 			}
 		}
+
 		return nil
 	}
 
 	// Get all JSON files
-	filepath.Walk(cacheDir, walk)
-	filepath.Walk(customCacheDir, walk)
+	filepath.Walk(cacheDir, addArt)
+	filepath.Walk(customCacheDir, addArt)
 
 	c.Cache.Set("art", c.Arts)
 	c.Cache.Set("version", Version)
+	c.Cache.Save()
 }
 
 func (c *artCache) update() {
