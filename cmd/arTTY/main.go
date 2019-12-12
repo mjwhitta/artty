@@ -24,21 +24,6 @@ func warn(msg string)    { hl.PrintlnYellow("[-] %s", msg) }
 
 // Helpers end
 
-// Exit status
-const (
-	Good            int = 0
-	InvalidOption   int = 1
-	InvalidArgument int = 2
-	ExtraArguments  int = 3
-	Exception       int = 4
-)
-
-// Default action
-var action = "draw"
-
-// Create a jsoncfg object
-var config = jsoncfg.New("~/.config/arTTY/rc")
-
 // Flags
 type cliFlags struct {
 	all       bool
@@ -63,6 +48,17 @@ type cliFlags struct {
 	version   bool
 }
 
+// Exit status
+const (
+	Good            int = 0
+	InvalidOption   int = 1
+	InvalidArgument int = 2
+	ExtraArguments  int = 3
+	Exception       int = 4
+)
+
+var action = "draw"
+var config = jsoncfg.New("~/.config/arTTY/rc")
 var flags cliFlags
 
 func init() {

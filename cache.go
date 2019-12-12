@@ -10,7 +10,7 @@ import (
 
 type artCache struct {
 	Arts  map[string]cachedArt
-	Cache *jsoncfg.Jsoncfg
+	Cache *jsoncfg.JsonCfg
 }
 
 type cachedArt struct {
