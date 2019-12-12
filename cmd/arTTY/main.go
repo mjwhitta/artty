@@ -251,26 +251,40 @@ func main() {
 
 	validate()
 
-	var excuse string
+	// var arts = artty.New()
+	var devexcuse string
 	var fortune string
 
-	if config.Get("excuse") == true {
-		excuse = artty.DevExcuse()
+	if config.Get("excuse").(bool) {
+		devexcuse = artty.DevExcuse()
 	}
 
-	if config.Get("fortune") == true {
+	if config.Get("fortune").(bool) {
 		fortune = artty.Fortune()
 	}
 
 	// TODO filter art
-	// TODO display art
 
-	if len(excuse) > 0 {
-		hl.Println(excuse)
-	}
+	switch action {
+	case "cache":
+		artty.Cache()
+	case "demo":
+	case "edit":
+	case "generate":
+	case "list":
+	case "save":
+	case "update":
+		artty.Update()
+	default:
+		// hl.Print(art)
 
-	if len(fortune) > 0 {
-		hl.Println(fortune)
+		if len(devexcuse) > 0 {
+			hl.Println(devexcuse)
+		}
+
+		if len(fortune) > 0 {
+			hl.Println(fortune)
+		}
 	}
 }
 

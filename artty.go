@@ -10,6 +10,11 @@ import (
 	"gitlab.com/mjwhitta/where"
 )
 
+// Cache will re-cache the ArTTY JSON files.
+func Cache() {
+	cache.refresh()
+}
+
 // DevExcuse will parse the HTML response from
 // http://developerexcuses.com and return the provided excuse.
 func DevExcuse() string {
@@ -56,4 +61,9 @@ func Fortune() string {
 	}
 
 	return strings.TrimSpace(string(output))
+}
+
+// Update will download and re-cache the ArTTY JSON files.
+func Update() {
+	cache.update()
 }
