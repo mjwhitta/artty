@@ -270,7 +270,10 @@ func main() {
 	case "list":
 	case "save":
 	case "update":
-		artty.Update()
+		var e = artty.Update()
+		if e != nil {
+			panic(e)
+		}
 	default:
 		// hl.Print(art)
 

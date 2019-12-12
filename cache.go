@@ -1,6 +1,8 @@
 package artty
 
 import (
+	// "io/ioutil"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -10,7 +12,7 @@ import (
 
 type artCache struct {
 	Arts  map[string]cachedArt
-	Cache *jsoncfg.JsonCfg
+	Cache *jsoncfg.JSONCfg
 }
 
 type cachedArt struct {
@@ -19,6 +21,7 @@ type cachedArt struct {
 	Width  int    `json:"width"`
 }
 
+// Constructor
 func newArtCache() *artCache {
 	var c = &artCache{
 		Arts:  map[string]cachedArt{},
@@ -39,8 +42,28 @@ func newArtCache() *artCache {
 	return c
 }
 
-func (c *artCache) downloadExtract() {
-	// TODO download tarball and extract
+func (c *artCache) downloadExtract() error {
+	// var body []byte
+	var e error
+	var images = "https://gitlab.com/mjwhitta/arTTY_images"
+	var res *http.Response
+	// var tmp = "/tmp/arTTY"
+
+	// Download tarball
+	res, e = http.Get(images + "/-/archive/master/arTTY_images.tgz")
+	defer res.Body.Close()
+	if e != nil {
+		return e
+	}
+
+	// body, e = ioutil.ReadAll(res.Body)
+	// if e != nil {
+	// 	return e
+	// }
+
+	// TODO extract tarball
+
+	return nil
 }
 
 func (c *artCache) refresh() {
@@ -70,7 +93,13 @@ func (c *artCache) refresh() {
 	c.Cache.Save()
 }
 
-func (c *artCache) update() {
-	c.downloadExtract()
+func (c *artCache) update() error {
+	var e = c.downloadExtract()
+	if e != nil {
+		return e
+	}
+
 	c.refresh()
+
+	return nil
 }

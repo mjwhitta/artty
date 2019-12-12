@@ -64,6 +64,6 @@ func Fortune() string {
 }
 
 // Update will download and re-cache the ArTTY JSON files.
-func Update() {
-	cache.update()
+func Update() error {
+	return cache.update()
 }
