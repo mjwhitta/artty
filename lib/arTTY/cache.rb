@@ -20,7 +20,10 @@ class ArTTY::Cache
 
     def download_and_extract
         # Temporary working directory
-        tmp = Pathname.new("/tmp/arTTY").expand_path
+        new = Pathname.new(
+            "#{@cachedir}/#{@imagesdir}.new"
+        ).expand_path
+        FileUtils.rm_rf(new) if (new && new.exist?)
 
         # Download newest tarball
         request = Typhoeus::Request.new(
@@ -40,29 +43,26 @@ class ArTTY::Cache
 
         # Extract new art
         tar = Minitar::Input.new(Zlib::GzipReader.new(tgz))
-        untar = nil
         tar.each do |entry|
             case entry.name
-            when %r{^arTTY_images[^/]+/?$}
-                untar = Pathname.new(
-                    "#{tmp}/#{entry.name}/generated"
-                ).expand_path
-            when /.+\.json$/
-                tar.extract_entry(tmp, entry)
+            when /.+\.json\s*$/
+                entry.name.gsub!(/^.*generated\//, "")
+                entry.prefix.gsub!(/^.*generated\//, "")
+                tar.extract_entry(new, entry)
             end
         end
 
         # Move new art to final location
-        imgs = Pathname.new("#{@cachedir}/arTTY_images").expand_path
-        if (untar && untar.exist?)
-            FileUtils.rm_rf(imgs) if (imgs.exist?)
-            FileUtils.mv(untar, imgs)
+        old = Pathname.new("#{@cachedir}/#{@imagesdir}").expand_path
+        if (new.exist?)
+            FileUtils.rm_rf(old) if (old.exist?)
+            FileUtils.mv(new, old)
         end
     rescue Interrupt
         raise
     ensure
         # Cleanup
-        FileUtils.rm_rf(tmp) if (tmp && tmp.exist?)
+        FileUtils.rm_rf(new) if (new && new.exist?)
     end
     private :download_and_extract
 
@@ -81,6 +81,7 @@ class ArTTY::Cache
     def initialize(filename = "#{ENV["HOME"]}/.cache/arTTY/art.json")
         @cachefile = Pathname.new(filename).expand_path
         @cachedir = Pathname.new(@cachefile.dirname).expand_path
+        @imagesdir = "arTTY_images"
         refresh(true) if (!@cachefile.exist?)
         @cache = JSON.parse(File.read(@cachefile))
         refresh if (@cache["version"] != current_version)
@@ -96,12 +97,16 @@ class ArTTY::Cache
         @cache["version"] = current_version
 
         [
-            "#{@cachedir}/arTTY_images",
-            "#{ENV["HOME"]}/.config/arTTY/arTTY_images"
+            "#{@cachedir}/#{@imagesdir}",
+            "#{ENV["HOME"]}/.config/arTTY/#{@imagesdir}"
         ].each do |dir|
             Dir["#{dir}/**/*.json"].each do |file|
                 img = ArTTY::Art.new(file)
-                @cache["art"][img.name] = img.to_json
+                @cache["art"][img.name] = {
+                    "file" => file,
+                    "height" => img.height,
+                    "width" => img.width
+                }
             end
         end
         write

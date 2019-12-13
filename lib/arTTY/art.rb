@@ -101,14 +101,6 @@ class ArTTY::Art
         @sysinfo = nil
     end
 
-    def to_json
-        return {
-            "file" => @file,
-            "height" => height,
-            "width" => width
-        }
-    end
-
     def to_s
         return draw
     end
