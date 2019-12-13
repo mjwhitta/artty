@@ -4,9 +4,10 @@ import "gitlab.com/mjwhitta/pathname"
 
 // Cache related vars
 var cache = newArtCache()
-var cacheDir = pathname.ExpandPath("~/.cache/arTTY/arTTY_images")
-var cacheFile = pathname.ExpandPath("~/.cache/arTTY/art.json")
-var customCacheDir = pathname.ExpandPath("~/.config/arTTY/art")
+var cacheDir = pathname.ExpandPath("~/.cache/arTTY")
+var cacheFile = "art.json"
+var customCacheDir = pathname.ExpandPath("~/.config/arTTY")
+var imagesDir = "arTTY_images"
 
 // Version is the package version
-const Version = "0.9.33"
+const Version = "0.9.34"

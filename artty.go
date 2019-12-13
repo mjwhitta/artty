@@ -18,23 +18,21 @@ func Cache() {
 // DevExcuse will parse the HTML response from
 // http://developerexcuses.com and return the provided excuse.
 func DevExcuse() string {
-	var body []byte
+	var b []byte
 	var e error
 	var r = regexp.MustCompile(`<a href.+>(.+)</a>`)
 	var res *http.Response
 
-	res, e = http.Get("http://developerexcuses.com")
+	if res, e = http.Get("http://developerexcuses.com"); e != nil {
+		return ""
+	}
 	defer res.Body.Close()
-	if e != nil {
+
+	if b, e = ioutil.ReadAll(res.Body); e != nil {
 		return ""
 	}
 
-	body, e = ioutil.ReadAll(res.Body)
-	if e != nil {
-		return ""
-	}
-
-	for _, match := range r.FindAllStringSubmatch(string(body), -1) {
+	for _, match := range r.FindAllStringSubmatch(string(b), -1) {
 		return match[1]
 	}
 
@@ -44,23 +42,20 @@ func DevExcuse() string {
 // Fortune will return the output from the fortune command if it is
 // installed.
 func Fortune() string {
-	var fortune = where.Is("fortune")
-	if len(fortune) == 0 {
-		return ""
-	}
-
-	var cmd *exec.Cmd
 	var e error
-	var output []byte
+	var f string
+	var o []byte
 
-	cmd = exec.Command(fortune, "-s")
-
-	output, e = cmd.Output()
-	if e != nil {
+	f = where.Is("fortune")
+	if len(f) == 0 {
 		return ""
 	}
 
-	return strings.TrimSpace(string(output))
+	if o, e = exec.Command(f, "-s").Output(); e != nil {
+		return ""
+	}
+
+	return strings.TrimSpace(string(o))
 }
 
 // Update will download and re-cache the ArTTY JSON files.

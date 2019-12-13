@@ -19,21 +19,19 @@ type Art struct {
 
 // NewArt is a constructor for the Art type.
 func NewArt(path string) *Art {
-	var art Art
-	var content []byte
+	var a Art
+	var b []byte
 	var e error
 
-	content, e = ioutil.ReadFile(pathname.ExpandPath(path))
-	if e != nil {
+	if b, e = ioutil.ReadFile(pathname.ExpandPath(path)); e != nil {
 		return &Art{}
 	}
 
-	e = json.Unmarshal([]byte(content), &art)
-	if e != nil {
+	if e = json.Unmarshal(b, &a); e != nil {
 		return &Art{}
 	}
 
-	return &art
+	return &a
 }
 
 // String will convert the Art struct to a string for fmt's print
