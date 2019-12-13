@@ -97,7 +97,7 @@ class ArTTY::Cache
 
         [
             "#{@cachedir}/arTTY_images",
-            "#{ENV["HOME"]}/.config/arTTY/art"
+            "#{ENV["HOME"]}/.config/arTTY/arTTY_images"
         ].each do |dir|
             Dir["#{dir}/**/*.json"].each do |file|
                 img = ArTTY::Art.new(file)
