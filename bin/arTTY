@@ -13,8 +13,8 @@ class ArTTYConfig < JSONConfig
 
     add_key("art")
     add_bool_key("clear_screen")
+    add_bool_key("devexcuse")
     add_key("exclude")
-    add_bool_key("excuse")
     add_key("fields")
     add_bool_key("fit")
     add_bool_key("fortune")
@@ -25,14 +25,14 @@ class ArTTYConfig < JSONConfig
     def initialize(file = nil)
         file ||= "~/.config/arTTY/rc"
         @defaults = {
-            "art" => nil,
+            "art" => "",
             "clear_screen" => true,
-            "exclude" => nil,
-            "excuse" => false,
+            "devexcuse" => false,
+            "exclude" => "",
             "fields" => Array.new,
             "fit" => true,
             "fortune" => false,
-            "match" => nil,
+            "match" => "",
             "random" => true,
             "sysinfo" => true
         }
@@ -87,8 +87,8 @@ def parse(args)
 
         opts.on("-a", "--all", "Ignore previous filtering") do
             options["conf"].no_fit
-            options["conf"].set_exclude(nil)
-            options["conf"].set_match(nil)
+            options["conf"].set_exclude("")
+            options["conf"].set_match("")
         end
 
         opts.on("--cache", "Refresh the cache") do
@@ -106,7 +106,7 @@ def parse(args)
             options["conf"].no_clear_screen unless (c)
         end
 
-        opts.on("-d", "--demo", "Demo art matching filters") do
+        opts.on("--demo", "Demo art matching filters") do
             case options["action"]
             when "draw"
                 options["action"] = "demo"
@@ -116,8 +116,16 @@ def parse(args)
             end
         end
 
-        opts.on("--[no-]devexcuse", "Display a dev excuse") do |e|
-            e ? options["conf"].excuse : options["conf"].no_excuse
+        opts.on(
+            "-d",
+            "--[no-]devexcuse",
+            "Display a developer excuse"
+        ) do |e|
+            if (e)
+                options["conf"].devexcuse
+            else
+                options["conf"].no_devexcuse
+            end
         end
 
         opts.on("--edit", "Amend config with new options") do
@@ -197,7 +205,7 @@ def parse(args)
 
         opts.on(
             "-m",
-            "--matching=PATTERN",
+            "--match=PATTERN",
             "Only use art matching pattern"
         ) do |pattern|
             options["conf"].set_match(pattern)
@@ -264,7 +272,7 @@ def parse(args)
             options["verbose"] = v
         end
 
-        opts.on("--version", "Show version") do
+        opts.on("-V", "--version", "Show version") do
             __FILE__.match(/arTTY-(\d+\.\d+\.\d+)/) do |m|
                 puts(m[1])
             end
@@ -332,7 +340,7 @@ begin
     config = options["conf"]
 
     excuse = nil
-    if (config.excuse?)
+    if (config.devexcuse?)
         excuse = devexcuse
     end
 
@@ -383,7 +391,7 @@ begin
             puts("\n#{art}\n") if (!art.empty?)
         end
     when "edit"
-        config.set_art(nil) if (config.random?)
+        config.set_art("") if (config.random?)
         config.save # Save modified config
     when "generate"
         puts(
@@ -395,7 +403,7 @@ begin
     when "list"
         puts(arTTY.art)
     when "save"
-        config.set_art(nil) if (config.random?)
+        config.set_art("") if (config.random?)
         config.savediff # Overwrite old save with new changes
     when "update"
         arTTY.cache(true)

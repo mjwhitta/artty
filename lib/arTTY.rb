@@ -5,6 +5,13 @@ class ArTTY
         @cache.refresh(download)
     end
 
+    def self.current_version
+        __FILE__.match(/arTTY-(\d+\.\d+\.\d+)/) do |m|
+            return m[1]
+        end
+        return "error" # Shouldn't happen
+    end
+
     def exclude(pattern)
         @art.delete_if do |name|
             name.match(/#{pattern}/)

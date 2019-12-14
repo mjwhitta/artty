@@ -1,22 +1,20 @@
 require "fileutils"
 require "json"
+require "jsoncfg"
 require "minitar"
 require "pathname"
 require "typhoeus"
 require "zlib"
 
-class ArTTY::Cache
-    def art
-        return @cache["art"].keys.sort
-    end
+class ArTTY::Cache < JSONConfig
+    extend JSONConfig::Keys
 
-    def current_version
-        __FILE__.match(/arTTY-(\d+\.\d+\.\d+)/) do |m|
-            return m[1]
-        end
-        return "error" # Shouldn't happen
+    add_key("art")
+    add_key("version")
+
+    def art
+        return get_art.keys.sort
     end
-    private :current_version
 
     def download_and_extract
         # Temporary working directory
@@ -67,34 +65,37 @@ class ArTTY::Cache
     private :download_and_extract
 
     def get_file_for(name)
-        return @cache["art"][name]["file"]
+        return get_art[name]["file"]
     end
 
     def get_height_for(name)
-        return @cache["art"][name]["height"]
+        return get_art[name]["height"]
     end
 
     def get_width_for(name)
-        return @cache["art"][name]["width"]
+        return get_art[name]["width"]
     end
 
-    def initialize(filename = "#{ENV["HOME"]}/.cache/arTTY/art.json")
-        @cachefile = Pathname.new(filename).expand_path
-        @cachedir = Pathname.new(@cachefile.dirname).expand_path
+    def initialize(file = nil)
+        file ||= "#{ENV["HOME"]}/.cache/arTTY/art.json"
+        @defaults = {
+            "art" => Hash.new,
+            "version" => ArTTY.current_version
+        }
+
+        @cachefile = Pathname.new(file).expand_path
+        @cachedir = @cachefile.dirname
         @imagesdir = "arTTY_images"
-        refresh(true) if (!@cachefile.exist?)
-        @cache = JSON.parse(File.read(@cachefile))
-        refresh if (@cache["version"] != current_version)
+        super(@cachefile, false)
+
+        refresh if (get_version != ArTTY.current_version)
     end
 
     def refresh(download = false)
-        FileUtils.mkdir_p(@cachedir)
-
         download_and_extract if (download)
 
-        @cache = Hash.new
-        @cache["art"] = Hash.new
-        @cache["version"] = current_version
+        set_art(Hash.new)
+        set_version(ArTTY.current_version)
 
         [
             "#{@cachedir}/#{@imagesdir}",
@@ -102,22 +103,14 @@ class ArTTY::Cache
         ].each do |dir|
             Dir["#{dir}/**/*.json"].each do |file|
                 img = ArTTY::Art.new(file)
-                @cache["art"][img.name] = {
+                get_art[img.name] = {
                     "file" => file,
                     "height" => img.height,
                     "width" => img.width
                 }
             end
         end
-        write
-    end
 
-    def write
-        FileUtils.mkdir_p(@cachefile.dirname)
-        File.open(@cachefile, "w") do |f|
-            f.write(JSON.pretty_generate(@cache))
-            f.write("\n")
-        end
+        save
     end
-    private :write
 end
