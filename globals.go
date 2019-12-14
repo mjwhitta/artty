@@ -10,4 +10,4 @@ var customCacheDir = pathname.ExpandPath("~/.config/arTTY")
 var imagesDir = "arTTY_images"
 
 // Version is the package version
-const Version = "0.9.34"
+const Version = "0.9.36"

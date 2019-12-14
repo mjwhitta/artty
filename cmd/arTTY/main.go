@@ -38,7 +38,7 @@ type cliFlags struct {
 	fortune   bool
 	generate  string
 	list      bool
-	matching  string
+	match     string
 	nocolor   bool
 	plain     bool
 	random    bool
@@ -65,8 +65,8 @@ func init() {
 	// Initialize default values for config
 	config.SetDefault("art", "")
 	config.SetDefault("clear_screen", true)
+	config.SetDefault("devexcuse", false)
 	config.SetDefault("exclude", "")
-	config.SetDefault("excuse", false)
 	config.SetDefault("fields", []string{})
 	config.SetDefault("fit", true)
 	config.SetDefault("fortune", false)
@@ -137,7 +137,7 @@ func init() {
 		&flags.devexcuse,
 		"devexcuse",
 		false,
-		"Display a dev excuse.",
+		"Display a developer excuse.",
 	)
 	cli.Flag(
 		&flags.edit,
@@ -180,9 +180,9 @@ func init() {
 	)
 	cli.Flag(&flags.list, "ls", false, "List art matching filters.")
 	cli.Flag(
-		&flags.matching,
+		&flags.match,
 		"m",
-		"matching",
+		"match",
 		"",
 		"Only use art matching pattern.",
 	)
@@ -252,7 +252,7 @@ func main() {
 	var fortune string
 	var name string
 
-	if config.GetBool("excuse") {
+	if config.GetBool("devexcuse") {
 		devexcuse = artty.DevExcuse()
 	}
 
@@ -268,7 +268,10 @@ func main() {
 	case "demo":
 		// TODO demo
 	case "edit":
-		// TODO edit
+		if config.GetBool("random") {
+			config.Set("art", "")
+		}
+		config.Save()
 	case "generate":
 		// TODO generate
 	case "list":
@@ -276,7 +279,10 @@ func main() {
 			hl.Println(name)
 		}
 	case "save":
-		// TODO save
+		if config.GetBool("random") {
+			config.Set("art", "")
+		}
+		config.SaveDiff() // Overwrite old save with new changes
 	case "update":
 		var e = artty.Update()
 		if e != nil {
@@ -318,16 +324,12 @@ func validate() {
 		config.Set("sysinfo", false)
 	}
 
-	// Check all other flags
+	// Check actions
 	if flags.cache {
 		if action != "draw" {
 			cli.Usage(InvalidOption)
 		}
 		action = "cache"
-	}
-
-	if flags.clear {
-		config.Set("clear_screen", true)
 	}
 
 	if flags.demo {
@@ -337,15 +339,48 @@ func validate() {
 		action = "demo"
 	}
 
-	if flags.devexcuse {
-		config.Set("excuse", true)
-	}
-
 	if flags.edit {
 		if action != "draw" {
 			cli.Usage(InvalidOption)
 		}
 		action = "edit"
+	}
+
+	if len(flags.generate) > 0 {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "generate"
+	}
+
+	if flags.list {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "list"
+	}
+
+	if flags.save {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "save"
+	}
+
+	if flags.update {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "update"
+	}
+
+	// Check all other flags
+	if flags.clear {
+		config.Set("clear_screen", true)
+	}
+
+	if flags.devexcuse {
+		config.Set("devexcuse", true)
 	}
 
 	if len(flags.exclude) > 0 {
@@ -365,44 +400,16 @@ func validate() {
 		config.Set("fortune", true)
 	}
 
-	if len(flags.generate) > 0 {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "generate"
-	}
-
-	if flags.list {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "list"
-	}
-
-	if len(flags.matching) > 0 {
-		config.Set("matching", flags.matching)
+	if len(flags.match) > 0 {
+		config.Set("match", flags.match)
 	}
 
 	if flags.random {
 		config.Set("random", true)
 	}
 
-	if flags.save {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "save"
-	}
-
 	if flags.sysinfo {
 		config.Set("sysinfo", true)
-	}
-
-	if flags.update {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "update"
 	}
 
 	// Validate cli flags
