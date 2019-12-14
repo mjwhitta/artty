@@ -309,21 +309,6 @@ func validate() {
 		os.Exit(Good)
 	}
 
-	// Check all and plain first
-	if flags.all {
-		config.Set("exclude", "")
-		config.Set("fit", false)
-		config.Set("match", "")
-	}
-
-	if flags.plain {
-		config.Default()
-		config.Set("clear_screen", false)
-		config.Set("fit", false)
-		config.Set("random", false)
-		config.Set("sysinfo", false)
-	}
-
 	// Check actions
 	if flags.cache {
 		if action != "draw" {
@@ -372,6 +357,21 @@ func validate() {
 			cli.Usage(InvalidOption)
 		}
 		action = "update"
+	}
+
+	// Check all and plain first
+	if flags.all {
+		config.Set("exclude", "")
+		config.Set("fit", false)
+		config.Set("match", "")
+	}
+
+	if flags.plain {
+		config.Default()
+		config.Set("clear_screen", false)
+		config.Set("fit", false)
+		config.Set("random", false)
+		config.Set("sysinfo", false)
 	}
 
 	// Check all other flags
