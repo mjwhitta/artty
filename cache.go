@@ -9,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strings"
 
 	"gitlab.com/mjwhitta/jsoncfg"
@@ -40,7 +41,7 @@ func newArtCache() *artCache {
 	c.Cache.Reset()
 
 	// Refresh if newer version detected
-	if c.Cache.Get("version") != Version {
+	if c.Cache.GetString("version") != Version {
 		c.refresh()
 	}
 
@@ -133,6 +134,24 @@ func (c *artCache) extractFile(filename string, t *tar.Reader) error {
 	// Extract file from tarball
 	_, e = io.Copy(f, t)
 	return e
+}
+
+func (c *artCache) list() []string {
+	var keys []string
+
+	for key := range c.Cache.GetMap("art") {
+		keys = append(keys, key)
+	}
+
+	var less = func(i, j int) bool {
+		return (strings.ToLower(keys[i]) < strings.ToLower(keys[j]))
+	}
+
+	if !sort.SliceIsSorted(keys, less) {
+		sort.SliceStable(keys, less)
+	}
+
+	return keys
 }
 
 func (c *artCache) organize() error {

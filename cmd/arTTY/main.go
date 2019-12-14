@@ -250,12 +250,13 @@ func main() {
 	// var arts = artty.New()
 	var devexcuse string
 	var fortune string
+	var name string
 
-	if config.Get("excuse").(bool) {
+	if config.GetBool("excuse") {
 		devexcuse = artty.DevExcuse()
 	}
 
-	if config.Get("fortune").(bool) {
+	if config.GetBool("fortune") {
 		fortune = artty.Fortune()
 	}
 
@@ -265,17 +266,24 @@ func main() {
 	case "cache":
 		artty.Cache()
 	case "demo":
+		// TODO demo
 	case "edit":
+		// TODO edit
 	case "generate":
+		// TODO generate
 	case "list":
+		for _, name = range artty.List() {
+			hl.Println(name)
+		}
 	case "save":
+		// TODO save
 	case "update":
 		var e = artty.Update()
 		if e != nil {
 			panic(e)
 		}
 	default:
-		// hl.Print(art)
+		// TODO draw
 
 		if len(devexcuse) > 0 {
 			hl.Println(devexcuse)

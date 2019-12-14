@@ -58,6 +58,11 @@ func Fortune() string {
 	return strings.TrimSpace(string(o))
 }
 
+// List will return the names of all found ArTTY JSON files.
+func List() []string {
+	return cache.list()
+}
+
 // Update will download and re-cache the ArTTY JSON files.
 func Update() error {
 	return cache.update()
