@@ -66,8 +66,20 @@ end
 def parse(args)
     options = Hash.new
     options["action"] = "draw"
+    options["all"] = false
+    options["art"] = ""
+    options["clear"] = false
     options["conf"] = ArTTYConfig.new
+    options["devexcuse"] = false
+    options["exclude"] = ""
+    options["fields"] = Array.new
+    options["fit"] = false
+    options["fortune"] = false
     options["generate"] = nil
+    options["match"] = ""
+    options["plain"] = false
+    options["random"] = false
+    options["sysinfo"] = false
     options["verbose"] = false
 
     info = "Art for your TTY."
@@ -86,9 +98,7 @@ def parse(args)
         opts.on("", "OPTIONS")
 
         opts.on("-a", "--all", "Ignore previous filtering") do
-            options["conf"].no_fit
-            options["conf"].set_exclude("")
-            options["conf"].set_match("")
+            options["all"] = true
         end
 
         opts.on("--cache", "Refresh the cache") do
@@ -101,9 +111,8 @@ def parse(args)
             end
         end
 
-        opts.on("-c", "--[no-]clear", "Clear screen first") do |c|
-            options["conf"].clear_screen if (c)
-            options["conf"].no_clear_screen unless (c)
+        opts.on("-c", "--clear", "Clear screen first") do
+            options["clear"] = true
         end
 
         opts.on("--demo", "Demo art matching filters") do
@@ -116,16 +125,8 @@ def parse(args)
             end
         end
 
-        opts.on(
-            "-d",
-            "--[no-]devexcuse",
-            "Display a developer excuse"
-        ) do |e|
-            if (e)
-                options["conf"].devexcuse
-            else
-                options["conf"].no_devexcuse
-            end
+        opts.on("-d", "--devexcuse", "Display a developer excuse") do
+            options["devexcuse"] = true
         end
 
         opts.on("--edit", "Amend config with new options") do
@@ -143,7 +144,7 @@ def parse(args)
             "--exclude=PATTERN",
             "Exclude art matching pattern"
         ) do |pattern|
-            options["conf"].set_exclude(pattern)
+            options["exclude"] = pattern
         end
 
         opts.on(
@@ -151,23 +152,23 @@ def parse(args)
             "Specify order of sysinfo (comma-separated, see",
             "FIELDS)"
         ) do |fields|
-            options["conf"].set_fields(fields.split(","))
-            options["conf"].sysinfo
+            options["fields"] = fields.split(",")
+            options["sysinfo"] = true
         end
 
         opts.on(
-            "--[no-]fit",
+            "--fit",
             "Only use art that fits in the current window"
         ) do |f|
-            f ? options["conf"].fit : options["conf"].no_fit
+            options["fit"] = true
         end
 
         opts.on(
             "-f",
-            "--[no-]fortune",
+            "--fortune",
             "Display a fortune (if installed)"
-        ) do |f|
-            f ? options["conf"].fortune : options["conf"].no_fortune
+        ) do
+            options["fortune"] = true
         end
 
         opts.on("-h", "--help", "Display this help message") do
@@ -190,10 +191,7 @@ def parse(args)
             options["generate"] = image
         end
 
-        opts.on(
-            "--ls",
-            "List art matching filters"
-        ) do
+        opts.on("--ls", "List art matching filters") do
             case options["action"]
             when "draw"
                 options["action"] = "list"
@@ -208,7 +206,7 @@ def parse(args)
             "--match=PATTERN",
             "Only use art matching pattern"
         ) do |pattern|
-            options["conf"].set_match(pattern)
+            options["match"] = pattern
         end
 
         opts.on(
@@ -217,19 +215,15 @@ def parse(args)
             "Ignore previous flags and filtering (useful for",
             "tab-completion with --ls)"
         ) do
-            options["conf"].default
-            options["conf"].no_clear_screen
-            options["conf"].no_fit
-            options["conf"].no_random
-            options["conf"].no_sysinfo
+            options["plain"] = true
         end
 
         opts.on(
             "-r",
-            "--[no-]random",
+            "--random",
             "Display random art matching filters"
-        ) do |r|
-            r ? options["conf"].random : options["conf"].no_random
+        ) do
+            options["random"] = true
         end
 
         opts.on("--save", "Save specified options as default") do
@@ -242,12 +236,8 @@ def parse(args)
             end
         end
 
-        opts.on(
-            "-s",
-            "--[no-]sysinfo",
-            "Display system info"
-        ) do |s|
-            s ? options["conf"].sysinfo : options["conf"].no_sysinfo
+        opts.on("-s", "--sysinfo", "Display system info") do
+            options["sysinfo"] = true
         end
 
         opts.on(
@@ -266,10 +256,10 @@ def parse(args)
 
         opts.on(
             "-v",
-            "--[no-]verbose",
+            "--verbose",
             "Show backtrace when error occurs"
-        ) do |v|
-            options["verbose"] = v
+        ) do
+            options["verbose"] = true
         end
 
         opts.on("-V", "--version", "Show version") do
@@ -319,14 +309,38 @@ def parse(args)
     end
 
     if (args.length == 1)
-        options["conf"].no_random
-        options["conf"].set_art(args[0])
+        options["random"] = false
+        options["art"] = args[0]
     elsif (args.length > 1)
         puts(parser)
         exit ArTTYExit::EXTRA_ARGUMENTS
     end
 
     return options
+end
+
+def validate(cfg, opts)
+    if opts["all"]
+        cfg.no_fit
+        cfg.set_exclude("")
+        cfg.set_match("")
+    elsif opts["plain"]
+        cfg.default
+        cfg.no_clear_screen
+        cfg.no_fit
+        cfg.no_random
+        cfg.no_sysinfo
+    end
+
+    cfg.clear_screen if (opts["clear"])
+    cfg.devexcuse if (opts["devexcuse"])
+    cfg.set_exclude(opts["exclude"]) if (!opts["exclude"].empty?)
+    cfg.set_fields(opts["fields"]) if (!opts["fields"].empty?)
+    cfg.fit if (opts["fit"])
+    cfg.fortune if (opts["fortune"])
+    cfg.set_match(opts["match"]) if (!opts["match"].empty?)
+    cfg.random if (opts["random"])
+    cfg.sysinfo if (opts["sysinfo"])
 end
 
 begin
@@ -338,6 +352,7 @@ end
 
 begin
     config = options["conf"]
+    validate(config, options)
 
     excuse = nil
     if (config.devexcuse?)
