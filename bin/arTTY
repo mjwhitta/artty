@@ -424,7 +424,9 @@ begin
         arTTY.cache(true)
     else
         # Randomize
-        config.set_art(arTTY.random) if (config.random?)
+        if (!config.art? && config.random?)
+            config.set_art(arTTY.random)
+        end
 
         # Ensure art is not nil
         config.set_art("none") if (!config.art?)
