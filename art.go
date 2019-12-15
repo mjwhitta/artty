@@ -10,11 +10,12 @@ import (
 // Art is a struct containing the necessary data to convert an ArTTY
 // JSON file to pixel art.
 type Art struct {
-	Height int               `json:"height"`
-	Legend map[string]string `json:"legend"`
-	Name   string            `json:"name"`
-	Pixels []string          `json:"pixels"`
-	Width  int               `json:"width"`
+	Height  int               `json:"height"`
+	Legend  map[string]string `json:"legend"`
+	Name    string            `json:"name"`
+	Pixels  []string          `json:"pixels"`
+	SysInfo map[string]string `json:"-"`
+	Width   int               `json:"width"`
 }
 
 // NewArt is a constructor for the Art type.

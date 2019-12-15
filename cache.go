@@ -17,31 +17,23 @@ import (
 )
 
 type artCache struct {
-	Arts  map[string]cachedArt
-	Cache *jsoncfg.JSONCfg
-}
-
-type cachedArt struct {
-	File   string `json:"file"`
-	Height int    `json:"height"`
-	Width  int    `json:"width"`
+	cfg *jsoncfg.JSONCfg
 }
 
 // Constructor
 func newArtCache() *artCache {
 	var c = &artCache{
-		Arts:  map[string]cachedArt{},
-		Cache: jsoncfg.New(filepath.Join(cacheDir, cacheFile)),
+		cfg: jsoncfg.New(filepath.Join(cacheDir, cacheFile)),
 	}
 
 	// Initialize defaults
-	c.Cache.SetDefault("art", c.Arts)
-	c.Cache.SetDefault("version", Version)
-	c.Cache.SaveDefault()
-	c.Cache.Reset()
+	c.cfg.SetDefault("art", map[string]interface{}{})
+	c.cfg.SetDefault("version", Version)
+	c.cfg.SaveDefault()
+	c.cfg.Reset()
 
 	// Refresh if newer version detected
-	if c.Cache.GetString("version") != Version {
+	if c.cfg.GetString("version") != Version {
 		c.refresh()
 	}
 
@@ -136,10 +128,32 @@ func (c *artCache) extractFile(filename string, t *tar.Reader) error {
 	return e
 }
 
+func (c *artCache) getHeightOf(name string) int {
+	var art map[string]interface{}
+	var ok bool
+
+	art = c.cfg.GetMap("art")[name].(map[string]interface{})
+	if _, ok = art["height"].(float64); ok {
+		return int(art["height"].(float64))
+	}
+	return art["height"].(int)
+}
+
+func (c *artCache) getWidthOf(name string) int {
+	var art map[string]interface{}
+	var ok bool
+
+	art = c.cfg.GetMap("art")[name].(map[string]interface{})
+	if _, ok = art["width"].(float64); ok {
+		return int(art["width"].(float64))
+	}
+	return art["width"].(int)
+}
+
 func (c *artCache) list() []string {
 	var keys []string
 
-	for key := range c.Cache.GetMap("art") {
+	for key := range c.cfg.GetMap("art") {
 		keys = append(keys, key)
 	}
 
@@ -174,19 +188,21 @@ func (c *artCache) organize() error {
 }
 
 func (c *artCache) refresh() {
+	var art = map[string]interface{}{}
+
 	var addArt = func(path string, info os.FileInfo, e error) error {
-		var art *Art
+		var img *Art
 
 		if e != nil {
 			return e
 		}
 
 		if strings.HasSuffix(path, ".json") {
-			art = NewArt(path)
-			c.Arts[art.Name] = cachedArt{
-				File:   path,
-				Height: art.Height,
-				Width:  art.Width,
+			img = NewArt(path)
+			art[img.Name] = map[string]interface{}{
+				"file":   path,
+				"height": img.Height,
+				"width":  img.Width,
 			}
 		}
 
@@ -197,9 +213,9 @@ func (c *artCache) refresh() {
 	filepath.Walk(filepath.Join(cacheDir, imagesDir), addArt)
 	filepath.Walk(filepath.Join(customCacheDir, imagesDir), addArt)
 
-	c.Cache.Set("art", c.Arts)
-	c.Cache.Set("version", Version)
-	c.Cache.Save()
+	c.cfg.Set("art", art)
+	c.cfg.Set("version", Version)
+	c.cfg.Save()
 }
 
 func (c *artCache) update() error {

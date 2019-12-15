@@ -39,6 +39,51 @@ func DevExcuse() string {
 	return ""
 }
 
+// Filter will apply match and exclude filters and return a list of
+// art that fits the specified width and height.
+func Filter(
+	match string,
+	exclude string,
+	w int,
+	h int,
+) ([]string, error) {
+	var e error
+	var excluded bool
+	var fits bool
+	var height int
+	var keep []string
+	var matched bool
+	var width int
+
+	for _, name := range List() {
+		if matched, e = regexp.Match(match, []byte(name)); e != nil {
+			return []string{}, e
+		}
+
+		excluded, e = regexp.Match(exclude, []byte(name))
+		if e != nil {
+			return []string{}, e
+		}
+
+		if (w == 0) && (h == 0) {
+			fits = true
+		} else {
+			height = cache.getHeightOf(name)
+			width = cache.getWidthOf(name)
+
+			if (height <= h) && (width <= w) {
+				fits = true
+			}
+		}
+
+		if matched && !excluded && fits {
+			keep = append(keep, name)
+		}
+	}
+
+	return keep, nil
+}
+
 // Fortune will return the output from the fortune command if it is
 // installed.
 func Fortune() string {
@@ -61,6 +106,13 @@ func Fortune() string {
 // List will return the names of all found ArTTY JSON files.
 func List() []string {
 	return cache.list()
+}
+
+// SysInfo will return a list of system information. A list of fields
+// can be supplied if all info is not wanted.
+func SysInfo(fields []string) map[string]string {
+	// TODO system information
+	return map[string]string{}
 }
 
 // Update will download and re-cache the ArTTY JSON files.

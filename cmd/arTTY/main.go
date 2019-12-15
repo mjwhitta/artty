@@ -2,6 +2,8 @@ package main
 
 import (
 	"os"
+	"os/exec"
+	"strconv"
 	"strings"
 
 	"gitlab.com/mjwhitta/artty"
@@ -30,7 +32,6 @@ type cliFlags struct {
 	cache     bool
 	clear     bool
 	demo      bool
-	edit      bool
 	exclude   string
 	devexcuse bool
 	fields    string
@@ -45,6 +46,7 @@ type cliFlags struct {
 	save      bool
 	sysinfo   bool
 	update    bool
+	verbose   bool
 	version   bool
 }
 
@@ -60,6 +62,21 @@ const (
 var action = "draw"
 var config = jsoncfg.New("~/.config/arTTY/rc")
 var flags cliFlags
+
+func cmdOutput(cmd string, cli string) string {
+	var e error
+	var o []byte
+
+	if len(cmd) == 0 {
+		return ""
+	}
+
+	if o, e = exec.Command(cmd, cli).Output(); e != nil {
+		return ""
+	}
+
+	return strings.TrimSpace(string(o))
+}
 
 func init() {
 	// Initialize default values for config
@@ -138,12 +155,6 @@ func init() {
 		"devexcuse",
 		false,
 		"Display a developer excuse.",
-	)
-	cli.Flag(
-		&flags.edit,
-		"edit",
-		false,
-		"Amend config with new options.",
 	)
 	cli.Flag(
 		&flags.exclude,
@@ -232,6 +243,13 @@ func init() {
 		false,
 		"Download new art and refresh the cache.",
 	)
+	cli.Flag(
+		&flags.verbose,
+		"v",
+		"verbose",
+		false,
+		"Show show stacktrace if error.",
+	)
 	cli.Flag(&flags.version, "V", "version", false, "Show version.")
 	cli.Parse()
 }
@@ -241,16 +259,38 @@ func main() {
 
 	defer func() {
 		if r := recover(); r != nil {
+			if flags.verbose {
+				panic(r.(error).Error())
+			}
 			errx(Exception, r.(error).Error())
 		}
 	}()
 
 	validate()
 
-	// var arts = artty.New()
+	var art []string
 	var devexcuse string
+	var e error
 	var fortune string
-	var name string
+	var height int
+	// var sysinfo map[string]string
+	var width int
+
+	if config.GetBool("fit") {
+		width, _ = strconv.Atoi(cmdOutput("tput", "cols"))
+		height, _ = strconv.Atoi(cmdOutput("tput", "lines"))
+		hl.Printf("%dx%d\n", width, height)
+	}
+
+	art, e = artty.Filter(
+		config.GetString("match"),
+		config.GetString("exclude"),
+		width,
+		height,
+	)
+	if e != nil {
+		panic(e)
+	}
 
 	if config.GetBool("devexcuse") {
 		devexcuse = artty.DevExcuse()
@@ -260,35 +300,41 @@ func main() {
 		fortune = artty.Fortune()
 	}
 
-	// TODO filter art
+	if config.GetBool("sysinfo") {
+		// sysinfo = artty.SysInfo(config.GetStringArray("fields"))
+	}
 
 	switch action {
 	case "cache":
 		artty.Cache()
 	case "demo":
 		// TODO demo
-	case "edit":
-		if config.GetBool("random") {
-			config.Set("art", "")
-		}
-		config.Save()
 	case "generate":
 		// TODO generate
 	case "list":
-		for _, name = range artty.List() {
+		for _, name := range art {
 			hl.Println(name)
 		}
 	case "save":
-		if config.GetBool("random") {
-			config.Set("art", "")
-		}
-		config.SaveDiff() // Overwrite old save with new changes
+		config.Save()
 	case "update":
 		var e = artty.Update()
 		if e != nil {
 			panic(e)
 		}
 	default:
+		if len(config.GetString("art")) == 0 {
+			if config.GetBool("random") {
+				// TODO random
+			} else {
+				config.Set("art", "none")
+			}
+		}
+
+		if config.GetBool("clear_screen") {
+			// TODO clear screen
+		}
+
 		// TODO draw
 
 		if len(devexcuse) > 0 {
@@ -322,13 +368,6 @@ func validate() {
 			cli.Usage(InvalidOption)
 		}
 		action = "demo"
-	}
-
-	if flags.edit {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "edit"
 	}
 
 	if len(flags.generate) > 0 {
