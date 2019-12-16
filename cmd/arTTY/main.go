@@ -273,8 +273,23 @@ func main() {
 	var e error
 	var fortune string
 	var height int
-	// var sysinfo map[string]string
+	var sysinfo map[string]string
 	var width int
+
+	if config.GetBool("devexcuse") {
+		devexcuse = artty.DevExcuse()
+	}
+
+	if config.GetBool("fortune") {
+		fortune = artty.Fortune()
+	}
+
+	if config.GetBool("sysinfo") {
+		sysinfo = artty.SysInfo(config.GetStringArray("fields"))
+	}
+
+	hl.Println(config.GetStringArray("fields"))
+	hl.Println(sysinfo)
 
 	if config.GetBool("fit") {
 		width, _ = strconv.Atoi(cmdOutput("tput", "cols"))
@@ -289,18 +304,6 @@ func main() {
 	)
 	if e != nil {
 		panic(e)
-	}
-
-	if config.GetBool("devexcuse") {
-		devexcuse = artty.DevExcuse()
-	}
-
-	if config.GetBool("fortune") {
-		fortune = artty.Fortune()
-	}
-
-	if config.GetBool("sysinfo") {
-		// sysinfo = artty.SysInfo(config.GetStringArray("fields"))
 	}
 
 	switch action {
