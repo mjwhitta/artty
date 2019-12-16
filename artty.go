@@ -65,12 +65,12 @@ func Filter(
 			return []string{}, e
 		}
 
+		fits = false
 		if (w == 0) && (h == 0) {
 			fits = true
 		} else {
 			height = cache.getHeightOf(name)
 			width = cache.getWidthOf(name)
-
 			if (height <= h) && (width <= w) {
 				fits = true
 			}
