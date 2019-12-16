@@ -108,13 +108,6 @@ func List() []string {
 	return cache.list()
 }
 
-// SysInfo will return a list of system information. A list of fields
-// can be supplied if all info is not wanted.
-func SysInfo(fields []string) map[string]string {
-	// TODO system information
-	return map[string]string{}
-}
-
 // Update will download and re-cache the ArTTY JSON files.
 func Update() error {
 	return cache.update()

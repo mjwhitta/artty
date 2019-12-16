@@ -8,6 +8,7 @@ import (
 
 	"gitlab.com/mjwhitta/artty"
 	hl "gitlab.com/mjwhitta/hilighter"
+	"gitlab.com/mjwhitta/where"
 )
 
 // Helpers begin
@@ -39,11 +40,11 @@ func cmdOutput(cmd string, cli string) string {
 	var e error
 	var o []byte
 
-	if len(cmd) == 0 {
+	if len(cmd) == 0 || len(where.Is(cmd)) == 0 {
 		return ""
 	}
 
-	if o, e = exec.Command(cmd, cli).Output(); e != nil {
+	if o, e = exec.Command(where.Is(cmd), cli).Output(); e != nil {
 		return ""
 	}
 
@@ -75,7 +76,7 @@ func main() {
 	var e error
 	var fortune string
 	var height int
-	var sysinfo map[string]string
+	var sysinfo *artty.SysInfo
 	var width int
 
 	if config.GetBool("devexcuse") {
@@ -87,11 +88,10 @@ func main() {
 	}
 
 	if config.GetBool("sysinfo") {
-		sysinfo = artty.SysInfo(config.GetStringArray("fields"))
+		sysinfo = artty.NewSysInfo(config.GetStringArray("fields"))
 	}
 
-	hl.Println(config.GetStringArray("fields"))
-	hl.Println(sysinfo)
+	hl.Printf("%+v\n", sysinfo)
 
 	if config.GetBool("fit") {
 		width, _ = strconv.Atoi(cmdOutput("tput", "cols"))
