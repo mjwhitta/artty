@@ -51,7 +51,7 @@ class ArTTYExit
     UNSUPPORTED_ART = 7
 end
 
-def devexcuse
+def get_devexcuse
     begin
         Typhoeus::Request.get(
             "http://developerexcuses.com"
@@ -127,16 +127,6 @@ def parse(args)
 
         opts.on("-d", "--devexcuse", "Display a developer excuse") do
             options["devexcuse"] = true
-        end
-
-        opts.on("--edit", "Amend config with new options") do
-            case options["action"]
-            when "draw"
-                options["action"] = "edit"
-            else
-                puts(opts)
-                exit ArTTYExit::INVALID_OPTION
-            end
         end
 
         opts.on(
@@ -332,6 +322,7 @@ def validate(cfg, opts)
         cfg.no_sysinfo
     end
 
+    cfg.set_art(opts["art"])
     cfg.clear_screen if (opts["clear"])
     cfg.devexcuse if (opts["devexcuse"])
     cfg.set_exclude(opts["exclude"]) if (!opts["exclude"].empty?)
@@ -354,19 +345,19 @@ begin
     config = options["conf"]
     validate(config, options)
 
-    excuse = nil
+    arTTY = ArTTY.new
+    arTTY.exclude(config.get_exclude) if (config.exclude?)
+    arTTY.match(config.get_match) if (config.match?)
+
+    devexcuse = nil
     if (config.devexcuse?)
-        excuse = devexcuse
+        devexcuse = get_devexcuse
     end
 
     fortune = nil
     if (config.fortune? && ScoobyDoo.where_are_you("fortune"))
         fortune = %x(fortune -s)
     end
-
-    arTTY = ArTTY.new
-    arTTY.exclude(config.get_exclude) if (config.exclude?)
-    arTTY.match(config.get_match) if (config.match?)
 
     info = nil
     if (config.sysinfo?)
@@ -381,11 +372,11 @@ begin
             width -= (info.width + 2)
             info = nil if ((height <= info.height) || (width <= 0))
         end
-        if (excuse)
-            eheight = excuse.split("\n").length
-            ewidth = excuse.split("\n").map(&:length).max
-            excuse = nil if (height <= eheight || ewidth > width)
-            height -= eheight if (excuse)
+        if (devexcuse)
+            eheight = devexcuse.split("\n").length
+            ewidth = devexcuse.split("\n").map(&:length).max
+            devexcuse = nil if (height <= eheight || ewidth > width)
+            height -= eheight if (devexcuse)
         end
         if (fortune)
             fheight = fortune.split("\n").length
@@ -405,9 +396,6 @@ begin
             art = arTTY.get(name, info).draw
             puts("\n#{art}\n") if (!art.empty?)
         end
-    when "edit"
-        config.set_art("") if (config.random?)
-        config.save # Save modified config
     when "generate"
         puts(
             ArTTY::Generator.new.generate(
@@ -418,8 +406,7 @@ begin
     when "list"
         puts(arTTY.art)
     when "save"
-        config.set_art("") if (config.random?)
-        config.savediff # Overwrite old save with new changes
+        config.save
     when "update"
         arTTY.cache(true)
     else
@@ -436,7 +423,7 @@ begin
 
         art = arTTY.get(config.get_art, info).draw
         puts("\n#{art}\n") if (!art.empty?)
-        puts(excuse) if (excuse)
+        puts(devexcuse) if (devexcuse)
         puts(fortune) if (fortune)
     end
 rescue ArTTY::Error => e
