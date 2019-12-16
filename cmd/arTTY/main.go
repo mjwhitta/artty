@@ -279,7 +279,6 @@ func main() {
 	if config.GetBool("fit") {
 		width, _ = strconv.Atoi(cmdOutput("tput", "cols"))
 		height, _ = strconv.Atoi(cmdOutput("tput", "lines"))
-		hl.Printf("%dx%d\n", width, height)
 	}
 
 	art, e = artty.Filter(
