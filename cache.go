@@ -129,25 +129,11 @@ func (c *artCache) extractFile(filename string, t *tar.Reader) error {
 }
 
 func (c *artCache) getHeightOf(name string) int {
-	var art map[string]interface{}
-	var ok bool
-
-	art = c.cfg.GetMap("art")[name].(map[string]interface{})
-	if _, ok = art["height"].(float64); ok {
-		return int(art["height"].(float64))
-	}
-	return art["height"].(int)
+	return c.cfg.GetInt("art", name, "height")
 }
 
 func (c *artCache) getWidthOf(name string) int {
-	var art map[string]interface{}
-	var ok bool
-
-	art = c.cfg.GetMap("art")[name].(map[string]interface{})
-	if _, ok = art["width"].(float64); ok {
-		return int(art["width"].(float64))
-	}
-	return art["width"].(int)
+	return c.cfg.GetInt("art", name, "width")
 }
 
 func (c *artCache) list() []string {

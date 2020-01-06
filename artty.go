@@ -56,13 +56,20 @@ func Filter(
 	var width int
 
 	for _, name := range List() {
-		if matched, e = regexp.Match(match, []byte(name)); e != nil {
-			return []string{}, e
+		matched = true
+		if len(match) > 0 {
+			matched, e = regexp.Match(match, []byte(name))
+			if e != nil {
+				return []string{}, e
+			}
 		}
 
-		excluded, e = regexp.Match(exclude, []byte(name))
-		if e != nil {
-			return []string{}, e
+		excluded = false
+		if len(exclude) > 0 {
+			excluded, e = regexp.Match(exclude, []byte(name))
+			if e != nil {
+				return []string{}, e
+			}
 		}
 
 		fits = false

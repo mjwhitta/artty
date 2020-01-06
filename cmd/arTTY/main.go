@@ -87,11 +87,14 @@ func main() {
 		fortune = artty.Fortune()
 	}
 
-	if config.GetBool("sysinfo") {
-		sysinfo = artty.NewSysInfo(config.GetStringArray("fields"))
+	switch action {
+	case "draw", "list":
+		if config.GetBool("sysinfo") {
+			sysinfo = artty.NewSysInfo(
+				config.GetStringArray("fields"),
+			)
+		}
 	}
-
-	hl.Printf("%+v\n", sysinfo)
 
 	if config.GetBool("fit") {
 		width, _ = strconv.Atoi(cmdOutput("tput", "cols"))
@@ -113,20 +116,7 @@ func main() {
 		artty.Cache()
 	case "demo":
 		// TODO demo
-	case "generate":
-		// TODO generate
-	case "list":
-		for _, name := range art {
-			hl.Println(name)
-		}
-	case "save":
-		config.Save()
-	case "update":
-		var e = artty.Update()
-		if e != nil {
-			panic(e)
-		}
-	default:
+	case "draw":
 		if len(config.GetString("art")) == 0 {
 			if config.GetBool("random") {
 				// TODO random
@@ -141,12 +131,28 @@ func main() {
 
 		// TODO draw
 
+		// FIXME remove
+		hl.Printf("%+v\n", sysinfo)
+
 		if len(devexcuse) > 0 {
 			hl.Println(devexcuse)
 		}
 
 		if len(fortune) > 0 {
 			hl.Println(fortune)
+		}
+	case "generate":
+		// TODO generate
+	case "list":
+		for _, name := range art {
+			hl.Println(name)
+		}
+	case "save":
+		config.Save()
+	case "update":
+		var e = artty.Update()
+		if e != nil {
+			panic(e)
 		}
 	}
 }
