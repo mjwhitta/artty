@@ -3,6 +3,7 @@ require "json"
 require "jsoncfg"
 require "minitar"
 require "pathname"
+require "stringio"
 require "typhoeus"
 require "zlib"
 

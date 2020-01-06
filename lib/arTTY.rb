@@ -53,7 +53,11 @@ class ArTTY
             @@all_art.push(name)
         end
 
-        @art = @@all_art.sort.clone
+        @@all_art.sort! do |a, b|
+            a.downcase <=> b.downcase
+        end
+
+        @art = @@all_art.clone
     end
 
     def match(pattern)
