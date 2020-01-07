@@ -7,5 +7,6 @@ require (
 	gitlab.com/mjwhitta/hilighter v1.5.12
 	gitlab.com/mjwhitta/jsoncfg v1.2.6
 	gitlab.com/mjwhitta/pathname v1.0.6
+	gitlab.com/mjwhitta/sysinfo v0.0.1
 	gitlab.com/mjwhitta/where v1.0.0
 )

@@ -8,6 +8,7 @@ import (
 
 	"gitlab.com/mjwhitta/artty"
 	hl "gitlab.com/mjwhitta/hilighter"
+	"gitlab.com/mjwhitta/sysinfo"
 	"gitlab.com/mjwhitta/where"
 )
 
@@ -76,7 +77,7 @@ func main() {
 	var e error
 	var fortune string
 	var height int
-	var sysinfo *artty.SysInfo
+	var info *sysinfo.SysInfo
 	var width int
 
 	if config.GetBool("devexcuse") {
@@ -90,8 +91,8 @@ func main() {
 	switch action {
 	case "draw", "list":
 		if config.GetBool("sysinfo") {
-			sysinfo = artty.NewSysInfo(
-				config.GetStringArray("fields"),
+			info = sysinfo.New(
+				config.GetStringArray("fields")...,
 			)
 		}
 	}
@@ -132,7 +133,7 @@ func main() {
 		// TODO draw
 
 		// FIXME remove
-		hl.Printf("%+v\n", sysinfo)
+		hl.Printf("%+v\n", info)
 
 		if len(devexcuse) > 0 {
 			hl.Println(devexcuse)

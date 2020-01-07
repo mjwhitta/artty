@@ -6,5 +6,7 @@ gitlab.com/mjwhitta/jsoncfg v1.2.6 h1:5ahMrZvGAlZNVL27ON7Bcf0PhU7CUkzOLL2ANDnB3E
 gitlab.com/mjwhitta/jsoncfg v1.2.6/go.mod h1:9O69djALu3tNISDUCylZ5MeXb3bUln9xeRaRridLHqM=
 gitlab.com/mjwhitta/pathname v1.0.6 h1:hboITLPbJigX9WvKD6pv+Ay4w9zleOHnmJtGswBoYXg=
 gitlab.com/mjwhitta/pathname v1.0.6/go.mod h1:DDc1eLhCHMHYMttam61vgyKGya/IIs2IDOTkr6GyFhs=
+gitlab.com/mjwhitta/sysinfo v0.0.1 h1:8X49KRwro72u/ukm+UvUkMowQqdHTrkEMjyNLbeUnWo=
+gitlab.com/mjwhitta/sysinfo v0.0.1/go.mod h1:1WvAttbMK2Ph3ksIYQ4C5nqmHWog+SjsvOZgrAyxEtY=
 gitlab.com/mjwhitta/where v1.0.0 h1:2Wjg6OIJIJIJhvIpUNT7xZER+fmgLswzxvn01JKQISQ=
 gitlab.com/mjwhitta/where v1.0.0/go.mod h1:nIXYs+XVQzA06VA+kwvRDZCD+sQ0KnkU9azKMnEPcOw=
