@@ -26,8 +26,8 @@ class ArTTY::SystemInfo
         return "" if (ScoobyDoo.where_are_you("df").nil?)
 
         df = %x(df -h #{fs} | tail -n 1)
-        df.match(/^[^\s]+\s+([^\s]+)\s+([^\s]+)/) do |m|
-            return "#{m[2]} / #{m[1]}".strip
+        df.match(/^\S+\s+(\S+)\s+(\S+)\s+\S+\s+(\S+)/) do |m|
+            return "#{m[2]} / #{m[1]} (#{m[3]})".strip
         end
 
         return ""
