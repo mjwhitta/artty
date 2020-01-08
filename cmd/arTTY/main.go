@@ -136,7 +136,11 @@ func main() {
 		// TODO draw
 
 		// FIXME remove
-		hl.Printf("%+v\n", info)
+		if info != nil {
+			hl.Println()
+			hl.Println(info)
+			hl.Println()
+		}
 
 		if len(devexcuse) > 0 {
 			hl.Println(devexcuse)
