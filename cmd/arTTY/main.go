@@ -1,10 +1,12 @@
 package main
 
 import (
+	"math/rand"
 	"os"
 	"os/exec"
 	"strconv"
 	"strings"
+	"time"
 
 	"gitlab.com/mjwhitta/artty"
 	hl "gitlab.com/mjwhitta/hilighter"
@@ -161,21 +163,23 @@ func main() {
 	case "demo":
 		// TODO demo
 	case "draw":
-		if len(config.GetString("art")) == 0 {
-			if config.GetBool("random") {
-				// TODO random
-			} else {
-				config.Set("art", "none")
-			}
-		}
-
 		if config.GetBool("clear_screen") {
 			clear = exec.Command("clear")
 			clear.Stdout = os.Stdout
 			clear.Run()
 		}
 
+		if len(config.GetString("art")) == 0 {
+			if config.GetBool("random") {
+				rand.Seed(time.Now().UnixNano())
+				config.Set("art", art[rand.Intn(len(art))])
+			} else {
+				config.Set("art", "none")
+			}
+		}
+
 		// TODO draw
+		hl.Println(config.GetString("art"))
 		if info != nil {
 			hl.Println()
 			hl.Println(info)
