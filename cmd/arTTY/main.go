@@ -73,6 +73,7 @@ func main() {
 	}
 
 	var art []string
+	var clear *exec.Cmd
 	var devexcuse string
 	var e error
 	var fortune string
@@ -127,7 +128,9 @@ func main() {
 		}
 
 		if config.GetBool("clear_screen") {
-			// TODO clear screen
+			clear = exec.Command("clear")
+			clear.Stdout = os.Stdout
+			clear.Run()
 		}
 
 		// TODO draw
