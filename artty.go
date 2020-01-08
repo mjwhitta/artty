@@ -110,6 +110,10 @@ func Fortune() string {
 	return strings.TrimSpace(string(o))
 }
 
+func Get(name string) *Art {
+	return New(cache.getFileOf(name))
+}
+
 // List will return the names of all found ArTTY JSON files.
 func List() []string {
 	return cache.list()

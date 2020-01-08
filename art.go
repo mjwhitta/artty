@@ -3,8 +3,10 @@ package artty
 import (
 	"encoding/json"
 	"io/ioutil"
+	"strings"
 
 	"gitlab.com/mjwhitta/pathname"
+	"gitlab.com/mjwhitta/sysinfo"
 )
 
 // Art is a struct containing the necessary data to convert an ArTTY
@@ -14,12 +16,12 @@ type Art struct {
 	Legend  map[string]string `json:"legend"`
 	Name    string            `json:"name"`
 	Pixels  []string          `json:"pixels"`
-	SysInfo map[string]string `json:"-"`
+	SysInfo *sysinfo.SysInfo  `json:"-"`
 	Width   int               `json:"width"`
 }
 
-// NewArt is a constructor for the Art type.
-func NewArt(path string) *Art {
+// New is a constructor for the Art type.
+func New(path string) *Art {
 	var a Art
 	var b []byte
 	var e error
@@ -38,5 +40,13 @@ func NewArt(path string) *Art {
 // String will convert the Art struct to a string for fmt's print
 // functions.
 func (a *Art) String() string {
-	return ""
+	var out []string
+
+	// TODO draw
+	out = append(out, a.Name)
+	if a.SysInfo != nil {
+		out = append(out, a.SysInfo.String())
+	}
+
+	return strings.Join(out, "\n")
 }

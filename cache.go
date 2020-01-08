@@ -128,6 +128,10 @@ func (c *artCache) extractFile(filename string, t *tar.Reader) error {
 	return e
 }
 
+func (c *artCache) getFileOf(name string) string {
+	return c.cfg.GetString("art", name, "file")
+}
+
 func (c *artCache) getHeightOf(name string) int {
 	return c.cfg.GetInt("art", name, "height")
 }
@@ -184,7 +188,7 @@ func (c *artCache) refresh() {
 		}
 
 		if strings.HasSuffix(path, ".json") {
-			img = NewArt(path)
+			img = New(path)
 			art[img.Name] = map[string]interface{}{
 				"file":   path,
 				"height": img.Height,

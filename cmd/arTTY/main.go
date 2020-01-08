@@ -81,6 +81,7 @@ func main() {
 	var fortune string
 	var h int
 	var height int
+	var img *artty.Art
 	var info *sysinfo.SysInfo
 	var w int
 	var width int
@@ -94,7 +95,7 @@ func main() {
 	}
 
 	switch action {
-	case "draw", "list":
+	case "demo", "draw", "list":
 		if config.GetBool("sysinfo") {
 			info = sysinfo.New(config.GetStringArray("fields")...)
 		}
@@ -161,7 +162,12 @@ func main() {
 	case "cache":
 		artty.Cache()
 	case "demo":
-		// TODO demo
+		for _, name := range art {
+			img = artty.Get(name)
+			img.SysInfo = info
+			hl.Println(img)
+			hl.Println()
+		}
 	case "draw":
 		if config.GetBool("clear_screen") {
 			clear = exec.Command("clear")
@@ -178,13 +184,10 @@ func main() {
 			}
 		}
 
-		// TODO draw
-		hl.Println(config.GetString("art"))
-		if info != nil {
-			hl.Println()
-			hl.Println(info)
-			hl.Println()
-		}
+		img = artty.Get(config.GetString("art"))
+		img.SysInfo = info
+		hl.Println(img)
+		hl.Println()
 
 		if len(devexcuse) > 0 {
 			hl.Println(devexcuse)
