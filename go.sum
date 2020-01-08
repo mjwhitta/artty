@@ -1,12 +1,12 @@
 gitlab.com/mjwhitta/cli v1.7.9 h1:diX/L4pJ5A7i6kVdkFymm4T4ksdp225vd650nwqJ8+8=
 gitlab.com/mjwhitta/cli v1.7.9/go.mod h1:0nzOLJZWsbgzJp/EQoLHcCLvKXX/iakyOZIqg94xAzo=
-gitlab.com/mjwhitta/hilighter v1.5.12 h1:fVCH50yw6zeUIhWRuSJi1OX/HqtIrWlRc7mVugMdq9w=
-gitlab.com/mjwhitta/hilighter v1.5.12/go.mod h1:VymjV65YNFj0GYnK3GfpzcHXKjUmvQk9pe6m//ryP1k=
+gitlab.com/mjwhitta/hilighter v1.5.13 h1:UrR0JsLDppbZ0qJTuEwCi9gxjVEkhX/tmFSXHeLQu2s=
+gitlab.com/mjwhitta/hilighter v1.5.13/go.mod h1:VymjV65YNFj0GYnK3GfpzcHXKjUmvQk9pe6m//ryP1k=
 gitlab.com/mjwhitta/jsoncfg v1.2.6 h1:5ahMrZvGAlZNVL27ON7Bcf0PhU7CUkzOLL2ANDnB3EU=
 gitlab.com/mjwhitta/jsoncfg v1.2.6/go.mod h1:9O69djALu3tNISDUCylZ5MeXb3bUln9xeRaRridLHqM=
 gitlab.com/mjwhitta/pathname v1.0.6 h1:hboITLPbJigX9WvKD6pv+Ay4w9zleOHnmJtGswBoYXg=
 gitlab.com/mjwhitta/pathname v1.0.6/go.mod h1:DDc1eLhCHMHYMttam61vgyKGya/IIs2IDOTkr6GyFhs=
-gitlab.com/mjwhitta/sysinfo v1.0.1 h1:l1WrLysRwwSPrqr/jpOlEWw7NM7M64/wmLO4WU3VX6Y=
-gitlab.com/mjwhitta/sysinfo v1.0.1/go.mod h1:Z2yaGyWDUDE0I6Mxda2Tt/dYhqhSyNnUzm9Pcz1B5sc=
+gitlab.com/mjwhitta/sysinfo v1.0.3 h1:IRiBO+XUz1ErRi0SeFagtw6eHz92DGAymIcHyJ2I2K8=
+gitlab.com/mjwhitta/sysinfo v1.0.3/go.mod h1:IpqHOZPKHCIax+jvJ9FAJ8N4CRzfJcBxsXQVpzjRr2A=
 gitlab.com/mjwhitta/where v1.0.0 h1:2Wjg6OIJIJIJhvIpUNT7xZER+fmgLswzxvn01JKQISQ=
 gitlab.com/mjwhitta/where v1.0.0/go.mod h1:nIXYs+XVQzA06VA+kwvRDZCD+sQ0KnkU9azKMnEPcOw=
