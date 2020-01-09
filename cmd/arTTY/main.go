@@ -39,7 +39,8 @@ const (
 
 var action = "draw"
 
-func cmdOutput(cmd string, cli string) string {
+func cmdOutput(cmd string, cli ...string) string {
+	var c *exec.Cmd
 	var e error
 	var o []byte
 
@@ -47,7 +48,10 @@ func cmdOutput(cmd string, cli string) string {
 		return ""
 	}
 
-	if o, e = exec.Command(where.Is(cmd), cli).Output(); e != nil {
+	c = exec.Command(where.Is(cmd), cli...)
+	c.Stdin = os.Stdin
+
+	if o, e = c.Output(); e != nil {
 		return ""
 	}
 
@@ -83,6 +87,7 @@ func main() {
 	var height int
 	var img *artty.Art
 	var info *sysinfo.SysInfo
+	var size []string
 	var w int
 	var width int
 
@@ -102,11 +107,15 @@ func main() {
 	}
 
 	if config.GetBool("fit") {
-		height, _ = strconv.Atoi(cmdOutput("tput", "lines"))
-		height -= 4 // Leave some space for prompt
+		size = strings.Split(cmdOutput("stty", "size"), " ")
 
-		width, _ = strconv.Atoi(cmdOutput("tput", "cols"))
-		width -= 1 // Leave some space for leading space
+		if len(size) == 2 {
+			height, _ = strconv.Atoi(size[0])
+			height -= 4 // Leave some space for prompt
+
+			width, _ = strconv.Atoi(size[1])
+			width -= 1 // Leave some space for leading space
+		}
 
 		// Check devexcuse for height and width
 		h = 0
