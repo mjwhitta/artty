@@ -113,9 +113,9 @@ func Fortune() string {
 func Get(name string) *Art {
 	switch name {
 	case "none":
-		return New()
+		return NewArt()
 	default:
-		return New(cache.getFileOf(name))
+		return NewArt(cache.getFileOf(name))
 	}
 }
 

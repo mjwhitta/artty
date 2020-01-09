@@ -21,8 +21,8 @@ type Art struct {
 	Width   int               `json:"width"`
 }
 
-// New is a constructor for the Art type.
-func New(path ...string) *Art {
+// NewArt is a constructor for the Art type.
+func NewArt(path ...string) *Art {
 	var a Art
 	var b []byte
 	var e error

@@ -188,7 +188,7 @@ func (c *artCache) refresh() {
 		}
 
 		if strings.HasSuffix(path, ".json") {
-			img = New(path)
+			img = NewArt(path)
 			art[img.Name] = map[string]interface{}{
 				"file":   path,
 				"height": img.Height,
