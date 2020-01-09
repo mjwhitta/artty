@@ -186,8 +186,11 @@ func main() {
 
 		img = artty.Get(config.GetString("art"))
 		img.SysInfo = info
-		hl.Println(img)
-		hl.Println()
+		if len(img.String()) > 0 {
+			hl.Println()
+			hl.Println(img)
+			hl.Println()
+		}
 
 		if len(devexcuse) > 0 {
 			hl.Println(devexcuse)

@@ -111,7 +111,12 @@ func Fortune() string {
 }
 
 func Get(name string) *Art {
-	return New(cache.getFileOf(name))
+	switch name {
+	case "none":
+		return New()
+	default:
+		return New(cache.getFileOf(name))
+	}
 }
 
 // List will return the names of all found ArTTY JSON files.
