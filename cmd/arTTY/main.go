@@ -39,25 +39,6 @@ const (
 
 var action = "draw"
 
-func cmdOutput(cmd string, cli ...string) string {
-	var c *exec.Cmd
-	var e error
-	var o []byte
-
-	if len(cmd) == 0 || len(where.Is(cmd)) == 0 {
-		return ""
-	}
-
-	c = exec.Command(where.Is(cmd), cli...)
-	c.Stdin = os.Stdin
-
-	if o, e = c.Output(); e != nil {
-		return ""
-	}
-
-	return strings.TrimSpace(string(o))
-}
-
 func main() {
 	hl.Disable = flags.nocolor
 
@@ -87,7 +68,6 @@ func main() {
 	var height int
 	var img *artty.Art
 	var info *sysinfo.SysInfo
-	var size []string
 	var w int
 	var width int
 
@@ -107,14 +87,10 @@ func main() {
 	}
 
 	if config.GetBool("fit") {
-		size = strings.Split(cmdOutput("stty", "size"), " ")
-
-		if len(size) == 2 {
-			height, _ = strconv.Atoi(size[0])
+		width, height = termSize()
+		if (height > 0) && (width > 0) {
 			height -= 4 // Leave some space for prompt
-
-			width, _ = strconv.Atoi(size[1])
-			width -= 1 // Leave some space for leading space
+			width -= 1  // Leave some space for leading space
 		}
 
 		// Check devexcuse for height and width
@@ -229,4 +205,35 @@ func main() {
 			panic(e)
 		}
 	}
+}
+
+func termSize() (int, int) {
+	var c *exec.Cmd
+	var e error
+	var h int
+	var o []byte
+	var size []string
+	var w int
+
+	if len(where.Is("stty")) == 0 {
+		return 0, 0
+	}
+
+	c = exec.Command(where.Is("stty"), "size")
+	c.Stdin = os.Stdin
+
+	if o, e = c.Output(); e != nil {
+		return 0, 0
+	}
+
+	size = strings.Split(strings.TrimSpace(string(o)), " ")
+
+	if len(size) != 2 {
+		return 0, 0
+	}
+
+	h, _ = strconv.Atoi(size[0])
+	w, _ = strconv.Atoi(size[1])
+
+	return w, h
 }
