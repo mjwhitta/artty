@@ -199,6 +199,10 @@ def parse(args)
             options["match"] = pattern
         end
 
+        opts.on("--[no-]color", "Disable colorized output") do |c|
+            Hilighter.disable if (!c)
+        end
+
         opts.on(
             "-p",
             "--plain",
@@ -254,7 +258,7 @@ def parse(args)
 
         opts.on("-V", "--version", "Show version") do
             __FILE__.match(/arTTY-(\d+\.\d+\.\d+)/) do |m|
-                puts(m[1])
+                puts("arTTY version #{m[1]}")
             end
             exit ArTTYExit::GOOD
         end
