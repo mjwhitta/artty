@@ -123,7 +123,7 @@ func (a *Art) String() string {
 
 		// Append SysInfo, if any
 		if int(i/2) < len(info) {
-			line += info[int(i/2)]
+			line += " " + info[int(i/2)]
 		}
 
 		out = append(out, line)
@@ -134,7 +134,7 @@ func (a *Art) String() string {
 	}
 
 	for i := int(len(a.Pixels) / 2); i < len(info); i++ {
-		line = " " + filler + info[i]
+		line = " " + filler + " " + info[i]
 		out = append(out, line)
 	}
 

@@ -165,8 +165,13 @@ func main() {
 		for _, name := range art {
 			img = artty.Get(name)
 			img.SysInfo = info
-			hl.Println(img)
-			hl.Println()
+
+			if len(img.String()) > 0 {
+				hl.PrintlnWhite("### " + name + " ###")
+				hl.Println()
+				hl.Println(img)
+				hl.Println()
+			}
 		}
 	case "draw":
 		if config.GetBool("clear_screen") {
