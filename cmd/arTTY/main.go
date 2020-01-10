@@ -166,7 +166,7 @@ func main() {
 		}
 
 		if len(config.GetString("art")) == 0 {
-			if config.GetBool("random") {
+			if config.GetBool("random") && (len(art) > 0) {
 				rand.Seed(time.Now().UnixNano())
 				config.Set("art", art[rand.Intn(len(art))])
 			} else {
