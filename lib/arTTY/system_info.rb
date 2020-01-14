@@ -52,7 +52,7 @@ class ArTTY::SystemInfo
                 info.push(v)
             else
                 lfill = " " * (fillto - k.length)
-                info.push("#{lfill}#{k.blue}: #{v.white}")
+                info.push("#{lfill}#{k.blue}: #{v.light_green}")
             end
         end
 
