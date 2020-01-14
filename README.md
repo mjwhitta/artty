@@ -45,6 +45,10 @@ $ arTTY -c --fit -m "street-fighter-3" -rs --save
 Use the `--ls` flags to see all included images. Occasionally you may
 want to run `arTTY --update` to download any new art.
 
+Additionally, the system info portion is [configurable][sysinfo].
+
+[sysinfo]: https://gitlab.com/mjwhitta/sysinfo/blob/master/README.md#configuration
+
 ### Tab completion
 
 You can add one of the below to your `~/.bashrc` or `~/.zshrc` to get
