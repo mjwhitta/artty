@@ -26,6 +26,9 @@ dir:
 fmt: check
 	@go fmt . ./cmd/*
 
+gen: check
+	@go generate
+
 install: fmt
 	@mkdir -p "$(HOME)/.local/bin"
 	@go build -ldflags "-s -w" -o "$(HOME)/.local/bin" ./cmd/*
