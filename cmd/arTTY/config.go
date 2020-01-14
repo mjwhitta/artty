@@ -2,10 +2,11 @@ package main
 
 import "gitlab.com/mjwhitta/jsoncfg"
 
-var config = jsoncfg.New("~/.config/arTTY/rc")
+var config *jsoncfg.JSONCfg
 
 func init() {
 	// Initialize default values for config
+	config = jsoncfg.New("~/.config/arTTY/rc")
 	config.SetDefault("art", "")
 	config.SetDefault("clear_screen", true)
 	config.SetDefault("devexcuse", false)
