@@ -8,14 +8,14 @@ import (
 
 // Helpers begin
 
-func err(msg string) { hl.PrintlnRed("[!] %s", msg) }
+func err(msg string) { hl.PrintlnRedf("[!] %s", msg) }
 func errx(status int, msg string) {
 	err(msg)
 	os.Exit(status)
 }
-func good(msg string)    { hl.PrintlnGreen("[+] %s", msg) }
-func info(msg string)    { hl.PrintlnWhite("[*] %s", msg) }
-func subinfo(msg string) { hl.PrintlnCyan("[=] %s", msg) }
-func warn(msg string)    { hl.PrintlnYellow("[-] %s", msg) }
+func good(msg string)    { hl.PrintlnGreenf("[+] %s", msg) }
+func info(msg string)    { hl.PrintlnWhitef("[*] %s", msg) }
+func subinfo(msg string) { hl.PrintlnCyanf("[=] %s", msg) }
+func warn(msg string)    { hl.PrintlnYellowf("[-] %s", msg) }
 
 // Helpers end

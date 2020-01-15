@@ -110,6 +110,7 @@ func Fortune() string {
 	return strings.TrimSpace(string(o))
 }
 
+// Get will return the Art matching the provided name.
 func Get(name string) *Art {
 	switch name {
 	case "none":
