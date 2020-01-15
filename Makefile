@@ -1,5 +1,4 @@
 BUILD := build
-CMDS := $(shell ls ./cmd)
 GOARCH := $(shell go env GOARCH)
 GOOS := $(shell go env GOOS)
 OUT := $(BUILD)/$(GOOS)/$(GOARCH)
@@ -24,7 +23,7 @@ dir:
 	@mkdir -p "$(OUT)"
 
 fmt: check
-	@go fmt . ./cmd/*
+	@go fmt . ./cmd/* >/dev/null
 
 gen: check
 	@go generate
@@ -34,6 +33,6 @@ install: fmt
 	@go build -ldflags "-s -w" -o "$(HOME)/.local/bin" ./cmd/*
 
 uninstall:
-	@for cmd in $(CMDS); do \
+	@for cmd in $(shell ls cmd); do \
 		rm -f "$(HOME)/.local/bin/$$cmd"; \
 	done
