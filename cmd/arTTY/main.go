@@ -186,8 +186,7 @@ func main() {
 	case "save":
 		config.Save()
 	case "update":
-		var e = artty.Update()
-		if e != nil {
+		if e = artty.Update(); e != nil {
 			panic(e)
 		}
 	}
