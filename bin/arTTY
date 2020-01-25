@@ -230,6 +230,19 @@ def parse(args)
             end
         end
 
+        opts.on(
+            "--show-config",
+            "Show the current config with any other options applied",
+        ) do
+            case options["action"]
+            when "draw"
+                options["action"] = "show"
+            else
+                puts(opts)
+                exit ArTTYExit::INVALID_OPTION
+            end
+        end
+
         opts.on("-s", "--sysinfo", "Display system info") do
             options["sysinfo"] = true
         end
@@ -400,20 +413,7 @@ begin
             art = arTTY.get(name, info).draw
             puts("\n#{art}\n") if (!art.empty?)
         end
-    when "generate"
-        puts(
-            ArTTY::Generator.new.generate(
-                options["generate"],
-                options["conf"].getdiff("art")
-            )
-        )
-    when "list"
-        puts(arTTY.art)
-    when "save"
-        config.save
-    when "update"
-        arTTY.cache(true)
-    else
+    when "draw"
         # Randomize
         if (!config.art? && config.random?)
             config.set_art(arTTY.random)
@@ -429,6 +429,21 @@ begin
         puts("\n#{art}\n") if (!art.empty?)
         puts(devexcuse) if (devexcuse)
         puts(fortune) if (fortune)
+    when "generate"
+        puts(
+            ArTTY::Generator.new.generate(
+                options["generate"],
+                options["conf"].getdiff("art")
+            )
+        )
+    when "list"
+        puts(arTTY.art)
+    when "save"
+        config.save
+    when "show"
+        puts(config)
+    when "update"
+        arTTY.cache(true)
     end
 rescue ArTTY::Error => e
     $stderr.puts(e.message.white.on_red)
