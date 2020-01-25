@@ -1,4 +1,5 @@
 BUILD := build
+FMTDIRS := $(shell find . -name "*.go" -exec dirname {} + | sort -u)
 GOARCH := $(shell go env GOARCH)
 GOOS := $(shell go env GOOS)
 OUT := $(BUILD)/$(GOOS)/$(GOARCH)
@@ -23,7 +24,7 @@ dir:
 	@mkdir -p "$(OUT)"
 
 fmt: check
-	@go fmt . ./cmd/* >/dev/null
+	@go fmt $(FMTDIRS) >/dev/null
 
 gen: check
 	@go generate

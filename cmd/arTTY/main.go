@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"gitlab.com/mjwhitta/artty"
+	"gitlab.com/mjwhitta/artty/art"
 	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/sysinfo"
 	"gitlab.com/mjwhitta/where"
@@ -45,14 +46,14 @@ func main() {
 		os.Exit(Good)
 	}
 
-	var art []string
+	var a *art.Art
+	var arts []string
 	var clear *exec.Cmd
 	var devexcuse string
 	var e error
 	var fortune string
 	var h int
 	var height int
-	var img *artty.Art
 	var info *sysinfo.SysInfo
 	var w int
 	var width int
@@ -119,7 +120,7 @@ func main() {
 		}
 	}
 
-	art, e = artty.Filter(
+	arts, e = artty.Filter(
 		config.GetString("match"),
 		config.GetString("exclude"),
 		width,
@@ -131,16 +132,16 @@ func main() {
 
 	switch action {
 	case "cache":
-		artty.Cache()
+		artty.Cache.Refresh()
 	case "demo":
-		for _, name := range art {
-			img = artty.Get(name)
-			img.SysInfo = info
+		for _, name := range arts {
+			a = artty.Get(name)
+			a.SysInfo = info
 
-			if len(img.String()) > 0 {
+			if len(a.String()) > 0 {
 				hl.PrintlnWhite("### " + name + " ###")
 				hl.Println()
-				hl.Println(img)
+				hl.Println(a)
 				hl.Println()
 			}
 		}
@@ -152,19 +153,19 @@ func main() {
 		}
 
 		if len(config.GetString("art")) == 0 {
-			if config.GetBool("random") && (len(art) > 0) {
+			if config.GetBool("random") && (len(arts) > 0) {
 				rand.Seed(time.Now().UnixNano())
-				config.Set("art", art[rand.Intn(len(art))])
+				config.Set("art", arts[rand.Intn(len(arts))])
 			} else {
 				config.Set("art", "none")
 			}
 		}
 
-		img = artty.Get(config.GetString("art"))
-		img.SysInfo = info
-		if len(img.String()) > 0 {
+		a = artty.Get(config.GetString("art"))
+		a.SysInfo = info
+		if len(a.String()) > 0 {
 			hl.Println()
-			hl.Println(img)
+			hl.Println(a)
 			hl.Println()
 		}
 
@@ -180,13 +181,15 @@ func main() {
 	case "generate":
 		// TODO generate
 	case "list":
-		for _, name := range art {
+		for _, name := range arts {
 			hl.Println(name)
 		}
 	case "save":
 		config.Save()
+	case "show":
+		hl.Println(config)
 	case "update":
-		if e = artty.Update(); e != nil {
+		if e = artty.Cache.Update(); e != nil {
 			panic(e)
 		}
 	}

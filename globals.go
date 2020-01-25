@@ -1,13 +1,11 @@
 package artty
 
-import "gitlab.com/mjwhitta/pathname"
+import (
+	"gitlab.com/mjwhitta/artty/cache"
+)
 
 // Cache related vars
-var cache = newArtCache()
-var cacheDir = pathname.ExpandPath("~/.cache/arTTY")
-var cacheFile = "art.json"
-var customCacheDir = pathname.ExpandPath("~/.config/arTTY")
-var imagesDir = "arTTY_images"
+var Cache = cache.New(Version)
 
 // Version is the package version
 const Version = "0.9.43"

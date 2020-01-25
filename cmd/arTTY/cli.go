@@ -26,6 +26,7 @@ type cliFlags struct {
 	plain     bool
 	random    bool
 	save      bool
+	show      bool
 	sysinfo   bool
 	update    bool
 	verbose   bool
@@ -172,6 +173,12 @@ func init() {
 		"Save specified options as default.",
 	)
 	cli.Flag(
+		&flags.show,
+		"show-config",
+		false,
+		"Show the current config with any other options applied.",
+	)
+	cli.Flag(
 		&flags.sysinfo,
 		"s",
 		"sysinfo",
@@ -232,6 +239,13 @@ func validate() {
 			cli.Usage(InvalidOption)
 		}
 		action = "save"
+	}
+
+	if flags.show {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "show"
 	}
 
 	if flags.update {

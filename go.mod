@@ -5,8 +5,8 @@ go 1.13
 require (
 	gitlab.com/mjwhitta/cli v1.7.9
 	gitlab.com/mjwhitta/hilighter v1.6.0
-	gitlab.com/mjwhitta/jsoncfg v1.2.10
+	gitlab.com/mjwhitta/jsoncfg v1.2.11
 	gitlab.com/mjwhitta/pathname v1.0.6
-	gitlab.com/mjwhitta/sysinfo v1.0.12
+	gitlab.com/mjwhitta/sysinfo v1.0.13
 	gitlab.com/mjwhitta/where v1.0.0
 )

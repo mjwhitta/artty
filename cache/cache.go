@@ -1,4 +1,4 @@
-package artty
+package cache
 
 import (
 	"archive/tar"
@@ -12,29 +12,32 @@ import (
 	"sort"
 	"strings"
 
+	"gitlab.com/mjwhitta/artty/art"
 	"gitlab.com/mjwhitta/jsoncfg"
 	"gitlab.com/mjwhitta/pathname"
 )
 
 type artCache struct {
-	cfg *jsoncfg.JSONCfg
+	cfg     *jsoncfg.JSONCfg
+	version string
 }
 
 // Constructor
-func newArtCache() *artCache {
+func New(version string) *artCache {
 	var c = &artCache{
-		cfg: jsoncfg.New(filepath.Join(cacheDir, cacheFile)),
+		cfg:     jsoncfg.New(filepath.Join(cacheDir, cacheFile)),
+		version: version,
 	}
 
 	// Initialize defaults
 	c.cfg.SetDefault("art", map[string]interface{}{})
-	c.cfg.SetDefault("version", Version)
+	c.cfg.SetDefault("version", c.version)
 	c.cfg.SaveDefault()
 	c.cfg.Reset()
 
 	// Refresh if newer version detected
-	if c.cfg.GetString("version") != Version {
-		c.refresh()
+	if c.cfg.GetString("version") != c.version {
+		c.Refresh()
 	}
 
 	return c
@@ -128,19 +131,22 @@ func (c *artCache) extractFile(filename string, t *tar.Reader) error {
 	return e
 }
 
-func (c *artCache) getFileOf(name string) string {
+// GetFileOf will return the cached filename for the specified art.
+func (c *artCache) GetFileOf(name string) string {
 	return c.cfg.GetString("art", name, "file")
 }
 
-func (c *artCache) getHeightOf(name string) int {
+// GetHeightOf will return the cached height for the specified art.
+func (c *artCache) GetHeightOf(name string) int {
 	return c.cfg.GetInt("art", name, "height")
 }
 
-func (c *artCache) getWidthOf(name string) int {
+// GetWidthOf will return the cached width for the specified art.
+func (c *artCache) GetWidthOf(name string) int {
 	return c.cfg.GetInt("art", name, "width")
 }
 
-func (c *artCache) list() []string {
+func (c *artCache) List() []string {
 	var keys []string
 
 	for key := range c.cfg.GetMap("art") {
@@ -177,22 +183,23 @@ func (c *artCache) organize() error {
 	return os.Rename(newCache, oldCache)
 }
 
-func (c *artCache) refresh() {
-	var art = map[string]interface{}{}
+// Refresh will read any found JSON files and update the art cache.
+func (c *artCache) Refresh() {
+	var arts = map[string]interface{}{}
 
 	var addArt = func(path string, info os.FileInfo, e error) error {
-		var img *Art
+		var a *art.Art
 
 		if e != nil {
 			return e
 		}
 
 		if strings.HasSuffix(path, ".json") {
-			img = NewArt(path)
-			art[img.Name] = map[string]interface{}{
+			a = art.New(path)
+			arts[a.Name] = map[string]interface{}{
 				"file":   path,
-				"height": img.Height,
-				"width":  img.Width,
+				"height": a.Height,
+				"width":  a.Width,
 			}
 		}
 
@@ -203,19 +210,19 @@ func (c *artCache) refresh() {
 	filepath.Walk(filepath.Join(cacheDir, imagesDir), addArt)
 	filepath.Walk(filepath.Join(customCacheDir, imagesDir), addArt)
 
-	c.cfg.Set("art", art)
-	c.cfg.Set("version", Version)
+	c.cfg.Set("art", arts)
+	c.cfg.Set("version", c.version)
 	c.cfg.Save()
 }
 
-func (c *artCache) update() error {
+func (c *artCache) Update() error {
 	var e error
 
 	if e = c.downloadExtract(); e != nil {
 		return e
 	}
 
-	c.refresh()
+	c.Refresh()
 
 	return nil
 }

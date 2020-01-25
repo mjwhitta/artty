@@ -7,13 +7,9 @@ import (
 	"regexp"
 	"strings"
 
+	"gitlab.com/mjwhitta/artty/art"
 	"gitlab.com/mjwhitta/where"
 )
-
-// Cache will re-cache the ArTTY JSON files.
-func Cache() {
-	cache.refresh()
-}
 
 // DevExcuse will parse the HTML response from
 // http://developerexcuses.com and return the provided excuse.
@@ -55,7 +51,7 @@ func Filter(
 	var matched bool
 	var width int
 
-	for _, name := range List() {
+	for _, name := range Cache.List() {
 		matched = true
 		if len(match) > 0 {
 			matched, e = regexp.Match(match, []byte(name))
@@ -76,8 +72,8 @@ func Filter(
 		if (w == 0) && (h == 0) {
 			fits = true
 		} else {
-			height = cache.getHeightOf(name)
-			width = cache.getWidthOf(name)
+			height = Cache.GetHeightOf(name)
+			width = Cache.GetWidthOf(name)
 			if (height <= h) && (width <= w) {
 				fits = true
 			}
@@ -111,21 +107,11 @@ func Fortune() string {
 }
 
 // Get will return the Art matching the provided name.
-func Get(name string) *Art {
+func Get(name string) *art.Art {
 	switch name {
 	case "none":
-		return NewArt()
+		return art.New()
 	default:
-		return NewArt(cache.getFileOf(name))
+		return art.New(Cache.GetFileOf(name))
 	}
-}
-
-// List will return the names of all found ArTTY JSON files.
-func List() []string {
-	return cache.list()
-}
-
-// Update will download and re-cache the ArTTY JSON files.
-func Update() error {
-	return cache.update()
 }

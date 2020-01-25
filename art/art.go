@@ -1,4 +1,4 @@
-package artty
+package art
 
 import (
 	"encoding/json"
@@ -21,8 +21,8 @@ type Art struct {
 	Width   int               `json:"width"`
 }
 
-// NewArt is a constructor for the Art type.
-func NewArt(path ...string) *Art {
+// New is a constructor for the Art type.
+func New(path ...string) *Art {
 	var a Art
 	var b []byte
 	var e error
