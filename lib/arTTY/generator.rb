@@ -1,7 +1,13 @@
+require "scoobydoo"
+
 class ArTTY::Generator
     def generate(image, name = nil)
         file = Pathname.new(image).expand_path
         pixels = nil
+
+        if (!file.exist?)
+            raise ArTTY::Error::ImageNotFound.new(file.to_s)
+        end
 
         file.to_s.match(%r{([^/]+?)(_(\d+)x(\d+))?\.}) do |m|
             name ||= m[1]
@@ -120,6 +126,10 @@ class ArTTY::Generator
     private :get_pixel_info
 
     def initialize
+        if (ScoobyDoo.where_are_you("convert").nil?)
+            raise ArTTY::Error::ImageMagickNotFound.new
+        end
+
         @keys = Array.new
         key = "0"
         loop do

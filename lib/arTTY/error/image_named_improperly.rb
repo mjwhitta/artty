@@ -1,6 +1,6 @@
 class ArTTY::Error::ImageNamedImproperly < ArTTY::Error
-    def initialize(filename = nil)
-        super("Image named wrong: #{filename}") if (filename)
-        super("Image named wrong") if (filename.nil?)
+    def initialize(fn = nil)
+        super("Image named wrong: #{fn}") if (fn && !fn.empty?)
+        super("Image named wrong") if (fn.nil?)
     end
 end
