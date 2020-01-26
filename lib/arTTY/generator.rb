@@ -10,7 +10,7 @@ class ArTTY::Generator
         end
 
         file.to_s.match(%r{([^/]+?)(_(\d+)x(\d+))?\.}) do |m|
-            name ||= m[1]
+            name = m[1] if (name && name.empty?)
             width = m[3].nil? ? nil : m[3].to_i
             height = m[4].nil? ? nil : m[4].to_i
             pixels = get_pixel_info(file, width, height)
