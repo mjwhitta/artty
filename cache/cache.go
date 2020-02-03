@@ -18,25 +18,25 @@ import (
 )
 
 type artCache struct {
-	cfg     *jsoncfg.JSONCfg
+	jsoncfg.JSONCfg
 	version string
 }
 
 // Constructor
 func New(version string) *artCache {
 	var c = &artCache{
-		cfg:     jsoncfg.New(filepath.Join(cacheDir, cacheFile)),
-		version: version,
+		*jsoncfg.New(filepath.Join(cacheDir, cacheFile)),
+		version,
 	}
 
 	// Initialize defaults
-	c.cfg.SetDefault("art", map[string]interface{}{})
-	c.cfg.SetDefault("version", c.version)
-	c.cfg.SaveDefault()
-	c.cfg.Reset()
+	c.SetDefault("art", map[string]interface{}{})
+	c.SetDefault("version", c.version)
+	c.SaveDefault()
+	c.Reset()
 
 	// Refresh if newer version detected
-	if c.cfg.GetString("version") != c.version {
+	if c.GetString("version") != c.version {
 		c.Refresh()
 	}
 
@@ -133,23 +133,23 @@ func (c *artCache) extractFile(filename string, t *tar.Reader) error {
 
 // GetFileOf will return the cached filename for the specified art.
 func (c *artCache) GetFileOf(name string) string {
-	return c.cfg.GetString("art", name, "file")
+	return c.GetString("art", name, "file")
 }
 
 // GetHeightOf will return the cached height for the specified art.
 func (c *artCache) GetHeightOf(name string) int {
-	return c.cfg.GetInt("art", name, "height")
+	return c.GetInt("art", name, "height")
 }
 
 // GetWidthOf will return the cached width for the specified art.
 func (c *artCache) GetWidthOf(name string) int {
-	return c.cfg.GetInt("art", name, "width")
+	return c.GetInt("art", name, "width")
 }
 
 func (c *artCache) List() []string {
 	var keys []string
 
-	for key := range c.cfg.GetMap("art") {
+	for key := range c.GetMap("art") {
 		keys = append(keys, key)
 	}
 
@@ -210,9 +210,9 @@ func (c *artCache) Refresh() {
 	filepath.Walk(filepath.Join(cacheDir, imagesDir), addArt)
 	filepath.Walk(filepath.Join(customCacheDir, imagesDir), addArt)
 
-	c.cfg.Set("art", arts)
-	c.cfg.Set("version", c.version)
-	c.cfg.Save()
+	c.Set("art", arts)
+	c.Set("version", c.version)
+	c.Save()
 }
 
 func (c *artCache) Update() error {
