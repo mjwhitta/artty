@@ -1,13 +1,14 @@
 BUILD := build
 GOARCH := $(shell go env GOARCH)
 GOOS := $(shell go env GOOS)
+LDFLAGS := -s -w
 OUT := $(BUILD)/$(GOOS)/$(GOARCH)
 SRCDIRS := $(shell find . -name "*.go" -exec dirname {} + | sort -u)
 
 all: build
 
 build: dir fmt
-	@go build -ldflags "-s -w" -o "$(OUT)" ./cmd/*
+	@go build -ldflags "$(LDFLAGS)" -o "$(OUT)" ./cmd/*
 
 check:
 	@which go >/dev/null 2>&1
@@ -31,7 +32,7 @@ gen: check
 
 install: fmt
 	@mkdir -p "$(HOME)/.local/bin"
-	@go build -ldflags "-s -w" -o "$(HOME)/.local/bin" ./cmd/*
+	@go build -ldflags "$(LDFLAGS)" -o "$(HOME)/.local/bin" ./cmd/*
 
 lint: check
 	@which golint >/dev/null 2>&1 || \
