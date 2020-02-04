@@ -77,7 +77,7 @@ func main() {
 		width, height = termSize()
 		if (height > 0) && (width > 0) {
 			height -= 4 // Leave some space for prompt
-			width -= 1  // Leave some space for leading space
+			width--     // Leave some space for leading space
 		}
 
 		// Check devexcuse for height and width

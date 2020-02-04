@@ -17,14 +17,17 @@ import (
 	"gitlab.com/mjwhitta/pathname"
 )
 
-type artCache struct {
+// ArtCache is a struct inheriting from jsoncfg.JSONCfg and containing
+// a version string.
+type ArtCache struct {
 	jsoncfg.JSONCfg
 	version string
 }
 
-// Constructor
-func New(version string) *artCache {
-	var c = &artCache{
+// New will return a new ArtCache struct pointer with the specified
+// version.
+func New(version string) *ArtCache {
+	var c = &ArtCache{
 		*jsoncfg.New(filepath.Join(cacheDir, cacheFile)),
 		version,
 	}
@@ -43,7 +46,7 @@ func New(version string) *artCache {
 	return c
 }
 
-func (c *artCache) downloadExtract() error {
+func (c *ArtCache) downloadExtract() error {
 	var e error
 	var g *gzip.Reader
 	var images = "https://gitlab.com/mjwhitta/arTTY_images"
@@ -78,7 +81,7 @@ func (c *artCache) downloadExtract() error {
 	return c.organize()
 }
 
-func (c *artCache) extract(t *tar.Reader) error {
+func (c *ArtCache) extract(t *tar.Reader) error {
 	var e error
 	var h *tar.Header
 	var filename string
@@ -109,7 +112,7 @@ func (c *artCache) extract(t *tar.Reader) error {
 	return nil
 }
 
-func (c *artCache) extractFile(filename string, t *tar.Reader) error {
+func (c *ArtCache) extractFile(filename string, t *tar.Reader) error {
 	var dirname string
 	var e error
 	var f *os.File
@@ -132,21 +135,22 @@ func (c *artCache) extractFile(filename string, t *tar.Reader) error {
 }
 
 // GetFileOf will return the cached filename for the specified art.
-func (c *artCache) GetFileOf(name string) string {
+func (c *ArtCache) GetFileOf(name string) string {
 	return c.GetString("art", name, "file")
 }
 
 // GetHeightOf will return the cached height for the specified art.
-func (c *artCache) GetHeightOf(name string) int {
+func (c *ArtCache) GetHeightOf(name string) int {
 	return c.GetInt("art", name, "height")
 }
 
 // GetWidthOf will return the cached width for the specified art.
-func (c *artCache) GetWidthOf(name string) int {
+func (c *ArtCache) GetWidthOf(name string) int {
 	return c.GetInt("art", name, "width")
 }
 
-func (c *artCache) List() []string {
+// List will return a list of names for any cached art files.
+func (c *ArtCache) List() []string {
 	var keys []string
 
 	for key := range c.GetMap("art") {
@@ -164,7 +168,7 @@ func (c *artCache) List() []string {
 	return keys
 }
 
-func (c *artCache) organize() error {
+func (c *ArtCache) organize() error {
 	var e error
 	var newCache = filepath.Join(cacheDir, imagesDir+".new")
 	var oldCache = filepath.Join(cacheDir, imagesDir)
@@ -184,7 +188,7 @@ func (c *artCache) organize() error {
 }
 
 // Refresh will read any found JSON files and update the art cache.
-func (c *artCache) Refresh() {
+func (c *ArtCache) Refresh() {
 	var arts = map[string]interface{}{}
 
 	var addArt = func(path string, info os.FileInfo, e error) error {
@@ -215,7 +219,9 @@ func (c *artCache) Refresh() {
 	c.Save()
 }
 
-func (c *artCache) Update() error {
+// Update will download the newest art files from gitlab.com and
+// refresh the local cache.
+func (c *ArtCache) Update() error {
 	var e error
 
 	if e = c.downloadExtract(); e != nil {
