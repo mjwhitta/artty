@@ -10,6 +10,7 @@ import (
 
 	"gitlab.com/mjwhitta/artty"
 	"gitlab.com/mjwhitta/artty/art"
+	"gitlab.com/mjwhitta/artty/generator"
 	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/sysinfo"
 	"gitlab.com/mjwhitta/where"
@@ -179,7 +180,10 @@ func main() {
 			hl.Println()
 		}
 	case "generate":
-		// TODO generate
+		generator.GenerateJSON(
+			flags.generate,
+			config.GetString("art"),
+		)
 	case "list":
 		for _, name := range arts {
 			hl.Println(name)
