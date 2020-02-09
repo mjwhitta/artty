@@ -180,10 +180,13 @@ func main() {
 			hl.Println()
 		}
 	case "generate":
-		generator.GenerateJSON(
+		e = generator.GenerateJSON(
 			flags.generate,
 			config.GetString("art"),
 		)
+		if e != nil {
+			panic(e)
+		}
 	case "list":
 		for _, name := range arts {
 			hl.Println(name)
