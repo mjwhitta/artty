@@ -1,8 +1,12 @@
 # arTTY
 
+**DEPRECATED**: Use the [golang] port instead.
+
 Art for your TTY.
 
 ![Screenshot](imgs/screenshot.png)
+
+[golang]: https://gitlab.com/mjwhitta/artty
 
 ## How to install
 
@@ -47,8 +51,8 @@ want to run `arTTY --update` to download any new art.
 
 ### Tab completion
 
-You can add one of the below to your `~/.bashrc` or `~/.zshrc` to get
-tab completion.
+You can add one of the below to your `$HOME/.bashrc` or `$HOME/.zshrc`
+to get tab completion.
 
 #### bash
 
