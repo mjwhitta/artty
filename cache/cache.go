@@ -113,11 +113,9 @@ func (c *ArtCache) extract(t *tar.Reader) error {
 }
 
 func (c *ArtCache) extractFile(filename string, t *tar.Reader) error {
-	var dirname string
+	var dirname string = pathname.Dirname(filename)
 	var e error
 	var f *os.File
-
-	dirname = pathname.Dirname(filename)
 
 	// Ensure directory exists
 	if e = os.MkdirAll(dirname, os.ModePerm); e != nil {
@@ -170,8 +168,8 @@ func (c *ArtCache) List() []string {
 
 func (c *ArtCache) organize() error {
 	var e error
-	var newCache = filepath.Join(cacheDir, imagesDir+".new")
-	var oldCache = filepath.Join(cacheDir, imagesDir)
+	var newCache string = filepath.Join(cacheDir, imagesDir+".new")
+	var oldCache string = filepath.Join(cacheDir, imagesDir)
 
 	// Ensure new tarball was extracted
 	if !pathname.DoesExist(newCache) {
