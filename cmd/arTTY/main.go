@@ -187,6 +187,7 @@ func main() {
 		if e != nil {
 			panic(e)
 		}
+		artty.Cache.Refresh()
 	case "list":
 		for _, name := range arts {
 			hl.Println(name)

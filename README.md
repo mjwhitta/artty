@@ -9,7 +9,7 @@ Art for your TTY.
 Open a terminal and run the following:
 
 ```
-$ go get -u gitlab.com/mjwhitta/artty/cmd/arTTY
+$ go get -ldflags "-s -w" -u gitlab.com/mjwhitta/artty/cmd/arTTY
 ```
 
 Or install from source:
@@ -17,9 +17,10 @@ Or install from source:
 ```
 $ git clone https://gitlab.com/mjwhitta/artty.git
 $ cd artty
-$ make
-$ cp ./build/arTTY ~/.local/bin/
+$ make install
 ```
+
+**Note:** `make install` will install to `$HOME/.local/bin`.
 
 ## How to use
 
@@ -34,12 +35,13 @@ Then I create an arTTY config using something like one of the
 following commands:
 
 ```
-$ arTTY -cf --fit -rs --save
-$ arTTY -cf --fit -m "megaman-battle-network" -rs --save
-$ arTTY -c --fit -m portal -rs --save
-$ arTTY -cfs --save linux-arch
-$ arTTY -c --fit -s --save legend-of-zelda-majoras-mask
-$ arTTY -c --fit -m "street-fighter-3" -rs --save
+$ arTTY -c -f --fit -r -p -s --save
+$ arTTY -c -e "emerald|III|shiny" --fit -m pokemon -p -r -s --save
+$ arTTY -c -f --fit -m "megaman-battle-network" -p -r -s --save
+$ arTTY -c --fit -m portal -p -r -s --save
+$ arTTY -c -f -p -s --save linux-arch
+$ arTTY -c --fit -p -s --save legend-of-zelda-majoras-mask
+$ arTTY -c --fit -m "street-fighter-3" -p -r -s --save
 ```
 
 Use the `--ls` flags to see all included images. Occasionally you may
@@ -51,8 +53,8 @@ Additionally, the system info portion is [configurable][sysinfo].
 
 ### Tab completion
 
-You can add one of the below to your `~/.bashrc` or `~/.zshrc` to get
-tab completion.
+You can add one of the below to your `$HOME/.bashrc` or `$HOME/.zshrc`
+to get tab completion.
 
 #### bash
 
@@ -94,12 +96,9 @@ $ arTTY -g some_image.png my-art-name \
     >"$HOME/.config/arTTY/arTTY_images/my-art-name.json"
 ```
 
-This will use imagemagick to traverse a `WIDTH` by `HEIGHT` grid and
-sample the color inside each cell. It will then generate a json file.
-This works best with sprites, however, it can parse any image this
-way.
-
-**Note:** Make sure to run `arTTY --cache` after generating new art
+This will traverse a `WIDTH` by `HEIGHT` grid and sample the color
+inside each cell. It will then generate a json file. This works best
+with sprites, however, it can parse any image this way.
 
 ## Links
 
