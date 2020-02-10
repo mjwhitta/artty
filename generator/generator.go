@@ -24,13 +24,16 @@ func GenerateJSON(filename string, name string) error {
 	var legend map[string]string
 	var pixels [][]string
 
-	if name, pixels, legend, e = setup(filename, name); e != nil {
+	if name, pixels, legend, e = bootstrap(filename, name); e != nil {
 		return e
 	}
 
 	// TODO generate JSON
 	fmt.Println(name)
-	fmt.Println(pixels)
+	if len(pixels) > 0 {
+		fmt.Println(len(pixels[0]))
+		fmt.Println(len(pixels))
+	}
 	fmt.Println(legend)
 
 	return errors.New("Feature not yet implemented")

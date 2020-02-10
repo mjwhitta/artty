@@ -1,7 +1,6 @@
 package generator
 
 import (
-	"fmt"
 	"image"
 	_ "image/jpeg" // Register jpeg
 	_ "image/png"  // Register png
@@ -9,45 +8,11 @@ import (
 	"regexp"
 	"strconv"
 
+	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/pathname"
 )
 
-func getPixelInfo(img image.Image, width int, height int) [][]string {
-	var hInc float64
-	var hMax int
-	var offset int
-	var pixels [][]string
-	var wInc float64
-	var wMax int
-
-	hInc = 1
-	hMax = img.Bounds().Max.Y
-	offset = 0
-	wInc = 1
-	wMax = img.Bounds().Max.X
-
-	if (height != hMax) && (width != wMax) {
-		hInc = float64(hMax / height)
-		offset = int(hInc / 2)
-		wInc = float64(wMax / width)
-	}
-
-	for y := offset; y < hMax; y = int(float64(y) + hInc) {
-		for x := offset; x < wMax; x = int(float64(x) + wInc) {
-			fmt.Printf("%d, %d - %+v\n", x, y, img.At(x, y))
-			// fmt.Printf(
-			// 	"%02x%02x%02x\n",
-			// 	img.At(x, y).R,
-			// 	img.At(x, y).G,
-			// 	img.At(x, y).B,
-			// )
-		}
-	}
-
-	return pixels
-}
-
-func setup(
+func bootstrap(
 	filename string,
 	name string,
 ) (string, [][]string, map[string]string, error) {
@@ -94,4 +59,58 @@ func setup(
 	legend = map[string]string{}
 
 	return name, pixels, legend, nil
+}
+
+func getPixelInfo(img image.Image, width int, height int) [][]string {
+	var a uint32
+	var b uint32
+	var clr string
+	var g uint32
+	var hInc float64
+	var hMax int
+	var offset int
+	var pixels [][]string
+	var r uint32
+	var row []string
+	var wInc float64
+	var wMax int
+
+	hInc = 1
+	hMax = img.Bounds().Max.Y
+	offset = 0
+	wInc = 1
+	wMax = img.Bounds().Max.X
+
+	if (height != hMax) && (width != wMax) {
+		hInc = float64(hMax / height)
+		offset = int(hInc / 2)
+		wInc = float64(wMax / width)
+	}
+
+	for y := offset; y < hMax; y = int(float64(y) + hInc) {
+		row = []string{}
+
+		for x := offset; x < wMax; x = int(float64(x) + wInc) {
+			r, g, b, a = img.At(x, y).RGBA()
+
+			if a > 0x30 {
+				clr = hl.HexToXterm256(
+					hl.Sprintf(
+						"%02x%02x%02x",
+						uint8(r),
+						uint8(g),
+						uint8(b),
+					),
+				)
+			} else {
+				clr = ""
+			}
+
+			row = append(row, clr)
+		}
+
+		pixels = append(pixels, row)
+	}
+
+	return pixels
 }
