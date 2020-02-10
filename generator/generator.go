@@ -1,6 +1,7 @@
 package generator
 
 import (
+	"errors"
 	"fmt"
 	"image"
 	_ "image/jpeg" // Register jpeg
@@ -11,6 +12,18 @@ import (
 
 	"gitlab.com/mjwhitta/pathname"
 )
+
+// GenerateBash will generate a bash function from an image that can
+// be ran to display in a terminal.
+func GenerateBash(filename string, name string) error {
+	return errors.New("Feature not yet implemented")
+}
+
+// GenerateGo will generate a go function from an image that can be
+// ran to display in a terminal.
+func GenerateGo(filename string, name string) error {
+	return errors.New("Feature not yet implemented")
+}
 
 // GenerateJSON will generate JSON from an image that can be parsed by
 // arTTY to display in a terminal.
@@ -23,7 +36,7 @@ func GenerateJSON(filename string, name string) error {
 	var width int
 
 	if !pathname.DoesExist(filename) {
-		return fmt.Errorf("%s does not exist", filename)
+		return errors.New(filename + " does not exist")
 	}
 
 	filename = pathname.ExpandPath(filename)
@@ -43,17 +56,29 @@ func GenerateJSON(filename string, name string) error {
 			name = match[1]
 		}
 
-		if len(match) == 5 {
-			height, _ = strconv.Atoi(match[4])
-			width, _ = strconv.Atoi(match[3])
-		}
+		height, _ = strconv.Atoi(match[4])
+		width, _ = strconv.Atoi(match[3])
 	}
 
-	// TODO get WxH if currently 0x0
-	fmt.Printf("%s - %dx%d\n", name, width, height)
-	fmt.Println(img.Bounds())
+	if (height == 0) || (width == 0) {
+		height = img.Bounds().Max.Y
+		width = img.Bounds().Max.X
+	}
 
 	// TODO generate JSON
+	fmt.Printf("%s - %dx%d\n", name, width, height)
 
-	return fmt.Errorf("Feature not yet implemented")
+	return errors.New("Feature not yet implemented")
+}
+
+// GeneratePython will generate a python3 function from an image that
+// can be ran to display in a terminal.
+func GeneratePython(filename string, name string) error {
+	return errors.New("Feature not yet implemented")
+}
+
+// GenerateRuby will generate a ruby function from an image that can
+// be ran to display in a terminal.
+func GenerateRuby(filename string, name string) error {
+	return errors.New("Feature not yet implemented")
 }
