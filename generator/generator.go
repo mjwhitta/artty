@@ -3,7 +3,6 @@ package generator
 import (
 	"errors"
 	"fmt"
-	"image"
 )
 
 // GenerateBash will generate a bash function from an image that can
@@ -22,17 +21,17 @@ func GenerateGo(filename string, name string) error {
 // arTTY to display in a terminal.
 func GenerateJSON(filename string, name string) error {
 	var e error
-	var height int
-	var img image.Image
-	var width int
+	var legend map[string]string
+	var pixels [][]string
 
-	if img, name, width, height, e = setup(filename, name); e != nil {
+	if name, pixels, legend, e = setup(filename, name); e != nil {
 		return e
 	}
 
 	// TODO generate JSON
-	fmt.Printf("%s - %dx%d\n", name, width, height)
-	fmt.Println(img.Bounds())
+	fmt.Println(name)
+	fmt.Println(pixels)
+	fmt.Println(legend)
 
 	return errors.New("Feature not yet implemented")
 }
