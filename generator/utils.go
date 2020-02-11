@@ -8,6 +8,7 @@ import (
 	_ "image/png"  // Register png
 	"os"
 	"regexp"
+	"sort"
 	"strconv"
 
 	hl "gitlab.com/mjwhitta/hilighter"
@@ -17,14 +18,16 @@ import (
 func bootstrap(
 	filename string,
 	name string,
-) (string, [][]string, map[string]string, error) {
+) (string, []string, map[string]string, error) {
 	var e error
 	var height int
 	var img image.Image
 	var imgFile *os.File
 	var legend map[string]string
-	var pixels [][]string
+	var pixels []string
+	var pixelClrs [][]string
 	var r = regexp.MustCompile(`([^/]+?)(_(\d+)x(\d+))?\.`)
+	var uniqClrs []string
 	var width int
 
 	if !pathname.DoesExist(filename) {
@@ -55,35 +58,75 @@ func bootstrap(
 		width = img.Bounds().Max.X
 	}
 
-	pixels, legend, e = getPixelInfo(img, width, height)
+	pixelClrs, uniqClrs, e = getPixelInfo(img, width, height)
 	if e != nil {
 		return "", nil, nil, e
 	}
 
-	if (len(pixels) == 0) || (len(pixels[0]) == 0) {
-		return "", nil, nil, errors.New("No pixel data found")
+	pixels, legend, e = generateLegend(pixelClrs, uniqClrs)
+	if e != nil {
+		return "", nil, nil, e
 	}
 
 	return name, pixels, legend, nil
+}
+
+func generateLegend(
+	pixelClrs [][]string,
+	uniqClrs []string,
+) ([]string, map[string]string, error) {
+	var flipLegend = map[string]string{}
+	var idx int = 0
+	var legend = map[string]string{}
+	var pixels []string
+	var row string
+
+	if !sort.StringsAreSorted(uniqClrs) {
+		sort.Strings(uniqClrs)
+	}
+
+	for _, clr := range uniqClrs {
+		if idx == len(keys) {
+			return nil, nil, errors.New("Too many colors")
+		}
+
+		flipLegend[clr] = keys[idx]
+		legend[keys[idx]] = clr
+		idx++
+	}
+
+	for _, rowClrs := range pixelClrs {
+		row = ""
+		for _, pixelClr := range rowClrs {
+			switch pixelClr {
+			case "transparent":
+				row += " "
+			default:
+				row += flipLegend[pixelClr]
+			}
+		}
+		pixels = append(pixels, row)
+	}
+
+	return pixels, legend, nil
 }
 
 func getPixelInfo(
 	img image.Image,
 	width int,
 	height int,
-) ([][]string, map[string]string, error) {
+) ([][]string, []string, error) {
 	var clr string
 	var hasKey bool
 	var hInc float64 = 1
 	var hMax int = img.Bounds().Max.Y
-	var idx int = 0
-	var legend = map[string]string{}
 	var offset int = 0
-	var pixels [][]string
+	var pixelClrs [][]string
 	var row []string
+	var uniqClrs []string
+	var uniqClrKeys = map[string]struct{}{}
 	var wInc float64 = 1
 	var wMax int = img.Bounds().Max.X
-	var uniqClrs = map[string]struct{}{}
 
 	if (height != hMax) && (width != wMax) {
 		hInc = float64(hMax / height)
@@ -96,27 +139,32 @@ func getPixelInfo(
 
 		for x := offset; x < wMax; x = int(float64(x) + wInc) {
 			clr = hexString(img.At(x, y))
-			row = append(row, clr)
 
-			if len(clr) == 0 {
+			switch clr {
+			case "transparent":
+				row = append(row, clr)
 				continue
 			}
 
-			if _, hasKey = uniqClrs[clr]; !hasKey {
-				uniqClrs[clr] = struct{}{}
-				legend[keys[idx]] = clr
-				idx++
-
-				if idx == len(keys) {
-					return nil, nil, errors.New("Too many colors")
-				}
+			if _, hasKey = uniqClrKeys[clr]; !hasKey {
+				uniqClrKeys[clr] = struct{}{}
 			}
+
+			row = append(row, clr)
 		}
 
-		pixels = append(pixels, row)
+		pixelClrs = append(pixelClrs, row)
 	}
 
-	return pixels, legend, nil
+	for key := range uniqClrKeys {
+		uniqClrs = append(uniqClrs, key)
+	}
+
+	if len(uniqClrs) == 0 {
+		return nil, nil, errors.New("No pixel data found")
+	}
+
+	return pixelClrs, uniqClrs, nil
 }
 
 func hexString(c color.Color) string {
@@ -133,5 +181,5 @@ func hexString(c color.Color) string {
 		)
 	}
 
-	return ""
+	return "transparent"
 }

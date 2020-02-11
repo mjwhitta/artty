@@ -100,6 +100,8 @@ This will traverse a `WIDTH` by `HEIGHT` grid and sample the color
 inside each cell. It will then generate a json file. This works best
 with sprites, however, it can parse any image this way.
 
+**Note:** Make sure to run `arTTY --cache` after generating new art.
+
 ## Links
 
 - [Source](https://gitlab.com/mjwhitta/arTTY)
