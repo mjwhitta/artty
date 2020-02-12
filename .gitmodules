@@ -1,0 +1,4 @@
+[submodule "arTTY_images"]
+	path = arTTY_images
+	url = https://gitlab.com/mjwhitta/arTTY_images.git
+	branch = master
