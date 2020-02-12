@@ -99,7 +99,7 @@ func generateLegend(
 		row = ""
 		for _, pixelClr := range rowClrs {
 			switch pixelClr {
-			case "transparent":
+			case "":
 				row += " "
 			default:
 				row += flipLegend[pixelClr]
@@ -117,14 +117,14 @@ func getPixelInfo(
 	height int,
 ) ([][]string, []string, error) {
 	var clr string
-	var hasKey bool
+	var colorSet = map[string]struct{}{}
 	var hInc float64 = 1
 	var hMax int = img.Bounds().Max.Y
+	var includes bool
 	var offset int = 0
 	var pixelClrs [][]string
 	var row []string
 	var uniqClrs []string
-	var uniqClrKeys = map[string]struct{}{}
 	var wInc float64 = 1
 	var wMax int = img.Bounds().Max.X
 
@@ -138,16 +138,17 @@ func getPixelInfo(
 		row = []string{}
 
 		for x := offset; x < wMax; x = int(float64(x) + wInc) {
-			clr = hexString(img.At(x, y))
+			// hl.Printf("%d,%d: ", x, y)
+			clr = ColorToXterm256(img.At(x, y))
 
 			switch clr {
-			case "transparent":
+			case "":
 				row = append(row, clr)
 				continue
 			}
 
-			if _, hasKey = uniqClrKeys[clr]; !hasKey {
-				uniqClrKeys[clr] = struct{}{}
+			if _, includes = colorSet[clr]; !includes {
+				colorSet[clr] = struct{}{}
 			}
 
 			row = append(row, clr)
@@ -156,7 +157,7 @@ func getPixelInfo(
 		pixelClrs = append(pixelClrs, row)
 	}
 
-	for key := range uniqClrKeys {
+	for key := range colorSet {
 		uniqClrs = append(uniqClrs, key)
 	}
 
@@ -167,19 +168,42 @@ func getPixelInfo(
 	return pixelClrs, uniqClrs, nil
 }
 
-func hexString(c color.Color) string {
+func ColorToXterm256(c color.Color) string {
 	var a uint32
 	var b uint32
 	var g uint32
 	var r uint32
 
-	r, g, b, a = c.RGBA()
+	r, g, b, a = color.NRGBAModel.Convert(c).RGBA()
+
+	// hl.Printf("(%d,%d,%d,%d)  ", r, g, b, a)
+
+	r >>= 8
+	g >>= 8
+	b >>= 8
+	a >>= 8
+
+	return RGBAToXterm256(uint8(r), uint8(g), uint8(b), uint8(a))
+}
+
+func RGBAToXterm256(r uint8, g uint8, b uint8, a uint8) string {
+
+	// hex := hl.Sprintf("#%02X%02X%02X%02X", r, g, b, a)
+	// srgba := hl.Sprintf(
+	// 	"srgba(%d,%d,%d,%.5f)",
+	// 	r, g, b, float64(a)/255.0,
+	// )
+	// if a == 255 {
+	// 	srgba = hl.Sprintf("srgba(%d,%d,%d,1)", r, g, b)
+	// }
+	// if hex == "#00000000" {
+	// 	srgba = "none"
+	// }
+	// hl.Printf("%s  %s\n", hex, srgba)
 
 	if a > 0x30 {
-		return hl.HexToXterm256(
-			hl.Sprintf("%02x%02x%02x", uint8(r), uint8(g), uint8(b)),
-		)
+		return hl.HexToXterm256(hl.Sprintf("%02x%02x%02x", r, g, b))
 	}
 
-	return "transparent"
+	return ""
 }
