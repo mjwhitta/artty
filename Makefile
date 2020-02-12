@@ -39,6 +39,9 @@ lint: check
 	    go get -u golang.org/x/lint/golint
 	@golint $(SRCDIRS)
 
+refresh: build
+	@tools/refresh_art $(FORCE) "$(PATTERN)"
+
 shrink: build
 	@which upx >/dev/null 2>&1
 	@find build -type f -exec upx {} +
