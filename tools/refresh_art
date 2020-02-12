@@ -4,9 +4,17 @@
 set -o noglob
 trap "clean 128" SIGINT # Ensure cleanup on ^C
 check_deps() {
+    local missing
     for d in "${deps[@]}"; do
-        [[ -n $(command -v "$d") ]] || errx 127 "$d is not installed"
+        if [[ -z $(command -v "$d") ]]; then
+            # Force absolute path
+            if [[ ! -f "/$d" ]]; then
+                err "$d was not found"
+                missing="true"
+            fi
+        fi
     done; unset d
+    [[ -z $missing ]] || exit 127
 }
 check_lock() {
     [[ -n $cache ]] || errx 126 "Cache is not defined"
@@ -89,7 +97,7 @@ selected categories.
 Options:
     -f, --force          Generate images even if they already exist
     -h, --help           Display this help message
-    --no color           Disable colorized output
+    --no-color           Disable colorized output
     -r, --resume         Resume from a previous run
     -t, --threads=NUM    Use specified number of threads (default: 32)
     -v, --verbose        Do not hide parallel errors
@@ -161,8 +169,8 @@ fi
 # Save command line args
 pattern="$1"
 
-# Ensure script is called from the proper directory or with rake
-[[ -f "./tools/${0##*/}" ]] || errx 2 "Use rake to call this script"
+# Ensure script is called from the proper directory or with make
+[[ -f "./tools/${0##*/}" ]] || errx 2 "Use make to call this script"
 
 # Ensure directory exists and the submodule is updated
 [[ -d "arTTY_images" ]] || mkdir -p arTTY_images
@@ -173,7 +181,7 @@ empty="$(find arTTY_images -maxdepth 1 -empty -print)"
 empty="$(find arTTY_images -maxdepth 1 -empty -print)"
 [[ -z $empty ]] || errx 3 "Submodule is missing"
 
-# Move to submodule
+# Work from submodule
 cd ./arTTY_images
 
 # Cache variables
@@ -264,7 +272,8 @@ good "\$img => \$dir/\$filename"
 if [[ ! -f "\$output/\$dir/\$filename" ]] || [[ "x$force" != "x" ]]
 then
     mkdir -p "\$output/\$dir"
-    arTTY -g "\$img" "\$name" >"\$output/\$dir/\$filename"
+    ../build/linux/amd64/arTTY -g "\$img" "\$name" \
+        >"\$output/\$dir/\$filename"
     failed="\$(find "\$output/\$dir/\$filename" -empty)"
     [[ -z \$failed ]] || err "Failed: \$dir/\$filename"
 fi
