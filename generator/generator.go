@@ -35,7 +35,7 @@ func GenerateJSON(filename string, name string) (string, error) {
 	jsonOut, _ = jq.New("{}")
 
 	if len(pixels) > 0 {
-		jsonOut.Set("height", len(pixels))
+		jsonOut.Set("height", (len(pixels)+1)/2)
 		jsonOut.Set("legend", legend)
 		jsonOut.Set("name", name)
 		jsonOut.Set("pixels", pixels)
