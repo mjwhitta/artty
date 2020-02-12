@@ -139,7 +139,9 @@ func getPixelInfo(
 
 		for x := offset; x < wMax; x = int(float64(x) + wInc) {
 			// hl.Printf("%d,%d: ", x, y)
-			clr = ColorToXterm256(img.At(x, y))
+			clr = ColorToXterm256(
+				color.NRGBAModel.Convert(img.At(x, y)),
+			)
 
 			switch clr {
 			case "":
@@ -174,7 +176,7 @@ func ColorToXterm256(c color.Color) string {
 	var g uint32
 	var r uint32
 
-	r, g, b, a = color.NRGBAModel.Convert(c).RGBA()
+	r, g, b, a = c.RGBA()
 
 	// hl.Printf("(%d,%d,%d,%d)  ", r, g, b, a)
 
