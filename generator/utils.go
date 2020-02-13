@@ -3,7 +3,6 @@ package generator
 import (
 	"errors"
 	"image"
-	"image/color"
 	_ "image/jpeg" // Register jpeg
 	_ "image/png"  // Register png
 	"os"
@@ -39,6 +38,7 @@ func bootstrap(
 	if imgFile, e = os.Open(filename); e != nil {
 		return "", nil, nil, e
 	}
+	defer imgFile.Close()
 
 	if img, _, e = image.Decode(imgFile); e != nil {
 		return "", nil, nil, e
@@ -116,6 +116,7 @@ func getPixelInfo(
 	width int,
 	height int,
 ) ([][]string, []string, error) {
+	var a uint32
 	var clr string
 	var colorSet = map[string]struct{}{}
 	var hInc float64 = 1
@@ -138,15 +139,15 @@ func getPixelInfo(
 		row = []string{}
 
 		for x := offset; x < wMax; x = int(float64(x) + wInc) {
-			clr = hl.ColorToXterm256(
-				color.NRGBAModel.Convert(img.At(x, y)),
-			)
+			_, _, _, a = img.At(x, y).RGBA()
+			a >>= 8
 
-			switch clr {
-			case "":
-				row = append(row, clr)
+			if a <= 0x30 {
+				row = append(row, "")
 				continue
 			}
+
+			clr = hl.ColorToXterm256(img.At(x, y))
 
 			if _, includes = colorSet[clr]; !includes {
 				colorSet[clr] = struct{}{}

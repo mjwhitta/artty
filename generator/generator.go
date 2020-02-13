@@ -34,6 +34,7 @@ func Convert(filename string) error {
 	if imgFile, e = os.Open(filename); e != nil {
 		return e
 	}
+	defer imgFile.Close()
 
 	if img, _, e = image.Decode(imgFile); e != nil {
 		return e
@@ -49,6 +50,12 @@ func Convert(filename string) error {
 		for x := img.Bounds().Min.X; x < img.Bounds().Max.X; x++ {
 			c = img.At(x, y)
 			r, g, b, a = c.RGBA()
+
+			if (a != 0) && (a != 0xffff) {
+				r = uint32(float64(r*0xffff) / float64(a))
+				g = uint32(float64(g*0xffff) / float64(a))
+				b = uint32(float64(b*0xffff) / float64(a))
+			}
 
 			hl.Printf("%d,%d: (%d,%d,%d,%d)  ", x, y, r, g, b, a)
 
@@ -67,7 +74,7 @@ func Convert(filename string) error {
 			)
 			if a == 255 {
 				srgba = hl.Sprintf("srgba(%d,%d,%d,1)", r, g, b)
-			} else if (a + b + g + r) == 0 {
+			} else if a == 0 {
 				srgba = "none"
 			}
 

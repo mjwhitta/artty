@@ -126,6 +126,7 @@ func (c *ArtCache) extractFile(filename string, t *tar.Reader) error {
 	if f, e = os.Create(filename); e != nil {
 		return e
 	}
+	defer f.Close()
 
 	// Extract file from tarball
 	_, e = io.Copy(f, t)
