@@ -138,8 +138,7 @@ func getPixelInfo(
 		row = []string{}
 
 		for x := offset; x < wMax; x = int(float64(x) + wInc) {
-			// hl.Printf("%d,%d: ", x, y)
-			clr = ColorToXterm256(
+			clr = hl.ColorToXterm256(
 				color.NRGBAModel.Convert(img.At(x, y)),
 			)
 
@@ -168,44 +167,4 @@ func getPixelInfo(
 	}
 
 	return pixelClrs, uniqClrs, nil
-}
-
-func ColorToXterm256(c color.Color) string {
-	var a uint32
-	var b uint32
-	var g uint32
-	var r uint32
-
-	r, g, b, a = c.RGBA()
-
-	// hl.Printf("(%d,%d,%d,%d)  ", r, g, b, a)
-
-	r >>= 8
-	g >>= 8
-	b >>= 8
-	a >>= 8
-
-	return RGBAToXterm256(uint8(r), uint8(g), uint8(b), uint8(a))
-}
-
-func RGBAToXterm256(r uint8, g uint8, b uint8, a uint8) string {
-
-	// hex := hl.Sprintf("#%02X%02X%02X%02X", r, g, b, a)
-	// srgba := hl.Sprintf(
-	// 	"srgba(%d,%d,%d,%.5f)",
-	// 	r, g, b, float64(a)/255.0,
-	// )
-	// if a == 255 {
-	// 	srgba = hl.Sprintf("srgba(%d,%d,%d,1)", r, g, b)
-	// }
-	// if hex == "#00000000" {
-	// 	srgba = "none"
-	// }
-	// hl.Printf("%s  %s\n", hex, srgba)
-
-	if a > 0x30 {
-		return hl.HexToXterm256(hl.Sprintf("%02x%02x%02x", r, g, b))
-	}
-
-	return ""
 }
