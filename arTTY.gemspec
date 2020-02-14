@@ -21,5 +21,5 @@ Gem::Specification.new do |s|
     s.metadata = {"source_code_uri" => s.homepage}
     s.name = "arTTY"
     s.summary = "Art for your TTY."
-    s.version = "0.9.47"
+    s.version = "0.9.48"
 end

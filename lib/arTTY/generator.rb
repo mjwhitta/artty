@@ -131,31 +131,26 @@ class ArTTY::Generator
         end
 
         @keys = Array.new
-        key = "0"
-        loop do
+        key = "!"
+        while key != "~" do
             @keys.push(key.clone)
             case key
-            when "9"
-                key = "a"
-            when "z"
-                key = "A"
-            when "Z"
-                key = "!"
             when "!"
-                key = "$"
-            when "&"
-                key = "("
-            when "/"
+                key = "#"
+            when "9"
                 key = ":"
-            when "@"
+            when "Z"
                 key = "["
             when "["
                 key = "]"
-            when "`"
-                break
+            when "_"
+                key = "a"
+            when "z"
+                key = "{"
             else
                 key.next!
             end
         end
+        @keys.push("~")
     end
 end
