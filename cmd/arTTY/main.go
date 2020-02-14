@@ -134,6 +134,10 @@ func main() {
 	switch action {
 	case "cache":
 		artty.Cache.Refresh()
+	case "convert":
+		if e = generator.Convert(flags.convert); e != nil {
+			panic(e)
+		}
 	case "demo":
 		for _, name := range arts {
 			a = artty.Get(name)

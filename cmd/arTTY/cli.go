@@ -13,6 +13,7 @@ type cliFlags struct {
 	all       bool
 	cache     bool
 	clear     bool
+	convert   string
 	demo      bool
 	exclude   string
 	devexcuse bool
@@ -86,6 +87,12 @@ func init() {
 	)
 	cli.Flag(&flags.cache, "cache", false, "Refresh the cache.")
 	cli.Flag(&flags.clear, "c", "clear", false, "Clear screen first.")
+	cli.Flag(
+		&flags.convert,
+		"convert",
+		"",
+		"Display output similar to ImageMagick's convert utility.",
+	)
 	cli.Flag(
 		&flags.demo,
 		"demo",
@@ -211,6 +218,13 @@ func validate() {
 			cli.Usage(InvalidOption)
 		}
 		action = "cache"
+	}
+
+	if len(flags.convert) > 0 {
+		if action != "draw" {
+			cli.Usage(InvalidOption)
+		}
+		action = "convert"
 	}
 
 	if flags.demo {
