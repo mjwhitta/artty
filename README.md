@@ -85,22 +85,26 @@ determine the size, but you can specify a size manually by appending
 unless you manually specify one. It will then cache any json files in
 the `$HOME/.config/arTTY/arTTY_images` directory.
 
+By default this will generate a JSON file and refresh the cache. If
+you want to just see the JSON file, or generate source code for
+another language, you can use the `--format` flag.
+
 ### Examples
 
 ```
-$ arTTY -g my-art-name.png \
-    >"$HOME/.config/arTTY/arTTY_images/my-art-name.json"
-$ arTTY -g my-art-name_WIDTHxHEIGHT.png \
-    >"$HOME/.config/arTTY/arTTY_images/my-art-name.json"
-$ arTTY -g some_image.png my-art-name \
-    >"$HOME/.config/arTTY/arTTY_images/my-art-name.json"
+$ arTTY -g my-art-name.png
+$ arTTY -g my-art-name_WIDTHxHEIGHT.png
+$ arTTY -g some_image.png my-art-name
+$ arTTY --format bash -g my-art-name.png
+$ arTTY --format go -g my-art-name.png
+$ arTTY --format json -g my-art-name.png
+$ arTTY --format python -g my-art-name.png
+$ arTTY --format ruby -g my-art-name.png
 ```
 
 This will traverse a `WIDTH` by `HEIGHT` grid and sample the color
 inside each cell. It will then generate a json file. This works best
 with sprites, however, it can parse any image this way.
-
-**Note:** Make sure to run `arTTY --cache` after generating new art.
 
 ## Links
 

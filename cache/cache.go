@@ -211,7 +211,7 @@ func (c *ArtCache) Refresh() {
 
 	// Get all JSON files
 	filepath.Walk(filepath.Join(cacheDir, imagesDir), addArt)
-	filepath.Walk(filepath.Join(customCacheDir, imagesDir), addArt)
+	filepath.Walk(CustomImagesDir, addArt)
 
 	c.Set("art", arts)
 	c.Set("version", c.version)

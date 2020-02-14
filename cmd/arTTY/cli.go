@@ -19,6 +19,7 @@ type cliFlags struct {
 	devexcuse bool
 	fields    string
 	fit       bool
+	format    string
 	fortune   bool
 	generate  string
 	list      bool
@@ -72,7 +73,21 @@ func init() {
 				"TTY: Show TTY info\n",
 				"Uptime: Show uptime",
 			},
-			" ",
+			"",
+		),
+	)
+	cli.Section(
+		"FORMATS",
+		strings.Join(
+			[]string{
+				"bash: Output bash code\n",
+				"go: Output go code\n",
+				"json: Output JSON blob\n",
+				"none: Store JSON blob and refresh cache (default)\n",
+				"python: Output python code\n",
+				"ruby: Output ruby code",
+			},
+			"",
 		),
 	)
 	cli.Title = "ArTTY"
@@ -124,6 +139,12 @@ func init() {
 		"fit",
 		false,
 		"Only use art that fits in the current window.",
+	)
+	cli.Flag(
+		&flags.format,
+		"format",
+		"none",
+		"Specify the output format for the --generate flag.",
 	)
 	cli.Flag(
 		&flags.fortune,
@@ -304,6 +325,16 @@ func validate() {
 
 	if flags.fit {
 		config.Set("fit", true)
+	}
+
+	switch flags.format {
+	case "bash", "go", "json", "python", "ruby":
+		if len(flags.generate) == 0 {
+			cli.Usage(InvalidArgument)
+		}
+	case "none":
+	default:
+		cli.Usage(InvalidArgument)
 	}
 
 	if flags.fortune {

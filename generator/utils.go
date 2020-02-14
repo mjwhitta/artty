@@ -30,7 +30,7 @@ func bootstrap(
 	var width int
 
 	if !pathname.DoesExist(filename) {
-		return "", nil, nil, e
+		return "", nil, nil, errors.New(filename + " does not exist")
 	}
 
 	filename = pathname.ExpandPath(filename)

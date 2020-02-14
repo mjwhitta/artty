@@ -4,12 +4,14 @@ import (
 	"math/rand"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
 
 	"gitlab.com/mjwhitta/artty"
 	"gitlab.com/mjwhitta/artty/art"
+	"gitlab.com/mjwhitta/artty/cache"
 	"gitlab.com/mjwhitta/artty/generator"
 	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/sysinfo"
@@ -48,14 +50,17 @@ func main() {
 	}
 
 	var a *art.Art
+	var artName string
 	var arts []string
 	var clear *exec.Cmd
 	var devexcuse string
 	var e error
+	var f *os.File
 	var fortune string
 	var h int
 	var height int
 	var info *sysinfo.SysInfo
+	var output string
 	var w int
 	var width int
 
@@ -184,14 +189,54 @@ func main() {
 			hl.Println()
 		}
 	case "generate":
-		flags.generate, e = generator.GenerateJSON(
-			flags.generate,
-			config.GetString("art"),
-		)
+		switch flags.format {
+		case "bash":
+			artName, output, e = generator.GenerateBash(
+				flags.generate,
+				config.GetString("art"),
+			)
+		case "go":
+			artName, output, e = generator.GenerateGo(
+				flags.generate,
+				config.GetString("art"),
+			)
+		case "json", "none":
+			artName, output, e = generator.GenerateJSON(
+				flags.generate,
+				config.GetString("art"),
+			)
+		case "python":
+			artName, output, e = generator.GeneratePython(
+				flags.generate,
+				config.GetString("art"),
+			)
+		case "ruby":
+			artName, output, e = generator.GenerateRuby(
+				flags.generate,
+				config.GetString("art"),
+			)
+		}
+
 		if e != nil {
 			panic(e)
 		}
-		hl.Println(flags.generate)
+
+		switch flags.format {
+		case "none":
+			f, e = os.Create(
+				filepath.Join(
+					cache.CustomImagesDir,
+					artName,
+				) + ".json",
+			)
+
+			f.WriteString(output + "\n")
+			f.Close()
+
+			artty.Cache.Refresh()
+		default:
+			hl.Println(output)
+		}
 	case "list":
 		for _, name := range arts {
 			hl.Println(name)

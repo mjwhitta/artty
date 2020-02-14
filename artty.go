@@ -1,10 +1,12 @@
 package artty
 
 import (
+	"errors"
 	"io/ioutil"
 	"net/http"
 	"os/exec"
 	"regexp"
+	"runtime"
 	"strings"
 
 	"gitlab.com/mjwhitta/artty/art"
@@ -113,5 +115,11 @@ func Get(name string) *art.Art {
 		return art.New()
 	default:
 		return art.New(Cache.GetFileOf(name))
+	}
+}
+
+func init() {
+	if runtime.GOOS == "windows" {
+		panic(errors.New("Windows is unsupported"))
 	}
 }
