@@ -327,10 +327,11 @@ func validate() {
 	}
 
 	switch flags.format {
-	case "bash", "go", "python", "ruby", "stdout":
+	case "bash", "go", "python", "ruby":
 		if action != "draw" {
 			cli.Usage(InvalidArgument)
 		}
+	case "stdout":
 	default:
 		cli.Usage(InvalidArgument)
 	}

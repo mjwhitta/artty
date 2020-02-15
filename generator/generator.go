@@ -5,6 +5,8 @@ import (
 	"image"
 	"image/color"
 	"os"
+	"regexp"
+	"strings"
 
 	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/jq"
@@ -88,8 +90,26 @@ func Convert(filename string) error {
 // GenerateBash will generate a bash function from an image that can
 // be ran to display in a terminal.
 func GenerateBash(str string) (string, error) {
-	// TODO Generate bash
-	return "", errors.New("Feature not yet implemented")
+	var bash = []string{
+		"function logo() {",
+		"    echo",
+	}
+	var esc = regexp.MustCompile(string(0x1b))
+	var r = regexp.MustCompile(`(.{1,54})[^\\]`)
+
+	for _, l := range strings.Split(str, "\n") {
+		l = esc.ReplaceAllString(l, "\\e")
+
+		for _, m := range r.FindAllStringSubmatch(l, -1) {
+			bash = append(bash, "    echo -en \""+m[0]+"\"")
+		}
+
+		bash = append(bash, "    echo")
+	}
+
+	bash = append(bash, "    echo", "}")
+
+	return strings.Join(bash, "\n"), nil
 }
 
 // GenerateGo will generate a go function from an image that can be
