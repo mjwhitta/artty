@@ -80,12 +80,11 @@ func init() {
 		"FORMATS",
 		strings.Join(
 			[]string{
-				"bash: Output bash code\n",
-				"go: Output go code\n",
-				"json: Output JSON blob\n",
-				"none: Store JSON blob and refresh cache (default)\n",
-				"python: Output python code\n",
-				"ruby: Output ruby code",
+				"bash: Generate bash code\n",
+				"go: Generate go code\n",
+				"stdout: Display art (default)\n",
+				"python: Generate python code\n",
+				"ruby: Generate ruby code",
 			},
 			"",
 		),
@@ -143,8 +142,8 @@ func init() {
 	cli.Flag(
 		&flags.format,
 		"format",
-		"none",
-		"Specify the output format for the --generate flag.",
+		"stdout",
+		"Specify the output format.",
 	)
 	cli.Flag(
 		&flags.fortune,
@@ -328,11 +327,10 @@ func validate() {
 	}
 
 	switch flags.format {
-	case "bash", "go", "json", "python", "ruby":
-		if len(flags.generate) == 0 {
+	case "bash", "go", "python", "ruby", "stdout":
+		if action != "draw" {
 			cli.Usage(InvalidArgument)
 		}
-	case "none":
 	default:
 		cli.Usage(InvalidArgument)
 	}

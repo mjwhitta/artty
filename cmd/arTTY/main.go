@@ -156,12 +156,6 @@ func main() {
 			}
 		}
 	case "draw":
-		if config.GetBool("clear_screen") {
-			clear = exec.Command("clear")
-			clear.Stdout = os.Stdout
-			clear.Run()
-		}
-
 		if len(config.GetString("art")) == 0 {
 			if config.GetBool("random") && (len(arts) > 0) {
 				rand.Seed(time.Now().UnixNano())
@@ -172,71 +166,77 @@ func main() {
 		}
 
 		a = artty.Get(config.GetString("art"))
-		a.SysInfo = info
-		if len(a.String()) > 0 {
-			hl.Println()
-			hl.Println(a)
-			hl.Println()
-		}
 
-		if len(devexcuse) > 0 {
-			hl.Println(devexcuse)
-			hl.Println()
-		}
-
-		if len(fortune) > 0 {
-			hl.Println(fortune)
-			hl.Println()
-		}
-	case "generate":
 		switch flags.format {
 		case "bash":
-			artName, output, e = generator.GenerateBash(
-				flags.generate,
-				config.GetString("art"),
-			)
+			output, e = generator.GenerateBash(a.String())
+			if e != nil {
+				panic(e)
+			}
+			hl.Println(output)
 		case "go":
-			artName, output, e = generator.GenerateGo(
-				flags.generate,
-				config.GetString("art"),
-			)
-		case "json", "none":
-			artName, output, e = generator.GenerateJSON(
-				flags.generate,
-				config.GetString("art"),
-			)
+			output, e = generator.GenerateGo(a.String())
+			if e != nil {
+				panic(e)
+			}
+			hl.Println(output)
 		case "python":
-			artName, output, e = generator.GeneratePython(
-				flags.generate,
-				config.GetString("art"),
-			)
+			output, e = generator.GeneratePython(a.String())
+			if e != nil {
+				panic(e)
+			}
+			hl.Println(output)
 		case "ruby":
-			artName, output, e = generator.GenerateRuby(
-				flags.generate,
-				config.GetString("art"),
-			)
-		}
+			output, e = generator.GenerateRuby(a.String())
+			if e != nil {
+				panic(e)
+			}
+			hl.Println(output)
+		case "stdout":
+			if config.GetBool("clear_screen") {
+				clear = exec.Command("clear")
+				clear.Stdout = os.Stdout
+				clear.Run()
+			}
 
+			a.SysInfo = info
+
+			if len(a.String()) > 0 {
+				hl.Println()
+				hl.Println(a)
+				hl.Println()
+			}
+
+			if len(devexcuse) > 0 {
+				hl.Println(devexcuse)
+				hl.Println()
+			}
+
+			if len(fortune) > 0 {
+				hl.Println(fortune)
+				hl.Println()
+			}
+		}
+	case "generate":
+		artName, output, e = generator.GenerateJSON(
+			flags.generate,
+			config.GetString("art"),
+		)
 		if e != nil {
 			panic(e)
 		}
 
-		switch flags.format {
-		case "none":
-			f, e = os.Create(
-				filepath.Join(
-					cache.CustomImagesDir,
-					artName,
-				) + ".json",
-			)
-
-			f.WriteString(output + "\n")
-			f.Close()
-
-			artty.Cache.Refresh()
-		default:
-			hl.Println(output)
+		f, e = os.Create(
+			filepath.Join(cache.CustomImagesDir, artName) + ".json",
+		)
+		if e != nil {
+			panic(e)
 		}
+
+		f.WriteString(output + "\n")
+		f.Close()
+
+		artty.Cache.Refresh()
 	case "list":
 		for _, name := range arts {
 			hl.Println(name)

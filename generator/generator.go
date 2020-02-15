@@ -87,16 +87,16 @@ func Convert(filename string) error {
 
 // GenerateBash will generate a bash function from an image that can
 // be ran to display in a terminal.
-func GenerateBash(filename, name string) (string, string, error) {
+func GenerateBash(str string) (string, error) {
 	// TODO Generate bash
-	return "", "", errors.New("Feature not yet implemented")
+	return "", errors.New("Feature not yet implemented")
 }
 
 // GenerateGo will generate a go function from an image that can be
 // ran to display in a terminal.
-func GenerateGo(filename, name string) (string, string, error) {
+func GenerateGo(str string) (string, error) {
 	// TODO Generate go
-	return "", "", errors.New("Feature not yet implemented")
+	return "", errors.New("Feature not yet implemented")
 }
 
 // GenerateJSON will generate JSON from an image that can be parsed by
@@ -131,14 +131,14 @@ func GenerateJSON(filename, name string) (string, string, error) {
 
 // GeneratePython will generate a python3 function from an image that
 // can be ran to display in a terminal.
-func GeneratePython(filename, name string) (string, string, error) {
+func GeneratePython(str string) (string, error) {
 	// TODO Generate python3
-	return "", "", errors.New("Feature not yet implemented")
+	return "", errors.New("Feature not yet implemented")
 }
 
 // GenerateRuby will generate a ruby function from an image that can
 // be ran to display in a terminal.
-func GenerateRuby(filename, name string) (string, string, error) {
+func GenerateRuby(str string) (string, error) {
 	// TODO Generate ruby
-	return "", "", errors.New("Feature not yet implemented")
+	return "", errors.New("Feature not yet implemented")
 }
