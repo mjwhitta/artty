@@ -100,8 +100,8 @@ func GenerateBash(str string) (string, error) {
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\e")
 
-		for _, m := range r.FindAllStringSubmatch(l, -1) {
-			bash = append(bash, "    echo -en \""+m[0]+"\"")
+		for _, m := range r.FindAllString(l, -1) {
+			bash = append(bash, "    echo -en \""+m+"\"")
 		}
 
 		bash = append(bash, "    echo")
@@ -152,8 +152,39 @@ func GenerateJSON(filename, name string) (string, string, error) {
 // GeneratePython will generate a python3 function from an image that
 // can be ran to display in a terminal.
 func GeneratePython(str string) (string, error) {
-	// TODO Generate python3
-	return "", errors.New("Feature not yet implemented")
+	var esc = regexp.MustCompile(string(0x1b))
+	var matches []string
+	var py = []string{
+		"def logo():",
+		"    print()",
+	}
+	var r = regexp.MustCompile(`(.{1,57})[^\\]{2}`)
+
+	for _, l := range strings.Split(str, "\n") {
+		l = esc.ReplaceAllString(l, "\\33")
+
+		if len(l) < 57 {
+			py = append(py, "    print(\""+l+"\")")
+			continue
+		}
+
+		py = append(py, "    print(\"\".join([")
+
+		matches = r.FindAllString(l, -1)
+		for i, m := range matches {
+			if i != len(matches) {
+				py = append(py, "        \""+m+"\",")
+			} else {
+				py = append(py, "        \""+m+"\"")
+			}
+		}
+
+		py = append(py, "    ]))")
+	}
+
+	py = append(py, "    print()")
+
+	return strings.Join(py, "\n"), nil
 }
 
 // GenerateRuby will generate a ruby function from an image that can
