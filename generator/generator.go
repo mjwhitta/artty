@@ -120,8 +120,31 @@ func GenerateBash(str string) (string, error) {
 // GenerateGo will generate a go function from an image that can be
 // ran to display in a terminal.
 func GenerateGo(str string) (string, error) {
-	// TODO Generate go
-	return "", errors.New("Feature not yet implemented")
+	var esc = regexp.MustCompile(string(0x1b))
+	var rb = []string{
+		"func logo() {",
+		"    fmt.Println()",
+	}
+	var r = regexp.MustCompile(`(.{1,50})[^\\]{3}`)
+
+	for _, l := range strings.Split(str, "\n") {
+		l = esc.ReplaceAllString(l, "\\x1b")
+
+		if len(l) < 52 {
+			rb = append(rb, "    fmt.Println(\""+l+"\")")
+			continue
+		}
+
+		for _, m := range r.FindAllString(l, -1) {
+			rb = append(rb, "    fmt.Print(\""+m+"\")")
+		}
+
+		rb = append(rb, "    fmt.Println()")
+	}
+
+	rb = append(rb, "    fmt.Println()", "}")
+
+	return strings.Join(rb, "\n"), nil
 }
 
 // GenerateJSON will generate JSON from an image that can be parsed by
