@@ -95,7 +95,7 @@ func GenerateBash(str string) (string, error) {
 		"    echo",
 	}
 	var esc = regexp.MustCompile(string(0x1b))
-	var r = regexp.MustCompile(`(.{1,54})[^\\]`)
+	var r = regexp.MustCompile(`(.{0,54})[^\\]`)
 
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\e")
@@ -125,7 +125,7 @@ func GenerateGo(str string) (string, error) {
 		"func logo() {",
 		"    fmt.Println()",
 	}
-	var r = regexp.MustCompile(`(.{1,50})[^\\]{3}`)
+	var r = regexp.MustCompile(`(.{0,50})[^\\]{1,3}`)
 
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\x1b")
@@ -181,12 +181,11 @@ func GenerateJSON(filename, name string) (string, string, error) {
 // can be ran to display in a terminal.
 func GeneratePython(str string) (string, error) {
 	var esc = regexp.MustCompile(string(0x1b))
-	var matches []string
 	var py = []string{
 		"def logo():",
 		"    print()",
 	}
-	var r = regexp.MustCompile(`(.{1,57})[^\\]{2}`)
+	var r = regexp.MustCompile(`(.{0,57})[^\\]{1,2}`)
 
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\33")
@@ -198,13 +197,8 @@ func GeneratePython(str string) (string, error) {
 
 		py = append(py, "    print(\"\".join([")
 
-		matches = r.FindAllString(l, -1)
-		for i, m := range matches {
-			if i != len(matches) {
-				py = append(py, "        \""+m+"\",")
-			} else {
-				py = append(py, "        \""+m+"\"")
-			}
+		for _, m := range r.FindAllString(l, -1) {
+			py = append(py, "        \""+m+"\",")
 		}
 
 		py = append(py, "    ]))")
@@ -223,7 +217,7 @@ func GenerateRuby(str string) (string, error) {
 		"def logo",
 		"    puts",
 	}
-	var r = regexp.MustCompile(`(.{1,54})[^\\]`)
+	var r = regexp.MustCompile(`(.{0,54})[^\\]`)
 
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\e")
