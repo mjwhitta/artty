@@ -31,6 +31,7 @@ func New(version string) *ArtCache {
 		*jsoncfg.New(filepath.Join(cacheDir, cacheFile)),
 		version,
 	}
+	var vers, _ = c.GetString("version")
 
 	// Initialize defaults
 	c.SetDefault("art", map[string]interface{}{})
@@ -39,7 +40,7 @@ func New(version string) *ArtCache {
 	c.Reset()
 
 	// Refresh if newer version detected
-	if c.GetString("version") != c.version {
+	if vers != c.version {
 		c.Refresh()
 	}
 
@@ -135,24 +136,28 @@ func (c *ArtCache) extractFile(filename string, t *tar.Reader) error {
 
 // GetFileOf will return the cached filename for the specified art.
 func (c *ArtCache) GetFileOf(name string) string {
-	return c.GetString("art", name, "file")
+	var file, _ = c.GetString("art", name, "file")
+	return file
 }
 
 // GetHeightOf will return the cached height for the specified art.
 func (c *ArtCache) GetHeightOf(name string) int {
-	return c.GetInt("art", name, "height")
+	var height, _ = c.GetInt("art", name, "height")
+	return height
 }
 
 // GetWidthOf will return the cached width for the specified art.
 func (c *ArtCache) GetWidthOf(name string) int {
-	return c.GetInt("art", name, "width")
+	var width, _ = c.GetInt("art", name, "width")
+	return width
 }
 
 // List will return a list of names for any cached art files.
 func (c *ArtCache) List() []string {
+	var art, _ = c.GetMap("art")
 	var keys []string
 
-	for key := range c.GetMap("art") {
+	for key := range art {
 		keys = append(keys, key)
 	}
 

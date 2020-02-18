@@ -52,34 +52,43 @@ func main() {
 	var a *art.Art
 	var artName string
 	var arts []string
+	var b bool
 	var clear *exec.Cmd
 	var devexcuse string
 	var e error
+	var exclude string
 	var f *os.File
+	var fields []string
 	var fortune string
 	var h int
 	var height int
 	var info *sysinfo.SysInfo
+	var match string
 	var output string
 	var w int
 	var width int
 
-	if config.GetBool("devexcuse") {
+	b, _ = config.GetBool("devexcuse")
+	if b {
 		devexcuse = artty.DevExcuse()
 	}
 
-	if config.GetBool("fortune") {
+	b, _ = config.GetBool("fortune")
+	if b {
 		fortune = artty.Fortune()
 	}
 
 	switch action {
 	case "demo", "draw", "list":
-		if config.GetBool("sysinfo") {
-			info = sysinfo.New(config.GetStringArray("fields")...)
+		b, _ = config.GetBool("sysinfo")
+		if b {
+			fields, _ = config.GetStringArray("fields")
+			info = sysinfo.New(fields...)
 		}
 	}
 
-	if config.GetBool("fit") {
+	b, _ = config.GetBool("fit")
+	if b {
 		width, height = termSize()
 		if (height > 0) && (width > 0) {
 			height -= 4 // Leave some space for prompt
@@ -126,12 +135,10 @@ func main() {
 		}
 	}
 
-	arts, e = artty.Filter(
-		config.GetString("match"),
-		config.GetString("exclude"),
-		width,
-		height,
-	)
+	match, _ = config.GetString("match")
+	exclude, _ = config.GetString("exclude")
+
+	arts, e = artty.Filter(match, exclude, width, height)
 	if e != nil {
 		panic(e)
 	}
@@ -156,8 +163,10 @@ func main() {
 			}
 		}
 	case "draw":
-		if len(config.GetString("art")) == 0 {
-			if config.GetBool("random") && (len(arts) > 0) {
+		artName, _ = config.GetString("art")
+		if len(artName) == 0 {
+			b, _ = config.GetBool("random")
+			if b && (len(arts) > 0) {
 				rand.Seed(time.Now().UnixNano())
 				config.Set("art", arts[rand.Intn(len(arts))])
 			} else {
@@ -165,7 +174,8 @@ func main() {
 			}
 		}
 
-		a = artty.Get(config.GetString("art"))
+		artName, _ = config.GetString("art")
+		a = artty.Get(artName)
 
 		switch flags.format {
 		case "bash":
@@ -193,7 +203,8 @@ func main() {
 			}
 			hl.Println(output)
 		case "stdout":
-			if config.GetBool("clear_screen") {
+			b, _ = config.GetBool("clear_screen")
+			if b {
 				clear = exec.Command("clear")
 				clear.Stdout = os.Stdout
 				clear.Run()
@@ -218,9 +229,10 @@ func main() {
 			}
 		}
 	case "generate":
+		artName, _ = config.GetString("art")
 		artName, output, e = generator.GenerateJSON(
 			flags.generate,
-			config.GetString("art"),
+			artName,
 		)
 		if e != nil {
 			panic(e)
