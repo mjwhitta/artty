@@ -54,10 +54,12 @@ func main() {
 	var arts []string
 	var b bool
 	var clear *exec.Cmd
+	var dataColors, _ = config.GetStringArray("dataColors")
 	var devexcuse string
 	var e error
 	var exclude, _ = config.GetString("exclude")
 	var f *os.File
+	var fieldColors, _ = config.GetStringArray("fieldColors")
 	var fields, _ = config.GetStringArray("fields")
 	var fortune string
 	var h int
@@ -80,6 +82,8 @@ func main() {
 	case "demo", "draw", "list":
 		if b, _ = config.GetBool("sysinfo"); b {
 			info = sysinfo.New(fields...)
+			info.SetDataColors(dataColors...)
+			info.SetFieldColors(fieldColors...)
 		}
 	}
 
