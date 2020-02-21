@@ -6,4 +6,4 @@ import "gitlab.com/mjwhitta/artty/cache"
 var Cache = cache.New(Version)
 
 // Version is the package version
-const Version = "0.10.4"
+const Version = "0.10.5"

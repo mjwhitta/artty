@@ -9,7 +9,6 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"sort"
 	"strings"
 
 	"gitlab.com/mjwhitta/artty/art"
@@ -154,20 +153,9 @@ func (c *ArtCache) GetWidthOf(name string) int {
 
 // List will return a list of names for any cached art files.
 func (c *ArtCache) List() []string {
-	var art, _ = c.GetMap("art")
 	var keys []string
 
-	for key := range art {
-		keys = append(keys, key)
-	}
-
-	var less = func(i, j int) bool {
-		return (strings.ToLower(keys[i]) < strings.ToLower(keys[j]))
-	}
-
-	if !sort.SliceIsSorted(keys, less) {
-		sort.SliceStable(keys, less)
-	}
+	keys, _ = c.GetKeys("art")
 
 	return keys
 }
