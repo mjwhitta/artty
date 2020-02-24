@@ -30,7 +30,7 @@ fmt: check
 	@go fmt $(SRCDIRS) >/dev/null
 
 gen: check
-	@go generate
+	@go generate $(SRCDIRS)
 
 lint: check
 	@which golint >/dev/null 2>&1 || \
