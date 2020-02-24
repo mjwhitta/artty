@@ -1,5 +1,7 @@
+ifeq ($(OVERRIDEBUILD),)
 build: dir fmt lint
 	@go build -ldflags "$(LDFLAGS)" -o "$(OUT)" ./cmd/*
+endif
 
 debug: dir fmt
 	@go build -gcflags all="-l -N" -o "$(OUT)" ./cmd/*
