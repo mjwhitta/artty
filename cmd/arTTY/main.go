@@ -30,8 +30,6 @@ const (
 var action = "draw"
 
 func main() {
-	hl.Disable(flags.nocolor)
-
 	defer func() {
 		if r := recover(); r != nil {
 			if flags.verbose {
@@ -43,51 +41,41 @@ func main() {
 
 	validate()
 
-	// Short circuit if version was requested
-	if flags.version {
-		hl.Printf("arTTY version %s\n", artty.Version)
-		os.Exit(Good)
-	}
-
 	var a *art.Art
-	var artName, _ = config.GetString("art")
+	var artName = config.GetString("art")
 	var arts []string
-	var b bool
 	var clear *exec.Cmd
-	var dataColors, _ = config.GetStringArray("dataColors")
 	var devexcuse string
 	var e error
-	var exclude, _ = config.GetString("exclude")
 	var f *os.File
-	var fieldColors, _ = config.GetStringArray("fieldColors")
-	var fields, _ = config.GetStringArray("fields")
 	var fortune string
 	var h int
 	var height int
 	var info *sysinfo.SysInfo
-	var match, _ = config.GetString("match")
 	var output string
 	var w int
 	var width int
 
-	if b, _ = config.GetBool("devexcuse"); b {
+	if config.GetBool("devexcuse") {
 		devexcuse = artty.DevExcuse()
 	}
 
-	if b, _ = config.GetBool("fortune"); b {
+	if config.GetBool("fortune") {
 		fortune = artty.Fortune()
 	}
 
 	switch action {
 	case "demo", "draw", "list":
-		if b, _ = config.GetBool("sysinfo"); b {
-			info = sysinfo.New(fields...)
-			info.SetDataColors(dataColors...)
-			info.SetFieldColors(fieldColors...)
+		if config.GetBool("sysinfo") {
+			info = sysinfo.New(config.GetStringArray("fields")...)
+			info.SetDataColors(config.GetStringArray("dataColors")...)
+			info.SetFieldColors(
+				config.GetStringArray("fieldColors")...,
+			)
 		}
 	}
 
-	if b, _ = config.GetBool("fit"); b {
+	if config.GetBool("fit") {
 		width, height = termSize()
 		if (height > 0) && (width > 0) {
 			height -= 4 // Leave some space for prompt
@@ -134,7 +122,12 @@ func main() {
 		}
 	}
 
-	arts, e = artty.Filter(match, exclude, width, height)
+	arts, e = artty.Filter(
+		config.GetString("match"),
+		config.GetString("exclude"),
+		width,
+		height,
+	)
 	if e != nil {
 		panic(e)
 	}
@@ -160,7 +153,7 @@ func main() {
 		}
 	case "draw":
 		if len(artName) == 0 {
-			if b, _ = config.GetBool("random"); b && (len(arts) > 0) {
+			if config.GetBool("random") && (len(arts) > 0) {
 				rand.Seed(time.Now().UnixNano())
 				artName = arts[rand.Intn(len(arts))]
 			} else {
@@ -196,7 +189,7 @@ func main() {
 			}
 			hl.Println(output)
 		case "stdout":
-			if b, _ = config.GetBool("clear_screen"); b {
+			if config.GetBool("clear_screen") {
 				clear = exec.Command("clear")
 				clear.Stdout = os.Stdout
 				clear.Run()

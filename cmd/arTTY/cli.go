@@ -4,6 +4,7 @@ import (
 	"os"
 	"strings"
 
+	"gitlab.com/mjwhitta/artty"
 	"gitlab.com/mjwhitta/cli"
 	hl "gitlab.com/mjwhitta/hilighter"
 )
@@ -232,6 +233,14 @@ func init() {
 
 // Process cli flags and ensure no issues
 func validate() {
+	hl.Disable(flags.nocolor)
+
+	// Short circuit if version was requested
+	if flags.version {
+		hl.Printf("arTTY version %s\n", artty.Version)
+		os.Exit(Good)
+	}
+
 	// Check actions
 	if flags.cache {
 		if action != "draw" {
@@ -291,39 +300,39 @@ func validate() {
 
 	// Check all and plain first
 	if flags.all {
-		config.Set("exclude", "")
-		config.Set("fit", false)
-		config.Set("match", "")
+		config.Set("", "exclude")
+		config.Set(false, "fit")
+		config.Set("", "match")
 	}
 
 	if flags.plain {
 		config.Default()
-		config.Set("clear_screen", false)
-		config.Set("fit", false)
-		config.Set("random", false)
-		config.Set("sysinfo", false)
+		config.Set(false, "clear_screen")
+		config.Set(false, "fit")
+		config.Set(false, "random")
+		config.Set(false, "sysinfo")
 	}
 
 	// Check all other flags
 	if flags.clear {
-		config.Set("clear_screen", true)
+		config.Set(true, "clear_screen")
 	}
 
 	if flags.devexcuse {
-		config.Set("devexcuse", true)
+		config.Set(true, "devexcuse")
 	}
 
 	if len(flags.exclude) > 0 {
-		config.Set("exclude", flags.exclude)
+		config.Set(flags.exclude, "exclude")
 	}
 
 	if len(flags.fields) > 0 {
-		config.Set("fields", strings.Split(flags.fields, ","))
-		config.Set("sysinfo", true)
+		config.Set(strings.Split(flags.fields, ","), "fields")
+		config.Set(true, "sysinfo")
 	}
 
 	if flags.fit {
-		config.Set("fit", true)
+		config.Set(true, "fit")
 	}
 
 	switch flags.format {
@@ -337,25 +346,25 @@ func validate() {
 	}
 
 	if flags.fortune {
-		config.Set("fortune", true)
+		config.Set(true, "fortune")
 	}
 
 	if len(flags.match) > 0 {
-		config.Set("match", flags.match)
+		config.Set(flags.match, "match")
 	}
 
 	if flags.random {
-		config.Set("random", true)
+		config.Set(true, "random")
 	}
 
 	if flags.sysinfo {
-		config.Set("sysinfo", true)
+		config.Set(true, "sysinfo")
 	}
 
 	// Validate cli flags
 	if cli.NArg() == 1 {
-		config.Set("art", cli.Arg(0))
-		config.Set("random", false)
+		config.Set(cli.Arg(0), "art")
+		config.Set(false, "random")
 	} else if cli.NArg() > 1 {
 		cli.Usage(ExtraArguments)
 	}

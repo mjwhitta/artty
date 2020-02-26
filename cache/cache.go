@@ -30,11 +30,11 @@ func New(version string) *ArtCache {
 		*jsoncfg.New(filepath.Join(cacheDir, cacheFile)),
 		version,
 	}
-	var vers, _ = c.GetString("version")
+	var vers = c.GetString("version")
 
 	// Initialize defaults
-	c.SetDefault("art", map[string]interface{}{})
-	c.SetDefault("version", c.version)
+	c.SetDefault(map[string]interface{}{}, "art")
+	c.SetDefault(c.version, "version")
 	c.SaveDefault()
 	c.Reset()
 
@@ -135,29 +135,22 @@ func (c *ArtCache) extractFile(filename string, t *tar.Reader) error {
 
 // GetFileOf will return the cached filename for the specified art.
 func (c *ArtCache) GetFileOf(name string) string {
-	var file, _ = c.GetString("art", name, "file")
-	return file
+	return c.GetString("art", name, "file")
 }
 
 // GetHeightOf will return the cached height for the specified art.
 func (c *ArtCache) GetHeightOf(name string) int {
-	var height, _ = c.GetInt("art", name, "height")
-	return height
+	return c.GetInt("art", name, "height")
 }
 
 // GetWidthOf will return the cached width for the specified art.
 func (c *ArtCache) GetWidthOf(name string) int {
-	var width, _ = c.GetInt("art", name, "width")
-	return width
+	return c.GetInt("art", name, "width")
 }
 
 // List will return a list of names for any cached art files.
 func (c *ArtCache) List() []string {
-	var keys []string
-
-	keys, _ = c.GetKeys("art")
-
-	return keys
+	return c.GetKeys("art")
 }
 
 func (c *ArtCache) organize() error {
@@ -206,8 +199,8 @@ func (c *ArtCache) Refresh() {
 	filepath.Walk(filepath.Join(cacheDir, imagesDir), addArt)
 	filepath.Walk(CustomImagesDir, addArt)
 
-	c.Set("art", arts)
-	c.Set("version", c.version)
+	c.Set(arts, "art")
+	c.Set(c.version, "version")
 	c.Save()
 }
 
