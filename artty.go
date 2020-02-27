@@ -4,9 +4,11 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"os/exec"
 	"regexp"
 	"runtime"
+	"strconv"
 	"strings"
 
 	"gitlab.com/mjwhitta/artty/art"
@@ -122,4 +124,34 @@ func init() {
 	if runtime.GOOS == "windows" {
 		panic(errors.New("Windows is unsupported"))
 	}
+}
+
+// TermSize will return the size of the terminal.
+func TermSize() (w int, h int) {
+	var c *exec.Cmd
+	var e error
+	var o []byte
+	var size []string
+
+	if len(where.Is("stty")) == 0 {
+		return
+	}
+
+	c = exec.Command(where.Is("stty"), "size")
+	c.Stdin = os.Stdin
+
+	if o, e = c.Output(); e != nil {
+		return
+	}
+
+	size = strings.Split(strings.TrimSpace(string(o)), " ")
+
+	if len(size) != 2 {
+		return
+	}
+
+	h, _ = strconv.Atoi(size[0])
+	w, _ = strconv.Atoi(size[1])
+
+	return
 }

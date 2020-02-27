@@ -1,2 +1,4 @@
+*.profile
+*.test
 build
 tags

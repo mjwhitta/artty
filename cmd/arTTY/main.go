@@ -5,7 +5,6 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"strconv"
 	"strings"
 	"time"
 
@@ -15,7 +14,6 @@ import (
 	"gitlab.com/mjwhitta/artty/generator"
 	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/sysinfo"
-	"gitlab.com/mjwhitta/where"
 )
 
 // Exit status
@@ -76,7 +74,7 @@ func main() {
 	}
 
 	if config.GetBool("fit") {
-		width, height = termSize()
+		width, height = artty.TermSize()
 		if (height > 0) && (width > 0) {
 			height -= 4 // Leave some space for prompt
 			width--     // Leave some space for leading space
@@ -246,35 +244,4 @@ func main() {
 			panic(e)
 		}
 	}
-}
-
-func termSize() (int, int) {
-	var c *exec.Cmd
-	var e error
-	var h int
-	var o []byte
-	var size []string
-	var w int
-
-	if len(where.Is("stty")) == 0 {
-		return 0, 0
-	}
-
-	c = exec.Command(where.Is("stty"), "size")
-	c.Stdin = os.Stdin
-
-	if o, e = c.Output(); e != nil {
-		return 0, 0
-	}
-
-	size = strings.Split(strings.TrimSpace(string(o)), " ")
-
-	if len(size) != 2 {
-		return 0, 0
-	}
-
-	h, _ = strconv.Atoi(size[0])
-	w, _ = strconv.Atoi(size[1])
-
-	return w, h
 }
