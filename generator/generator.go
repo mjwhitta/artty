@@ -170,7 +170,7 @@ func GenerateJSON(filename, name string) (string, string, error) {
 		jsonOut.Set(len(pixels[0]), "width")
 	}
 
-	if output, e = jsonOut.GetBlobIndent("", "  "); e != nil {
+	if output, e = jsonOut.GetBlob("  "); e != nil {
 		return "", "", e
 	}
 
