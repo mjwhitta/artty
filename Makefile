@@ -7,15 +7,15 @@ OUT := $(BUILD)/$(GOOS)/$(GOARCH)
 SRCDIRS := $(shell find . -name "*.go" -exec dirname {} + | sort -u)
 VERS := $(shell $(GREP) "const\s+Version\s+\=\s+\"\K[0-9.]+" .)
 
+all: build
+
+-include mks/local.mk
+
 ifeq ($(shell ls -d cmd 2>/dev/null), cmd)
 	include mks/cmd.mk
 else
 	include mks/so.mk
 endif
-
--include mks/local.mk
-
-all: build
 
 check:
 	@which go >/dev/null 2>&1
