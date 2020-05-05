@@ -13,6 +13,7 @@ import (
 	"gitlab.com/mjwhitta/artty/cache"
 	"gitlab.com/mjwhitta/artty/generator"
 	hl "gitlab.com/mjwhitta/hilighter"
+	"gitlab.com/mjwhitta/log"
 	"gitlab.com/mjwhitta/sysinfo"
 )
 
@@ -33,7 +34,7 @@ func main() {
 			if flags.verbose {
 				panic(r.(error).Error())
 			}
-			errx(Exception, r.(error).Error())
+			log.ErrX(Exception, r.(error).Error())
 		}
 	}()
 
@@ -143,7 +144,7 @@ func main() {
 			a.SysInfo = info
 
 			if len(a.String()) > 0 {
-				hl.PrintlnWhite("### " + name + " ###")
+				log.Info(name)
 				hl.Println()
 				hl.Println(a)
 				hl.Println()
