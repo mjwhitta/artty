@@ -7,8 +7,8 @@ require (
 	gitlab.com/mjwhitta/hilighter v1.8.2
 	gitlab.com/mjwhitta/jq v1.2.8
 	gitlab.com/mjwhitta/jsoncfg v1.4.2
-	gitlab.com/mjwhitta/log v1.3.5
+	gitlab.com/mjwhitta/log v1.4.0
 	gitlab.com/mjwhitta/pathname v1.0.6
-	gitlab.com/mjwhitta/sysinfo v1.0.39
-	gitlab.com/mjwhitta/where v1.0.8
+	gitlab.com/mjwhitta/sysinfo v1.0.40
+	gitlab.com/mjwhitta/where v1.0.9
 )
