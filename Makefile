@@ -5,7 +5,7 @@ GREP := grep --exclude-dir=".git" -hIioPrs
 LDFLAGS := -s -w
 OUT := $(BUILD)/$(GOOS)/$(GOARCH)
 SRCDIRS := $(shell find . -name "*.go" -exec dirname {} + | sort -u)
-VERS := $(shell $(GREP) "const\s+Version\s+\=\s+\"\K[0-9.]+" .)
+VERS := $(shell $(GREP) "const\s+Version\s+\=\s+\"\K[^\"]+" .)
 
 all: build
 
