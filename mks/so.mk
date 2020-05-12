@@ -1,6 +1,6 @@
 SO := $(shell grep -hioPs "^package\s+\K\S+" *.go | sort -u)
 
-build: dir fmt lint
+build: dir fmt reportcard
 	@go build -ldflags "$(LDFLAGS)" -o "$(OUT)/$(SO).a"
 
 debug: dir fmt

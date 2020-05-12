@@ -22,8 +22,14 @@ check:
 
 clean: fmt
 	@rm -rf "$(BUILD)"
+	@go mod tidy
 
 clena: clean
+
+cyclo: check
+	@which gocyclo >/dev/null 2>&1 || \
+	    go get -u github.com/fzipp/gocyclo
+	@gocyclo -over 15 $(SRCDIRS) || echo -n
 
 dir:
 	@mkdir -p "$(OUT)"
@@ -34,6 +40,11 @@ fmt: check
 gen: check
 	@go generate $(SRCDIRS)
 
+ineffassign: check
+	@which ineffassign >/dev/null 2>&1 || \
+		go get -u github.com/gordonklaus/ineffassign
+	@ineffassign $(SRCDIRS) || echo -n
+
 lint: check
 	@which golint >/dev/null 2>&1 || \
 	    go get -u golang.org/x/lint/golint
@@ -43,6 +54,21 @@ push:
 	@git tag "v$(VERS)"
 	@git push
 	@git push --tags
+
+reportcard: cyclo ineffassign lint simplify vet
+
+simplify: check
+	@gofmt -s -w $(SRCDIRS)
+
+updatereportcard: check
+	@go get -u github.com/fzipp/gocyclo
+	@go get -u github.com/gordonklaus/ineffassign
+	@go get -u golang.org/x/lint/golint
+	@rm -f go.sum
+	@go mod tidy
+
+vet: check
+	@go vet $(SRCDIRS)
 
 yank:
 	@git tag -d "v$(VERS)"

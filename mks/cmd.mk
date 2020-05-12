@@ -1,5 +1,5 @@
 ifeq ($(OVERRIDEBUILD),)
-build: dir fmt lint
+build: dir fmt reportcard
 	@go build -ldflags "$(LDFLAGS)" -o "$(OUT)" ./cmd/*
 endif
 
