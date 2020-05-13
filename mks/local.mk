@@ -1,4 +1,4 @@
-profile: fmt lint
+profile: fmt reportcard
 	@go test -cpuprofile cpu.profile -bench .
 	@go tool pprof artty.test cpu.profile
 	@rm -f artty.test cpu.profile

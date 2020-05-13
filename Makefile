@@ -68,7 +68,7 @@ updatereportcard: check
 	@go mod tidy
 
 vet: check
-	@go vet $(SRCDIRS)
+	@go vet $(SRCDIRS) || echo -n
 
 yank:
 	@git tag -d "v$(VERS)"
