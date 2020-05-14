@@ -45,7 +45,7 @@ gen: check
 ineffassign: check
 	@which ineffassign >/dev/null 2>&1 || \
 		go get -u github.com/gordonklaus/ineffassign
-	@ineffassign $(SRC) || echo -n
+	@ineffassign . || echo -n
 
 lint: check
 	@which golint >/dev/null 2>&1 || \
