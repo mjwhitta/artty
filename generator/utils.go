@@ -76,7 +76,7 @@ func generateLegend(
 	uniqClrs []string,
 ) ([]string, map[string]string, error) {
 	var flipLegend = map[string]string{}
-	var idx int = 0
+	var idx int
 	var legend = map[string]string{}
 	var pixels []string
 	var row string
@@ -122,7 +122,7 @@ func getPixelInfo(
 	var hInc float64 = 1
 	var hMax int = img.Bounds().Max.Y
 	var includes bool
-	var offset int = 0
+	var offset int
 	var pixelClrs [][]string
 	var row []string
 	var uniqClrs []string
