@@ -1,5 +1,9 @@
 # arTTY
 
+[![Go Report Card](https://goreportcard.com/badge/gitlab.com/mjwhitta/artty)](https://goreportcard.com/report/gitlab.com/mjwhitta/artty)
+
+## What is this?
+
 Art for your TTY.
 
 ![Screenshot](imgs/screenshot.png)

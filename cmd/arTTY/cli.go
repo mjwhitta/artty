@@ -11,6 +11,7 @@ import (
 
 // Flags
 type cliFlags struct {
+	action    string
 	all       bool
 	cache     bool
 	clear     bool
@@ -38,6 +39,31 @@ type cliFlags struct {
 
 var flags cliFlags
 
+func ensureOnlyOne() {
+	var actions = []bool{
+		flags.cache,
+		flags.convert != "",
+		flags.demo,
+		flags.generate != "",
+		flags.list,
+		flags.save,
+		flags.show,
+		flags.update,
+	}
+	var onlyOne = 0
+
+	// Ensure only 1 action was specified
+	for _, action := range actions {
+		if action {
+			onlyOne++
+		}
+
+		if onlyOne > 1 {
+			cli.Usage(InvalidArgument)
+		}
+	}
+}
+
 func init() {
 	// Configure cli package
 	cli.Align = true
@@ -60,19 +86,19 @@ func init() {
 		"FIELDS",
 		strings.Join(
 			[]string{
-				"Colors: Show terminal colors\n",
-				"CPU: Show cpu info\n",
-				"FS: Show filesystem usage\n",
-				"Host: Show hostname\n",
-				"IP: Show IPv4 and IPv6 addresses\n",
-				"IPv4: Show only IPv4 addresses\n",
-				"IPv6: Show only IPv6 addresses\n",
-				"Kernel: Show kernel info\n",
-				"OS: Show operating system info\n",
-				"RAM: Show RAM usage\n",
-				"Shell: Show current shell\n",
-				"TTY: Show TTY info\n",
-				"Uptime: Show uptime",
+				"blank: Use a blank line as a separator\n",
+				"colors: Show terminal colors\n",
+				"cpu: Show cpu info\n",
+				"fs: Show filesystem usage\n",
+				"host: Show hostname\n",
+				"ipv4: Show IPv4 addresses\n",
+				"ipv6: Show IPv6 addresses\n",
+				"kernel: Show kernel info\n",
+				"os: Show operating system info\n",
+				"ram: Show RAM usage\n",
+				"shell: Show current shell\n",
+				"tty: Show TTY info\n",
+				"uptime: Show uptime",
 			},
 			"",
 		),
@@ -231,73 +257,7 @@ func init() {
 	cli.Parse()
 }
 
-// Process cli flags and ensure no issues
-func validate() {
-	hl.Disable(flags.nocolor)
-
-	// Short circuit if version was requested
-	if flags.version {
-		hl.Printf("arTTY version %s\n", artty.Version)
-		os.Exit(Good)
-	}
-
-	// Check actions
-	if flags.cache {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "cache"
-	}
-
-	if len(flags.convert) > 0 {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "convert"
-	}
-
-	if flags.demo {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "demo"
-	}
-
-	if len(flags.generate) > 0 {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "generate"
-	}
-
-	if flags.list {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "list"
-	}
-
-	if flags.save {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "save"
-	}
-
-	if flags.show {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "show"
-	}
-
-	if flags.update {
-		if action != "draw" {
-			cli.Usage(InvalidOption)
-		}
-		action = "update"
-	}
-
+func setupConfig() {
 	// Check all and plain first
 	if flags.all {
 		config.Set("", "exclude")
@@ -322,11 +282,11 @@ func validate() {
 		config.Set(true, "devexcuse")
 	}
 
-	if len(flags.exclude) > 0 {
+	if flags.exclude != "" {
 		config.Set(flags.exclude, "exclude")
 	}
 
-	if len(flags.fields) > 0 {
+	if flags.fields != "" {
 		config.Set(strings.Split(flags.fields, ","), "fields")
 		config.Set(true, "sysinfo")
 	}
@@ -335,21 +295,11 @@ func validate() {
 		config.Set(true, "fit")
 	}
 
-	switch flags.format {
-	case "bash", "go", "python", "ruby":
-		if action != "draw" {
-			cli.Usage(InvalidArgument)
-		}
-	case "stdout":
-	default:
-		cli.Usage(InvalidArgument)
-	}
-
 	if flags.fortune {
 		config.Set(true, "fortune")
 	}
 
-	if len(flags.match) > 0 {
+	if flags.match != "" {
 		config.Set(flags.match, "match")
 	}
 
@@ -360,6 +310,20 @@ func validate() {
 	if flags.sysinfo {
 		config.Set(true, "sysinfo")
 	}
+}
+
+// Process cli flags and ensure no issues
+func validate() {
+	hl.Disable(flags.nocolor)
+
+	// Short circuit if version was requested
+	if flags.version {
+		hl.Printf("arTTY version %s\n", artty.Version)
+		os.Exit(Good)
+	}
+
+	validateActions()
+	setupConfig()
 
 	// Validate cli flags
 	if cli.NArg() == 1 {
@@ -368,4 +332,40 @@ func validate() {
 	} else if cli.NArg() > 1 {
 		cli.Usage(ExtraArguments)
 	}
+}
+
+func validateActions() {
+	// Default to draw
+	flags.action = "draw"
+
+	ensureOnlyOne()
+
+	if flags.cache {
+		flags.action = "cache"
+	} else if flags.convert != "" {
+		flags.action = "convert"
+	} else if flags.demo {
+		flags.action = "demo"
+	} else if flags.generate != "" {
+		flags.action = "generate"
+	} else if flags.list {
+		flags.action = "list"
+	} else if flags.save {
+		flags.action = "save"
+	} else if flags.show {
+		flags.action = "show"
+	} else if flags.update {
+		flags.action = "update"
+	}
+
+	switch flags.format {
+	case "bash", "go", "python", "ruby":
+		if flags.action != "draw" {
+			cli.Usage(InvalidArgument)
+		}
+	case "stdout":
+	default:
+		cli.Usage(InvalidArgument)
+	}
+
 }

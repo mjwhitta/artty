@@ -19,16 +19,217 @@ import (
 
 // Exit status
 const (
-	Good            int = 0
-	InvalidOption   int = 1
-	InvalidArgument int = 2
-	ExtraArguments  int = 3
-	Exception       int = 4
+	Good = iota
+	InvalidOption
+	InvalidArgument
+	ExtraArguments
+	Exception
 )
 
-var action = "draw"
+func demo(arts []string, info *sysinfo.SysInfo) {
+	var a *art.Art
+
+	for _, name := range arts {
+		a = artty.Get(name)
+		a.SysInfo = info
+
+		if a.String() != "" {
+			log.Info(name)
+			hl.Println()
+			hl.Println(a)
+			hl.Println()
+		}
+	}
+}
+
+func draw(name string, i *sysinfo.SysInfo, d string, f string) {
+	var a *art.Art
+	var clear *exec.Cmd
+	var e error
+	var out string
+
+	a = artty.Get(name)
+
+	switch flags.format {
+	case "bash":
+		out, e = generator.GenerateBash(a.String())
+		if e != nil {
+			panic(e)
+		}
+		hl.Println(out)
+	case "go":
+		out, e = generator.GenerateGo(a.String())
+		if e != nil {
+			panic(e)
+		}
+		hl.Println(out)
+	case "python":
+		out, e = generator.GeneratePython(a.String())
+		if e != nil {
+			panic(e)
+		}
+		hl.Println(out)
+	case "ruby":
+		out, e = generator.GenerateRuby(a.String())
+		if e != nil {
+			panic(e)
+		}
+		hl.Println(out)
+	case "stdout":
+		if config.GetBool("clear_screen") {
+			clear = exec.Command("clear")
+			clear.Stdout = os.Stdout
+			clear.Run()
+		}
+
+		a.SysInfo = i
+
+		if a.String() != "" {
+			hl.Println()
+			hl.Println(a)
+			hl.Println()
+		}
+
+		if d != "" {
+			hl.Println(d)
+			hl.Println()
+		}
+
+		if f != "" {
+			hl.Println(f)
+			hl.Println()
+		}
+	}
+}
+
+func generate(file string) {
+	var name string
+	var e error
+	var f *os.File
+	var out string
+
+	if name, out, e = generator.GenerateJSON(file, name); e != nil {
+		panic(e)
+	}
+
+	f, e = os.Create(
+		filepath.Join(cache.CustomImagesDir, name) + ".json",
+	)
+	if e != nil {
+		panic(e)
+	}
+
+	f.WriteString(out + "\n")
+	f.Close()
+
+	artty.Cache.Refresh()
+}
+
+func getFit(d, f *string, info *sysinfo.SysInfo) (h, w int) {
+	var height int
+	var width int
+
+	if config.GetBool("fit") {
+		w, h = artty.TermSize()
+		if (h > 0) && (w > 0) {
+			h -= 4 // Leave some space for prompt
+			w -= 2 // Leave some space for leading/trailing space
+		}
+
+		// Check devexcuse for height and width
+		for _, line := range strings.Split(*d, "\n") {
+			height++
+			if len([]rune(line)) > width {
+				width = len([]rune(line))
+			}
+		}
+
+		if (height >= h) || (width > w) {
+			*d = ""
+		} else {
+			h -= height + 1
+		}
+
+		// Check fortune for height and width
+		height = 0
+		width = 0
+		for _, line := range strings.Split(*f, "\n") {
+			height++
+			if len([]rune(line)) > width {
+				width = len([]rune(line))
+			}
+		}
+
+		if (height >= h) || (width > w) {
+			*f = ""
+		} else {
+			h -= height + 1
+		}
+
+		// Check SysInfo for height and width
+		if info != nil {
+			if (info.Height >= h) || (info.Width >= w) {
+				info = nil
+			} else {
+				w -= info.Width + 1
+			}
+		}
+	}
+
+	return
+}
+
+func getName(arts []string) string {
+	var name string = config.GetString("art")
+
+	if name == "" {
+		if config.GetBool("random") && (len(arts) > 0) {
+			rand.Seed(time.Now().UnixNano())
+			name = arts[rand.Intn(len(arts))]
+		} else {
+			name = "none"
+		}
+	}
+
+	return name
+}
+
+func getOptionals() (d string, f string, i *sysinfo.SysInfo) {
+	if config.GetBool("devexcuse") {
+		d = artty.DevExcuse()
+	}
+
+	if config.GetBool("fortune") {
+		f = artty.Fortune()
+	}
+
+	switch flags.action {
+	case "demo", "draw", "list":
+		if config.GetBool("sysinfo") {
+			i = sysinfo.New(config.GetStringArray("fields")...)
+			i.SetDataColors(config.GetStringArray("dataColors")...)
+			i.SetFieldColors(config.GetStringArray("fieldColors")...)
+		}
+	}
+
+	return
+}
+
+func list(arts []string) {
+	for _, name := range arts {
+		hl.Println(name)
+	}
+}
 
 func main() {
+	var arts []string
+	var devexcuse string
+	var e error
+	var fortune string
+	var height int
+	var info *sysinfo.SysInfo
+	var width int
+
 	defer func() {
 		if r := recover(); r != nil {
 			if flags.verbose {
@@ -40,86 +241,8 @@ func main() {
 
 	validate()
 
-	var a *art.Art
-	var artName = config.GetString("art")
-	var arts []string
-	var clear *exec.Cmd
-	var devexcuse string
-	var e error
-	var f *os.File
-	var fortune string
-	var h int
-	var height int
-	var info *sysinfo.SysInfo
-	var output string
-	var w int
-	var width int
-
-	if config.GetBool("devexcuse") {
-		devexcuse = artty.DevExcuse()
-	}
-
-	if config.GetBool("fortune") {
-		fortune = artty.Fortune()
-	}
-
-	switch action {
-	case "demo", "draw", "list":
-		if config.GetBool("sysinfo") {
-			info = sysinfo.New(config.GetStringArray("fields")...)
-			info.SetDataColors(config.GetStringArray("dataColors")...)
-			info.SetFieldColors(
-				config.GetStringArray("fieldColors")...,
-			)
-		}
-	}
-
-	if config.GetBool("fit") {
-		width, height = artty.TermSize()
-		if (height > 0) && (width > 0) {
-			height -= 4 // Leave some space for prompt
-			width--     // Leave some space for leading space
-		}
-
-		// Check devexcuse for height and width
-		h = 0
-		for _, line := range strings.Split(devexcuse, "\n") {
-			h++
-			if len([]rune(line)) > w {
-				w = len([]rune(line))
-			}
-		}
-
-		if (h >= height) || (w > width) {
-			devexcuse = ""
-		} else {
-			height -= h + 1
-		}
-
-		// Check fortune for height and width
-		h = 0
-		for _, line := range strings.Split(fortune, "\n") {
-			h++
-			if len([]rune(line)) > w {
-				w = len([]rune(line))
-			}
-		}
-
-		if (h >= height) || (w > width) {
-			fortune = ""
-		} else {
-			height -= h + 1
-		}
-
-		// Check SysInfo for height and width
-		if info != nil {
-			if (info.Height >= height) || (info.Width >= width) {
-				info = nil
-			} else {
-				width -= info.Width + 1
-			}
-		}
-	}
+	devexcuse, fortune, info = getOptionals()
+	height, width = getFit(&devexcuse, &fortune, info)
 
 	arts, e = artty.Filter(
 		config.GetString("match"),
@@ -131,7 +254,7 @@ func main() {
 		panic(e)
 	}
 
-	switch action {
+	switch flags.action {
 	case "cache":
 		artty.Cache.Refresh()
 	case "convert":
@@ -139,110 +262,22 @@ func main() {
 			panic(e)
 		}
 	case "demo":
-		for _, name := range arts {
-			a = artty.Get(name)
-			a.SysInfo = info
-
-			if len(a.String()) > 0 {
-				log.Info(name)
-				hl.Println()
-				hl.Println(a)
-				hl.Println()
-			}
-		}
+		demo(arts, info)
 	case "draw":
-		if len(artName) == 0 {
-			if config.GetBool("random") && (len(arts) > 0) {
-				rand.Seed(time.Now().UnixNano())
-				artName = arts[rand.Intn(len(arts))]
-			} else {
-				artName = "none"
-			}
-		}
-
-		a = artty.Get(artName)
-
-		switch flags.format {
-		case "bash":
-			output, e = generator.GenerateBash(a.String())
-			if e != nil {
-				panic(e)
-			}
-			hl.Println(output)
-		case "go":
-			output, e = generator.GenerateGo(a.String())
-			if e != nil {
-				panic(e)
-			}
-			hl.Println(output)
-		case "python":
-			output, e = generator.GeneratePython(a.String())
-			if e != nil {
-				panic(e)
-			}
-			hl.Println(output)
-		case "ruby":
-			output, e = generator.GenerateRuby(a.String())
-			if e != nil {
-				panic(e)
-			}
-			hl.Println(output)
-		case "stdout":
-			if config.GetBool("clear_screen") {
-				clear = exec.Command("clear")
-				clear.Stdout = os.Stdout
-				clear.Run()
-			}
-
-			a.SysInfo = info
-
-			if len(a.String()) > 0 {
-				hl.Println()
-				hl.Println(a)
-				hl.Println()
-			}
-
-			if len(devexcuse) > 0 {
-				hl.Println(devexcuse)
-				hl.Println()
-			}
-
-			if len(fortune) > 0 {
-				hl.Println(fortune)
-				hl.Println()
-			}
-		}
+		draw(getName(arts), info, devexcuse, fortune)
 	case "generate":
-		artName, output, e = generator.GenerateJSON(
-			flags.generate,
-			artName,
-		)
-		if e != nil {
-			panic(e)
-		}
-
-		f, e = os.Create(
-			filepath.Join(cache.CustomImagesDir, artName) + ".json",
-		)
-		if e != nil {
-			panic(e)
-		}
-
-		f.WriteString(output + "\n")
-		f.Close()
-
-		artty.Cache.Refresh()
+		generate(flags.generate)
 	case "list":
-		for _, name := range arts {
-			hl.Println(name)
-		}
+		list(arts)
 	case "save":
 		config.Save()
 	case "show":
 		hl.Println(config)
 	case "update":
+		log.Info("Updating cache...")
 		if e = artty.Cache.Update(); e != nil {
 			panic(e)
 		}
+		log.Info("done")
 	}
 }

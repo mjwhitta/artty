@@ -45,7 +45,7 @@ func bootstrap(
 	}
 
 	for _, match := range r.FindAllStringSubmatch(filename, -1) {
-		if len(name) == 0 {
+		if name == "" {
 			name = match[1]
 		}
 

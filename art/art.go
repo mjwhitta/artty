@@ -46,17 +46,11 @@ func New(path ...string) *Art {
 // String will convert the Art struct to a string for fmt's print
 // functions.
 func (a *Art) String() string {
-	var b string
-	var bempty bool
-	var bfound bool
 	var bottom string
 	var filler string
 	var info []string
 	var line string
 	var out []string
-	var t string
-	var tempty bool
-	var tfound bool
 	var top string
 
 	if len(a.Pixels) > 0 {
@@ -73,7 +67,7 @@ func (a *Art) String() string {
 
 	for i, row := range a.Pixels {
 		// Parse 2 rows at a time
-		if len(top) == 0 {
+		if top == "" {
 			top = row
 			continue
 		}
@@ -88,38 +82,7 @@ func (a *Art) String() string {
 		}
 
 		// Create line
-		line = " "
-
-		for j := 0; j < len(top); j++ {
-			t = string(top[j])
-			b = string(bottom[j])
-
-			bempty = (b == " ")
-			tempty = (t == " ")
-			_, bfound = a.Legend[b]
-			_, tfound = a.Legend[t]
-
-			if (tempty && bempty) ||
-				(!tempty && !tfound) ||
-				(!bempty && !bfound) {
-				line += " "
-				continue
-			}
-
-			if tempty {
-				line += hl.Hilight(a.Legend[b], "▄")
-			} else if bempty {
-				line += hl.Hilights(
-					[]string{a.Legend[t], "swap"},
-					"▄",
-				)
-			} else {
-				line += hl.Hilights(
-					[]string{a.Legend[b], "on_" + a.Legend[t]},
-					"▄",
-				)
-			}
-		}
+		line = a.zipRow(top, bottom)
 
 		// Append SysInfo, if any
 		if int(i/2) < len(info) {
@@ -129,7 +92,6 @@ func (a *Art) String() string {
 		out = append(out, line)
 
 		// Reset
-		bottom = ""
 		top = ""
 	}
 
@@ -139,4 +101,46 @@ func (a *Art) String() string {
 	}
 
 	return strings.Join(out, "\n")
+}
+
+func (a *Art) zipRow(top string, bottom string) (line string) {
+	var b string
+	var bempty bool
+	var bfound bool
+	var t string
+	var tempty bool
+	var tfound bool
+
+	for i := 0; i < len(top); i++ {
+		t = string(top[i])
+		b = string(bottom[i])
+
+		bempty = (b == " ")
+		tempty = (t == " ")
+		_, bfound = a.Legend[b]
+		_, tfound = a.Legend[t]
+
+		if (tempty && bempty) ||
+			(!tempty && !tfound) ||
+			(!bempty && !bfound) {
+			line += " "
+			continue
+		}
+
+		if tempty {
+			line += hl.Hilight(a.Legend[b], "▄")
+		} else if bempty {
+			line += hl.Hilights(
+				[]string{a.Legend[t], "swap"},
+				"▄",
+			)
+		} else {
+			line += hl.Hilights(
+				[]string{a.Legend[b], "on_" + a.Legend[t]},
+				"▄",
+			)
+		}
+	}
+
+	return
 }

@@ -57,7 +57,7 @@ func Filter(
 
 	for _, name := range Cache.List() {
 		matched = true
-		if len(match) > 0 {
+		if match != "" {
 			matched, e = regexp.Match(match, []byte(name))
 			if e != nil {
 				return []string{}, e
@@ -65,7 +65,7 @@ func Filter(
 		}
 
 		excluded = false
-		if len(exclude) > 0 {
+		if exclude != "" {
 			excluded, e = regexp.Match(exclude, []byte(name))
 			if e != nil {
 				return []string{}, e
@@ -99,8 +99,8 @@ func Fortune() string {
 	var o []byte
 
 	f = where.Is("fortune")
-	if len(f) == 0 {
-		return ""
+	if f == "" {
+		return f
 	}
 
 	if o, e = exec.Command(f, "-s").Output(); e != nil {
@@ -133,7 +133,7 @@ func TermSize() (w int, h int) {
 	var o []byte
 	var size []string
 
-	if len(where.Is("stty")) == 0 {
+	if where.Is("stty") == "" {
 		return
 	}
 
