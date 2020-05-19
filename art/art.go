@@ -82,7 +82,7 @@ func (a *Art) String() string {
 		}
 
 		// Create line
-		line = a.zipRow(top, bottom)
+		line = " " + a.zipRow(top, bottom)
 
 		// Append SysInfo, if any
 		if int(i/2) < len(info) {
