@@ -131,45 +131,44 @@ func getFit(d, f *string, info *sysinfo.SysInfo) (h, w int) {
 
 	if config.GetBool("fit") {
 		w, h = artty.TermSize()
+
 		if (h > 0) && (w > 0) {
 			h -= 4 // Leave some space for prompt
 			w -= 2 // Leave some space for leading/trailing space
 		}
 
-		// Check devexcuse for height and width
-		for _, line := range strings.Split(*d, "\n") {
-			height++
-			if len([]rune(line)) > width {
-				width = len([]rune(line))
+		if h < 0 {
+			h = 0
+		}
+
+		if w < 0 {
+			w = 0
+		}
+
+		// Check devexcuse and fortune for height and width
+		for _, strptr := range []*string{d, f} {
+			height = 0
+			width = 0
+
+			for _, line := range strings.Split(*strptr, "\n") {
+				height++
+
+				if len([]rune(line)) > width {
+					width = len([]rune(line))
+				}
 			}
-		}
 
-		if (height >= h) || (width > w) {
-			*d = ""
-		} else {
-			h -= height + 1
-		}
-
-		// Check fortune for height and width
-		height = 0
-		width = 0
-		for _, line := range strings.Split(*f, "\n") {
-			height++
-			if len([]rune(line)) > width {
-				width = len([]rune(line))
+			if (height >= h) || (width > w) {
+				*strptr = ""
+			} else {
+				h -= height + 1
 			}
-		}
-
-		if (height >= h) || (width > w) {
-			*f = ""
-		} else {
-			h -= height + 1
 		}
 
 		// Check SysInfo for height and width
 		if info != nil {
 			if (info.Height >= h) || (info.Width >= w) {
-				info = nil
+				info.Clear()
 			} else {
 				w -= info.Width + 1
 			}

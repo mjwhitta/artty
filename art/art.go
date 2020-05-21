@@ -53,12 +53,16 @@ func (a *Art) String() string {
 	var out []string
 	var top string
 
+	if a.Name == "" {
+		return ""
+	}
+
 	if len(a.Pixels) > 0 {
 		filler = strings.Repeat(" ", len(a.Pixels[0]))
 	}
 
 	if (len(a.Pixels) % 2) != 0 {
-		a.Pixels = append([]string{filler}, a.Pixels...)
+		a.Pixels = append(a.Pixels, filler)
 	}
 
 	if a.SysInfo != nil {
