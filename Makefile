@@ -23,7 +23,7 @@ check:
 	@which go >/dev/null 2>&1
 
 clean: fmt
-	@rm -rf "$(BUILD)"
+	@rm -rf "$(BUILD)" go.sum
 	@go mod tidy
 
 clena: clean
