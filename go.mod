@@ -9,6 +9,6 @@ require (
 	gitlab.com/mjwhitta/jsoncfg v1.4.3
 	gitlab.com/mjwhitta/log v1.4.2
 	gitlab.com/mjwhitta/pathname v1.0.6
-	gitlab.com/mjwhitta/sysinfo v1.1.2
-	gitlab.com/mjwhitta/where v1.0.12
+	gitlab.com/mjwhitta/sysinfo v1.1.3
+	gitlab.com/mjwhitta/where v1.0.13
 )
