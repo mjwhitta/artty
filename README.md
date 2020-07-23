@@ -2,6 +2,8 @@
 
 **DEPRECATED**: Use the [golang] port instead.
 
+<a href="https://www.buymeacoffee.com/mjwhitta">🍪 Buy me a cookie</a>
+
 Art for your TTY.
 
 ![Screenshot](imgs/screenshot.png)
