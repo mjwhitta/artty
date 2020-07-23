@@ -1,5 +1,7 @@
 # arTTY
 
+<a href="https://www.buymeacoffee.com/mjwhitta">🍪 Buy me a cookie</a>
+
 [![Go Report Card](https://goreportcard.com/badge/gitlab.com/mjwhitta/artty)](https://goreportcard.com/report/gitlab.com/mjwhitta/artty)
 
 ## What is this?
