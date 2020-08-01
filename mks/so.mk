@@ -1,7 +1,7 @@
 SO := $(shell grep -hioPs "^package\s+\K\S+" *.go | sort -u)
 
-build: dir fmt reportcard
+build: reportcard dir
 	@go build -ldflags "$(LDFLAGS)" -o "$(OUT)/$(SO).a"
 
-debug: dir fmt
+debug: reportcard dir
 	@go build -gcflags all="-l -N" -o "$(OUT)/$(SO).a"

@@ -1,12 +1,12 @@
 ifeq ($(OVERRIDEBUILD),)
-build: dir fmt reportcard
+build: reportcard dir
 	@go build -ldflags "$(LDFLAGS)" -o "$(OUT)" ./cmd/*
 endif
 
-debug: dir fmt
+debug: reportcard dir
 	@go build -gcflags all="-l -N" -o "$(OUT)" ./cmd/*
 
-install: fmt
+install: reportcard
 	@mkdir -p "$(HOME)/.local/bin"
 	@go build -ldflags "$(LDFLAGS)" -o "$(HOME)/.local/bin" ./cmd/*
 

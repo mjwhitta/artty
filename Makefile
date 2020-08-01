@@ -19,16 +19,13 @@ else
 	include mks/so.mk
 endif
 
-check:
-	@which go >/dev/null 2>&1
-
 clean: fmt
 	@rm -rf "$(BUILD)" go.sum
 	@go mod tidy
 
 clena: clean
 
-cyclo: check
+cyclo: havego
 	@which gocyclo >/dev/null 2>&1 || \
 	    go get -u github.com/fzipp/gocyclo
 	@gocyclo -over 15 . || echo -n
@@ -36,18 +33,21 @@ cyclo: check
 dir:
 	@mkdir -p "$(OUT)"
 
-fmt: check
+fmt: havego
 	@go fmt $(SRC) >/dev/null
 
-gen: check
+gen: havego
 	@go generate $(SRC)
 
-ineffassign: check
+havego:
+	@which go >/dev/null 2>&1
+
+ineffassign: havego
 	@which ineffassign >/dev/null 2>&1 || \
 		go get -u github.com/gordonklaus/ineffassign
 	@ineffassign . || echo -n
 
-lint: check
+lint: havego
 	@which golint >/dev/null 2>&1 || \
 	    go get -u golang.org/x/lint/golint
 	@golint $(SRC)
@@ -57,26 +57,26 @@ push:
 	@git push
 	@git push --tags
 
-reportcard: cyclo ineffassign lint simplify vet
+reportcard: fmt cyclo ineffassign lint simplify vet
 
-simplify: check
+simplify: havego
 	@gofmt -s -w $(SRC)
 
-updatedeps: check
+updatedeps: havego
 	@for dep in $(SRCDEPS); do \
 		go get -u -v $$dep; \
 	done
 	@rm -f go.sum
 	@go mod tidy
 
-updatereportcard: check
+updatereportcard: havego
 	@go get -u github.com/fzipp/gocyclo
 	@go get -u github.com/gordonklaus/ineffassign
 	@go get -u golang.org/x/lint/golint
 	@rm -f go.sum
 	@go mod tidy
 
-vet: check
+vet: havego
 	@go vet $(SRC) || echo -n
 
 yank:
