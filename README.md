@@ -77,7 +77,7 @@ fi
 
 ```
 if [[ -n $(command -v arTTY) ]]; then
-    compdef _gnu_generic art artty arTTY
+    compdef _gnu_generic arTTY
     _arTTY_complete() { reply=($(arTTY --ls -p)); }
     compctl -K _arTTY_complete arTTY
 fi
