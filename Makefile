@@ -64,6 +64,7 @@ simplify: havego
 	@gofmt -s -w $(SRC)
 
 test: havego
+	@go clean --testcache
 	@for i in $(TEST); do \
 	    go test $(PKG)/$${i##./}; \
 	done
