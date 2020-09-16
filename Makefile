@@ -63,6 +63,11 @@ reportcard: fmt cyclo ineffassign lint simplify vet
 simplify: havego
 	@gofmt -s -w $(SRC)
 
+sloc: havego
+	@which sloc >/dev/null 2>&1 || \
+	    go get -u github.com/bytbox/sloc/sloc
+	@sloc .
+
 test: havego
 	@go clean --testcache
 	@for i in $(TEST); do \
