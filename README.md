@@ -23,6 +23,7 @@ Or install from source:
 ```
 $ git clone https://gitlab.com/mjwhitta/artty.git
 $ cd artty
+$ git submodule update --init
 $ make install
 ```
 

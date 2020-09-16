@@ -2,3 +2,6 @@
 	path = arTTY_images
 	url = https://gitlab.com/mjwhitta/arTTY_images.git
 	branch = master
+[submodule "gomk"]
+	path = gomk
+	url = https://gitlab.com/mjwhitta/gomk.git

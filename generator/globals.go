@@ -1,5 +1,8 @@
 package generator
 
+import "regexp"
+
+var esc = regexp.MustCompile(string(rune(0x1b)))
 var keys []string
 
 func init() {

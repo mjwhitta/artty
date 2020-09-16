@@ -94,7 +94,6 @@ func GenerateBash(str string) (string, error) {
 		"function logo() {",
 		"    echo",
 	}
-	var esc = regexp.MustCompile(string(0x1b))
 	var r = regexp.MustCompile(`(.{0,54})[^\\]`)
 
 	for _, l := range strings.Split(str, "\n") {
@@ -120,7 +119,6 @@ func GenerateBash(str string) (string, error) {
 // GenerateGo will generate a go function from an image that can be
 // ran to display in a terminal.
 func GenerateGo(str string) (string, error) {
-	var esc = regexp.MustCompile(string(0x1b))
 	var rb = []string{
 		"func logo() {",
 		"    fmt.Println()",
@@ -180,7 +178,6 @@ func GenerateJSON(filename, name string) (string, string, error) {
 // GeneratePython will generate a python3 function from an image that
 // can be ran to display in a terminal.
 func GeneratePython(str string) (string, error) {
-	var esc = regexp.MustCompile(string(0x1b))
 	var py = []string{
 		"def logo():",
 		"    print()",
@@ -212,7 +209,6 @@ func GeneratePython(str string) (string, error) {
 // GenerateRuby will generate a ruby function from an image that can
 // be ran to display in a terminal.
 func GenerateRuby(str string) (string, error) {
-	var esc = regexp.MustCompile(string(0x1b))
 	var rb = []string{
 		"def logo",
 		"    puts",
