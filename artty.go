@@ -48,43 +48,42 @@ func Filter(
 	h int,
 ) ([]string, error) {
 	var e error
-	var excluded bool
-	var fits bool
+	var excluded *regexp.Regexp
 	var height int
 	var keep []string
-	var matched bool
+	var matched *regexp.Regexp
 	var width int
 
+	if match != "" {
+		if matched, e = regexp.Compile(match); e != nil {
+			return []string{}, e
+		}
+	}
+
+	if exclude != "" {
+		if excluded, e = regexp.Compile(exclude); e != nil {
+			return []string{}, e
+		}
+	}
+
 	for _, name := range Cache.List() {
-		matched = true
-		if match != "" {
-			matched, e = regexp.Match(match, []byte(name))
-			if e != nil {
-				return []string{}, e
-			}
+		if (matched != nil) && !matched.MatchString(name) {
+			continue
 		}
 
-		excluded = false
-		if exclude != "" {
-			excluded, e = regexp.Match(exclude, []byte(name))
-			if e != nil {
-				return []string{}, e
-			}
+		if (excluded != nil) && excluded.MatchString(name) {
+			continue
 		}
 
-		fits = false
 		if (w == 0) && (h == 0) {
-			fits = true
+			keep = append(keep, name)
 		} else {
 			height = Cache.GetHeightOf(name)
 			width = Cache.GetWidthOf(name)
-			if (height <= h) && (width <= w) {
-				fits = true
-			}
-		}
 
-		if matched && !excluded && fits {
-			keep = append(keep, name)
+			if (height <= h) && (width <= w) {
+				keep = append(keep, name)
+			}
 		}
 	}
 
