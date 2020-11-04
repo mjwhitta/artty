@@ -35,14 +35,12 @@ func demo(arts []string, info *sysinfo.SysInfo) {
 
 		if a.String() != "" {
 			log.Info(name)
-			hl.Println()
-			hl.Println(a)
-			hl.Println()
+			hl.Printf("\n%s\n\n", a)
 		}
 	}
 }
 
-func draw(name string, i *sysinfo.SysInfo, d string, f string) {
+func draw(name string, i *sysinfo.SysInfo, b, d, f string) {
 	var a *art.Art
 	var clear *exec.Cmd
 	var e error
@@ -85,19 +83,19 @@ func draw(name string, i *sysinfo.SysInfo, d string, f string) {
 		a.SysInfo = i
 
 		if a.String() != "" {
-			hl.Println()
-			hl.Println(a)
-			hl.Println()
+			hl.Printf("\n%s\n\n", a)
+		}
+
+		if b != "" {
+			hl.Printf("%s\n\n", b)
 		}
 
 		if d != "" {
-			hl.Println(d)
-			hl.Println()
+			hl.Printf("%s\n\n", d)
 		}
 
 		if f != "" {
-			hl.Println(f)
-			hl.Println()
+			hl.Printf("%s\n\n", f)
 		}
 	}
 }
@@ -125,7 +123,7 @@ func generate(file string) {
 	artty.Cache.Refresh()
 }
 
-func getFit(d, f *string, info *sysinfo.SysInfo) (h, w int) {
+func getFit(b, d, f *string, info *sysinfo.SysInfo) (h, w int) {
 	var height int
 	var width int
 
@@ -137,16 +135,15 @@ func getFit(d, f *string, info *sysinfo.SysInfo) (h, w int) {
 			w -= 2 // Leave some space for leading/trailing space
 		}
 
-		if h < 0 {
+		if (h < 0) || (w < 0) {
 			h = 0
-		}
-
-		if w < 0 {
 			w = 0
+
+			return
 		}
 
-		// Check devexcuse and fortune for height and width
-		for _, strptr := range []*string{d, f} {
+		// Check bsfact, devexcuse, and fortune for height and width
+		for _, strptr := range []*string{b, d, f} {
 			height = 0
 			width = 0
 
@@ -193,7 +190,11 @@ func getName(arts []string) string {
 	return name
 }
 
-func getOptionals() (d string, f string, i *sysinfo.SysInfo) {
+func getOptionals() (b, d, f string, i *sysinfo.SysInfo) {
+	if config.GetBool("bsfact") {
+		b = artty.BruceSchneier()
+	}
+
 	if config.GetBool("devexcuse") {
 		d = artty.DevExcuse()
 	}
@@ -222,6 +223,7 @@ func list(arts []string) {
 
 func main() {
 	var arts []string
+	var bsfact string
 	var devexcuse string
 	var e error
 	var fortune string
@@ -240,8 +242,8 @@ func main() {
 
 	validate()
 
-	devexcuse, fortune, info = getOptionals()
-	height, width = getFit(&devexcuse, &fortune, info)
+	bsfact, devexcuse, fortune, info = getOptionals()
+	height, width = getFit(&bsfact, &devexcuse, &fortune, info)
 
 	arts, e = artty.Filter(
 		config.GetString("match"),
@@ -263,7 +265,7 @@ func main() {
 	case "demo":
 		demo(arts, info)
 	case "draw":
-		draw(getName(arts), info, devexcuse, fortune)
+		draw(getName(arts), info, bsfact, devexcuse, fortune)
 	case "generate":
 		generate(flags.generate)
 	case "list":

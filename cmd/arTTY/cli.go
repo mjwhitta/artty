@@ -13,6 +13,7 @@ import (
 type cliFlags struct {
 	action    string
 	all       bool
+	bsfact    bool
 	cache     bool
 	clear     bool
 	convert   string
@@ -125,6 +126,13 @@ func init() {
 		"all",
 		false,
 		"Ignore previous filtering.",
+	)
+	cli.Flag(
+		&flags.bsfact,
+		"b",
+		"bsfact",
+		false,
+		"Display a Bruce Schneier \"fact\".",
 	)
 	cli.Flag(&flags.cache, "cache", false, "Refresh the cache.")
 	cli.Flag(&flags.clear, "c", "clear", false, "Clear screen first.")
@@ -274,6 +282,10 @@ func setupConfig() {
 	}
 
 	// Check all other flags
+	if flags.bsfact {
+		config.Set(true, "bsfact")
+	}
+
 	if flags.clear {
 		config.Set(true, "clear_screen")
 	}

@@ -2,6 +2,7 @@ package artty
 
 import (
 	"errors"
+	"html"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -12,28 +13,86 @@ import (
 	"strings"
 
 	"gitlab.com/mjwhitta/artty/art"
+	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/where"
 )
+
+// BruceSchneier will parse the HTML response from
+// https://schneierfacts.com and return the provided "fact".
+func BruceSchneier() string {
+	var b []byte
+	var e error
+	var r *http.Response
+	var w int
+
+	if r, e = http.Get("https://schneierfacts.com"); e != nil {
+		return ""
+	}
+	defer r.Body.Close()
+
+	if b, e = ioutil.ReadAll(r.Body); e != nil {
+		return ""
+	}
+
+	for _, m := range bsRegex.FindAllStringSubmatch(string(b), -1) {
+		w, _ = TermSize()
+
+		return hl.Wrap(
+			w,
+			strings.ReplaceAll(html.UnescapeString(m[1]), "\n", " "),
+		)
+	}
+
+	return ""
+}
+
+func buildRegex(
+	match string,
+	exclude string,
+) (*regexp.Regexp, *regexp.Regexp, error) {
+	var e error
+	var excluded *regexp.Regexp
+	var matched *regexp.Regexp
+
+	if match != "" {
+		if matched, e = regexp.Compile(match); e != nil {
+			return nil, nil, e
+		}
+	}
+
+	if exclude != "" {
+		if excluded, e = regexp.Compile(exclude); e != nil {
+			return nil, nil, e
+		}
+	}
+
+	return matched, excluded, nil
+}
 
 // DevExcuse will parse the HTML response from
 // http://developerexcuses.com and return the provided excuse.
 func DevExcuse() string {
 	var b []byte
 	var e error
-	var r = regexp.MustCompile(`<a href.+>(.+)</a>`)
-	var res *http.Response
+	var r *http.Response
+	var w int
 
-	if res, e = http.Get("http://developerexcuses.com"); e != nil {
+	if r, e = http.Get("http://developerexcuses.com"); e != nil {
 		return ""
 	}
-	defer res.Body.Close()
+	defer r.Body.Close()
 
-	if b, e = ioutil.ReadAll(res.Body); e != nil {
+	if b, e = ioutil.ReadAll(r.Body); e != nil {
 		return ""
 	}
 
-	for _, match := range r.FindAllStringSubmatch(string(b), -1) {
-		return match[1]
+	for _, m := range devRegex.FindAllStringSubmatch(string(b), -1) {
+		w, _ = TermSize()
+
+		return hl.Wrap(
+			w,
+			strings.ReplaceAll(html.UnescapeString(m[1]), "\n", " "),
+		)
 	}
 
 	return ""
@@ -49,21 +108,15 @@ func Filter(
 ) ([]string, error) {
 	var e error
 	var excluded *regexp.Regexp
-	var height int
 	var keep []string
 	var matched *regexp.Regexp
-	var width int
 
-	if match != "" {
-		if matched, e = regexp.Compile(match); e != nil {
-			return []string{}, e
-		}
+	if (h == 0) || (w == 0) {
+		return []string{}, nil
 	}
 
-	if exclude != "" {
-		if excluded, e = regexp.Compile(exclude); e != nil {
-			return []string{}, e
-		}
+	if matched, excluded, e = buildRegex(match, exclude); e != nil {
+		return []string{}, e
 	}
 
 	for _, name := range Cache.List() {
@@ -78,10 +131,8 @@ func Filter(
 		if (w == 0) && (h == 0) {
 			keep = append(keep, name)
 		} else {
-			height = Cache.GetHeightOf(name)
-			width = Cache.GetWidthOf(name)
-
-			if (height <= h) && (width <= w) {
+			if (Cache.GetHeightOf(name) <= h) &&
+				(Cache.GetWidthOf(name) <= w) {
 				keep = append(keep, name)
 			}
 		}

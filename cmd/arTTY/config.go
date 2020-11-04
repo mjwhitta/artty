@@ -8,6 +8,7 @@ func init() {
 	// Initialize default values for config
 	config = jsoncfg.New("~/.config/arTTY/rc")
 	config.SetDefault("", "art")
+	config.SetDefault(false, "bsfact")
 	config.SetDefault(true, "clear_screen")
 	config.SetDefault([]string{"green"}, "dataColors")
 	config.SetDefault(false, "devexcuse")

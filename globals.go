@@ -1,9 +1,17 @@
 package artty
 
-import "gitlab.com/mjwhitta/artty/cache"
+import (
+	"regexp"
+
+	"gitlab.com/mjwhitta/artty/cache"
+)
+
+var bsRegex = regexp.MustCompile(`<p class\=\"fact\">(.+)</p>`)
 
 // Cache related vars
 var Cache = cache.New(Version)
 
+var devRegex = regexp.MustCompile(`<a href.+>(.+)</a>`)
+
 // Version is the package version
-const Version = "0.11.7"
+const Version = "0.12.0"
