@@ -111,10 +111,6 @@ func Filter(
 	var keep []string
 	var matched *regexp.Regexp
 
-	if (h == 0) || (w == 0) {
-		return []string{}, nil
-	}
-
 	if matched, excluded, e = buildRegex(match, exclude); e != nil {
 		return []string{}, e
 	}
