@@ -22,16 +22,16 @@ type Art struct {
 }
 
 // New is a constructor for the Art type.
-func New(path ...string) *Art {
+func New(paths ...string) *Art {
 	var a Art
 	var b []byte
 	var e error
 
-	if len(path) == 0 {
+	if len(paths) == 0 {
 		return &Art{}
 	}
 
-	b, e = ioutil.ReadFile(pathname.ExpandPath(path[0]))
+	b, e = ioutil.ReadFile(pathname.ExpandPath(paths[0]))
 	if e != nil {
 		return &Art{}
 	}
