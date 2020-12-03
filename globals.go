@@ -14,4 +14,4 @@ var Cache = cache.New(Version)
 var devRegex = regexp.MustCompile(`<a href.+>(.+)</a>`)
 
 // Version is the package version
-const Version = "0.12.5"
+const Version = "0.12.6"
