@@ -110,6 +110,7 @@ func init() {
 			[]string{
 				"bash: Generate bash code\n",
 				"go: Generate go code\n",
+				"json: Generate JSON from image file\n",
 				"stdout: Display art (default)\n",
 				"python: Generate python code\n",
 				"ruby: Generate ruby code",
@@ -371,13 +372,14 @@ func validateActions() {
 	}
 
 	switch flags.format {
-	case "bash", "go", "python", "ruby":
-		if flags.action != "draw" {
+	case "bash", "go", "json", "python", "ruby":
+		switch flags.action {
+		case "draw", "generate":
+		default:
 			cli.Usage(InvalidArgument)
 		}
 	case "stdout":
 	default:
 		cli.Usage(InvalidArgument)
 	}
-
 }

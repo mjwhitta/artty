@@ -110,17 +110,22 @@ func generate(file string) {
 		panic(e)
 	}
 
-	f, e = os.Create(
-		filepath.Join(cache.CustomImagesDir, name) + ".json",
-	)
-	if e != nil {
-		panic(e)
+	switch flags.format {
+	case "json":
+		hl.Println(out)
+	case "stdout":
+		f, e = os.Create(
+			filepath.Join(cache.CustomJSONDir, name) + ".json",
+		)
+		if e != nil {
+			panic(e)
+		}
+
+		f.WriteString(out + "\n")
+		f.Close()
+
+		artty.Cache.Refresh()
 	}
-
-	f.WriteString(out + "\n")
-	f.Close()
-
-	artty.Cache.Refresh()
 }
 
 func getFit(b, d, f *string, info *sysinfo.SysInfo) (h, w int) {

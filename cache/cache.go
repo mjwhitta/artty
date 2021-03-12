@@ -49,13 +49,13 @@ func New(version string) *ArtCache {
 func (c *ArtCache) downloadExtract() error {
 	var e error
 	var g *gzip.Reader
-	var images = "https://gitlab.com/mjwhitta/arTTY_images"
+	var json = "https://gitlab.com/mjwhitta/arTTY_json"
 	var res *http.Response
 	var t *tar.Reader
-	var tgz = "/-/archive/master/arTTY_images.tgz"
+	var tgz = "/-/archive/master/arTTY_json.tgz"
 
 	// Download tarball
-	if res, e = http.Get(images + tgz); e != nil {
+	if res, e = http.Get(json + tgz); e != nil {
 		return e
 	}
 	defer res.Body.Close()
@@ -70,7 +70,7 @@ func (c *ArtCache) downloadExtract() error {
 	t = tar.NewReader(g)
 
 	// Ensure clean up
-	defer os.RemoveAll(filepath.Join(cacheDir, imagesDir+".new"))
+	defer os.RemoveAll(filepath.Join(cacheDir, jsonDir+".new"))
 
 	// Extract tar
 	if e = c.extract(t); e != nil {
@@ -85,7 +85,7 @@ func (c *ArtCache) extract(t *tar.Reader) error {
 	var e error
 	var h *tar.Header
 	var filename string
-	var r = regexp.MustCompile(`^arTTY_images.+/generated/(.+)`)
+	var r = regexp.MustCompile(`^arTTY_json[^/]+/(.+)`)
 
 	// Read tarball
 	for {
@@ -99,7 +99,7 @@ func (c *ArtCache) extract(t *tar.Reader) error {
 			// Get filename to write to
 			filename = filepath.Join(
 				cacheDir,
-				imagesDir+".new",
+				jsonDir+".new",
 				r.FindStringSubmatch(h.Name)[1],
 			)
 
@@ -155,8 +155,8 @@ func (c *ArtCache) List() []string {
 
 func (c *ArtCache) organize() error {
 	var e error
-	var newCache string = filepath.Join(cacheDir, imagesDir+".new")
-	var oldCache string = filepath.Join(cacheDir, imagesDir)
+	var newCache string = filepath.Join(cacheDir, jsonDir+".new")
+	var oldCache string = filepath.Join(cacheDir, jsonDir)
 
 	// Ensure new tarball was extracted
 	if !pathname.DoesExist(newCache) {
@@ -196,8 +196,8 @@ func (c *ArtCache) Refresh() {
 	}
 
 	// Get all JSON files
-	filepath.Walk(filepath.Join(cacheDir, imagesDir), addArt)
-	filepath.Walk(CustomImagesDir, addArt)
+	filepath.Walk(filepath.Join(cacheDir, jsonDir), addArt)
+	filepath.Walk(CustomJSONDir, addArt)
 
 	c.Set(arts, "art")
 	c.Set(c.version, "version")

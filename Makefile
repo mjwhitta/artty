@@ -6,4 +6,4 @@ profile: reportcard
 	@rm -f artty.test cpu.profile
 
 refresh: build
-	@tools/refresh_art $(FORCE) "$(PATTERN)"
+	@tools/refresh_art $(PARAMS) "$(PATTERN)"

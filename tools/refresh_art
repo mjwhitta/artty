@@ -1,23 +1,41 @@
 #!/usr/bin/env bash
 
 ### Helpers begin
-set -o noglob
-trap "clean 128" SIGINT # Ensure cleanup on ^C
 check_deps() {
     local missing
     for d in "${deps[@]}"; do
         if [[ -z $(command -v "$d") ]]; then
             # Force absolute path
-            if [[ ! -f "/$d" ]]; then
+            if [[ ! -e "/$d" ]]; then
                 err "$d was not found"
                 missing="true"
             fi
         fi
     done; unset d
-    [[ -z $missing ]] || exit 127
+    [[ -z $missing ]] || exit 128
 }
+err() { echo -e "${color:+\e[31m}[!] $*\e[0m"; }
+errx() { err "${*:2}"; clean "$1"; }
+good() { echo -e "${color:+\e[32m}[+] $*\e[0m"; }
+info() { echo -e "${color:+\e[37m}[*] $*\e[0m"; }
+long_opt() {
+    local arg shift="0"
+    case "$1" in
+        "--"*"="*) arg="${1#*=}"; [[ -n $arg ]] || return 127 ;;
+        *) shift="1"; shift; [[ $# -gt 0 ]] || return 127; arg="$1" ;;
+    esac
+    echo "$arg"
+    return $shift
+}
+subinfo() { echo -e "${color:+\e[36m}[=] $*\e[0m"; }
+warn() { echo -e "${color:+\e[33m}[-] $*\e[0m"; }
+### Helpers end
+
+### Parallel helpers begin
+set -o noglob
+trap "clean 126" SIGINT # Ensure cleanup on ^C
 check_lock() {
-    [[ -n $cache ]] || errx 126 "Cache is not defined"
+    [[ -n $cache ]] || errx 125 "Cache is not defined"
     mkdir -p "$cache"
     if [[ -f "$cache.lock" ]]; then
         errx 125 "$cache.lock already exists"
@@ -58,30 +76,15 @@ clean() {
     show_cursor
     exit "${1:-0}"
 }
-err() { echo -e "${color:+\e[31m}[!] $*\e[0m"; }
-errx() { err "${*:2}"; clean "$1"; }
-good() { echo -e "${color:+\e[32m}[+] $*\e[0m"; }
 hide_cursor() { echo -en "\e[?25l"; }
-info() { echo -e "${color:+\e[37m}[*] $*\e[0m"; }
 json_get() {
     if [[ -z $json ]] || [[ ! -f "$json" ]]; then
         return
     fi
     jq -cr ".$*" "$json" | sed -r "s/^null$//g"
 }
-long_opt() {
-    local arg shift="0"
-    case "$1" in
-        "--"*"="*) arg="${1#*=}"; [[ -n $arg ]] || usage 123 ;;
-        *) shift="1"; shift; [[ $# -gt 0 ]] || usage 123; arg="$1" ;;
-    esac
-    echo "$arg"
-    return $shift
-}
 show_cursor() { echo -en "\e[?25h"; }
-subinfo() { echo -e "${color:+\e[36m}[=] $*\e[0m"; }
-warn() { echo -e "${color:+\e[33m}[-] $*\e[0m"; }
-### Helpers end
+### Parallel helpers end
 
 read_resume_file() {
     pattern="$(json_get "pattern")"
@@ -91,13 +94,15 @@ usage() {
     cat <<EOF
 Usage: ${0##*/} [OPTIONS] [pattern]
 
-Refresh art for ArTTY. Optionally provide a pattern to only refresh
-selected categories.
+DESCRIPTION
+    Refresh art for ArTTY. Optionally provide a pattern to only
+    refresh selected categories.
 
-Options:
+OPTIONS
     -f, --force          Generate images even if they already exist
     -h, --help           Display this help message
     --no-color           Disable colorized output
+    -o, --output=DIR     Ouput JSON to provided directory
     -r, --resume         Resume from a previous run
     -t, --threads=NUM    Use specified number of threads (default: 32)
     -v, --verbose        Do not hide parallel errors
@@ -119,36 +124,47 @@ write_resume_file() {
 EOF
 }
 
-declare -a args deps
-unset force help pattern
+declare -a args
+unset force help output pattern
 color="true"
-deps+=("git")
-deps+=("jq")
 parallel="true"
 threads="32"
-
-# Check for missing dependencies
-check_deps
 
 # Parse command line options
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        "--") shift && args+=("$@") && break ;;
+        "--") shift; args+=("$@"); break ;;
         "-f"|"--force") force="true" ;;
         "-h"|"--help") help="true" ;;
         "--no-color") unset color ;;
+        "-o"|"--output"*) output="../$(long_opt "$@")" ;;
         "-r"|"--resume") resume="--resume" ;;
-        "-t"|"--threads"*) threads="$(long_opt "$@")" || shift ;;
+        "-t"|"--threads"*) threads="$(long_opt "$@")" ;;
         "-v"|"--verbose") verbose="true" ;;
         *) args+=("$1") ;;
+    esac
+    case "$?" in
+        0) ;;
+        1) shift ;;
+        *) usage $? ;;
     esac
     shift
 done
 [[ ${#args[@]} -eq 0 ]] || set -- "${args[@]}"
 
-# Check for valid params
+# Help info
 [[ -z $help ]] || usage 0
-[[ $# -le 1 ]] || usage 1
+
+# Check for missing dependencies
+declare -a deps
+deps+=("awk")
+deps+=("git")
+deps+=("jq")
+deps+=("sha256sum")
+check_deps
+
+# Check for valid params
+[[ $# -le 1 ]] || [[ -n $resume ]] || usage 1
 
 # Determine parallel situation
 if [[ -n $parallel ]] && [[ -z $(command -v parallel) ]]; then
@@ -159,7 +175,7 @@ fi
 # Cite if needed
 if [[ -n $parallel ]] && [[ ! -f "$HOME/.parallel/will-cite" ]]; then
     pvers="$(parallel --version | grep -ioPs "parallel \K\d+")"
-    if [[ $pvers -lt 20181122 ]]; then
+    if [[ $pvers -gt 20161222 ]] && [[ $pvers -lt 20181122 ]]; then
         mkdir -p "$HOME/.parallel"
         parallel --citation
     fi
@@ -239,7 +255,7 @@ warn() { echo -e "\r${color:+\e[33m}[-] \$*\e[0m\e[K"; }
 ### Helpers end
 
 # Constants
-output="../arTTY_images/generated"
+output="${output:-../arTTY_images/generated}"
 
 # Parse input
 dir="\${1%%|*}"
@@ -272,7 +288,7 @@ good "\$img => \$dir/\$filename"
 if [[ ! -f "\$output/\$dir/\$filename" ]] || [[ "x$force" != "x" ]]
 then
     mkdir -p "\$output/\$dir"
-    ../build/linux/amd64/arTTY -g "\$img" "\$name" \
+    ../build/linux/amd64/arTTY --format json -g "\$img" "\$name" \
         >"\$output/\$dir/\$filename"
     failed="\$(find "\$output/\$dir/\$filename" -empty)"
     [[ -z \$failed ]] || err "Failed: \$dir/\$filename"

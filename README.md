@@ -51,7 +51,7 @@ $ arTTY -c --fit -p -s --save legend-of-zelda-majoras-mask
 $ arTTY -c --fit -m "street-fighter-3" -p -r -s --save
 ```
 
-Use the `--ls` flags to see all included images. Occasionally you may
+Use the `--ls` flags to see all included art. Occasionally you may
 want to run `arTTY --update` to download any new art.
 
 Additionally, the system info portion is [configurable][sysinfo].
@@ -90,7 +90,7 @@ ArTTY can generate source code from images too. It will automatically
 determine the size, but you can specify a size manually by appending
 `_WIDTHxHEIGHT` to the filename. It uses the filename to name the art
 unless you manually specify one. It will then cache any json files in
-the `$HOME/.config/arTTY/arTTY_images` directory.
+the `$HOME/.config/arTTY/arTTY_json` directory.
 
 By default this will generate a JSON file and refresh the cache. If
 you want to just see the JSON file, or generate source code for
@@ -117,6 +117,7 @@ with sprites, however, it can parse any image this way.
 
 - [Source](https://gitlab.com/mjwhitta/arTTY)
 - [Images](https://gitlab.com/mjwhitta/arTTY_images)
+- [Images](https://gitlab.com/mjwhitta/arTTY_json)
 
 ## TODO
 
