@@ -15,7 +15,7 @@ Art for your TTY.
 Open a terminal and run the following:
 
 ```
-$ go get -ldflags "-s -w" -u gitlab.com/mjwhitta/artty/cmd/arTTY
+$ go get -ldflags "-s -w" --trimpath -u gitlab.com/mjwhitta/artty/cmd/arTTY
 ```
 
 Or install from source:
@@ -110,8 +110,8 @@ $ arTTY --format ruby -g my-art-name.png
 ```
 
 This will traverse a `WIDTH` by `HEIGHT` grid and sample the color
-inside each cell. It will then generate a json file. This works best
-with sprites, however, it can parse any image this way.
+inside each cell. It will then generate the necessary json data. This
+works best with sprites, however, it can parse any image this way.
 
 ## Links
 

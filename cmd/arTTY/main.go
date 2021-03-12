@@ -101,6 +101,7 @@ func draw(name string, i *sysinfo.SysInfo, b, d, f string) {
 }
 
 func generate(file string) {
+	var a *art.Art
 	var name string = config.GetString("art")
 	var e error
 	var f *os.File
@@ -110,8 +111,34 @@ func generate(file string) {
 		panic(e)
 	}
 
+	a = art.NewFromJSON([]byte(out))
+
 	switch flags.format {
+	case "bash":
+		out, e = generator.GenerateBash(a.String())
+		if e != nil {
+			panic(e)
+		}
+		hl.Println(out)
+	case "go":
+		out, e = generator.GenerateGo(a.String())
+		if e != nil {
+			panic(e)
+		}
+		hl.Println(out)
 	case "json":
+		hl.Println(out)
+	case "python":
+		out, e = generator.GeneratePython(a.String())
+		if e != nil {
+			panic(e)
+		}
+		hl.Println(out)
+	case "ruby":
+		out, e = generator.GenerateRuby(a.String())
+		if e != nil {
+			panic(e)
+		}
 		hl.Println(out)
 	case "stdout":
 		f, e = os.Create(

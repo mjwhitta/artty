@@ -21,9 +21,9 @@ type Art struct {
 	Width   int               `json:"width"`
 }
 
-// New is a constructor for the Art type.
+// New is a constructor for the Art type that takes an optional
+// filename.
 func New(paths ...string) *Art {
-	var a Art
 	var b []byte
 	var e error
 
@@ -35,6 +35,14 @@ func New(paths ...string) *Art {
 	if e != nil {
 		return &Art{}
 	}
+
+	return NewFromJSON(b)
+}
+
+// NewFromJSON is a constructor for the Art type that takes a JSON
+// blob.
+func NewFromJSON(b []byte) *Art {
+	var a Art
 
 	if json.Unmarshal(b, &a) != nil {
 		return &Art{}
