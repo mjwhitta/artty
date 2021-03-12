@@ -101,7 +101,7 @@ func draw(name string, i *sysinfo.SysInfo, b, d, f string) {
 }
 
 func generate(file string) {
-	var name string
+	var name string = config.GetString("art")
 	var e error
 	var f *os.File
 	var out string
