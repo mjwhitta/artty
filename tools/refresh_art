@@ -101,7 +101,7 @@ DESCRIPTION
 OPTIONS
     -f, --force          Generate images even if they already exist
     -h, --help           Display this help message
-    --no-color           Disable colorized output
+        --no-color       Disable colorized output
     -o, --output=DIR     Ouput JSON to provided directory
     -r, --resume         Resume from a previous run
     -t, --threads=NUM    Use specified number of threads (default: 32)
