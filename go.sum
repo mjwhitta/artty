@@ -12,8 +12,8 @@ gitlab.com/mjwhitta/pathname v1.0.8 h1:hyycAuCgrNod6GKy44zI4os/irpsNSbAtZh57okY4
 gitlab.com/mjwhitta/pathname v1.0.8/go.mod h1:OduXtPfsuCk5BMEWuDV3ipTnfyFDaFjHEmUzDWH9bss=
 gitlab.com/mjwhitta/safety v1.7.0 h1:0Kk0rcb3l22H01lThMPbOF0x1qNNpwjY3tNRoVU4VYY=
 gitlab.com/mjwhitta/safety v1.7.0/go.mod h1:TXHylQtFRnA/cxjtPjiConVT29/288rm1eQRGOqzckM=
-gitlab.com/mjwhitta/sysinfo v1.2.1 h1:xMJPo58TSNjUJGZtl+fAjwDAp2oFmYc7tc8bBtXZo7Q=
-gitlab.com/mjwhitta/sysinfo v1.2.1/go.mod h1:mH7Wl2a3L49zXGWAhYoDLvflKUtpbKEHXBkP+2OUvxo=
+gitlab.com/mjwhitta/sysinfo v1.2.2 h1:jazxOY2YadK50FVrBajY58B0XFq37B4CEMUdYmzXyH0=
+gitlab.com/mjwhitta/sysinfo v1.2.2/go.mod h1:mH7Wl2a3L49zXGWAhYoDLvflKUtpbKEHXBkP+2OUvxo=
 gitlab.com/mjwhitta/where v1.0.20 h1:uJDCJQIqKCOjrrx0VC956c9dgUSh5K3GwaIP66Lfh8Y=
 gitlab.com/mjwhitta/where v1.0.20/go.mod h1:Zl4BBLv3+F03uisSgrvFXu6P2arYMkY6ij4OI+9iGSI=
 golang.org/x/sys v0.0.0-20210309074719-68d13333faf2 h1:46ULzRKLh1CwgRq2dC5SlBzEqqNCi8rreOZnNrbqcIY=
