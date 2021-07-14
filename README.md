@@ -15,7 +15,8 @@ Art for your TTY.
 Open a terminal and run the following:
 
 ```
-$ go get --ldflags "-s -w" --trimpath -u gitlab.com/mjwhitta/artty/cmd/arTTY
+$ go install --ldflags "-s -w" --trimpath \
+    gitlab.com/mjwhitta/artty/cmd/arTTY@latest
 ```
 
 Or install from source:
