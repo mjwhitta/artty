@@ -116,6 +116,7 @@ works best with sprites, however, it can parse any image this way.
 
 ## Links
 
+- [Releases](https://gitlab.com/mjwhitta/artty/-/releases)
 - [Source](https://gitlab.com/mjwhitta/arTTY)
 - [Images](https://gitlab.com/mjwhitta/arTTY_images)
 - [Images](https://gitlab.com/mjwhitta/arTTY_json)
