@@ -9,11 +9,11 @@ require (
 	gitlab.com/mjwhitta/jsoncfg v1.4.6
 	gitlab.com/mjwhitta/log v1.4.4
 	gitlab.com/mjwhitta/pathname v1.0.9
-	gitlab.com/mjwhitta/sysinfo v1.2.7
-	gitlab.com/mjwhitta/where v1.0.21
+	gitlab.com/mjwhitta/sysinfo v1.2.8
+	gitlab.com/mjwhitta/where v1.0.22
 )
 
 require (
-	gitlab.com/mjwhitta/safety v1.7.1 // indirect
-	golang.org/x/sys v0.0.0-20211020174200-9d6173849985 // indirect
+	gitlab.com/mjwhitta/safety v1.8.0 // indirect
+	golang.org/x/sys v0.0.0-20211102192858-4dd72447c267 // indirect
 )
