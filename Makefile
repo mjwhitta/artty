@@ -1,6 +1,6 @@
 -include gomk/main.mk
 
-profile: reportcard
+profile:
 	@go test -cpuprofile cpu.profile -bench .
 	@go tool pprof artty.test cpu.profile
 ifeq ($(unameS),Windows)
