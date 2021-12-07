@@ -3,7 +3,6 @@ package cache
 import (
 	"archive/tar"
 	"compress/gzip"
-	"errors"
 	"io"
 	"net/http"
 	"os"
@@ -12,6 +11,7 @@ import (
 	"strings"
 
 	"gitlab.com/mjwhitta/artty/art"
+	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/jsoncfg"
 	"gitlab.com/mjwhitta/pathname"
 )
@@ -160,7 +160,7 @@ func (c *ArtCache) organize() error {
 
 	// Ensure new tarball was extracted
 	if !pathname.DoesExist(newCache) {
-		return errors.New("Failed to download/extract tarball")
+		return hl.Errorf("artty: failed to download/extract tarball")
 	}
 
 	// Delete old cache

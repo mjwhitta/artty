@@ -1,14 +1,12 @@
 package artty
 
 import (
-	"errors"
 	"html"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"os/exec"
 	"regexp"
-	"runtime"
 	"strconv"
 	"strings"
 
@@ -163,12 +161,6 @@ func Get(name string) *art.Art {
 		return art.New()
 	default:
 		return art.New(Cache.GetFileOf(name))
-	}
-}
-
-func init() {
-	if runtime.GOOS == "windows" {
-		panic(errors.New("Windows is unsupported"))
 	}
 }
 

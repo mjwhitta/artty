@@ -1,7 +1,6 @@
 package generator
 
 import (
-	"errors"
 	"image"
 	_ "image/jpeg" // Register jpeg
 	_ "image/png"  // Register png
@@ -30,7 +29,8 @@ func bootstrap(
 	var width int
 
 	if !pathname.DoesExist(filename) {
-		return "", nil, nil, errors.New(filename + " does not exist")
+		e = hl.Errorf("artty: %s does not exist", filename)
+		return "", nil, nil, e
 	}
 
 	filename = pathname.ExpandPath(filename)
@@ -87,7 +87,7 @@ func generateLegend(
 
 	for _, clr := range uniqClrs {
 		if idx == len(keys) {
-			return nil, nil, errors.New("Too many colors")
+			return nil, nil, hl.Errorf("artty: too many colors")
 		}
 
 		flipLegend[clr] = keys[idx]
@@ -164,7 +164,7 @@ func getPixelInfo(
 	}
 
 	if len(uniqClrs) == 0 {
-		return nil, nil, errors.New("No pixel data found")
+		return nil, nil, hl.Errorf("artty: no pixel data found")
 	}
 
 	return pixelClrs, uniqClrs, nil

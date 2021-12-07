@@ -1,7 +1,6 @@
 package generator
 
 import (
-	"errors"
 	"image"
 	"image/color"
 	"os"
@@ -28,7 +27,7 @@ func Convert(filename string) error {
 	var srgba string
 
 	if !pathname.DoesExist(filename) {
-		return errors.New(filename + " does not exist")
+		return hl.Errorf("artty: %s does not exist", filename)
 	}
 
 	filename = pathname.ExpandPath(filename)
