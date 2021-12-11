@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"gitlab.com/mjwhitta/artty/art"
+	"gitlab.com/mjwhitta/errors"
 	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/where"
 )
@@ -155,13 +156,21 @@ func Fortune() string {
 }
 
 // Get will return the Art matching the provided name.
-func Get(name string) *art.Art {
+func Get(name string) (*art.Art, error) {
+	var a *art.Art
+	var e error
+
 	switch name {
 	case "none":
-		return art.New()
+		a, _ = art.New()
 	default:
-		return art.New(Cache.GetFileOf(name))
+		if a, e = art.New(Cache.GetFileOf(name)); e != nil {
+			e = errors.Newf("failed to get Art %s: %w", name, e)
+			return nil, e
+		}
 	}
+
+	return a, nil
 }
 
 // TermSize will return the size of the terminal.

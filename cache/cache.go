@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"gitlab.com/mjwhitta/artty/art"
-	hl "gitlab.com/mjwhitta/hilighter"
+	"gitlab.com/mjwhitta/errors"
 	"gitlab.com/mjwhitta/jsoncfg"
 	"gitlab.com/mjwhitta/pathname"
 )
@@ -56,13 +56,13 @@ func (c *ArtCache) downloadExtract() error {
 
 	// Download tarball
 	if res, e = http.Get(json + tgz); e != nil {
-		return e
+		return errors.Newf("failed to download tarball: %w", e)
 	}
 	defer res.Body.Close()
 
 	// Create gzip reader
 	if g, e = gzip.NewReader(res.Body); e != nil {
-		return e
+		return errors.Newf("failed to read gzip: %w", e)
 	}
 	defer g.Close()
 
@@ -92,7 +92,7 @@ func (c *ArtCache) extract(t *tar.Reader) error {
 		if h, e = t.Next(); e == io.EOF {
 			break
 		} else if e != nil {
-			return e
+			return errors.Newf("failed to read tarball: %w", e)
 		}
 
 		if strings.HasSuffix(h.Name, ".json") {
@@ -119,18 +119,24 @@ func (c *ArtCache) extractFile(filename string, t *tar.Reader) error {
 
 	// Ensure directory exists
 	if e = os.MkdirAll(dirname, os.ModePerm); e != nil {
+		e = errors.Newf("failed to make directory %s: %w", dirname, e)
 		return e
 	}
 
 	// Create file
 	if f, e = os.Create(filename); e != nil {
+		e = errors.Newf("failed to create file %s: %w", filename, e)
 		return e
 	}
 	defer f.Close()
 
 	// Extract file from tarball
-	_, e = io.Copy(f, t)
-	return e
+	if _, e = io.Copy(f, t); e != nil {
+		e = errors.Newf("failed to extract file %s: %w", filename, e)
+		return e
+	}
+
+	return nil
 }
 
 // GetFileOf will return the cached filename for the specified art.
@@ -160,31 +166,44 @@ func (c *ArtCache) organize() error {
 
 	// Ensure new tarball was extracted
 	if !pathname.DoesExist(newCache) {
-		return hl.Errorf("artty: failed to download/extract tarball")
+		return errors.New("failed to download/extract tarball")
 	}
 
 	// Delete old cache
 	if e = os.RemoveAll(oldCache); e != nil {
-		return e
+		return errors.Newf("failed to delete old cache: %w", e)
 	}
 
 	// Move new cache to final location
-	return os.Rename(newCache, oldCache)
+	if e = os.Rename(newCache, oldCache); e != nil {
+		return errors.Newf("failed to move new cache: %w", e)
+	}
+
+	return nil
 }
 
 // Refresh will read any found JSON files and update the art cache.
-func (c *ArtCache) Refresh() {
+func (c *ArtCache) Refresh() error {
 	var arts = map[string]interface{}{}
+	var e error
+
+	// Save with initial empty data
+	c.Set(arts, "art")
+	c.Set(c.version, "version")
+	c.Save()
 
 	var addArt = func(path string, info os.FileInfo, e error) error {
 		var a *art.Art
 
 		if e != nil {
-			return e
+			return errors.Newf("failed to access %s: %w", path, e)
 		}
 
 		if strings.HasSuffix(path, ".json") {
-			a = art.New(path)
+			if a, e = art.New(path); e != nil {
+				return e
+			}
+
 			arts[a.Name] = map[string]interface{}{
 				"file":   path,
 				"height": a.Height,
@@ -196,24 +215,29 @@ func (c *ArtCache) Refresh() {
 	}
 
 	// Get all JSON files
-	filepath.Walk(filepath.Join(cacheDir, jsonDir), addArt)
-	filepath.Walk(CustomJSONDir, addArt)
+	e = filepath.Walk(filepath.Join(cacheDir, jsonDir), addArt)
+	if e != nil {
+		return e
+	}
 
+	if e = filepath.Walk(CustomJSONDir, addArt); e != nil {
+		return e
+	}
+
+	// Save with new data, if no errors
 	c.Set(arts, "art")
 	c.Set(c.version, "version")
 	c.Save()
+
+	return nil
 }
 
 // Update will download the newest art files from gitlab.com and
 // refresh the local cache.
 func (c *ArtCache) Update() error {
-	var e error
-
-	if e = c.downloadExtract(); e != nil {
+	if e := c.downloadExtract(); e != nil {
 		return e
 	}
 
-	c.Refresh()
-
-	return nil
+	return c.Refresh()
 }

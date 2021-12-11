@@ -1,7 +1,7 @@
 package artty
 
-import hl "gitlab.com/mjwhitta/hilighter"
+import "gitlab.com/mjwhitta/errors"
 
 func init() {
-	panic(hl.Errorf("artty: unsupported OS"))
+	panic(errors.New("unsupported OS"))
 }

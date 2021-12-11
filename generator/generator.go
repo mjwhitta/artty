@@ -3,18 +3,17 @@ package generator
 import (
 	"image"
 	"image/color"
-	"os"
 	"regexp"
 	"strings"
 
+	"gitlab.com/mjwhitta/errors"
 	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/jq"
-	"gitlab.com/mjwhitta/pathname"
 )
 
 // Convert will try to emulate the output of the convert utility from
 // ImageMagick.
-func Convert(filename string) error {
+func Convert(fn string) error {
 	var a uint32
 	var b uint32
 	var c color.Color
@@ -22,22 +21,10 @@ func Convert(filename string) error {
 	var g uint32
 	var hex string
 	var img image.Image
-	var imgFile *os.File
 	var r uint32
 	var srgba string
 
-	if !pathname.DoesExist(filename) {
-		return hl.Errorf("artty: %s does not exist", filename)
-	}
-
-	filename = pathname.ExpandPath(filename)
-
-	if imgFile, e = os.Open(filename); e != nil {
-		return e
-	}
-	defer imgFile.Close()
-
-	if img, _, e = image.Decode(imgFile); e != nil {
+	if img, e = decodeImage(fn); e != nil {
 		return e
 	}
 
@@ -88,7 +75,7 @@ func Convert(filename string) error {
 
 // GenerateBash will generate a bash function from an image that can
 // be ran to display in a terminal.
-func GenerateBash(str string) (string, error) {
+func GenerateBash(str string) string {
 	var bash = []string{
 		"function logo() {",
 		"    echo",
@@ -112,12 +99,12 @@ func GenerateBash(str string) (string, error) {
 
 	bash = append(bash, "    echo", "}")
 
-	return strings.Join(bash, "\n"), nil
+	return strings.Join(bash, "\n")
 }
 
 // GenerateGo will generate a go function from an image that can be
 // ran to display in a terminal.
-func GenerateGo(str string) (string, error) {
+func GenerateGo(str string) string {
 	var rb = []string{
 		"func logo() {",
 		"    fmt.Println()",
@@ -141,19 +128,19 @@ func GenerateGo(str string) (string, error) {
 
 	rb = append(rb, "    fmt.Println()", "}")
 
-	return strings.Join(rb, "\n"), nil
+	return strings.Join(rb, "\n")
 }
 
 // GenerateJSON will generate JSON from an image that can be parsed by
 // arTTY to display in a terminal.
-func GenerateJSON(filename, name string) (string, string, error) {
+func GenerateJSON(fn, name string) (string, string, error) {
 	var e error
 	var jsonOut *jq.JSON
 	var legend map[string]string
 	var output string
 	var pixels []string
 
-	if name, pixels, legend, e = bootstrap(filename, name); e != nil {
+	if name, pixels, legend, e = bootstrap(fn, name); e != nil {
 		return "", "", e
 	}
 
@@ -168,7 +155,7 @@ func GenerateJSON(filename, name string) (string, string, error) {
 	}
 
 	if output, e = jsonOut.GetBlob("  "); e != nil {
-		return "", "", e
+		return "", "", errors.Newf("failed to create JSON: %w", e)
 	}
 
 	return name, output, nil
@@ -176,7 +163,7 @@ func GenerateJSON(filename, name string) (string, string, error) {
 
 // GeneratePython will generate a python3 function from an image that
 // can be ran to display in a terminal.
-func GeneratePython(str string) (string, error) {
+func GeneratePython(str string) string {
 	var py = []string{
 		"def logo():",
 		"    print()",
@@ -202,12 +189,12 @@ func GeneratePython(str string) (string, error) {
 
 	py = append(py, "    print()")
 
-	return strings.Join(py, "\n"), nil
+	return strings.Join(py, "\n")
 }
 
 // GenerateRuby will generate a ruby function from an image that can
 // be ran to display in a terminal.
-func GenerateRuby(str string) (string, error) {
+func GenerateRuby(str string) string {
 	var rb = []string{
 		"def logo",
 		"    puts",
@@ -233,5 +220,5 @@ func GenerateRuby(str string) (string, error) {
 
 	rb = append(rb, "    puts()", "end")
 
-	return strings.Join(rb, "\n"), nil
+	return strings.Join(rb, "\n")
 }

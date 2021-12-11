@@ -1,4 +1,5 @@
 *.profile
 *.test
 build
+local
 tags

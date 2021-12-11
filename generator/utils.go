@@ -9,18 +9,18 @@ import (
 	"sort"
 	"strconv"
 
+	"gitlab.com/mjwhitta/errors"
 	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/pathname"
 )
 
 func bootstrap(
-	filename string,
+	fn string,
 	name string,
 ) (string, []string, map[string]string, error) {
 	var e error
 	var height int
 	var img image.Image
-	var imgFile *os.File
 	var legend map[string]string
 	var pixels []string
 	var pixelClrs [][]string
@@ -28,23 +28,11 @@ func bootstrap(
 	var uniqClrs []string
 	var width int
 
-	if !pathname.DoesExist(filename) {
-		e = hl.Errorf("artty: %s does not exist", filename)
+	if img, e = decodeImage(fn); e != nil {
 		return "", nil, nil, e
 	}
 
-	filename = pathname.ExpandPath(filename)
-
-	if imgFile, e = os.Open(filename); e != nil {
-		return "", nil, nil, e
-	}
-	defer imgFile.Close()
-
-	if img, _, e = image.Decode(imgFile); e != nil {
-		return "", nil, nil, e
-	}
-
-	for _, match := range r.FindAllStringSubmatch(filename, -1) {
+	for _, match := range r.FindAllStringSubmatch(fn, -1) {
 		if name == "" {
 			name = match[1]
 		}
@@ -71,6 +59,30 @@ func bootstrap(
 	return name, pixels, legend, nil
 }
 
+func decodeImage(fn string) (image.Image, error) {
+	var e error
+	var img image.Image
+	var imgFile *os.File
+
+	if !pathname.DoesExist(fn) {
+		return nil, errors.Newf("file %s not found", fn)
+	}
+
+	fn = pathname.ExpandPath(fn)
+
+	if imgFile, e = os.Open(fn); e != nil {
+		return nil, errors.Newf("failed to open %s: %w", fn, e)
+	}
+	defer imgFile.Close()
+
+	if img, _, e = image.Decode(imgFile); e != nil {
+		e = errors.Newf("failed to decode image from %s: %w", fn, e)
+		return nil, e
+	}
+
+	return img, nil
+}
+
 func generateLegend(
 	pixelClrs [][]string,
 	uniqClrs []string,
@@ -87,7 +99,7 @@ func generateLegend(
 
 	for _, clr := range uniqClrs {
 		if idx == len(keys) {
-			return nil, nil, hl.Errorf("artty: too many colors")
+			return nil, nil, errors.Newf("too many colors")
 		}
 
 		flipLegend[clr] = keys[idx]
@@ -164,7 +176,7 @@ func getPixelInfo(
 	}
 
 	if len(uniqClrs) == 0 {
-		return nil, nil, hl.Errorf("artty: no pixel data found")
+		return nil, nil, errors.Newf("no pixel data found")
 	}
 
 	return pixelClrs, uniqClrs, nil

@@ -3,6 +3,7 @@ package cache
 import (
 	"os"
 
+	"gitlab.com/mjwhitta/errors"
 	"gitlab.com/mjwhitta/pathname"
 )
 
@@ -23,6 +24,7 @@ func init() {
 	if !pathname.DoesExist(CustomJSONDir) {
 		e = os.MkdirAll(CustomJSONDir, os.ModePerm)
 		if e != nil {
+			e = errors.Newf("failed to create cache directory: %w", e)
 			panic(e)
 		}
 	}

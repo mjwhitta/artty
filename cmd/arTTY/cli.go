@@ -9,8 +9,19 @@ import (
 	hl "gitlab.com/mjwhitta/hilighter"
 )
 
+// Exit status
+const (
+	Good = iota
+	InvalidOption
+	MissingOption
+	InvalidArgument
+	MissingArgument
+	ExtraArgument
+	Exception
+)
+
 // Flags
-type cliFlags struct {
+var flags struct {
 	action    string
 	all       bool
 	bsfact    bool
@@ -37,8 +48,6 @@ type cliFlags struct {
 	verbose   bool
 	version   bool
 }
-
-var flags cliFlags
 
 func ensureOnlyOne() {
 	var actions = []bool{
@@ -75,10 +84,12 @@ func init() {
 		[]string{
 			"Normally the exit status is 0. In the event of an error",
 			"the exit status will be one of the below:\n\n",
-			"1: Invalid option\n",
-			"2: Invalid argument\n",
-			"3: Extra arguments\n",
-			"4: Exception",
+			hl.Sprintf("%d: Invalid option\n", InvalidOption),
+			hl.Sprintf("%d: Missing option\n", MissingOption),
+			hl.Sprintf("%d: Invalid argument\n", InvalidArgument),
+			hl.Sprintf("%d: Missing argument\n", MissingArgument),
+			hl.Sprintf("%d: Extra argument\n", ExtraArgument),
+			hl.Sprintf("%d: Exception", Exception),
 		},
 		" ",
 	)
@@ -260,7 +271,7 @@ func init() {
 		"v",
 		"verbose",
 		false,
-		"Show show stacktrace if error.",
+		"Show stacktrace, if error.",
 	)
 	cli.Flag(&flags.version, "V", "version", false, "Show version.")
 	cli.Parse()
@@ -343,7 +354,7 @@ func validate() {
 		config.Set(cli.Arg(0), "art")
 		config.Set(false, "random")
 	} else if cli.NArg() > 1 {
-		cli.Usage(ExtraArguments)
+		cli.Usage(ExtraArgument)
 	}
 }
 

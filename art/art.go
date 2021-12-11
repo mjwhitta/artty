@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"strings"
 
+	"gitlab.com/mjwhitta/errors"
 	hl "gitlab.com/mjwhitta/hilighter"
 	"gitlab.com/mjwhitta/pathname"
 	"gitlab.com/mjwhitta/sysinfo"
@@ -23,17 +24,19 @@ type Art struct {
 
 // New is a constructor for the Art type that takes an optional
 // filename.
-func New(paths ...string) *Art {
+func New(paths ...string) (*Art, error) {
 	var b []byte
 	var e error
+	var fn string
 
 	if len(paths) == 0 {
-		return &Art{}
+		return &Art{}, nil
 	}
 
-	b, e = ioutil.ReadFile(pathname.ExpandPath(paths[0]))
-	if e != nil {
-		return &Art{}
+	fn = pathname.ExpandPath(paths[0])
+
+	if b, e = ioutil.ReadFile(fn); e != nil {
+		return nil, errors.Newf("failed to read %s: %w", fn, e)
 	}
 
 	return NewFromJSON(b)
@@ -41,14 +44,14 @@ func New(paths ...string) *Art {
 
 // NewFromJSON is a constructor for the Art type that takes a JSON
 // blob.
-func NewFromJSON(b []byte) *Art {
+func NewFromJSON(b []byte) (*Art, error) {
 	var a Art
 
-	if json.Unmarshal(b, &a) != nil {
-		return &Art{}
+	if e := json.Unmarshal(b, &a); e != nil {
+		return nil, errors.Newf("failed to read JSON: %w", e)
 	}
 
-	return &a
+	return &a, nil
 }
 
 // String will convert the Art struct to a string for fmt's print

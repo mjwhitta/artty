@@ -17,20 +17,18 @@ import (
 	"gitlab.com/mjwhitta/sysinfo"
 )
 
-// Exit status
-const (
-	Good = iota
-	InvalidOption
-	InvalidArgument
-	ExtraArguments
-	Exception
-)
-
 func demo(arts []string, info *sysinfo.SysInfo) {
 	var a *art.Art
+	var e error
 
 	for _, name := range arts {
-		a = artty.Get(name)
+		if a, e = artty.Get(name); e != nil {
+			log.Info(name)
+			log.Err(e.Error())
+			hl.Println()
+			continue
+		}
+
 		a.SysInfo = info
 
 		if a.String() != "" {
@@ -44,35 +42,20 @@ func draw(name string, i *sysinfo.SysInfo, b, d, f string) {
 	var a *art.Art
 	var clear *exec.Cmd
 	var e error
-	var out string
 
-	a = artty.Get(name)
+	if a, e = artty.Get(name); e != nil {
+		panic(e)
+	}
 
 	switch flags.format {
 	case "bash":
-		out, e = generator.GenerateBash(a.String())
-		if e != nil {
-			panic(e)
-		}
-		hl.Println(out)
+		hl.Println(generator.GenerateBash(a.String()))
 	case "go":
-		out, e = generator.GenerateGo(a.String())
-		if e != nil {
-			panic(e)
-		}
-		hl.Println(out)
+		hl.Println(generator.GenerateGo(a.String()))
 	case "python":
-		out, e = generator.GeneratePython(a.String())
-		if e != nil {
-			panic(e)
-		}
-		hl.Println(out)
+		hl.Println(generator.GeneratePython(a.String()))
 	case "ruby":
-		out, e = generator.GenerateRuby(a.String())
-		if e != nil {
-			panic(e)
-		}
-		hl.Println(out)
+		hl.Println(generator.GenerateRuby(a.String()))
 	case "stdout":
 		if config.GetBool("clear_screen") {
 			clear = exec.Command("clear")
@@ -111,36 +94,22 @@ func generate(file string) {
 		panic(e)
 	}
 
-	a = art.NewFromJSON([]byte(out))
+	if a, e = art.NewFromJSON([]byte(out)); e != nil {
+		panic(e)
+	}
 
 	switch flags.format {
 	case "bash":
-		out, e = generator.GenerateBash(a.String())
-		if e != nil {
-			panic(e)
-		}
-		hl.Println(out)
+		hl.Println(generator.GenerateBash(a.String()))
 	case "go":
-		out, e = generator.GenerateGo(a.String())
-		if e != nil {
-			panic(e)
-		}
-		hl.Println(out)
+		hl.Println(generator.GenerateGo(a.String()))
 	case "json":
 		hl.Println(out)
 	case "python":
-		out, e = generator.GeneratePython(a.String())
-		if e != nil {
-			panic(e)
-		}
-		hl.Println(out)
+		hl.Println(generator.GeneratePython(a.String()))
 	case "ruby":
-		out, e = generator.GenerateRuby(a.String())
-		if e != nil {
-			panic(e)
-		}
-		hl.Println(out)
-	case "stdout":
+		hl.Println(generator.GenerateRuby(a.String()))
+	case "stdout": // Actually write to new cache file
 		f, e = os.Create(
 			filepath.Join(cache.CustomJSONDir, name) + ".json",
 		)
@@ -151,7 +120,9 @@ func generate(file string) {
 		f.WriteString(out + "\n")
 		f.Close()
 
-		artty.Cache.Refresh()
+		if e = artty.Cache.Refresh(); e != nil {
+			panic(e)
+		}
 	}
 }
 
@@ -254,15 +225,6 @@ func list(arts []string) {
 }
 
 func main() {
-	var arts []string
-	var bsfact string
-	var devexcuse string
-	var e error
-	var fortune string
-	var height int
-	var info *sysinfo.SysInfo
-	var width int
-
 	defer func() {
 		if r := recover(); r != nil {
 			if flags.verbose {
@@ -271,6 +233,15 @@ func main() {
 			log.ErrX(Exception, r.(error).Error())
 		}
 	}()
+
+	var arts []string
+	var bsfact string
+	var devexcuse string
+	var e error
+	var fortune string
+	var height int
+	var info *sysinfo.SysInfo
+	var width int
 
 	validate()
 
@@ -289,7 +260,7 @@ func main() {
 
 	switch flags.action {
 	case "cache":
-		artty.Cache.Refresh()
+		refresh()
 	case "convert":
 		if e = generator.Convert(flags.convert); e != nil {
 			panic(e)
@@ -307,10 +278,26 @@ func main() {
 	case "show":
 		hl.Println(config)
 	case "update":
-		log.Info("Updating cache...")
-		if e = artty.Cache.Update(); e != nil {
-			panic(e)
-		}
-		log.Info("done")
+		update()
 	}
+}
+
+func refresh() {
+	var e error
+
+	log.Info("Refreshing cache...")
+	if e = artty.Cache.Refresh(); e != nil {
+		panic(e)
+	}
+	log.Info("done")
+}
+
+func update() {
+	var e error
+
+	log.Info("Updating cache...")
+	if e = artty.Cache.Update(); e != nil {
+		panic(e)
+	}
+	log.Info("done")
 }

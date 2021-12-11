@@ -17,10 +17,10 @@ func TestFilter(t *testing.T) {
 		0,
 	)
 	if e != nil {
-		t.Errorf("got: %s; want: nil", e.Error())
+		t.Errorf("\ngot: %s\nwant: nil", e.Error())
 	}
 
 	if len(arts) != 883 {
-		t.Errorf("got: %d; want: 883", len(arts))
+		t.Errorf("\ngot: %d\nwant: 883", len(arts))
 	}
 }

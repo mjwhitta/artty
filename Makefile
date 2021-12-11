@@ -1,4 +1,5 @@
 -include gomk/main.mk
+-include local/Makefile
 
 profile:
 	@go test -cpuprofile cpu.profile -bench .

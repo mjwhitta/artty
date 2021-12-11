@@ -9,9 +9,9 @@ import (
 var bsRegex = regexp.MustCompile(`<p class\=\"fact\">(.+)</p>`)
 
 // Cache related vars
-var Cache = cache.New(Version)
+var Cache *cache.ArtCache = cache.New(Version)
 
 var devRegex = regexp.MustCompile(`<a href.+>(.+)</a>`)
 
 // Version is the package version
-const Version = "1.1.0"
+const Version = "1.2.0"
