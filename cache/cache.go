@@ -201,6 +201,7 @@ func (c *ArtCache) Refresh() error {
 
 		if strings.HasSuffix(path, ".json") {
 			if a, e = art.New(path); e != nil {
+				e = errors.Newf("no art found in %s: %w", path, e)
 				return e
 			}
 

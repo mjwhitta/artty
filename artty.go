@@ -55,12 +55,14 @@ func buildRegex(
 
 	if match != "" {
 		if matched, e = regexp.Compile(match); e != nil {
+			e = errors.Newf("invalid regex %s: %w", match, e)
 			return nil, nil, e
 		}
 	}
 
 	if exclude != "" {
 		if excluded, e = regexp.Compile(exclude); e != nil {
+			e = errors.Newf("invalid regex %s: %w", exclude, e)
 			return nil, nil, e
 		}
 	}
