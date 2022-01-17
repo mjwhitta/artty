@@ -63,8 +63,11 @@ func decodeImage(fn string) (image.Image, error) {
 	var e error
 	var img image.Image
 	var imgFile *os.File
+	var ok bool
 
-	if !pathname.DoesExist(fn) {
+	if ok, e = pathname.DoesExist(fn); e != nil {
+		return nil, errors.Newf("file %s not accessible", fn)
+	} else if !ok {
 		return nil, errors.Newf("file %s not found", fn)
 	}
 

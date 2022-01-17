@@ -20,10 +20,12 @@ var CustomJSONDir string = pathname.ExpandPath(
 
 func init() {
 	var e error
+	var ok bool
 
-	if !pathname.DoesExist(CustomJSONDir) {
-		e = os.MkdirAll(CustomJSONDir, os.ModePerm)
-		if e != nil {
+	if ok, e = pathname.DoesExist(CustomJSONDir); e != nil {
+		panic(errors.Newf("failed to access cache directory: %w", e))
+	} else if !ok {
+		if e = os.MkdirAll(CustomJSONDir, os.ModePerm); e != nil {
 			e = errors.Newf("failed to create cache directory: %w", e)
 			panic(e)
 		}

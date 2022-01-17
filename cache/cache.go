@@ -162,10 +162,11 @@ func (c *ArtCache) List() []string {
 func (c *ArtCache) organize() error {
 	var e error
 	var newCache string = filepath.Join(cacheDir, jsonDir+".new")
+	var ok bool
 	var oldCache string = filepath.Join(cacheDir, jsonDir)
 
 	// Ensure new tarball was extracted
-	if !pathname.DoesExist(newCache) {
+	if ok, _ = pathname.DoesExist(newCache); !ok {
 		return errors.New("failed to download/extract tarball")
 	}
 
