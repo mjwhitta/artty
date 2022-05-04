@@ -14,10 +14,10 @@ check_deps() {
     done; unset d
     [[ -z $missing ]] || exit 128
 }
-err() { echo -e "${color:+\e[31m}[!] $*\e[0m"; }
+err() { echo -e "${color:+\e[31m}[!] $*${color:+\e[0m}" >&2; }
 errx() { err "${*:2}"; clean "$1"; }
-good() { echo -e "${color:+\e[32m}[+] $*\e[0m"; }
-info() { echo -e "${color:+\e[37m}[*] $*\e[0m"; }
+good() { echo -e "${color:+\e[32m}[+] $*${color:+\e[0m}"; }
+info() { echo -e "${color:+\e[37m}[*] $*${color:+\e[0m}"; }
 long_opt() {
     local arg shift="0"
     case "$1" in
@@ -27,8 +27,8 @@ long_opt() {
     echo "$arg"
     return $shift
 }
-subinfo() { echo -e "${color:+\e[36m}[=] $*\e[0m"; }
-warn() { echo -e "${color:+\e[33m}[-] $*\e[0m"; }
+subinfo() { echo -e "${color:+\e[36m}[=] $*${color:+\e[0m}"; }
+warn() { echo -e "${color:+\e[33m}[-] $*${color:+\e[0m}"; }
 ### Helpers end
 
 ### Parallel helpers begin
@@ -87,6 +87,8 @@ show_cursor() { echo -en "\e[?25h"; }
 ### Parallel helpers end
 
 read_resume_file() {
+    input="$(json_get "input")"
+    output="$(json_get "output")"
     pattern="$(json_get "pattern")"
 }
 
@@ -101,6 +103,7 @@ DESCRIPTION
 OPTIONS
     -f, --force          Generate images even if they already exist
     -h, --help           Display this help message
+    -i, --input=DIR      Input images from provided directory
         --no-color       Disable colorized output
     -o, --output=DIR     Ouput JSON to provided directory
     -r, --resume         Resume from a previous run
@@ -119,13 +122,15 @@ write_resume_file() {
 
     cat >"$json" <<EOF
 {
+  "input": "$input",
+  "oupput": "$output",
   "pattern": "$pattern"
 }
 EOF
 }
 
 declare -a args
-unset force help output pattern
+unset force help input output pattern
 color="true"
 parallel="true"
 threads="32"
@@ -136,8 +141,9 @@ while [[ $# -gt 0 ]]; do
         "--") shift; args+=("$@"); break ;;
         "-f"|"--force") force="true" ;;
         "-h"|"--help") help="true" ;;
+        "-i"|"--input"*) input="$(long_opt "$@")" ;;
         "--no-color") unset color ;;
-        "-o"|"--output"*) output="../$(long_opt "$@")" ;;
+        "-o"|"--output"*) output="$(long_opt "$@")" ;;
         "-r"|"--resume") resume="--resume" ;;
         "-t"|"--threads"*) threads="$(long_opt "$@")" ;;
         "-v"|"--verbose") verbose="true" ;;
@@ -158,7 +164,6 @@ done
 # Check for missing dependencies
 declare -a deps
 deps+=("awk")
-deps+=("git")
 deps+=("jq")
 deps+=("sha256sum")
 check_deps
@@ -188,18 +193,6 @@ pattern="$1"
 # Ensure script is called from the proper directory or with make
 [[ -f "./tools/${0##*/}" ]] || errx 2 "Use make to call this script"
 
-# Ensure directory exists and the submodule is updated
-[[ -d "arTTY_images" ]] || mkdir -p arTTY_images
-empty="$(find arTTY_images -maxdepth 1 -empty -print)"
-[[ -z $empty ]] || git submodule update --init --recursive
-
-# Throw error if submodule didn't get initialized/updated
-empty="$(find arTTY_images -maxdepth 1 -empty -print)"
-[[ -z $empty ]] || errx 3 "Submodule is missing"
-
-# Work from submodule
-cd ./arTTY_images
-
 # Cache variables
 hash="$(echo -n "$pattern" | sha256sum | awk '{print $1}')"
 cache="$HOME/.cache/${0##*/}/$hash"
@@ -211,6 +204,10 @@ check_lock
 
 # Check for resume file
 [[ -z $parallel ]] || check_resume_file
+if [[ -z $resume ]]; then
+    [[ -n $input ]] || usage 3
+    [[ -n $output ]] || usage 4
+fi
 hide_cursor
 
 [[ -z $resume ]] || info "Resuming..."
@@ -223,15 +220,17 @@ if [[ ! -f "$dataset" ]]; then
 
     # Loop through specified categories
     while read -r dir; do
-        category="${dir#./}"
+        category="${dir#*arTTY_images/}"
         info "Processing ${category////-}"
         while read -r img; do
-            echo "$dir|$img" >>"$dataset"
+            echo "$category|$img" >>"$dataset"
         done < <(find "$dir" -maxdepth 1 -name "*.png"); unset img
     done < <(
-        find . -mindepth 1 -regextype posix-extended \
-        -name "generated" -prune -o -name "todo" -prune -o \
-        -name "tools" -prune -o -type d -iregex ".*$pattern.*" -print
+        find "$input" -mindepth 1 -regextype posix-extended \
+        -name ".git" -prune -o \
+        -name "todo" -prune -o \
+        -name "tools" -prune -o \
+        -type d -iregex ".*$pattern.*" -print
     ); unset dir
 fi
 total="$(wc -l "$dataset" | awk '{print $1}')"
@@ -246,25 +245,19 @@ cat >"$script" <<EOF
 
 ### Helpers begin
 set -o noglob
-err() { echo -e "\r${color:+\e[31m}[!] \$*\e[0m\e[K"; }
+err() { echo -e "\r${color:+\e[31m}[!] \$*${color:+\e[0m}\e[K" >&2; }
 errx() { err "\${*:2}"; exit "\$1"; }
-good() { echo -e "\r${color:+\e[32m}[+] \$*\e[0m\e[K"; }
-info() { echo -e "\r${color:+\e[37m}[*] \$*\e[0m\e[K"; }
-subinfo() { echo -e "\r${color:+\e[36m}[=] \$*\e[0m\e[K"; }
-warn() { echo -e "\r${color:+\e[33m}[-] \$*\e[0m\e[K"; }
+good() { echo -e "\r${color:+\e[32m}[+] \$*${color:+\e[0m}\e[K"; }
+info() { echo -e "\r${color:+\e[37m}[*] \$*${color:+\e[0m}\e[K"; }
+msg() { echo -e "\r\$*\e[K"; }
+subinfo() { echo -e "\r${color:+\e[36m}[=] \$*${color:+\e[0m}\e[K"; }
+warn() { echo -e "\r${color:+\e[33m}[-] \$*${color:+\e[0m}\e[K"; }
 ### Helpers end
 
-# Constants
-output="${output:-../arTTY_images/generated}"
-
 # Parse input
-dir="\${1%%|*}"
-dir="\${dir#./}"
-dir="\${dir//_/-}"
+category="\${1%%|*}"
+category="\${category//_/-}"
 img="\${1##*|}"
-
-# Determine category
-category="\${dir#./}"
 
 # Determine art name
 name="\${category////-}"
@@ -283,14 +276,15 @@ esac
 filename="\${filename%_[0-9]*x[0-9]*}"
 filename="\${filename//_/-}.json"
 
+dir="$output/\$category"
+
 # Generate art
 good "\$img => \$dir/\$filename"
-if [[ ! -f "\$output/\$dir/\$filename" ]] || [[ "x$force" != "x" ]]
-then
-    mkdir -p "\$output/\$dir"
-    ../build/linux/amd64/arTTY --format json -g "\$img" "\$name" \
-        >"\$output/\$dir/\$filename"
-    failed="\$(find "\$output/\$dir/\$filename" -empty)"
+if [[ ! -f "\$dir/\$filename" ]] || [[ "x$force" != "x" ]]; then
+    mkdir -p "\$dir"
+    ./build/linux/amd64/arTTY --format json -g "\$img" "\$name" \
+        >"\$dir/\$filename"
+    failed="\$(find "\$dir/\$filename" -empty)"
     [[ -z \$failed ]] || err "Failed: \$dir/\$filename"
 fi
 EOF

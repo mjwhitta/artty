@@ -46,9 +46,25 @@ func bootstrap(
 		width = img.Bounds().Max.X
 	}
 
-	pixelClrs, uniqClrs, e = getPixelInfo(img, width, height)
+	pixelClrs, uniqClrs, e = getPixelInfo(img, width, height, false)
 	if e != nil {
 		return "", nil, nil, e
+	}
+
+	if len(uniqClrs) > len(keys) {
+		pixelClrs, uniqClrs, e = getPixelInfo(
+			img,
+			width,
+			height,
+			true,
+		)
+		if e != nil {
+			return "", nil, nil, e
+		}
+	}
+
+	if len(uniqClrs) > len(keys) {
+		return "", nil, nil, errors.Newf("too many colors")
 	}
 
 	pixels, legend, e = generateLegend(pixelClrs, uniqClrs)
@@ -101,10 +117,6 @@ func generateLegend(
 	}
 
 	for _, clr := range uniqClrs {
-		if idx == len(keys) {
-			return nil, nil, errors.Newf("too many colors")
-		}
-
 		flipLegend[clr] = keys[idx]
 		legend[keys[idx]] = clr
 		idx++
@@ -130,15 +142,19 @@ func getPixelInfo(
 	img image.Image,
 	width int,
 	height int,
+	failedOnce bool,
 ) ([][]string, []string, error) {
 	var a uint32
+	var b uint32
 	var clr string
 	var colorSet = map[string]struct{}{}
+	var g uint32
 	var hInc float64 = 1
 	var hMax int = img.Bounds().Max.Y
-	var includes bool
 	var offset int
+	var ok bool
 	var pixelClrs [][]string
+	var r uint32
 	var row []string
 	var uniqClrs []string
 	var wInc float64 = 1
@@ -154,17 +170,30 @@ func getPixelInfo(
 		row = []string{}
 
 		for x := offset; x < wMax; x = int(float64(x) + wInc) {
-			_, _, _, a = img.At(x, y).RGBA()
+			r, g, b, a = img.At(x, y).RGBA()
+
 			a >>= 8
+			b >>= 8
+			g >>= 8
+			r >>= 8
 
 			if a <= 0x30 {
 				row = append(row, "")
 				continue
 			}
 
-			clr = hl.ColorToXterm256(img.At(x, y))
+			if failedOnce {
+				clr = hl.ColorToXterm256(img.At(x, y))
+			} else {
+				clr = hl.RGBAToTrueColor(
+					uint8(r),
+					uint8(g),
+					uint8(b),
+					uint8(a),
+				)
+			}
 
-			if _, includes = colorSet[clr]; !includes {
+			if _, ok = colorSet[clr]; !ok {
 				colorSet[clr] = struct{}{}
 			}
 

@@ -17,5 +17,5 @@ endif
 
 ifneq ($(unameS),Windows)
 refresh: build
-	@tools/refresh_art $(PARAMS) "$(PATTERN)"
+	@tools/refresh_art -i $(IMGS) -o $(JSON) $(PARAMS) "$(PATTERN)"
 endif
