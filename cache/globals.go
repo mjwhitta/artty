@@ -19,15 +19,21 @@ var CustomJSONDir string = pathname.ExpandPath(
 )
 
 func init() {
-	var e error
-	var ok bool
+	var sys string = "/usr/local/share/arTTY"
 
-	if ok, e = pathname.DoesExist(CustomJSONDir); e != nil {
+	if ok, e := pathname.DoesExist(CustomJSONDir); e != nil {
 		panic(errors.Newf("failed to access cache directory: %w", e))
 	} else if !ok {
-		if e = os.MkdirAll(CustomJSONDir, os.ModePerm); e != nil {
+		if e := os.MkdirAll(CustomJSONDir, os.ModePerm); e != nil {
 			e = errors.Newf("failed to create cache directory: %w", e)
 			panic(e)
+		}
+	}
+
+	// Check if system cache exists
+	if ok, _ := pathname.DoesExist(cacheDir); !ok {
+		if ok, _ := pathname.DoesExist(sys); ok {
+			cacheDir = sys
 		}
 	}
 }
