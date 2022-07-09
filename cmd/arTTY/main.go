@@ -184,13 +184,20 @@ func getName(arts []string) string {
 	if name == "" {
 		if config.GetBool("random") && (len(arts) > 0) {
 			rand.Seed(time.Now().UnixNano())
-			name = arts[rand.Intn(len(arts))]
+			return arts[rand.Intn(len(arts))]
 		} else {
-			name = "none"
+			return "none"
 		}
 	}
 
-	return name
+	// Only return the name from config, if it is in the list
+	for _, k := range arts {
+		if k == name {
+			return name
+		}
+	}
+
+	return "none"
 }
 
 func getOptionals() (b, d, f string, i *sysinfo.SysInfo) {
