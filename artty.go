@@ -2,7 +2,7 @@ package artty
 
 import (
 	"html"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"os/exec"
@@ -29,7 +29,7 @@ func BruceSchneier() string {
 	}
 	defer r.Body.Close()
 
-	if b, e = ioutil.ReadAll(r.Body); e != nil {
+	if b, e = io.ReadAll(r.Body); e != nil {
 		return ""
 	}
 
@@ -83,7 +83,7 @@ func DevExcuse() string {
 	}
 	defer r.Body.Close()
 
-	if b, e = ioutil.ReadAll(r.Body); e != nil {
+	if b, e = io.ReadAll(r.Body); e != nil {
 		return ""
 	}
 

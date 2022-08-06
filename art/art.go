@@ -2,7 +2,7 @@ package art
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"os"
 	"strings"
 
 	"gitlab.com/mjwhitta/errors"
@@ -35,7 +35,7 @@ func New(paths ...string) (*Art, error) {
 
 	fn = pathname.ExpandPath(paths[0])
 
-	if b, e = ioutil.ReadFile(fn); e != nil {
+	if b, e = os.ReadFile(fn); e != nil {
 		return nil, errors.Newf("failed to read %s: %w", fn, e)
 	}
 

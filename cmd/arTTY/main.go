@@ -182,12 +182,12 @@ func getName(arts []string) string {
 	var name string = config.GetString("art")
 
 	if name == "" {
-		if config.GetBool("random") && (len(arts) > 0) {
-			rand.Seed(time.Now().UnixNano())
-			return arts[rand.Intn(len(arts))]
-		} else {
+		if !config.GetBool("random") || (len(arts) == 0) {
 			return "none"
 		}
+
+		rand.Seed(time.Now().UnixNano())
+		return arts[rand.Intn(len(arts))]
 	}
 
 	// Only return the name from config, if it is in the list
