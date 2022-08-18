@@ -19,16 +19,14 @@ $ go install --ldflags "-s -w" --trimpath \
     gitlab.com/mjwhitta/artty/cmd/arTTY@latest
 ```
 
-Or install from source:
+Or compile from source:
 
 ```
 $ git clone https://gitlab.com/mjwhitta/artty.git
 $ cd artty
 $ git submodule update --init
-$ make install
+$ make
 ```
-
-**Note:** `make install` will install to `$HOME/.local/bin`.
 
 ## How to use
 
