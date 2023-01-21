@@ -3,6 +3,7 @@
 <a href="https://www.buymeacoffee.com/mjwhitta">🍪 Buy me a cookie</a>
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/mjwhitta/artty)](https://goreportcard.com/report/github.com/mjwhitta/artty)
+![Workflow](https://github.com/mjwhitta/artty/actions/workflows/ci.yaml/badge.svg?event=push)
 
 ## What is this?
 
