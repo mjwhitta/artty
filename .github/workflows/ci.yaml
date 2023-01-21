@@ -18,5 +18,7 @@ jobs:
         go-version: "stable"
     - name: Build
       run: make
+    - name: Update
+      run: ./build/linux/amd64/arTTY -u
     - name: Test coverage
       run: make cover
