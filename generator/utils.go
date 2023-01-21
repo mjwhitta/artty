@@ -9,9 +9,9 @@ import (
 	"sort"
 	"strconv"
 
-	"gitlab.com/mjwhitta/errors"
-	hl "gitlab.com/mjwhitta/hilighter"
-	"gitlab.com/mjwhitta/pathname"
+	"github.com/mjwhitta/errors"
+	hl "github.com/mjwhitta/hilighter"
+	"github.com/mjwhitta/pathname"
 )
 
 func bootstrap(

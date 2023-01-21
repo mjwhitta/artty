@@ -6,9 +6,9 @@ import (
 	"regexp"
 	"strings"
 
-	"gitlab.com/mjwhitta/errors"
-	hl "gitlab.com/mjwhitta/hilighter"
-	"gitlab.com/mjwhitta/jq"
+	"github.com/mjwhitta/errors"
+	hl "github.com/mjwhitta/hilighter"
+	"github.com/mjwhitta/jq"
 )
 
 // Convert will try to emulate the output of the convert utility from

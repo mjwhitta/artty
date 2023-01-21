@@ -3,7 +3,8 @@ package artty_test
 import (
 	"testing"
 
-	"gitlab.com/mjwhitta/artty"
+	"github.com/mjwhitta/artty"
+	assert "github.com/stretchr/testify/require"
 )
 
 func TestFilter(t *testing.T) {
@@ -16,11 +17,6 @@ func TestFilter(t *testing.T) {
 		0,
 		0,
 	)
-	if e != nil {
-		t.Errorf("\ngot: %s\nwant: nil", e.Error())
-	}
-
-	if len(arts) != 883 {
-		t.Errorf("\ngot: %d\nwant: 883", len(arts))
-	}
+	assert.Nil(t, e)
+	assert.Equal(t, 883, len(arts))
 }

@@ -8,13 +8,13 @@ import (
 	"strings"
 	"time"
 
-	"gitlab.com/mjwhitta/artty"
-	"gitlab.com/mjwhitta/artty/art"
-	"gitlab.com/mjwhitta/artty/cache"
-	"gitlab.com/mjwhitta/artty/generator"
-	hl "gitlab.com/mjwhitta/hilighter"
-	"gitlab.com/mjwhitta/log"
-	"gitlab.com/mjwhitta/sysinfo"
+	"github.com/mjwhitta/artty"
+	"github.com/mjwhitta/artty/art"
+	"github.com/mjwhitta/artty/cache"
+	"github.com/mjwhitta/artty/generator"
+	hl "github.com/mjwhitta/hilighter"
+	"github.com/mjwhitta/log"
+	"github.com/mjwhitta/sysinfo"
 )
 
 func demo(arts []string, info *sysinfo.SysInfo) {

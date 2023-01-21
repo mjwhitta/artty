@@ -1,3 +1,4 @@
 [submodule "gomk"]
     path = gomk
-    url = https://gitlab.com/mjwhitta/gomk.git
+	url = https://github.com/mjwhitta/gomk.git
+	branch = main

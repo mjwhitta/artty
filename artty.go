@@ -10,10 +10,10 @@ import (
 	"strconv"
 	"strings"
 
-	"gitlab.com/mjwhitta/artty/art"
-	"gitlab.com/mjwhitta/errors"
-	hl "gitlab.com/mjwhitta/hilighter"
-	"gitlab.com/mjwhitta/where"
+	"github.com/mjwhitta/artty/art"
+	"github.com/mjwhitta/errors"
+	hl "github.com/mjwhitta/hilighter"
+	"github.com/mjwhitta/where"
 )
 
 // BruceSchneier will parse the HTML response from

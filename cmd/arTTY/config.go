@@ -1,6 +1,6 @@
 package main
 
-import "gitlab.com/mjwhitta/jsoncfg"
+import "github.com/mjwhitta/jsoncfg"
 
 var config *jsoncfg.JSONCfg
 

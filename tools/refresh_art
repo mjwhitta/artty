@@ -220,7 +220,7 @@ if [[ ! -f "$dataset" ]]; then
 
     # Loop through specified categories
     while read -r dir; do
-        category="${dir#*arTTY_images/}"
+        category="${dir#*artty_images/}"
         info "Processing ${category////-}"
         while read -r img; do
             echo "$category|$img" >>"$dataset"

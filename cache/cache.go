@@ -1,19 +1,18 @@
 package cache
 
 import (
-	"archive/tar"
-	"compress/gzip"
+	"archive/zip"
 	"io"
+	"io/fs"
 	"net/http"
 	"os"
 	"path/filepath"
-	"regexp"
 	"strings"
 
-	"gitlab.com/mjwhitta/artty/art"
-	"gitlab.com/mjwhitta/errors"
-	"gitlab.com/mjwhitta/jsoncfg"
-	"gitlab.com/mjwhitta/pathname"
+	"github.com/mjwhitta/artty/art"
+	"github.com/mjwhitta/errors"
+	"github.com/mjwhitta/jsoncfg"
+	"github.com/mjwhitta/pathname"
 )
 
 // ArtCache is a struct inheriting from jsoncfg.JSONCfg and containing
@@ -46,94 +45,113 @@ func New(version string) *ArtCache {
 	return c
 }
 
-func (c *ArtCache) downloadExtract() error {
+func (c *ArtCache) download() error {
 	var e error
-	var g *gzip.Reader
-	var json = "https://gitlab.com/mjwhitta/arTTY_json"
+	var f *os.File
+	var json = "https://github.com/mjwhitta/artty_json"
 	var res *http.Response
-	var t *tar.Reader
-	var tgz = "/-/archive/master/arTTY_json.tgz"
+	var zipfile = "/archive/refs/heads/main.zip"
 
-	// Download tarball
-	if res, e = http.Get(json + tgz); e != nil {
-		return errors.Newf("failed to download tarball: %w", e)
+	// Download zip
+	if res, e = http.Get(json + zipfile); e != nil {
+		return errors.Newf("failed to download zip: %w", e)
 	}
 	defer res.Body.Close()
 
-	// Create gzip reader
-	if g, e = gzip.NewReader(res.Body); e != nil {
-		return errors.Newf("failed to read gzip: %w", e)
+	// Create new file for zip
+	f, e = os.Create(filepath.Join(cacheDir, jsonDir+".zip"))
+	if e != nil {
+		return errors.Newf("failed to create zip: %w", e)
 	}
-	defer g.Close()
+	defer f.Close()
 
-	// Create tar reader
-	t = tar.NewReader(g)
-
-	// Ensure clean up
-	defer os.RemoveAll(filepath.Join(cacheDir, jsonDir+".new"))
-
-	// Extract tar
-	if e = c.extract(t); e != nil {
-		return e
-	}
-
-	// Relocate new JSON files
-	return c.organize()
-}
-
-func (c *ArtCache) extract(t *tar.Reader) error {
-	var e error
-	var h *tar.Header
-	var filename string
-	var r = regexp.MustCompile(`^arTTY_json[^/]+/(.+)`)
-
-	// Read tarball
-	for {
-		if h, e = t.Next(); e == io.EOF {
-			break
-		} else if e != nil {
-			return errors.Newf("failed to read tarball: %w", e)
-		}
-
-		if strings.HasSuffix(h.Name, ".json") {
-			// Get filename to write to
-			filename = filepath.Join(
-				cacheDir,
-				jsonDir+".new",
-				r.FindStringSubmatch(h.Name)[1],
-			)
-
-			if e = c.extractFile(filename, t); e != nil {
-				return e
-			}
-		}
+	// Save zip to file
+	if _, e = io.Copy(f, res.Body); e != nil {
+		return errors.Newf("failed to write zip: %w", e)
 	}
 
 	return nil
 }
 
-func (c *ArtCache) extractFile(filename string, t *tar.Reader) error {
-	var dirname string = pathname.Dirname(filename)
+func (c *ArtCache) extract() error {
+	var dst string
 	var e error
-	var f *os.File
+	var fi fs.FileInfo
+	var root string
+	var z *zip.ReadCloser
 
-	// Ensure directory exists
-	if e = os.MkdirAll(dirname, os.ModePerm); e != nil {
-		e = errors.Newf("failed to make directory %s: %w", dirname, e)
-		return e
+	// Remove any artifacts from previous errors
+	os.RemoveAll(filepath.Join(cacheDir, jsonDir+".new"))
+
+	// Open zip file
+	z, e = zip.OpenReader(filepath.Join(cacheDir, jsonDir+".zip"))
+	if e != nil {
+		return errors.Newf("failed to open zip: %w", e)
+	}
+	defer z.Close()
+
+	// Loop thru the contained files
+	for i, zf := range z.File {
+		// Store root directory
+		if i == 0 {
+			root = strings.TrimSuffix(
+				zf.FileHeader.Name,
+				string(filepath.Separator),
+			)
+		}
+
+		// Create destination file name
+		dst = filepath.Join(
+			cacheDir,
+			strings.Replace(
+				zf.FileHeader.Name,
+				root,
+				jsonDir+".new",
+				1,
+			),
+		)
+
+		fi = zf.FileHeader.FileInfo()
+
+		if fi.IsDir() {
+			// Extract directory
+			if e = os.MkdirAll(dst, fi.Mode()); e != nil {
+				return errors.Newf("failed to extract folder: %w", e)
+			}
+		} else {
+			// Extract file
+			if e = c.extractFile(zf, dst); e != nil {
+				return e
+			}
+		}
 	}
 
-	// Create file
-	if f, e = os.Create(filename); e != nil {
-		e = errors.Newf("failed to create file %s: %w", filename, e)
-		return e
-	}
-	defer f.Close()
+	// Remove zip file when finished extracting
+	os.RemoveAll(filepath.Join(cacheDir, jsonDir+".zip"))
 
-	// Extract file from tarball
-	if _, e = io.Copy(f, t); e != nil {
-		e = errors.Newf("failed to extract file %s: %w", filename, e)
-		return e
+	return nil
+}
+
+func (c *ArtCache) extractFile(zf *zip.File, dst string) error {
+	var e error
+	var f1 io.ReadCloser
+	var f2 *os.File
+
+	// Open compressed file
+	if f1, e = zf.Open(); e != nil {
+		return errors.Newf("failed to decompress file: %w", e)
+	}
+	defer f1.Close()
+
+	// Open dst file
+	if f2, e = os.Create(dst); e != nil {
+		return errors.Newf("failed to create file: %w", e)
+	}
+	defer f2.Close()
+
+	// Write decompressed contents to file
+	if _, e = io.Copy(f2, f1); e != nil {
+		return errors.Newf("failed to write file: %w", e)
 	}
 
 	return nil
@@ -165,12 +183,12 @@ func (c *ArtCache) organize() error {
 	var ok bool
 	var oldCache string = filepath.Join(cacheDir, jsonDir)
 
-	// Ensure new tarball was extracted
+	// Ensure new zip was extracted
 	if ok, e = pathname.DoesExist(newCache); e != nil {
-		e = errors.Newf("failed to download/extract tarball: %w", e)
+		e = errors.Newf("failed to download/extract zip: %w", e)
 		return e
 	} else if !ok {
-		return errors.New("failed to download/extract tarball")
+		return errors.New("failed to download/extract zip")
 	}
 
 	// Delete old cache
@@ -237,10 +255,21 @@ func (c *ArtCache) Refresh() error {
 	return nil
 }
 
-// Update will download the newest art files from gitlab.com and
+// Update will download the newest art files from github.com and
 // refresh the local cache.
 func (c *ArtCache) Update() error {
-	if e := c.downloadExtract(); e != nil {
+	// Download zip
+	if e := c.download(); e != nil {
+		return e
+	}
+
+	// Extract zip
+	if e := c.extract(); e != nil {
+		return e
+	}
+
+	// Relocate new JSON files
+	if e := c.organize(); e != nil {
 		return e
 	}
 

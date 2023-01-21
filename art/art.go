@@ -5,10 +5,10 @@ import (
 	"os"
 	"strings"
 
-	"gitlab.com/mjwhitta/errors"
-	hl "gitlab.com/mjwhitta/hilighter"
-	"gitlab.com/mjwhitta/pathname"
-	"gitlab.com/mjwhitta/sysinfo"
+	"github.com/mjwhitta/errors"
+	hl "github.com/mjwhitta/hilighter"
+	"github.com/mjwhitta/pathname"
+	"github.com/mjwhitta/sysinfo"
 )
 
 // Art is a struct containing the necessary data to convert an ArTTY

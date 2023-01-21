@@ -1,6 +1,6 @@
 package artty
 
-import "gitlab.com/mjwhitta/errors"
+import "github.com/mjwhitta/errors"
 
 func init() {
 	panic(errors.New("unsupported OS"))

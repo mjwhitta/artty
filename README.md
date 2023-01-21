@@ -1,8 +1,8 @@
-# arTTY
+# ArTTY
 
 <a href="https://www.buymeacoffee.com/mjwhitta">🍪 Buy me a cookie</a>
 
-[![Go Report Card](https://goreportcard.com/badge/gitlab.com/mjwhitta/artty)](https://goreportcard.com/report/gitlab.com/mjwhitta/artty)
+[![Go Report Card](https://goreportcard.com/badge/github.com/mjwhitta/artty)](https://goreportcard.com/report/github.com/mjwhitta/artty)
 
 ## What is this?
 
@@ -16,13 +16,13 @@ Open a terminal and run the following:
 
 ```
 $ go install --ldflags "-s -w" --trimpath \
-    gitlab.com/mjwhitta/artty/cmd/arTTY@latest
+    github.com/mjwhitta/artty/cmd/arTTY@latest
 ```
 
 Or compile from source:
 
 ```
-$ git clone https://gitlab.com/mjwhitta/artty.git
+$ git clone https://github.com/mjwhitta/artty.git
 $ cd artty
 $ git submodule update --init
 $ make
@@ -55,7 +55,7 @@ want to run `arTTY --update` to download any new art.
 
 Additionally, the system info portion is [configurable][sysinfo].
 
-[sysinfo]: https://gitlab.com/mjwhitta/sysinfo/blob/master/README.md#configuration
+[sysinfo]: https://github.com/mjwhitta/sysinfo/blob/master/README.md#configuration
 
 ### Tab completion
 
@@ -89,7 +89,7 @@ ArTTY can generate source code from images too. It will automatically
 determine the size, but you can specify a size manually by appending
 `_WIDTHxHEIGHT` to the filename. It uses the filename to name the art
 unless you manually specify one. It will then cache any json files in
-the `$HOME/.config/arTTY/arTTY_json` directory.
+the `$HOME/.config/arTTY/json` directory.
 
 By default this will generate a JSON file and refresh the cache. If
 you want to just see the JSON file, or generate source code for
@@ -114,14 +114,11 @@ works best with sprites, however, it can parse any image this way.
 
 ## Links
 
-- [Releases](https://gitlab.com/mjwhitta/artty/-/releases)
-- [Source](https://gitlab.com/mjwhitta/arTTY)
-- [Images](https://gitlab.com/mjwhitta/arTTY_images)
-- [Images](https://gitlab.com/mjwhitta/arTTY_json)
+- [Images](https://github.com/mjwhitta/artty_images)
+- [JSON](https://github.com/mjwhitta/artty_json)
+- [Releases](https://github.com/mjwhitta/artty/releases)
+- [Source](https://github.com/mjwhitta/artty)
 
 ## TODO
 
 - Lots more art
-    - See [arTTY_images] repo
-
-[arTTY_images]: https://gitlab.com/mjwhitta/arTTY_images#todo
