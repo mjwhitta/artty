@@ -65,7 +65,11 @@ func (a *Art) String() string {
 	var top string
 
 	if a.Name == "" {
-		return a.SysInfo.String()
+		if a.SysInfo != nil {
+			return a.SysInfo.String()
+		}
+
+		return ""
 	}
 
 	if len(a.Pixels) > 0 {
