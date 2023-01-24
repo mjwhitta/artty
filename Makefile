@@ -19,3 +19,8 @@ ifneq ($(unameS),Windows)
 refresh: build
 	@tools/refresh_art -i $(IMGS) -o $(JSON) $(PARAMS) "$(PATTERN)"
 endif
+
+ifneq ($(unameS),Windows)
+spellcheck:
+	@codespell -f -L hilight,hilights -S ".git,*.pem"
+endif
