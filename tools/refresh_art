@@ -105,7 +105,7 @@ OPTIONS
     -h, --help           Display this help message
     -i, --input=DIR      Input images from provided directory
         --no-color       Disable colorized output
-    -o, --output=DIR     Ouput JSON to provided directory
+    -o, --output=DIR     Output JSON to provided directory
     -r, --resume         Resume from a previous run
     -t, --threads=NUM    Use specified number of threads (default: 32)
     -v, --verbose        Do not hide parallel errors
