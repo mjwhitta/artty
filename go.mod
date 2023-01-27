@@ -7,11 +7,11 @@ require (
 	github.com/mjwhitta/errors v1.0.1
 	github.com/mjwhitta/hilighter v1.11.2
 	github.com/mjwhitta/jq v1.5.3
-	github.com/mjwhitta/jsoncfg v1.6.8
+	github.com/mjwhitta/jsoncfg v1.6.9
 	github.com/mjwhitta/log v1.6.3
-	github.com/mjwhitta/pathname v1.2.3
-	github.com/mjwhitta/sysinfo v1.4.9
-	github.com/mjwhitta/where v1.2.6
+	github.com/mjwhitta/pathname v1.2.4
+	github.com/mjwhitta/sysinfo v1.5.0
+	github.com/mjwhitta/where v1.2.7
 	github.com/stretchr/testify v1.8.1
 )
 
