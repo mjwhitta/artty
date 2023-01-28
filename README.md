@@ -1,10 +1,13 @@
 # ArTTY
 
-[![Yum](https://img.shields.io/badge/-Buy%20me%20a%20cookie-blue?style=for-the-badge&logo=cookiecutter)](https://www.buymeacoffee.com/mjwhitta)
-[![Release](https://img.shields.io/github/v/release/mjwhitta/artty?label=Release&style=for-the-badge)](https://github.com/mjwhitta/artty/releases/latest)
+[![Yum](https://img.shields.io/badge/-Buy%20me%20a%20cookie-blue?labelColor=grey&logo=cookiecutter&style=for-the-badge)](https://www.buymeacoffee.com/mjwhitta)
+[![Release](https://img.shields.io/github/v/release/mjwhitta/artty?style=for-the-badge)](https://github.com/mjwhitta/artty/releases/latest)
+![GitHub all releases](https://img.shields.io/github/downloads/mjwhitta/artty/total?style=for-the-badge)
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/mjwhitta/artty)](https://goreportcard.com/report/github.com/mjwhitta/artty)
-![Workflow](https://github.com/mjwhitta/artty/actions/workflows/ci.yaml/badge.svg?event=push)
+[![Go Report Card](https://goreportcard.com/badge/github.com/mjwhitta/artty?style=for-the-badge)](https://goreportcard.com/report/github.com/mjwhitta/artty)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mjwhitta/artty/ci.yaml?style=for-the-badge)
+![Lines of code](https://img.shields.io/tokei/lines/github/mjwhitta/artty?style=for-the-badge)
+![License](https://img.shields.io/github/license/mjwhitta/artty?style=for-the-badge)
 
 ## What is this?
 
