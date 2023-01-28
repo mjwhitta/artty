@@ -2,8 +2,11 @@ name: GitHub Go CI
 on:
   push:
     branches: ["main"]
+    paths: ["**.go"]
   pull_request:
     branches: ["main"]
+    paths: ["**.go"]
+    types: ["edited", "opened"]
 jobs:
   build:
     runs-on: ubuntu-latest
