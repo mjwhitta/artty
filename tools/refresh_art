@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2317
+
 ### Helpers begin
 check_deps() {
     local missing
@@ -25,7 +27,7 @@ long_opt() {
         *) shift="1"; shift; [[ $# -gt 0 ]] || return 127; arg="$1" ;;
     esac
     echo "$arg"
-    return $shift
+    return "$shift"
 }
 subinfo() { echo -e "${color:+\e[36m}[=] $*${color:+\e[0m}"; }
 warn() { echo -e "${color:+\e[33m}[-] $*${color:+\e[0m}"; }
@@ -55,7 +57,7 @@ check_resume_file() {
                 "c") clean 0 ;;
                 "n") write_resume_file; break ;;
                 "q") exit 0 ;;
-                "y") read_resume_file; resume="--resume"; break ;;
+                "y") read_resume_file; resume="true"; break ;;
                 *) echo "Invalid response, try again!" ;;
             esac
         done
@@ -144,7 +146,7 @@ while [[ $# -gt 0 ]]; do
         "-i"|"--input"*) input="$(long_opt "$@")" ;;
         "--no-color") unset color ;;
         "-o"|"--output"*) output="$(long_opt "$@")" ;;
-        "-r"|"--resume") resume="--resume" ;;
+        "-r"|"--resume") resume="true" ;;
         "-t"|"--threads"*) threads="$(long_opt "$@")" ;;
         "-v"|"--verbose") verbose="true" ;;
         *) args+=("$1") ;;
@@ -152,7 +154,7 @@ while [[ $# -gt 0 ]]; do
     case "$?" in
         0) ;;
         1) shift ;;
-        *) usage $? ;;
+        *) usage "$?" ;;
     esac
     shift
 done
@@ -163,6 +165,7 @@ done
 
 # Check for missing dependencies
 declare -a deps
+deps+=("./build/linux/amd64/arTTY")
 deps+=("awk")
 deps+=("jq")
 deps+=("sha256sum")
@@ -293,7 +296,7 @@ chmod 700 "$script"
 # Run sub-script
 if [[ -n $parallel ]]; then
     parallel -a "$dataset" --bar --joblog ${resume:++}"$joblog" --lb \
-        -P "$threads" -r $resume "$script" {}
+        -P "$threads" -r ${resume:+--resume} "$script" {}
     [[ -n $verbose ]] || echo -en "\e[1A\e[K" >&2
 else
     count="1"
