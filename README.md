@@ -33,6 +33,12 @@ $ git submodule update --init
 $ make
 ```
 
+On OpenBSD >=7.3 or -current:
+
+```
+$ doas pkg_add artty
+```
+
 ## How to use
 
 I typically add something like the following to the end of my bash/zsh
