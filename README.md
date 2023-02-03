@@ -39,6 +39,12 @@ On OpenBSD >=7.3 or -current:
 $ doas pkg_add artty
 ```
 
+**NOTE:** [OpenBSD pkg] is maintained by [gonzalo-] and may not
+install the newest GitHub release.
+
+[gonzalo-]: https://github.com/gonzalo-
+[OpenBSD pkg]: https://github.com/openbsd/ports/tree/master/sysutils/artty
+
 ## How to use
 
 I typically add something like the following to the end of my bash/zsh
