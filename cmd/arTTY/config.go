@@ -10,7 +10,7 @@ func init() {
 	config.SetDefault("", "art")
 	config.SetDefault(false, "bsfact")
 	config.SetDefault(true, "clear_screen")
-	config.SetDefault([]string{"green"}, "dataColors")
+	config.SetDefault([]string{"light_blue"}, "dataColors")
 	config.SetDefault(false, "devexcuse")
 	config.SetDefault("", "exclude")
 	config.SetDefault([]string{"blue"}, "fieldColors")

@@ -137,7 +137,7 @@ func init() {
 		"a",
 		"all",
 		false,
-		"Ignore previous filtering.",
+		"Disable all filtering not explicitly specified.",
 	)
 	cli.Flag(
 		&flags.bsfact,
@@ -227,8 +227,9 @@ func init() {
 		false,
 		strings.Join(
 			[]string{
-				"Ignore previous flags and filtering (useful for",
-				"tab-completion with --ls).",
+				"Disable all filtering and flags not explicitly",
+				"specified (useful for --save or tab-completion with",
+				"--ls).",
 			},
 			" ",
 		),
@@ -279,16 +280,18 @@ func init() {
 
 func setupConfig() {
 	// Check all and plain first
-	if flags.all {
+	if flags.all || flags.plain {
+		config.Set("", "art")
 		config.Set("", "exclude")
 		config.Set(false, "fit")
 		config.Set("", "match")
 	}
 
 	if flags.plain {
-		config.Default()
+		config.Set(false, "bsfact")
 		config.Set(false, "clear_screen")
-		config.Set(false, "fit")
+		config.Set(false, "devexcuse")
+		config.Set(false, "fortune")
 		config.Set(false, "random")
 		config.Set(false, "sysinfo")
 	}
