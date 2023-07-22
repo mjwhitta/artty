@@ -80,54 +80,41 @@ func init() {
 	cli.Authors = []string{"Miles Whittaker <mj@whitta.dev>"}
 	cli.Banner = hl.Sprintf("%s [OPTIONS] [art]", os.Args[0])
 	cli.BugEmail = "arTTY.bugs@whitta.dev"
-	cli.ExitStatus = strings.Join(
-		[]string{
-			"Normally the exit status is 0. In the event of an error",
-			"the exit status will be one of the below:\n\n",
-			hl.Sprintf("%d: Invalid option\n", InvalidOption),
-			hl.Sprintf("%d: Missing option\n", MissingOption),
-			hl.Sprintf("%d: Invalid argument\n", InvalidArgument),
-			hl.Sprintf("%d: Missing argument\n", MissingArgument),
-			hl.Sprintf("%d: Extra argument\n", ExtraArgument),
-			hl.Sprintf("%d: Exception", Exception),
-		},
-		" ",
+	cli.ExitStatus(
+		"Normally the exit status is 0. In the event of an error the",
+		"exit status will be one of the below:\n\n",
+		hl.Sprintf("%d: Invalid option\n", InvalidOption),
+		hl.Sprintf("%d: Missing option\n", MissingOption),
+		hl.Sprintf("%d: Invalid argument\n", InvalidArgument),
+		hl.Sprintf("%d: Missing argument\n", MissingArgument),
+		hl.Sprintf("%d: Extra argument\n", ExtraArgument),
+		hl.Sprintf("%d: Exception", Exception),
 	)
-	cli.Info = "Art for your TTY."
+	cli.Info("Art for your TTY.")
 	cli.Section(
 		"FIELDS",
-		strings.Join(
-			[]string{
-				"blank: Use a blank line as a separator\n",
-				"colors: Show terminal colors\n",
-				"cpu: Show cpu info\n",
-				"fs: Show filesystem usage\n",
-				"host: Show hostname\n",
-				"ipv4: Show IPv4 addresses\n",
-				"ipv6: Show IPv6 addresses\n",
-				"kernel: Show kernel info\n",
-				"os: Show operating system info\n",
-				"ram: Show RAM usage\n",
-				"shell: Show current shell\n",
-				"tty: Show TTY info\n",
-				"uptime: Show uptime",
-			},
-			"",
-		),
+		"blank: Use a blank line as a separator\n",
+		"colors: Show terminal colors\n",
+		"cpu: Show cpu info\n",
+		"fs: Show filesystem usage\n",
+		"host: Show hostname\n",
+		"ipv4: Show IPv4 addresses\n",
+		"ipv6: Show IPv6 addresses\n",
+		"kernel: Show kernel info\n",
+		"os: Show operating system info\n",
+		"ram: Show RAM usage\n",
+		"shell: Show current shell\n",
+		"tty: Show TTY info\n",
+		"uptime: Show uptime",
 	)
 	cli.Section(
 		"FORMATS",
-		strings.Join(
-			[]string{
-				"bash: Generate bash code\n",
-				"go: Generate go code\n",
-				"json: Generate JSON from image file\n",
-				"stdout: Display art (default)\n",
-				"python: Generate python code\n",
-				"ruby: Generate ruby code",
-			},
-			"",
-		),
+		"bash: Generate bash code\n",
+		"go: Generate go code\n",
+		"json: Generate JSON from image file\n",
+		"stdout: Display art (default)\n",
+		"python: Generate python code\n",
+		"ruby: Generate ruby code",
 	)
 	cli.Title = "ArTTY"
 
@@ -225,14 +212,8 @@ func init() {
 		"p",
 		"plain",
 		false,
-		strings.Join(
-			[]string{
-				"Disable all filtering and flags not explicitly",
-				"specified (useful for --save or tab-completion with",
-				"--ls).",
-			},
-			" ",
-		),
+		"Disable all filtering and flags not explicitly specified",
+		"(useful for --save or tab-completion with --ls).",
 	)
 	cli.Flag(
 		&flags.random,

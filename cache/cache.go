@@ -32,7 +32,7 @@ func New(version string) *ArtCache {
 	var vers = c.GetString("version")
 
 	// Initialize defaults
-	c.SetDefault(map[string]interface{}{}, "art")
+	c.SetDefault(map[string]any{}, "art")
 	c.SetDefault(c.version, "version")
 	c.SaveDefault()
 	c.Reset()
@@ -206,7 +206,7 @@ func (c *ArtCache) organize() error {
 
 // Refresh will read any found JSON files and update the art cache.
 func (c *ArtCache) Refresh() error {
-	var arts = map[string]interface{}{}
+	var arts = map[string]any{}
 	var e error
 
 	// Save with initial empty data
@@ -227,7 +227,7 @@ func (c *ArtCache) Refresh() error {
 				return e
 			}
 
-			arts[a.Name] = map[string]interface{}{
+			arts[a.Name] = map[string]any{
 				"file":   path,
 				"height": a.Height,
 				"width":  a.Width,
