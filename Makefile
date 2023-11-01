@@ -22,5 +22,5 @@ endif
 
 ifneq ($(unameS),Windows)
 spellcheck:
-	@codespell -f -L doas,hilight,hilights -S ".git,*.pem"
+	@codespell -f -L doas,hilight,hilighter,hilights -S ".git,*.pem"
 endif
