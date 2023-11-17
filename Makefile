@@ -4,7 +4,7 @@
 profile:
 	@go test -cpuprofile cpu.profile -bench .
 	@go tool pprof artty.test cpu.profile
-ifeq ($(unameS),Windows)
+ifeq ($(unameS),windows)
 ifneq ($(wildcard artty.test),)
 	@powershell -c Remove-Item -Force ./artty.test
 endif
@@ -15,12 +15,12 @@ else
 	@rm -f artty.test cpu.profile
 endif
 
-ifneq ($(unameS),Windows)
+ifneq ($(unameS),windows)
 refresh: build
 	@tools/refresh_art -i $(IMGS) -o $(JSON) $(PARAMS) "$(PATTERN)"
 endif
 
-ifneq ($(unameS),Windows)
+ifneq ($(unameS),windows)
 spellcheck:
 	@codespell -f -L doas,hilight,hilighter,hilights -S ".git,*.pem"
 endif
