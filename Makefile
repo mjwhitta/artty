@@ -6,10 +6,10 @@ profile:
 	@go tool pprof artty.test cpu.profile
 ifeq ($(unameS),windows)
 ifneq ($(wildcard artty.test),)
-	@powershell -c Remove-Item -Force ./artty.test
+	@remove-item -force ./artty.test
 endif
 ifneq ($(wildcard cpu.profile),)
-	@powershell -c Remove-Item -Force ./cpu.profile
+	@remove-item -force ./cpu.profile
 endif
 else
 	@rm -f artty.test cpu.profile
