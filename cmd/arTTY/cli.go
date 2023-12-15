@@ -112,7 +112,7 @@ func init() {
 		"bash: Generate bash code\n",
 		"go: Generate go code\n",
 		"json: Generate JSON from image file\n",
-		"stdout: Display art (default)\n",
+		"stdout: Render art\n",
 		"python: Generate python code\n",
 		"ruby: Generate ruby code",
 	)
@@ -177,7 +177,7 @@ func init() {
 		&flags.format,
 		"format",
 		"stdout",
-		"Specify the output format.",
+		"Specify the output format (default: stdout, see FORMATS).",
 	)
 	cli.Flag(
 		&flags.fortune,
