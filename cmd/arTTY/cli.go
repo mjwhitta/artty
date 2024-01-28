@@ -50,7 +50,7 @@ var flags struct {
 }
 
 func ensureOnlyOne() {
-	var actions = []bool{
+	var actions []bool = []bool{
 		flags.cache,
 		flags.convert != "",
 		flags.demo,
@@ -60,7 +60,7 @@ func ensureOnlyOne() {
 		flags.show,
 		flags.update,
 	}
-	var onlyOne = 0
+	var onlyOne int = 0
 
 	// Ensure only 1 action was specified
 	for _, action := range actions {

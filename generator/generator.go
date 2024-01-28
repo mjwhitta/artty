@@ -76,11 +76,11 @@ func Convert(fn string) error {
 // GenerateBash will generate a bash function from an image that can
 // be ran to display in a terminal.
 func GenerateBash(str string) string {
-	var bash = []string{
+	var bash []string = []string{
 		"function logo() {",
 		"    echo",
 	}
-	var r = regexp.MustCompile(`(.{0,54})[^\\]`)
+	var r *regexp.Regexp = regexp.MustCompile(`(.{0,54})[^\\]`)
 
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\e")
@@ -105,30 +105,30 @@ func GenerateBash(str string) string {
 // GenerateGo will generate a go function from an image that can be
 // ran to display in a terminal.
 func GenerateGo(str string) string {
-	var rb = []string{
+	var golang []string = []string{
 		"func logo() {",
 		"    fmt.Println()",
 	}
-	var r = regexp.MustCompile(`(.{0,50})[^\\]{1,3}`)
+	var r *regexp.Regexp = regexp.MustCompile(`(.{0,50})[^\\]{1,3}`)
 
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\x1b")
 
 		if len(l) < 52 {
-			rb = append(rb, "    fmt.Println(\""+l+"\")")
+			golang = append(golang, "    fmt.Println(\""+l+"\")")
 			continue
 		}
 
 		for _, m := range r.FindAllString(l, -1) {
-			rb = append(rb, "    fmt.Print(\""+m+"\")")
+			golang = append(golang, "    fmt.Print(\""+m+"\")")
 		}
 
-		rb = append(rb, "    fmt.Println()")
+		golang = append(golang, "    fmt.Println()")
 	}
 
-	rb = append(rb, "    fmt.Println()", "}")
+	golang = append(golang, "    fmt.Println()", "}")
 
-	return strings.Join(rb, "\n")
+	return strings.Join(golang, "\n")
 }
 
 // GenerateJSON will generate JSON from an image that can be parsed by
@@ -164,11 +164,11 @@ func GenerateJSON(fn, name string) (string, string, error) {
 // GeneratePython will generate a python3 function from an image that
 // can be ran to display in a terminal.
 func GeneratePython(str string) string {
-	var py = []string{
+	var py []string = []string{
 		"def logo():",
 		"    print()",
 	}
-	var r = regexp.MustCompile(`(.{0,57})[^\\]{1,2}`)
+	var r *regexp.Regexp = regexp.MustCompile(`(.{0,57})[^\\]{1,2}`)
 
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\33")
@@ -195,11 +195,11 @@ func GeneratePython(str string) string {
 // GenerateRuby will generate a ruby function from an image that can
 // be ran to display in a terminal.
 func GenerateRuby(str string) string {
-	var rb = []string{
+	var rb []string = []string{
 		"def logo",
 		"    puts",
 	}
-	var r = regexp.MustCompile(`(.{0,54})[^\\]`)
+	var r *regexp.Regexp = regexp.MustCompile(`(.{0,54})[^\\]`)
 
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\e")

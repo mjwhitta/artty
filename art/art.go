@@ -54,8 +54,7 @@ func NewFromJSON(b []byte) (*Art, error) {
 	return &a, nil
 }
 
-// String will convert the Art struct to a string for fmt's print
-// functions.
+// String will return a string representation of the Art.
 func (a *Art) String() string {
 	var bottom string
 	var filler string

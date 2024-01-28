@@ -24,9 +24,11 @@ func bootstrap(
 	var legend map[string]string
 	var pixels []string
 	var pixelClrs [][]string
-	var r = regexp.MustCompile(`([^/]+?)(_(\d+)x(\d+))?\.`)
+	var r *regexp.Regexp
 	var uniqClrs []string
 	var width int
+
+	r = regexp.MustCompile(`([^/]+?)(_(\d+)x(\d+))?\.`)
 
 	if img, e = decodeImage(fn); e != nil {
 		return "", nil, nil, e
@@ -106,9 +108,9 @@ func generateLegend(
 	pixelClrs [][]string,
 	uniqClrs []string,
 ) ([]string, map[string]string, error) {
-	var flipLegend = map[string]string{}
+	var flipLegend map[string]string = map[string]string{}
 	var idx int
-	var legend = map[string]string{}
+	var legend map[string]string = map[string]string{}
 	var pixels []string
 	var row string
 
@@ -147,7 +149,7 @@ func getPixelInfo(
 	var a uint32
 	var b uint32
 	var clr string
-	var colorSet = map[string]struct{}{}
+	var colorSet map[string]struct{} = map[string]struct{}{}
 	var g uint32
 	var hInc float64 = 1
 	var hMax int = img.Bounds().Max.Y

@@ -25,11 +25,11 @@ type ArtCache struct {
 // New will return a new ArtCache struct pointer with the specified
 // version.
 func New(version string) *ArtCache {
-	var c = &ArtCache{
+	var c *ArtCache = &ArtCache{
 		*jsoncfg.New(filepath.Join(cacheDir, cacheFile)),
 		version,
 	}
-	var vers = c.GetString("version")
+	var vers string = c.GetString("version")
 
 	// Initialize defaults
 	c.SetDefault(map[string]any{}, "art")
@@ -48,9 +48,9 @@ func New(version string) *ArtCache {
 func (c *ArtCache) download() error {
 	var e error
 	var f *os.File
-	var json = "https://github.com/mjwhitta/artty_json"
+	var json string = "https://github.com/mjwhitta/artty_json"
 	var res *http.Response
-	var zipfile = "/archive/refs/heads/main.zip"
+	var zipfile string = "/archive/refs/heads/main.zip"
 
 	// Download zip
 	if res, e = http.Get(json + zipfile); e != nil {
@@ -206,7 +206,8 @@ func (c *ArtCache) organize() error {
 
 // Refresh will read any found JSON files and update the art cache.
 func (c *ArtCache) Refresh() error {
-	var arts = map[string]any{}
+	var addArt filepath.WalkFunc
+	var arts map[string]any = map[string]any{}
 	var e error
 
 	// Save with initial empty data
@@ -214,7 +215,7 @@ func (c *ArtCache) Refresh() error {
 	c.Set(c.version, "version")
 	c.Save()
 
-	var addArt = func(path string, info os.FileInfo, e error) error {
+	addArt = func(path string, info os.FileInfo, e error) error {
 		var a *art.Art
 
 		if e != nil {
