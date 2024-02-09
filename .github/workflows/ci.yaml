@@ -7,15 +7,14 @@ on:
     branches: ["main"]
     paths: ["**.go"]
     types: ["edited", "opened"]
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/checkout@v3
       with:
-        path: gomk
-        repository: mjwhitta/gomk
+        submodules: true
     - uses: actions/setup-go@v3
       with:
         go-version: "stable"
