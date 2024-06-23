@@ -32,14 +32,14 @@ func New(version string) *ArtCache {
 	var vers string = c.GetString("version")
 
 	// Initialize defaults
-	c.SetDefault(map[string]any{}, "art")
-	c.SetDefault(c.version, "version")
-	c.SaveDefault()
-	c.Reset()
+	_ = c.SetDefault(map[string]any{}, "art")
+	_ = c.SetDefault(c.version, "version")
+	_ = c.SaveDefault()
+	_ = c.Reset()
 
 	// Refresh if newer version detected
 	if vers != c.version {
-		c.Refresh()
+		_ = c.Refresh()
 	}
 
 	return c
@@ -211,9 +211,9 @@ func (c *ArtCache) Refresh() error {
 	var e error
 
 	// Save with initial empty data
-	c.Set(arts, "art")
-	c.Set(c.version, "version")
-	c.Save()
+	_ = c.Set(arts, "art")
+	_ = c.Set(c.version, "version")
+	_ = c.Save()
 
 	addArt = func(path string, info os.FileInfo, e error) error {
 		var a *art.Art
@@ -249,9 +249,9 @@ func (c *ArtCache) Refresh() error {
 	}
 
 	// Save with new data, if no errors
-	c.Set(arts, "art")
-	c.Set(c.version, "version")
-	c.Save()
+	_ = c.Set(arts, "art")
+	_ = c.Set(c.version, "version")
+	_ = c.Save()
 
 	return nil
 }

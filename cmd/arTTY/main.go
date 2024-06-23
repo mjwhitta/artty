@@ -1,12 +1,11 @@
 package main
 
 import (
-	"math/rand"
+	"math/rand/v2"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
-	"time"
 
 	"github.com/mjwhitta/artty"
 	"github.com/mjwhitta/artty/art"
@@ -60,7 +59,7 @@ func draw(name string, i *sysinfo.SysInfo, b, d, f string) {
 		if config.GetBool("clear_screen") {
 			clear = exec.Command("clear")
 			clear.Stdout = os.Stdout
-			clear.Run()
+			_ = clear.Run()
 		}
 
 		a.SysInfo = i
@@ -117,7 +116,7 @@ func generate(file string) {
 			panic(e)
 		}
 
-		f.WriteString(out + "\n")
+		_, _ = f.WriteString(out + "\n")
 		f.Close()
 
 		if e = artty.Cache.Refresh(); e != nil {
@@ -186,8 +185,7 @@ func getName(arts []string) string {
 			return "none"
 		}
 
-		rand.Seed(time.Now().UnixNano())
-		return arts[rand.Intn(len(arts))]
+		return arts[rand.IntN(len(arts))]
 	}
 
 	// Only return the name from config, if it is in the list
@@ -281,7 +279,7 @@ func main() {
 	case "list":
 		list(arts)
 	case "save":
-		config.Save()
+		_ = config.Save()
 	case "show":
 		hl.Println(config)
 	case "update":

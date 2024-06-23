@@ -91,30 +91,32 @@ func init() {
 		hl.Sprintf("%d: Exception", Exception),
 	)
 	cli.Info("Art for your TTY.")
-	cli.Section(
+	cli.SectionAligned(
 		"FIELDS",
-		"blank: Use a blank line as a separator\n",
-		"colors: Show terminal colors\n",
-		"cpu: Show cpu info\n",
-		"fs: Show filesystem usage\n",
-		"host: Show hostname\n",
-		"ipv4: Show IPv4 addresses\n",
-		"ipv6: Show IPv6 addresses\n",
-		"kernel: Show kernel info\n",
-		"os: Show operating system info\n",
-		"ram: Show RAM usage\n",
-		"shell: Show current shell\n",
-		"tty: Show TTY info\n",
-		"uptime: Show uptime",
+		"|",
+		"blank|Use a blank line as a separator.\n",
+		"colors|Show terminal colors.\n",
+		"cpu|Show cpu info.\n",
+		"fs|Show filesystem usage.\n",
+		"host|Show hostname.\n",
+		"ipv4|Show IPv4 addresses.\n",
+		"ipv6|Show IPv6 addresses.\n",
+		"kernel|Show kernel info.\n",
+		"os|Show operating system info.\n",
+		"ram|Show RAM usage.\n",
+		"shell|Show current shell.\n",
+		"tty|Show TTY info.\n",
+		"uptime|Show uptime.",
 	)
-	cli.Section(
+	cli.SectionAligned(
 		"FORMATS",
-		"bash: Generate bash code\n",
-		"go: Generate go code\n",
-		"json: Generate JSON from image file\n",
-		"stdout: Render art\n",
-		"python: Generate python code\n",
-		"ruby: Generate ruby code",
+		"|",
+		"bash|Generate bash code.\n",
+		"go|Generate go code.\n",
+		"json|Generate JSON from image file.\n",
+		"stdout|Render art.\n",
+		"python|Generate python code.\n",
+		"ruby|Generate ruby code.",
 	)
 	cli.Title = "ArTTY"
 
@@ -262,61 +264,61 @@ func init() {
 func setupConfig() {
 	// Check all and plain first
 	if flags.all || flags.plain {
-		config.Set("", "art")
-		config.Set("", "exclude")
-		config.Set(false, "fit")
-		config.Set("", "match")
+		_ = config.Set("", "art")
+		_ = config.Set("", "exclude")
+		_ = config.Set(false, "fit")
+		_ = config.Set("", "match")
 	}
 
 	if flags.plain {
-		config.Set(false, "bsfact")
-		config.Set(false, "clear_screen")
-		config.Set(false, "devexcuse")
-		config.Set(false, "fortune")
-		config.Set(false, "random")
-		config.Set(false, "sysinfo")
+		_ = config.Set(false, "bsfact")
+		_ = config.Set(false, "clear_screen")
+		_ = config.Set(false, "devexcuse")
+		_ = config.Set(false, "fortune")
+		_ = config.Set(false, "random")
+		_ = config.Set(false, "sysinfo")
 	}
 
 	// Check all other flags
 	if flags.bsfact {
-		config.Set(true, "bsfact")
+		_ = config.Set(true, "bsfact")
 	}
 
 	if flags.clear {
-		config.Set(true, "clear_screen")
+		_ = config.Set(true, "clear_screen")
 	}
 
 	if flags.devexcuse {
-		config.Set(true, "devexcuse")
+		_ = config.Set(true, "devexcuse")
 	}
 
 	if flags.exclude != "" {
-		config.Set(flags.exclude, "exclude")
+		_ = config.Set(flags.exclude, "exclude")
 	}
 
 	if flags.fields != "" {
-		config.Set(strings.Split(flags.fields, ","), "fields")
-		config.Set(true, "sysinfo")
+		_ = config.Set(strings.Split(flags.fields, ","), "fields")
+		_ = config.Set(true, "sysinfo")
 	}
 
 	if flags.fit {
-		config.Set(true, "fit")
+		_ = config.Set(true, "fit")
 	}
 
 	if flags.fortune {
-		config.Set(true, "fortune")
+		_ = config.Set(true, "fortune")
 	}
 
 	if flags.match != "" {
-		config.Set(flags.match, "match")
+		_ = config.Set(flags.match, "match")
 	}
 
 	if flags.random {
-		config.Set(true, "random")
+		_ = config.Set(true, "random")
 	}
 
 	if flags.sysinfo {
-		config.Set(true, "sysinfo")
+		_ = config.Set(true, "sysinfo")
 	}
 }
 
@@ -335,8 +337,8 @@ func validate() {
 
 	// Validate cli flags
 	if cli.NArg() == 1 {
-		config.Set(cli.Arg(0), "art")
-		config.Set(false, "random")
+		_ = config.Set(cli.Arg(0), "art")
+		_ = config.Set(false, "random")
 	} else if cli.NArg() > 1 {
 		cli.Usage(ExtraArgument)
 	}

@@ -147,11 +147,11 @@ func GenerateJSON(fn, name string) (string, string, error) {
 	jsonOut, _ = jq.New("{}")
 
 	if len(pixels) > 0 {
-		jsonOut.Set((len(pixels)+1)/2, "height")
-		jsonOut.Set(legend, "legend")
-		jsonOut.Set(name, "name")
-		jsonOut.Set(pixels, "pixels")
-		jsonOut.Set(len(pixels[0]), "width")
+		_ = jsonOut.Set((len(pixels)+1)/2, "height")
+		_ = jsonOut.Set(legend, "legend")
+		_ = jsonOut.Set(name, "name")
+		_ = jsonOut.Set(pixels, "pixels")
+		_ = jsonOut.Set(len(pixels[0]), "width")
 	}
 
 	if output, e = jsonOut.GetBlob("  "); e != nil {
