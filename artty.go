@@ -78,7 +78,8 @@ func DevExcuse() string {
 	var r *http.Response
 	var w int
 
-	if r, e = http.Get("http://developerexcuses.com"); e != nil {
+	r, e = http.Post("http://developerexcuses.com", "", nil)
+	if e != nil {
 		return ""
 	}
 	defer r.Body.Close()
