@@ -15,8 +15,7 @@ import (
 )
 
 func bootstrap(
-	fn string,
-	name string,
+	fn string, name string,
 ) (string, []string, map[string]string, error) {
 	var e error
 	var height int

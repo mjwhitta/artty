@@ -2,43 +2,52 @@ package cache
 
 import (
 	"archive/zip"
+	"encoding/json"
 	"io"
 	"io/fs"
 	"net/http"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 
 	"github.com/mjwhitta/artty/art"
 	"github.com/mjwhitta/errors"
-	"github.com/mjwhitta/jsoncfg"
 	"github.com/mjwhitta/pathname"
 )
 
-// ArtCache is a struct inheriting from jsoncfg.JSONCfg and containing
-// a version string.
+// ArtCache is a struct containing all pixel art metadata and a
+// version string.
 type ArtCache struct {
-	jsoncfg.JSONCfg
-	version string
+	Art     map[string]ArtMetadata `json:"art"`
+	file    string                 `json:"-"`
+	Version string                 `json:"version"`
+}
+
+// ArtMetadata is a struct containing relevant metadata about
+// supported pixel art.
+type ArtMetadata struct {
+	File   string `json:"file"`
+	Height int    `json:"height"`
+	Width  int    `json:"width"`
 }
 
 // New will return a new ArtCache struct pointer with the specified
 // version.
 func New(version string) *ArtCache {
 	var c *ArtCache = &ArtCache{
-		*jsoncfg.New(filepath.Join(cacheDir, cacheFile)),
-		version,
+		file: filepath.Join(cacheDir, cacheFile),
 	}
-	var vers string = c.GetString("version")
 
 	// Initialize defaults
-	_ = c.SetDefault(map[string]any{}, "art")
-	_ = c.SetDefault(c.version, "version")
-	_ = c.SaveDefault()
-	_ = c.Reset()
+	_ = c.read()
+	if c.Art == nil {
+		c.Art = map[string]ArtMetadata{}
+	}
 
 	// Refresh if newer version detected
-	if vers != c.version {
+	if c.Version != version {
+		c.Version = version
 		_ = c.Refresh()
 	}
 
@@ -58,14 +67,13 @@ func (c *ArtCache) download() error {
 	}
 	defer res.Body.Close()
 
-	// Create new file for zip
+	// Create zip file
 	f, e = os.Create(filepath.Join(cacheDir, jsonDir+".zip"))
 	if e != nil {
 		return errors.Newf("failed to create zip: %w", e)
 	}
 	defer f.Close()
 
-	// Save zip to file
 	if _, e = io.Copy(f, res.Body); e != nil {
 		return errors.Newf("failed to write zip: %w", e)
 	}
@@ -159,22 +167,41 @@ func (c *ArtCache) extractFile(zf *zip.File, dst string) error {
 
 // GetFileOf will return the cached filename for the specified art.
 func (c *ArtCache) GetFileOf(name string) string {
-	return c.GetString("art", name, "file")
+	if _, ok := c.Art[name]; ok {
+		return c.Art[name].File
+	}
+
+	return ""
 }
 
 // GetHeightOf will return the cached height for the specified art.
 func (c *ArtCache) GetHeightOf(name string) int {
-	return c.GetInt("art", name, "height")
+	if _, ok := c.Art[name]; ok {
+		return c.Art[name].Height
+	}
+
+	return 0
 }
 
 // GetWidthOf will return the cached width for the specified art.
 func (c *ArtCache) GetWidthOf(name string) int {
-	return c.GetInt("art", name, "width")
+	if _, ok := c.Art[name]; ok {
+		return c.Art[name].Width
+	}
+
+	return 0
 }
 
 // List will return a list of names for any cached art files.
 func (c *ArtCache) List() []string {
-	return c.GetKeys("art")
+	var keys []string
+
+	for name := range c.Art {
+		keys = append(keys, name)
+	}
+
+	slices.Sort(keys)
+	return keys
 }
 
 func (c *ArtCache) organize() error {
@@ -204,22 +231,33 @@ func (c *ArtCache) organize() error {
 	return nil
 }
 
+func (c *ArtCache) read() error {
+	var b []byte
+	var e error
+
+	if b, e = os.ReadFile(c.file); e != nil {
+		return errors.Newf("failed to read %s: %w", c.file, e)
+	}
+
+	if e = json.Unmarshal(b, &c); e != nil {
+		return errors.Newf("invalid cache: %w", e)
+	}
+
+	return nil
+}
+
 // Refresh will read any found JSON files and update the art cache.
 func (c *ArtCache) Refresh() error {
 	var addArt filepath.WalkFunc
-	var arts map[string]any = map[string]any{}
 	var e error
 
-	// Save with initial empty data
-	_ = c.Set(arts, "art")
-	_ = c.Set(c.version, "version")
-	_ = c.Save()
+	c.Art = map[string]ArtMetadata{}
 
 	addArt = func(path string, info os.FileInfo, e error) error {
 		var a *art.Art
 
 		if e != nil {
-			return errors.Newf("failed to access %s: %w", path, e)
+			return e
 		}
 
 		if strings.HasSuffix(path, ".json") {
@@ -228,10 +266,10 @@ func (c *ArtCache) Refresh() error {
 				return e
 			}
 
-			arts[a.Name] = map[string]any{
-				"file":   path,
-				"height": a.Height,
-				"width":  a.Width,
+			c.Art[a.Name] = ArtMetadata{
+				File:   path,
+				Height: a.Height,
+				Width:  a.Width,
 			}
 		}
 
@@ -249,11 +287,36 @@ func (c *ArtCache) Refresh() error {
 	}
 
 	// Save with new data, if no errors
-	_ = c.Set(arts, "art")
-	_ = c.Set(c.version, "version")
 	_ = c.Save()
 
 	return nil
+}
+
+// Save will write the ArtCache to disk.
+func (c *ArtCache) Save() error {
+	var e error
+
+	if e = os.MkdirAll(filepath.Dir(c.file), 0o700); e != nil {
+		return errors.Newf(
+			"failed to create directory %s: %w",
+			filepath.Dir(c.file),
+			e,
+		)
+	}
+
+	if e = os.WriteFile(c.file, []byte(c.String()), 0o600); e != nil {
+		return errors.Newf("failed to write %s: %w", c.file, e)
+	}
+
+	return nil
+}
+
+// String will return a string representation of the ArtCache.
+func (c *ArtCache) String() string {
+	var b []byte
+
+	b, _ = json.MarshalIndent(&c, "", "  ")
+	return strings.TrimSpace(string(b)) + "\n"
 }
 
 // Update will download the newest art files from github.com and

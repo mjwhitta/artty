@@ -264,61 +264,61 @@ func init() {
 func setupConfig() {
 	// Check all and plain first
 	if flags.all || flags.plain {
-		_ = config.Set("", "art")
-		_ = config.Set("", "exclude")
-		_ = config.Set(false, "fit")
-		_ = config.Set("", "match")
+		cfg.Art = ""
+		cfg.Exclude = ""
+		cfg.Fit = false
+		cfg.Match = ""
 	}
 
 	if flags.plain {
-		_ = config.Set(false, "bsfact")
-		_ = config.Set(false, "clear_screen")
-		_ = config.Set(false, "devexcuse")
-		_ = config.Set(false, "fortune")
-		_ = config.Set(false, "random")
-		_ = config.Set(false, "sysinfo")
+		cfg.BSFact = false
+		cfg.ClearScreen = false
+		cfg.DevExcuse = false
+		cfg.Fortune = false
+		cfg.Random = false
+		cfg.SysInfo = false
 	}
 
 	// Check all other flags
 	if flags.bsfact {
-		_ = config.Set(true, "bsfact")
+		cfg.BSFact = true
 	}
 
 	if flags.clear {
-		_ = config.Set(true, "clear_screen")
+		cfg.ClearScreen = true
 	}
 
 	if flags.devexcuse {
-		_ = config.Set(true, "devexcuse")
+		cfg.DevExcuse = true
 	}
 
 	if flags.exclude != "" {
-		_ = config.Set(flags.exclude, "exclude")
+		cfg.Exclude = flags.exclude
 	}
 
 	if flags.fields != "" {
-		_ = config.Set(strings.Split(flags.fields, ","), "fields")
-		_ = config.Set(true, "sysinfo")
+		cfg.Fields = strings.Split(flags.fields, ",")
+		cfg.SysInfo = true
 	}
 
 	if flags.fit {
-		_ = config.Set(true, "fit")
+		cfg.Fit = true
 	}
 
 	if flags.fortune {
-		_ = config.Set(true, "fortune")
+		cfg.Fortune = true
 	}
 
 	if flags.match != "" {
-		_ = config.Set(flags.match, "match")
+		cfg.Match = flags.match
 	}
 
 	if flags.random {
-		_ = config.Set(true, "random")
+		cfg.Random = true
 	}
 
 	if flags.sysinfo {
-		_ = config.Set(true, "sysinfo")
+		cfg.SysInfo = true
 	}
 }
 
@@ -337,8 +337,8 @@ func validate() {
 
 	// Validate cli flags
 	if cli.NArg() == 1 {
-		_ = config.Set(cli.Arg(0), "art")
-		_ = config.Set(false, "random")
+		cfg.Art = cli.Arg(0)
+		cfg.Random = false
 	} else if cli.NArg() > 1 {
 		cli.Usage(ExtraArgument)
 	}

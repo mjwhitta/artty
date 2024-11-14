@@ -1,14 +1,15 @@
 package generator
 
 import (
+	"encoding/json"
 	"image"
 	"image/color"
 	"regexp"
 	"strings"
 
+	"github.com/mjwhitta/artty/art"
 	"github.com/mjwhitta/errors"
 	hl "github.com/mjwhitta/hilighter"
-	"github.com/mjwhitta/jq"
 )
 
 // Convert will try to emulate the output of the convert utility from
@@ -133,32 +134,36 @@ func GenerateGo(str string) string {
 
 // GenerateJSON will generate JSON from an image that can be parsed by
 // arTTY to display in a terminal.
-func GenerateJSON(fn, name string) (string, string, error) {
+func GenerateJSON(fn string, name string) (string, string, error) {
+	var a *art.Art = &art.Art{}
 	var e error
-	var jsonOut *jq.JSON
+	var enc *json.Encoder
 	var legend map[string]string
-	var output string
 	var pixels []string
+	var sb *strings.Builder
 
 	if name, pixels, legend, e = bootstrap(fn, name); e != nil {
 		return "", "", e
 	}
 
-	jsonOut, _ = jq.New("{}")
-
 	if len(pixels) > 0 {
-		_ = jsonOut.Set((len(pixels)+1)/2, "height")
-		_ = jsonOut.Set(legend, "legend")
-		_ = jsonOut.Set(name, "name")
-		_ = jsonOut.Set(pixels, "pixels")
-		_ = jsonOut.Set(len(pixels[0]), "width")
+		a.Height = (len(pixels) + 1) / 2
+		a.Legend = legend
+		a.Name = name
+		a.Pixels = pixels
+		a.Width = len(pixels[0])
 	}
 
-	if output, e = jsonOut.GetBlob("  "); e != nil {
+	sb = &strings.Builder{}
+	enc = json.NewEncoder(sb)
+	enc.SetEscapeHTML(false)
+	enc.SetIndent("", "  ")
+
+	if e = enc.Encode(a); e != nil {
 		return "", "", errors.Newf("failed to create JSON: %w", e)
 	}
 
-	return name, output, nil
+	return name, strings.TrimSpace(sb.String()), nil
 }
 
 // GeneratePython will generate a python3 function from an image that

@@ -56,7 +56,7 @@ func draw(name string, i *sysinfo.SysInfo, b, d, f string) {
 	case "ruby":
 		hl.Println(generator.GenerateRuby(a.String()))
 	case "stdout":
-		if config.GetBool("clear_screen") {
+		if cfg.ClearScreen {
 			clear = exec.Command("clear")
 			clear.Stdout = os.Stdout
 			_ = clear.Run()
@@ -84,7 +84,7 @@ func draw(name string, i *sysinfo.SysInfo, b, d, f string) {
 
 func generate(file string) {
 	var a *art.Art
-	var name string = config.GetString("art")
+	var name string = cfg.Art
 	var e error
 	var f *os.File
 	var out string
@@ -129,7 +129,7 @@ func getFit(b, d, f *string, info *sysinfo.SysInfo) (h, w int) {
 	var height int
 	var width int
 
-	if config.GetBool("fit") {
+	if cfg.Fit {
 		w, h = artty.TermSize()
 
 		if (h > 0) && (w > 0) {
@@ -178,10 +178,10 @@ func getFit(b, d, f *string, info *sysinfo.SysInfo) (h, w int) {
 }
 
 func getName(arts []string) string {
-	var name string = config.GetString("art")
+	var name string = cfg.Art
 
 	if name == "" {
-		if !config.GetBool("random") || (len(arts) == 0) {
+		if !cfg.Random || (len(arts) == 0) {
 			return "none"
 		}
 
@@ -199,24 +199,24 @@ func getName(arts []string) string {
 }
 
 func getOptionals() (b, d, f string, i *sysinfo.SysInfo) {
-	if config.GetBool("bsfact") {
+	if cfg.BSFact {
 		b = artty.BruceSchneier()
 	}
 
-	if config.GetBool("devexcuse") {
+	if cfg.DevExcuse {
 		d = artty.DevExcuse()
 	}
 
-	if config.GetBool("fortune") {
+	if cfg.Fortune {
 		f = artty.Fortune()
 	}
 
 	switch flags.action {
 	case "demo", "draw", "list":
-		if config.GetBool("sysinfo") {
-			i = sysinfo.New(config.GetStringArray("fields")...)
-			i.SetDataColors(config.GetStringArray("dataColors")...)
-			i.SetFieldColors(config.GetStringArray("fieldColors")...)
+		if cfg.SysInfo {
+			i = sysinfo.New(cfg.Fields...)
+			i.SetDataColors(cfg.DataColors...)
+			i.SetFieldColors(cfg.FieldColors...)
 		}
 	}
 
@@ -253,12 +253,7 @@ func main() {
 	bsfact, devexcuse, fortune, info = getOptionals()
 	height, width = getFit(&bsfact, &devexcuse, &fortune, info)
 
-	arts, e = artty.Filter(
-		config.GetString("match"),
-		config.GetString("exclude"),
-		width,
-		height,
-	)
+	arts, e = artty.Filter(cfg.Match, cfg.Exclude, width, height)
 	if e != nil {
 		panic(e)
 	}
@@ -279,9 +274,11 @@ func main() {
 	case "list":
 		list(arts)
 	case "save":
-		_ = config.Save()
+		if e = cfg.Save(); e != nil {
+			panic(e)
+		}
 	case "show":
-		hl.Println(config)
+		hl.Println(cfg.String())
 	case "update":
 		update()
 	}
