@@ -129,7 +129,7 @@ func (a *Art) zipRow(top string, bottom string) (line string) {
 	var tempty bool
 	var tfound bool
 
-	for i := 0; i < len(top); i++ {
+	for i := range len(top) {
 		t = string(top[i])
 		b = string(bottom[i])
 

@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"slices"
 	"strings"
 
 	"github.com/mjwhitta/artty"
@@ -189,10 +190,8 @@ func getName(arts []string) string {
 	}
 
 	// Only return the name from config, if it is in the list
-	for _, k := range arts {
-		if k == name {
-			return name
-		}
+	if slices.Contains(arts, name) {
+		return name
 	}
 
 	return "none"
