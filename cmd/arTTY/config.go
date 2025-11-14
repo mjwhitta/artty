@@ -64,6 +64,8 @@ func init() {
 		if e = json.Unmarshal(b, &cfg); e != nil {
 			panic(errors.Newf("invalid cfg: %w", e))
 		}
+
+		cfg.file = fn
 	}
 
 	if cfg.DataColors == nil {
