@@ -3,6 +3,7 @@ package generator
 import "regexp"
 
 var (
+	//nolint:mnd // 0x1b is hex value of escape
 	esc  = regexp.MustCompile(string(rune(0x1b)))
 	keys []string
 )

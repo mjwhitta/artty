@@ -1,0 +1,219 @@
+formatters:
+  enable:
+    # - gci
+    - gofmt
+    - gofumpt
+    # - goimports
+    - golines
+    # - swaggo
+  settings:
+    gofmt:
+      simplify: true
+      rewrite-rules:
+        - pattern: 'a[-b]'
+          replacement: 'a[len(a)-b]'
+        - pattern: 'a[b:-c]'
+          replacement: 'a[b:len(a)-c]'
+        - pattern: 'a[b:len(a)]'
+          replacement: 'a[b:]'
+        - pattern: 'interface{}'
+          replacement: 'any'
+    gofumpt:
+      extra-rules: false
+    golines:
+      max-len: 70
+      reformat-tags: false
+      tab-len: 4
+issues:
+  fix: false
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  new: false
+linters:
+  default: none
+  enable:
+    # - arangolint
+    # - asasalint
+    - asciicheck
+    - bidichk
+    - bodyclose
+    # - canonicalheader
+    # - containedctx
+    # - contextcheck
+    # - copyloopvar
+    - cyclop
+    - decorder
+    # - depguard
+    # - dogsled
+    - dupl
+    - dupword
+    # - durationcheck
+    - embeddedstructfieldcheck
+    # - err113
+    - errcheck
+    # - errchkjson
+    # - errname
+    # - errorlint
+    # - exhaustive
+    # - exhaustruct
+    # - exptostd
+    # - fatcontext
+    # - forbidigo
+    - forcetypeassert
+    - funcorder
+    # - funlen
+    # - ginkgolinter
+    - gocheckcompilerdirectives
+    # - gochecknoglobals
+    # - gochecknoinits
+    # - gochecksumtype
+    # - gocognit
+    # - goconst
+    - gocritic
+    - gocyclo
+    - godoclint
+    # - godot
+    - godox
+    # - goheader
+    # - gomoddirectives
+    # - gomodguard
+    - goprintffuncname
+    - gosec
+    # - gosmopolitan
+    - govet
+    - grouper
+    # - iface
+    # - importas
+    - inamedparam
+    - ineffassign
+    # - interfacebloat
+    - intrange
+    - iotamixing
+    # - ireturn
+    - lll
+    # - loggercheck
+    - maintidx
+    - makezero
+    - mirror
+    - misspell
+    - mnd
+    - musttag
+    # - nakedret
+    # - nestif
+    - nilerr
+    - nilnesserr
+    - nilnil
+    - nlreturn
+    # - noctx
+    # - noinlineerr
+    - nolintlint
+    # - nonamedreturns
+    - nosprintfhostport
+    # - paralleltest
+    - perfsprint
+    # - prealloc
+    - predeclared
+    # - promlinter
+    # - protogetter
+    # - reassign
+    - recvcheck
+    # - revive # default minus var-declaration not possible easily
+    - rowserrcheck
+    # - sloglint
+    # - spancheck
+    - sqlclosecheck
+    - staticcheck
+    - tagalign
+    - tagliatelle
+    - testableexamples
+    - testifylint
+    - testpackage
+    - thelper
+    - tparallel
+    - unconvert
+    - unparam
+    - unqueryvet
+    - unused
+    - usestdlibvars
+    - usetesting
+    # - varnamelen
+    - wastedassign
+    - whitespace
+    - wrapcheck
+    - wsl_v5
+    # - zerologlint
+  settings:
+    cyclop:
+      max-complexity: 15
+    decorder:
+      disable-dec-order-check: false
+    errcheck:
+      check-type-assertions: true
+    funcorder:
+      alphabetical: true
+      constructor: false
+      struct-method: false
+    gocyclo:
+      min-complexity: 15
+    godoclint:
+      default: none
+      enable:
+        - deprecated
+        - max-len
+        - pkg-doc
+        - require-doc
+        - single-pkg-doc
+        - start-with-name
+    grouper:
+      const-require-single-const: true
+      const-require-grouping: false
+      import-require-single-import: true
+      import-require-grouping: false
+      type-require-single-type: false
+      type-require-grouping: false
+      var-require-single-var: true
+      var-require-grouping: false
+    lll:
+      line-length: 70
+      tab-width: 4
+    misspell:
+      ignore-rules: []
+      locale: US
+    nilnil:
+      detect-opposite: true
+    nlreturn:
+      block-size: 2
+    nolintlint:
+      require-explanation: true
+      require-specific: true
+    recvcheck:
+      disable-builtin: true
+    staticcheck:
+      checks:
+        - all
+        - -ST1000
+        - -ST1023
+        - -QF1011
+    tagalign:
+      align: false
+    tagliatelle:
+      case:
+        rules:
+          json: snake
+          yaml: snake
+          xml: goPascal
+    wrapcheck:
+      ignore-sig-regexps:
+        - errors\.Newf?
+    wsl_v5:
+      default: default
+      disable:
+        - decl
+        - defer
+        - err
+run:
+  build-tags: []
+  concurrency: 0
+  relative-path-mode: gomod
+  tests: true
+version: "2"

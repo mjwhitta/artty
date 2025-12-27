@@ -1,6 +1,7 @@
 package artty
 
 import (
+	"bytes"
 	"html"
 	"io"
 	"net/http"
@@ -27,13 +28,15 @@ func BruceSchneier() string {
 	if r, e = http.Get("https://schneierfacts.com"); e != nil {
 		return ""
 	}
-	defer r.Body.Close()
+	defer func() {
+		_ = r.Body.Close()
+	}()
 
 	if b, e = io.ReadAll(r.Body); e != nil {
 		return ""
 	}
 
-	for _, m := range bsRegex.FindAllStringSubmatch(string(b), -1) {
+	for _, m := range reBruce.FindAllStringSubmatch(string(b), -1) {
 		w, _ = TermSize()
 
 		return hl.Wrap(
@@ -82,13 +85,15 @@ func DevExcuse() string {
 	if e != nil {
 		return ""
 	}
-	defer r.Body.Close()
+	defer func() {
+		_ = r.Body.Close()
+	}()
 
 	if b, e = io.ReadAll(r.Body); e != nil {
 		return ""
 	}
 
-	for _, m := range devRegex.FindAllStringSubmatch(string(b), -1) {
+	for _, m := range reDev.FindAllStringSubmatch(string(b), -1) {
 		w, _ = TermSize()
 
 		return hl.Wrap(
@@ -128,9 +133,8 @@ func Filter(
 
 		if (w == 0) && (h == 0) {
 			keep = append(keep, name)
-		} else {
-			if (Cache.GetHeightOf(name) <= h) &&
-				(Cache.GetWidthOf(name) <= w) {
+		} else if Cache.GetHeightOf(name) <= h {
+			if Cache.GetWidthOf(name) <= w {
 				keep = append(keep, name)
 			}
 		}
@@ -142,20 +146,20 @@ func Filter(
 // Fortune will return the output from the fortune command if it is
 // installed.
 func Fortune() string {
+	var b []byte
 	var e error
-	var f string
-	var o []byte
+	var fortune string
 
-	f = where.Is("fortune")
-	if f == "" {
-		return f
-	}
-
-	if o, e = exec.Command(f, "-s").Output(); e != nil {
+	if fortune = where.Is("fortune"); fortune == "" {
 		return ""
 	}
 
-	return strings.TrimSpace(string(o))
+	//nolint:gosec // G204 - fortune comes from where.Is()
+	if b, e = exec.Command(fortune, "-s").Output(); e != nil {
+		return ""
+	}
+
+	return strings.TrimSpace(string(b))
 }
 
 // Get will return the Art matching the provided name.
@@ -178,30 +182,32 @@ func Get(name string) (*art.Art, error) {
 
 // TermSize will return the size of the terminal.
 func TermSize() (w int, h int) {
+	var b []byte
 	var c *exec.Cmd
 	var e error
-	var o []byte
-	var size []string
+	var ok bool
+	var size []string = []string{"0", "0"}
+	var stty string
 
-	if where.Is("stty") == "" {
-		return
+	if stty = where.Is("stty"); stty == "" {
+		return 0, 0
 	}
 
-	c = exec.Command(where.Is("stty"), "size")
+	//nolint:gosec // G204 - stty comes from where.Is()
+	c = exec.Command(stty, "size")
 	c.Stdin = os.Stdin
 
-	if o, e = c.Output(); e != nil {
-		return
+	if b, e = c.Output(); e != nil {
+		return 0, 0
 	}
 
-	size = strings.Split(strings.TrimSpace(string(o)), " ")
-
-	if len(size) != 2 {
-		return
+	b = bytes.TrimSpace(b)
+	if size[0], size[1], ok = strings.Cut(string(b), " "); !ok {
+		return 0, 0
 	}
 
 	h, _ = strconv.Atoi(size[0])
 	w, _ = strconv.Atoi(size[1])
 
-	return
+	return w, h
 }

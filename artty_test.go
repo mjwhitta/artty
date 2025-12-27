@@ -1,3 +1,4 @@
+//nolint:godoclint // These are tests
 package artty_test
 
 import (
@@ -17,6 +18,6 @@ func TestFilter(t *testing.T) {
 		0,
 		0,
 	)
-	assert.Nil(t, e)
-	assert.Equal(t, 883, len(arts))
+	assert.NoError(t, e)
+	assert.Len(t, arts, 883)
 }

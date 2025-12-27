@@ -35,6 +35,7 @@ func New(paths ...string) (*Art, error) {
 
 	fn = pathname.ExpandPath(paths[0])
 
+	//nolint:gosec // G304 - pathname calls filepath.Clean()
 	if b, e = os.ReadFile(fn); e != nil {
 		return nil, errors.Newf("failed to read %s: %w", fn, e)
 	}
@@ -75,6 +76,7 @@ func (a *Art) String() string {
 		filler = strings.Repeat(" ", len(a.Pixels[0]))
 	}
 
+	//nolint:mnd // Each lines is two pixels tall
 	if (len(a.Pixels) % 2) != 0 {
 		a.Pixels = append(a.Pixels, filler)
 	}
@@ -89,12 +91,14 @@ func (a *Art) String() string {
 			top = row
 			continue
 		}
+
 		bottom = row
 
 		// Make same length
 		for len(top) < len(bottom) {
 			top += " "
 		}
+
 		for len(bottom) < len(top) {
 			bottom += " "
 		}
@@ -103,8 +107,9 @@ func (a *Art) String() string {
 		line = " " + a.zipRow(top, bottom)
 
 		// Append SysInfo, if any
-		if int(i/2) < len(info) {
-			line += " " + info[int(i/2)]
+		//nolint:mnd // Each line is two pixels tall
+		if (i / 2) < len(info) {
+			line += " " + info[i/2]
 		}
 
 		out = append(out, line)
@@ -113,7 +118,8 @@ func (a *Art) String() string {
 		top = ""
 	}
 
-	for i := int(len(a.Pixels) / 2); i < len(info); i++ {
+	//nolint:mnd // Each line is two pixels tall
+	for i := len(a.Pixels) / 2; i < len(info); i++ {
 		line = " " + filler + " " + info[i]
 		out = append(out, line)
 	}
@@ -121,44 +127,46 @@ func (a *Art) String() string {
 	return strings.Join(out, "\n")
 }
 
-func (a *Art) zipRow(top string, bottom string) (line string) {
+func (a *Art) zipRow(top string, bottom string) string {
 	var b string
 	var bempty bool
 	var bfound bool
+	var sb strings.Builder
 	var t string
 	var tempty bool
 	var tfound bool
 
 	for i := range len(top) {
 		t = string(top[i])
-		b = string(bottom[i])
-
-		bempty = (b == " ")
 		tempty = (t == " ")
-		_, bfound = a.Legend[b]
 		_, tfound = a.Legend[t]
 
-		if (tempty && bempty) ||
-			(!tempty && !tfound) ||
-			(!bempty && !bfound) {
-			line += " "
-			continue
-		}
+		b = string(bottom[i])
+		bempty = (b == " ")
+		_, bfound = a.Legend[b]
 
-		if tempty {
-			line += hl.Hilight(a.Legend[b], "▄")
-		} else if bempty {
-			line += hl.Hilights(
-				[]string{a.Legend[t], "swap"},
-				"▄",
+		switch {
+		case tempty && bempty:
+			sb.WriteString(" ")
+		case !tempty && !tfound:
+			sb.WriteString(" ")
+		case !bempty && !bfound:
+			sb.WriteString(" ")
+		case tempty:
+			sb.WriteString(hl.Hilight(a.Legend[b], "▄"))
+		case bempty:
+			sb.WriteString(
+				hl.Hilights([]string{a.Legend[t], "swap"}, "▄"),
 			)
-		} else {
-			line += hl.Hilights(
-				[]string{a.Legend[b], "on_" + a.Legend[t]},
-				"▄",
+		default:
+			sb.WriteString(
+				hl.Hilights(
+					[]string{a.Legend[b], "on" + a.Legend[t]},
+					"▄",
+				),
 			)
 		}
 	}
 
-	return
+	return sb.String()
 }

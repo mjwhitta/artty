@@ -2,14 +2,15 @@ package generator
 
 import (
 	"encoding/json"
+	"fmt"
 	"image"
 	"image/color"
+	"math"
 	"regexp"
 	"strings"
 
 	"github.com/mjwhitta/artty/art"
 	"github.com/mjwhitta/errors"
-	hl "github.com/mjwhitta/hilighter"
 )
 
 // Convert will try to emulate the output of the convert utility from
@@ -29,7 +30,7 @@ func Convert(fn string) error {
 		return e
 	}
 
-	hl.Printf(
+	fmt.Printf(
 		"# ArTTY pixel enumeration: %d,%d,65535,srgba\n",
 		img.Bounds().Max.X,
 		img.Bounds().Max.Y,
@@ -40,34 +41,38 @@ func Convert(fn string) error {
 			c = img.At(x, y)
 			r, g, b, a = c.RGBA()
 
+			//nolint:mnd // 0xffff is max alpha
 			if (a != 0) && (a != 0xffff) {
 				r = uint32(float64(r*0xffff) / float64(a))
 				g = uint32(float64(g*0xffff) / float64(a))
 				b = uint32(float64(b*0xffff) / float64(a))
 			}
 
-			hl.Printf("%d,%d: (%d,%d,%d,%d)  ", x, y, r, g, b, a)
+			fmt.Printf("%d,%d: (%d,%d,%d,%d)  ", x, y, r, g, b, a)
 
 			r >>= 8
 			g >>= 8
 			b >>= 8
 			a >>= 8
 
-			hex = hl.Sprintf("#%02X%02X%02X%02X", r, g, b, a)
-			srgba = hl.Sprintf(
+			hex = fmt.Sprintf("#%02X%02X%02X%02X", r, g, b, a)
+
+			srgba = fmt.Sprintf(
 				"srgba(%d,%d,%d,%.5f)",
 				r,
 				g,
 				b,
-				float64(a)/255.0,
+				float64(a)/math.MaxUint8,
 			)
-			if a == 255 {
-				srgba = hl.Sprintf("srgba(%d,%d,%d,1)", r, g, b)
-			} else if a == 0 {
+
+			switch a {
+			case math.MaxUint8:
+				srgba = fmt.Sprintf("srgba(%d,%d,%d,1)", r, g, b)
+			case 0:
 				srgba = "none"
 			}
 
-			hl.Printf("%s  %s\n", hex, srgba)
+			fmt.Printf("%s  %s\n", hex, srgba)
 		}
 	}
 
@@ -86,7 +91,7 @@ func GenerateBash(str string) string {
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\e")
 
-		if len(l) < 57 {
+		if len(l) < 57 { //nolint:mnd // Ensure code is wrapped at 70
 			bash = append(bash, "    echo -e \""+l+"\"")
 			continue
 		}
@@ -115,7 +120,7 @@ func GenerateGo(str string) string {
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\x1b")
 
-		if len(l) < 52 {
+		if len(l) < 52 { //nolint:mnd // Ensure code is wrapped at 70
 			golang = append(golang, "    fmt.Println(\""+l+"\")")
 			continue
 		}
@@ -140,13 +145,14 @@ func GenerateJSON(fn string, name string) (string, string, error) {
 	var enc *json.Encoder
 	var legend map[string]string
 	var pixels []string
-	var sb *strings.Builder
+	var sb strings.Builder
 
 	if name, pixels, legend, e = bootstrap(fn, name); e != nil {
 		return "", "", e
 	}
 
 	if len(pixels) > 0 {
+		//nolint:mnd // Each row is 2 pixels tall
 		a.Height = (len(pixels) + 1) / 2
 		a.Legend = legend
 		a.Name = name
@@ -154,8 +160,7 @@ func GenerateJSON(fn string, name string) (string, string, error) {
 		a.Width = len(pixels[0])
 	}
 
-	sb = &strings.Builder{}
-	enc = json.NewEncoder(sb)
+	enc = json.NewEncoder(&sb)
 	enc.SetEscapeHTML(false)
 	enc.SetIndent("", "  ")
 
@@ -178,6 +183,7 @@ func GeneratePython(str string) string {
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\33")
 
+		//nolint:mnd // Ensure code is wrapped at 70
 		if len(l) < 58 {
 			py = append(py, "    print(\""+l+"\")")
 			continue
@@ -209,7 +215,7 @@ func GenerateRuby(str string) string {
 	for _, l := range strings.Split(str, "\n") {
 		l = esc.ReplaceAllString(l, "\\e")
 
-		if len(l) < 59 {
+		if len(l) < 59 { //nolint:mnd // Ensure code is wrapped at 70
 			rb = append(rb, "    puts(\""+l+"\")")
 			continue
 		}

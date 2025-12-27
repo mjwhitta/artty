@@ -14,17 +14,18 @@ type config struct {
 	Art         string   `json:"art"`
 	BSFact      bool     `json:"bsfact"`
 	ClearScreen bool     `json:"clear_screen"`
-	DataColors  []string `json:"dataColors"`
+	DataColors  []string `json:"data_colors"`
 	DevExcuse   bool     `json:"devexcuse"`
 	Exclude     string   `json:"exclude"`
-	FieldColors []string `json:"fieldColors"`
+	FieldColors []string `json:"field_colors"`
 	Fields      []string `json:"fields"`
-	file        string   `json:"-"`
 	Fit         bool     `json:"fit"`
 	Fortune     bool     `json:"fortune"`
 	Match       string   `json:"match"`
 	Random      bool     `json:"random"`
 	SysInfo     bool     `json:"sysinfo"`
+
+	file string
 }
 
 var cfg *config
@@ -39,7 +40,7 @@ func init() {
 	}
 
 	fn = filepath.Join(fn, "arTTY", "rc")
-	b, e = os.ReadFile(fn)
+	b, e = os.ReadFile(filepath.Clean(fn))
 
 	if (e != nil) || (len(bytes.TrimSpace(b)) == 0) {
 		// Default cfg
@@ -57,7 +58,7 @@ func init() {
 			SysInfo:     true,
 		}
 
-		if e = cfg.Save(); e != nil {
+		if e = cfg.save(); e != nil {
 			panic(e)
 		}
 	} else {
@@ -77,9 +78,10 @@ func init() {
 	}
 }
 
-func (c *config) Save() error {
+func (c *config) save() error {
 	var e error
 
+	//nolint:mnd // u=rwx,go=-
 	if e = os.MkdirAll(filepath.Dir(c.file), 0o700); e != nil {
 		return errors.Newf(
 			"failed to create directory %s: %w",
@@ -88,6 +90,7 @@ func (c *config) Save() error {
 		)
 	}
 
+	//nolint:mnd // u=rw,go=-
 	if e = os.WriteFile(c.file, []byte(c.String()), 0o600); e != nil {
 		return errors.Newf("failed to write %s: %w", c.file, e)
 	}
@@ -95,9 +98,11 @@ func (c *config) Save() error {
 	return nil
 }
 
+// String will return a string representation of the config.
 func (c *config) String() string {
 	var b []byte
 
 	b, _ = json.MarshalIndent(&c, "", "  ")
+
 	return strings.TrimSpace(string(b)) + "\n"
 }

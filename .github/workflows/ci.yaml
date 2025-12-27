@@ -12,12 +12,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v5
       with:
         submodules: true
-    - uses: actions/setup-go@v3
+    - uses: actions/setup-go@v6
       with:
         go-version: "stable"
+    - env:
+        GOOS: "darwin"
+      name: Lint (darwin)
+      uses: golangci/golangci-lint-action@v8
+      with:
+        version: latest
+    - env:
+        GOOS: "linux"
+      name: Lint (linux)
+      uses: golangci/golangci-lint-action@v8
+      with:
+        version: latest
+    - env:
+        GOOS: "windows"
+      name: Lint (windows)
+      uses: golangci/golangci-lint-action@v8
+      with:
+        version: latest
     - name: Build
       run: make
     - name: Update

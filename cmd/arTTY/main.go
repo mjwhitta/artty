@@ -1,6 +1,8 @@
+//nolint:wrapcheck // I don't wrap errors in the main package
 package main
 
 import (
+	"fmt"
 	"math/rand/v2"
 	"os"
 	"os/exec"
@@ -12,12 +14,27 @@ import (
 	"github.com/mjwhitta/artty/art"
 	"github.com/mjwhitta/artty/cache"
 	"github.com/mjwhitta/artty/generator"
-	hl "github.com/mjwhitta/hilighter"
 	"github.com/mjwhitta/log"
 	"github.com/mjwhitta/sysinfo"
 )
 
-func demo(arts []string, info *sysinfo.SysInfo) {
+var (
+	actions map[string]func() error = map[string]func() error{
+		"cache":  refresh,
+		"demo":   demo,
+		"draw":   draw,
+		"list":   list,
+		"update": update,
+	}
+	arts      []string
+	bsfact    string
+	devexcuse string
+	fortune   string
+	info      *sysinfo.SysInfo
+)
+
+//nolint:unparam // Must match [func() error] for actions map
+func demo() error {
 	var a *art.Art
 	var e error
 
@@ -25,7 +42,8 @@ func demo(arts []string, info *sysinfo.SysInfo) {
 		if a, e = artty.Get(name); e != nil {
 			log.Info(name)
 			log.Err(e.Error())
-			hl.Println()
+			fmt.Println()
+
 			continue
 		}
 
@@ -33,100 +51,107 @@ func demo(arts []string, info *sysinfo.SysInfo) {
 
 		if a.String() != "" {
 			log.Info(name)
-			hl.Printf("\n%s\n\n", a)
+			fmt.Printf("\n%s\n\n", a)
 		}
 	}
+
+	return nil
 }
 
-func draw(name string, i *sysinfo.SysInfo, b, d, f string) {
+func draw() error {
 	var a *art.Art
-	var clear *exec.Cmd
+	var clearScreen *exec.Cmd
 	var e error
+	var name string = getName()
 
 	if a, e = artty.Get(name); e != nil {
-		panic(e)
+		return e
 	}
 
 	switch flags.format {
 	case "bash":
-		hl.Println(generator.GenerateBash(a.String()))
+		fmt.Println(generator.GenerateBash(a.String()))
 	case "go":
-		hl.Println(generator.GenerateGo(a.String()))
+		fmt.Println(generator.GenerateGo(a.String()))
+	case "json":
+		fmt.Println("Did you mean to use --generate=FILE?")
 	case "python":
-		hl.Println(generator.GeneratePython(a.String()))
+		fmt.Println(generator.GeneratePython(a.String()))
 	case "ruby":
-		hl.Println(generator.GenerateRuby(a.String()))
+		fmt.Println(generator.GenerateRuby(a.String()))
 	case "stdout":
 		if cfg.ClearScreen {
-			clear = exec.Command("clear")
-			clear.Stdout = os.Stdout
-			_ = clear.Run()
+			clearScreen = exec.Command("clear")
+			clearScreen.Stdout = os.Stdout
+			_ = clearScreen.Run()
 		}
 
-		a.SysInfo = i
+		a.SysInfo = info
 
 		if a.String() != "" {
-			hl.Printf("\n%s\n\n", a)
+			fmt.Printf("\n%s\n\n", a)
 		}
 
-		if b != "" {
-			hl.Printf("%s\n\n", b)
+		if bsfact != "" {
+			fmt.Printf("%s\n\n", bsfact)
 		}
 
-		if d != "" {
-			hl.Printf("%s\n\n", d)
+		if devexcuse != "" {
+			fmt.Printf("%s\n\n", devexcuse)
 		}
 
-		if f != "" {
-			hl.Printf("%s\n\n", f)
+		if fortune != "" {
+			fmt.Printf("%s\n\n", fortune)
 		}
 	}
+
+	return nil
 }
 
-func generate(file string) {
+func generate(file string) error {
 	var a *art.Art
-	var name string = cfg.Art
 	var e error
-	var f *os.File
+	var name string = cfg.Art
 	var out string
 
 	if name, out, e = generator.GenerateJSON(file, name); e != nil {
-		panic(e)
+		return e
 	}
 
 	if a, e = art.NewFromJSON([]byte(out)); e != nil {
-		panic(e)
+		return e
 	}
 
 	switch flags.format {
 	case "bash":
-		hl.Println(generator.GenerateBash(a.String()))
+		fmt.Println(generator.GenerateBash(a.String()))
 	case "go":
-		hl.Println(generator.GenerateGo(a.String()))
+		fmt.Println(generator.GenerateGo(a.String()))
 	case "json":
-		hl.Println(out)
+		fmt.Println(out)
 	case "python":
-		hl.Println(generator.GeneratePython(a.String()))
+		fmt.Println(generator.GeneratePython(a.String()))
 	case "ruby":
-		hl.Println(generator.GenerateRuby(a.String()))
+		fmt.Println(generator.GenerateRuby(a.String()))
 	case "stdout": // Actually write to new cache file
-		f, e = os.Create(
-			filepath.Join(cache.CustomJSONDir, name) + ".json",
+		e = os.WriteFile(
+			filepath.Join(cache.CustomJSONDir, name)+".json",
+			[]byte(out+"\n"),
+			0o600, //nolint:mnd // u=rw,go=-
 		)
 		if e != nil {
-			panic(e)
+			return e
 		}
-
-		_, _ = f.WriteString(out + "\n")
-		f.Close()
 
 		if e = artty.Cache.Refresh(); e != nil {
-			panic(e)
+			return e
 		}
 	}
+
+	return nil
 }
 
-func getFit(b, d, f *string, info *sysinfo.SysInfo) (h, w int) {
+func getFit() (h int, w int) {
 	var height int
 	var width int
 
@@ -146,11 +171,11 @@ func getFit(b, d, f *string, info *sysinfo.SysInfo) (h, w int) {
 		}
 
 		// Check bsfact, devexcuse, and fortune for height and width
-		for _, strptr := range []*string{b, d, f} {
+		for _, s := range []*string{&bsfact, &devexcuse, &fortune} {
 			height = 0
 			width = 0
 
-			for _, line := range strings.Split(*strptr, "\n") {
+			for _, line := range strings.Split(*s, "\n") {
 				height++
 
 				if len([]rune(line)) > width {
@@ -159,7 +184,7 @@ func getFit(b, d, f *string, info *sysinfo.SysInfo) (h, w int) {
 			}
 
 			if (height >= h) || (width > w) {
-				*strptr = ""
+				*s = ""
 			} else {
 				h -= height + 1
 			}
@@ -178,7 +203,7 @@ func getFit(b, d, f *string, info *sysinfo.SysInfo) (h, w int) {
 	return
 }
 
-func getName(arts []string) string {
+func getName() string {
 	var name string = cfg.Art
 
 	if name == "" {
@@ -186,6 +211,7 @@ func getName(arts []string) string {
 			return "none"
 		}
 
+		//nolint:gosec // G404 - This doesn't need to be secure
 		return arts[rand.IntN(len(arts))]
 	}
 
@@ -197,60 +223,62 @@ func getName(arts []string) string {
 	return "none"
 }
 
-func getOptionals() (b, d, f string, i *sysinfo.SysInfo) {
+func getOptionals() {
 	if cfg.BSFact {
-		b = artty.BruceSchneier()
+		bsfact = artty.BruceSchneier()
 	}
 
 	if cfg.DevExcuse {
-		d = artty.DevExcuse()
+		devexcuse = artty.DevExcuse()
 	}
 
 	if cfg.Fortune {
-		f = artty.Fortune()
+		fortune = artty.Fortune()
 	}
 
 	switch flags.action {
 	case "demo", "draw", "list":
 		if cfg.SysInfo {
-			i = sysinfo.New(cfg.Fields...)
-			i.SetDataColors(cfg.DataColors...)
-			i.SetFieldColors(cfg.FieldColors...)
+			info = sysinfo.New(cfg.Fields...)
+			info.SetDataColors(cfg.DataColors...)
+			info.SetFieldColors(cfg.FieldColors...)
 		}
 	}
-
-	return
 }
 
-func list(arts []string) {
+//nolint:unparam // Must match [func() error] for actions map
+func list() error {
 	for _, name := range arts {
-		hl.Println(name)
+		fmt.Println(name)
 	}
+
+	return nil
 }
 
 func main() {
 	defer func() {
 		if r := recover(); r != nil {
 			if flags.verbose {
-				panic(r.(error).Error())
+				panic(r)
 			}
-			log.ErrX(Exception, r.(error).Error())
+
+			switch r := r.(type) {
+			case error:
+				log.ErrX(Exception, r.Error())
+			case string:
+				log.ErrX(Exception, r)
+			}
 		}
 	}()
 
-	var arts []string
-	var bsfact string
-	var devexcuse string
 	var e error
-	var fortune string
 	var height int
-	var info *sysinfo.SysInfo
 	var width int
 
 	validate()
+	getOptionals()
 
-	bsfact, devexcuse, fortune, info = getOptionals()
-	height, width = getFit(&bsfact, &devexcuse, &fortune, info)
+	height, width = getFit()
 
 	arts, e = artty.Filter(cfg.Match, cfg.Exclude, width, height)
 	if e != nil {
@@ -258,47 +286,43 @@ func main() {
 	}
 
 	switch flags.action {
-	case "cache":
-		refresh()
 	case "convert":
-		if e = generator.Convert(flags.convert); e != nil {
-			panic(e)
-		}
-	case "demo":
-		demo(arts, info)
-	case "draw":
-		draw(getName(arts), info, bsfact, devexcuse, fortune)
+		e = generator.Convert(flags.convert)
 	case "generate":
-		generate(flags.generate)
-	case "list":
-		list(arts)
+		e = generate(flags.generate)
 	case "save":
-		if e = cfg.Save(); e != nil {
-			panic(e)
-		}
+		e = cfg.save()
 	case "show":
-		hl.Println(cfg.String())
-	case "update":
-		update()
+		fmt.Println(cfg.String())
+	default:
+		e = actions[flags.action]()
+	}
+
+	if e != nil {
+		panic(e)
 	}
 }
 
-func refresh() {
-	var e error
-
+func refresh() error {
 	log.Info("Refreshing cache...")
-	if e = artty.Cache.Refresh(); e != nil {
-		panic(e)
+
+	if e := artty.Cache.Refresh(); e != nil {
+		return e
 	}
+
 	log.Info("done")
+
+	return nil
 }
 
-func update() {
-	var e error
-
+func update() error {
 	log.Info("Updating cache...")
-	if e = artty.Cache.Update(); e != nil {
-		panic(e)
+
+	if e := artty.Cache.Update(); e != nil {
+		return e
 	}
+
 	log.Info("done")
+
+	return nil
 }

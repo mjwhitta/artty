@@ -6,12 +6,15 @@ import (
 	"github.com/mjwhitta/artty/cache"
 )
 
-var bsRegex = regexp.MustCompile(`<p class\=\"fact\">(.+)</p>`)
-
-// Cache related vars
-var Cache *cache.ArtCache = cache.New(Version)
-
-var devRegex = regexp.MustCompile(`<a href.+>(.+)</a>`)
-
 // Version is the package version
-const Version string = "1.5.3"
+const Version string = "1.6.0"
+
+var (
+	// Cache related vars
+	Cache *cache.ArtCache = cache.New(Version)
+
+	reBruce *regexp.Regexp = regexp.MustCompile(
+		`<p class\=\"fact\">(.+)</p>`,
+	)
+	reDev *regexp.Regexp = regexp.MustCompile(`<a href.+>(.+)</a>`)
+)

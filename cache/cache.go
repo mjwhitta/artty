@@ -20,8 +20,9 @@ import (
 // version string.
 type ArtCache struct {
 	Art     map[string]ArtMetadata `json:"art"`
-	file    string                 `json:"-"`
 	Version string                 `json:"version"`
+
+	file string
 }
 
 // ArtMetadata is a struct containing relevant metadata about
@@ -54,9 +55,9 @@ func New(version string) *ArtCache {
 	return c
 }
 
-func (c *ArtCache) download() error {
-	var e error
+func (c *ArtCache) download() (e error) {
 	var f *os.File
+	var fn string
 	var json string = "https://github.com/mjwhitta/artty_json"
 	var res *http.Response
 	var zipfile string = "/archive/refs/heads/main.zip"
@@ -65,14 +66,29 @@ func (c *ArtCache) download() error {
 	if res, e = http.Get(json + zipfile); e != nil {
 		return errors.Newf("failed to download zip: %w", e)
 	}
-	defer res.Body.Close()
+	defer func() {
+		if e == nil {
+			if e = res.Body.Close(); e != nil {
+				e = errors.Newf(
+					"failed to close HTTP response body: %w",
+					e,
+				)
+			}
+		}
+	}()
 
 	// Create zip file
-	f, e = os.Create(filepath.Join(cacheDir, jsonDir+".zip"))
-	if e != nil {
+	fn = filepath.Join(cacheDir, jsonDir+".zip")
+	if f, e = os.Create(filepath.Clean(fn)); e != nil {
 		return errors.Newf("failed to create zip: %w", e)
 	}
-	defer f.Close()
+	defer func() {
+		if e == nil {
+			if e = f.Close(); e != nil {
+				e = errors.Newf("failed to close %s: %w", fn, e)
+			}
+		}
+	}()
 
 	if _, e = io.Copy(f, res.Body); e != nil {
 		return errors.Newf("failed to write zip: %w", e)
@@ -81,29 +97,35 @@ func (c *ArtCache) download() error {
 	return nil
 }
 
-func (c *ArtCache) extract() error {
+func (c *ArtCache) extract() (e error) {
 	var dst string
-	var e error
 	var fi fs.FileInfo
+	var fn string
 	var root string
 	var z *zip.ReadCloser
 
 	// Remove any artifacts from previous errors
-	os.RemoveAll(filepath.Join(cacheDir, jsonDir+".new"))
+	_ = os.RemoveAll(filepath.Join(cacheDir, jsonDir+".new"))
 
 	// Open zip file
-	z, e = zip.OpenReader(filepath.Join(cacheDir, jsonDir+".zip"))
-	if e != nil {
-		return errors.Newf("failed to open zip: %w", e)
+	fn = filepath.Join(cacheDir, jsonDir+".zip")
+	if z, e = zip.OpenReader(filepath.Clean(fn)); e != nil {
+		return errors.Newf("failed to open %s: %w", fn, e)
 	}
-	defer z.Close()
+	defer func() {
+		if e == nil {
+			if e = z.Close(); e != nil {
+				e = errors.Newf("failed to close %s: %w", fn, e)
+			}
+		}
+	}()
 
 	// Loop thru the contained files
 	for i, zf := range z.File {
 		// Store root directory
 		if i == 0 {
 			root = strings.TrimSuffix(
-				zf.FileHeader.Name,
+				zf.Name,
 				string(filepath.Separator),
 			)
 		}
@@ -111,15 +133,10 @@ func (c *ArtCache) extract() error {
 		// Create destination file name
 		dst = filepath.Join(
 			cacheDir,
-			strings.Replace(
-				zf.FileHeader.Name,
-				root,
-				jsonDir+".new",
-				1,
-			),
+			strings.Replace(zf.Name, root, jsonDir+".new", 1),
 		)
 
-		fi = zf.FileHeader.FileInfo()
+		fi = zf.FileInfo()
 
 		if fi.IsDir() {
 			// Extract directory
@@ -135,34 +152,55 @@ func (c *ArtCache) extract() error {
 	}
 
 	// Remove zip file when finished extracting
-	os.RemoveAll(filepath.Join(cacheDir, jsonDir+".zip"))
+	_ = os.RemoveAll(filepath.Join(cacheDir, jsonDir+".zip"))
 
 	return nil
 }
 
-func (c *ArtCache) extractFile(zf *zip.File, dst string) error {
-	var e error
+func (c *ArtCache) extractFile(zf *zip.File, dst string) (e error) {
 	var f1 io.ReadCloser
 	var f2 *os.File
+	var mb int64 = 1024 * 1024
 
 	// Open compressed file
 	if f1, e = zf.Open(); e != nil {
 		return errors.Newf("failed to decompress file: %w", e)
 	}
-	defer f1.Close()
+	defer func() {
+		if e == nil {
+			if e = f1.Close(); e != nil {
+				e = errors.Newf(
+					"failed to close %s in zip: %w", zf.Name,
+					e,
+				)
+			}
+		}
+	}()
 
 	// Open dst file
-	if f2, e = os.Create(dst); e != nil {
+	if f2, e = os.Create(filepath.Clean(dst)); e != nil {
 		return errors.Newf("failed to create file: %w", e)
 	}
-	defer f2.Close()
+	defer func() {
+		if e == nil {
+			if e = f2.Close(); e != nil {
+				e = errors.Newf("failed to close %s: %w", dst, e)
+			}
+		}
+	}()
 
 	// Write decompressed contents to file
-	if _, e = io.Copy(f2, f1); e != nil {
-		return errors.Newf("failed to write file: %w", e)
-	}
+	for {
+		_, e = io.CopyN(f2, f1, mb)
 
-	return nil
+		switch e {
+		case nil:
+		case io.EOF:
+			return nil
+		default:
+			return errors.Newf("failed to write %s: %w", dst, e)
+		}
+	}
 }
 
 // GetFileOf will return the cached filename for the specified art.
@@ -201,6 +239,7 @@ func (c *ArtCache) List() []string {
 	}
 
 	slices.Sort(keys)
+
 	return keys
 }
 
@@ -279,11 +318,11 @@ func (c *ArtCache) Refresh() error {
 	// Get all JSON files
 	e = filepath.Walk(filepath.Join(cacheDir, jsonDir), addArt)
 	if e != nil {
-		return e
+		return errors.Newf("failed to get built-in JSON files: %w", e)
 	}
 
 	if e = filepath.Walk(CustomJSONDir, addArt); e != nil {
-		return e
+		return errors.Newf("failed to get custom JSON files: %w", e)
 	}
 
 	// Save with new data, if no errors
@@ -296,6 +335,7 @@ func (c *ArtCache) Refresh() error {
 func (c *ArtCache) Save() error {
 	var e error
 
+	//nolint:mnd // u=rwx,go=-
 	if e = os.MkdirAll(filepath.Dir(c.file), 0o700); e != nil {
 		return errors.Newf(
 			"failed to create directory %s: %w",
@@ -304,6 +344,7 @@ func (c *ArtCache) Save() error {
 		)
 	}
 
+	//nolint:mnd // u=rw,go=-
 	if e = os.WriteFile(c.file, []byte(c.String()), 0o600); e != nil {
 		return errors.Newf("failed to write %s: %w", c.file, e)
 	}
@@ -316,6 +357,7 @@ func (c *ArtCache) String() string {
 	var b []byte
 
 	b, _ = json.MarshalIndent(&c, "", "  ")
+
 	return strings.TrimSpace(string(b)) + "\n"
 }
 

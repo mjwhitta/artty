@@ -4,7 +4,9 @@ import (
 	"image"
 	_ "image/jpeg" // Register jpeg
 	_ "image/png"  // Register png
+	"math"
 	"os"
+	"path/filepath"
 	"regexp"
 	"sort"
 	"strconv"
@@ -15,7 +17,8 @@ import (
 )
 
 func bootstrap(
-	fn string, name string,
+	fn string,
+	name string,
 ) (string, []string, map[string]string, error) {
 	var e error
 	var height int
@@ -27,11 +30,13 @@ func bootstrap(
 	var uniqClrs []string
 	var width int
 
-	r = regexp.MustCompile(`([^/]+?)(_(\d+)x(\d+))?\.`)
+	r = regexp.MustCompile(`(.+)(_(\d+)x(\d+))?\.`)
 
 	if img, e = decodeImage(fn); e != nil {
 		return "", nil, nil, e
 	}
+
+	fn = filepath.Base(fn)
 
 	for _, match := range r.FindAllStringSubmatch(fn, -1) {
 		if name == "" {
@@ -68,18 +73,13 @@ func bootstrap(
 		return "", nil, nil, errors.Newf("too many colors")
 	}
 
-	pixels, legend, e = generateLegend(pixelClrs, uniqClrs)
-	if e != nil {
-		return "", nil, nil, e
-	}
+	pixels, legend = generateLegend(pixelClrs, uniqClrs)
 
 	return name, pixels, legend, nil
 }
 
-func decodeImage(fn string) (image.Image, error) {
-	var e error
-	var img image.Image
-	var imgFile *os.File
+func decodeImage(fn string) (img image.Image, e error) {
+	var f *os.File
 	var ok bool
 
 	if ok, e = pathname.DoesExist(fn); e != nil {
@@ -90,12 +90,19 @@ func decodeImage(fn string) (image.Image, error) {
 
 	fn = pathname.ExpandPath(fn)
 
-	if imgFile, e = os.Open(fn); e != nil {
+	//nolint:gosec // G304 - pathname calls filepath.Clean()
+	if f, e = os.Open(fn); e != nil {
 		return nil, errors.Newf("failed to open %s: %w", fn, e)
 	}
-	defer imgFile.Close()
+	defer func() {
+		if e == nil {
+			if e = f.Close(); e != nil {
+				e = errors.Newf("failed to close %s: %w", fn, e)
+			}
+		}
+	}()
 
-	if img, _, e = image.Decode(imgFile); e != nil {
+	if img, _, e = image.Decode(f); e != nil {
 		e = errors.Newf("failed to decode image from %s: %w", fn, e)
 		return nil, e
 	}
@@ -106,16 +113,14 @@ func decodeImage(fn string) (image.Image, error) {
 func generateLegend(
 	pixelClrs [][]string,
 	uniqClrs []string,
-) ([]string, map[string]string, error) {
+) ([]string, map[string]string) {
 	var flipLegend map[string]string = map[string]string{}
 	var idx int
 	var legend map[string]string = map[string]string{}
 	var pixels []string
 	var row string
 
-	if !sort.StringsAreSorted(uniqClrs) {
-		sort.Strings(uniqClrs)
-	}
+	sort.Strings(uniqClrs)
 
 	for _, clr := range uniqClrs {
 		flipLegend[clr] = keys[idx]
@@ -125,6 +130,7 @@ func generateLegend(
 
 	for _, rowClrs := range pixelClrs {
 		row = ""
+
 		for _, pixelClr := range rowClrs {
 			switch pixelClr {
 			case "":
@@ -133,10 +139,11 @@ func generateLegend(
 				row += flipLegend[pixelClr]
 			}
 		}
+
 		pixels = append(pixels, row)
 	}
 
-	return pixels, legend, nil
+	return pixels, legend
 }
 
 func getPixelInfo(
@@ -163,7 +170,7 @@ func getPixelInfo(
 
 	if (height != hMax) && (width != wMax) {
 		hInc = float64(hMax / height)
-		offset = int(hInc / 2)
+		offset = int(hInc / 2) //nolint:mnd // Half pixel height
 		wInc = float64(wMax / width)
 	}
 
@@ -173,12 +180,13 @@ func getPixelInfo(
 		for x := offset; x < wMax; x = int(float64(x) + wInc) {
 			r, g, b, a = img.At(x, y).RGBA()
 
+			// Ensure casts are safe
 			a >>= 8
 			b >>= 8
 			g >>= 8
 			r >>= 8
 
-			if a <= 0x30 {
+			if a <= 0x33 { //nolint:mnd // 20% alpha
 				row = append(row, "")
 				continue
 			}
@@ -186,12 +194,14 @@ func getPixelInfo(
 			if failedOnce {
 				clr = hl.ColorToXterm256(img.At(x, y))
 			} else {
+				//nolint:gosec // G115 - Safe b/c of shifts above
 				clr = hl.RGBAToTrueColor(
 					uint8(r),
 					uint8(g),
 					uint8(b),
-					uint8(a),
+					math.MaxUint8,
 				)
+				clr = clr[0:6] // Ignore alpha
 			}
 
 			if _, ok = colorSet[clr]; !ok {

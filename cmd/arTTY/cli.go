@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/mjwhitta/artty"
@@ -78,46 +80,47 @@ func init() {
 	// Configure cli package
 	cli.Align = true
 	cli.Authors = []string{"Miles Whittaker <mj@whitta.dev>"}
-	cli.Banner = hl.Sprintf("%s [OPTIONS] [art]", os.Args[0])
+	cli.Banner = filepath.Base(os.Args[0]) + " [OPTIONS] [art]"
 	cli.BugEmail = "arTTY.bugs@whitta.dev"
+
 	cli.ExitStatus(
 		"Normally the exit status is 0. In the event of an error the",
 		"exit status will be one of the below:\n\n",
-		hl.Sprintf("%d: Invalid option\n", InvalidOption),
-		hl.Sprintf("%d: Missing option\n", MissingOption),
-		hl.Sprintf("%d: Invalid argument\n", InvalidArgument),
-		hl.Sprintf("%d: Missing argument\n", MissingArgument),
-		hl.Sprintf("%d: Extra argument\n", ExtraArgument),
-		hl.Sprintf("%d: Exception", Exception),
+		fmt.Sprintf("%d: Invalid option\n", InvalidOption),
+		fmt.Sprintf("%d: Missing option\n", MissingOption),
+		fmt.Sprintf("%d: Invalid argument\n", InvalidArgument),
+		fmt.Sprintf("%d: Missing argument\n", MissingArgument),
+		fmt.Sprintf("%d: Extra argument\n", ExtraArgument),
+		fmt.Sprintf("%d: Exception", Exception),
 	)
 	cli.Info("Art for your TTY.")
 	cli.SectionAligned(
 		"FIELDS",
-		"|",
-		"blank|Use a blank line as a separator.\n",
-		"colors|Show terminal colors.\n",
-		"cpu|Show cpu info.\n",
-		"fs|Show filesystem usage.\n",
-		"host|Show hostname.\n",
-		"ipv4|Show IPv4 addresses.\n",
-		"ipv6|Show IPv6 addresses.\n",
-		"kernel|Show kernel info.\n",
-		"os|Show operating system info.\n",
-		"ram|Show RAM usage.\n",
-		"shell|Show current shell.\n",
-		"tty|Show TTY info.\n",
-		"uptime|Show uptime.",
+		":",
+		"blank:Blank line\n",
+		"colors:Sample of terminal colors\n",
+		"cpu:CPU info\n",
+		"fs:Filesystem usage\n",
+		"host:Hostname\n",
+		"ip:IPv4/IPv6 addresses\n",
+		"kernel:Kernel info\n",
+		"os:Operating System info\n",
+		"ram:RAM usage\n",
+		"shell:Current shell\n",
+		"tty:TTY info\n",
+		"uptime:Uptime",
 	)
 	cli.SectionAligned(
 		"FORMATS",
-		"|",
-		"bash|Generate bash code.\n",
-		"go|Generate go code.\n",
-		"json|Generate JSON from image file.\n",
-		"stdout|Render art.\n",
-		"python|Generate python code.\n",
-		"ruby|Generate ruby code.",
+		":",
+		"bash:Bash/Zsh script\n",
+		"go:Golang code\n",
+		"json:JSON file (only works with -g or --generate)\n",
+		"stdout:Render art\n",
+		"python:Python script\n",
+		"ruby:Ruby script",
 	)
+
 	cli.Title = "ArTTY"
 
 	// Parse cli flags
@@ -328,7 +331,9 @@ func validate() {
 
 	// Short circuit if version was requested
 	if flags.version {
-		hl.Printf("arTTY version %s\n", artty.Version)
+		fmt.Println(
+			filepath.Base(os.Args[0]) + " version " + artty.Version,
+		)
 		os.Exit(Good)
 	}
 
@@ -350,21 +355,22 @@ func validateActions() {
 
 	ensureOnlyOne()
 
-	if flags.cache {
+	switch {
+	case flags.cache:
 		flags.action = "cache"
-	} else if flags.convert != "" {
+	case flags.convert != "":
 		flags.action = "convert"
-	} else if flags.demo {
+	case flags.demo:
 		flags.action = "demo"
-	} else if flags.generate != "" {
+	case flags.generate != "":
 		flags.action = "generate"
-	} else if flags.list {
+	case flags.list:
 		flags.action = "list"
-	} else if flags.save {
+	case flags.save:
 		flags.action = "save"
-	} else if flags.show {
+	case flags.show:
 		flags.action = "show"
-	} else if flags.update {
+	case flags.update:
 		flags.action = "update"
 	}
 
