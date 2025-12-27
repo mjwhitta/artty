@@ -58,15 +58,17 @@ following commands:
 ```
 $ arTTY -c -f --fit -r -p -s --save
 $ arTTY -c -e "emerald|III|shiny" --fit -m pokemon -p -r -s --save
-$ arTTY -c -f --fit -m "megaman-battle-network" -p -r -s --save
+$ arTTY -c -f --fit -m "mega-man-battle-network" -p -r -s --save
 $ arTTY -c --fit -m portal -p -r -s --save
 $ arTTY -c -f -p -s --save linux-arch
-$ arTTY -c --fit -p -s --save legend-of-zelda-majoras-mask
-$ arTTY -c --fit -m "street-fighter-3" -p -r -s --save
+$ arTTY -c --fit -p -s --save legend-of-zelda-majoras-mask-majoras-mask
+$ arTTY -c --fit -m "street-fighter-III" -p -r -s --save
 ```
 
-Use the `--ls` flags to see all included art. Occasionally you may
-want to run `arTTY --update` to download any new art.
+Use the `--demo` flag to see all matching art or the `--ls` flag to
+just list their names. Use the `-p` flag to ignore any already
+configured filtering. Occasionally you may want to run `arTTY
+--update` to download new art.
 
 Additionally, the system info portion is [configurable][sysinfo] by
 adding the sysinfo options directly into your ArTTY config
@@ -135,7 +137,3 @@ works best with sprites, however, it can parse any image this way.
 - [JSON](https://github.com/mjwhitta/artty_json)
 - [Releases](https://github.com/mjwhitta/artty/releases)
 - [Source](https://github.com/mjwhitta/artty)
-
-## TODO
-
-- Lots more art
