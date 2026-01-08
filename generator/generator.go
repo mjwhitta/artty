@@ -14,7 +14,7 @@ import (
 )
 
 // Convert will try to emulate the output of the convert utility from
-// ImageMagick.
+// ImageMagick. (e.g. convert -depth 8 ./image.png txt:)
 func Convert(fn string) error {
 	var a uint32
 	var b uint32
@@ -31,7 +31,7 @@ func Convert(fn string) error {
 	}
 
 	fmt.Printf(
-		"# ArTTY pixel enumeration: %d,%d,65535,srgba\n",
+		"# ArTTY pixel enumeration: %d,%d,255,srgba\n",
 		img.Bounds().Max.X,
 		img.Bounds().Max.Y,
 	)
@@ -47,8 +47,6 @@ func Convert(fn string) error {
 				g = uint32(float64(g*0xffff) / float64(a))
 				b = uint32(float64(b*0xffff) / float64(a))
 			}
-
-			fmt.Printf("%d,%d: (%d,%d,%d,%d)  ", x, y, r, g, b, a)
 
 			r >>= 8
 			g >>= 8
@@ -72,6 +70,7 @@ func Convert(fn string) error {
 				srgba = "none"
 			}
 
+			fmt.Printf("%d,%d: (%d,%d,%d,%d)  ", x, y, r, g, b, a)
 			fmt.Printf("%s  %s\n", hex, srgba)
 		}
 	}

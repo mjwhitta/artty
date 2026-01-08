@@ -13,7 +13,7 @@ func TestFilter(t *testing.T) {
 	var e error
 
 	arts, e = artty.Filter(
-		"pokemon",
+		"^pokemon",
 		"III|jynx|shiny|smoochum",
 		0,
 		0,
