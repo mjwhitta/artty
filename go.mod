@@ -8,7 +8,7 @@ require (
 	github.com/mjwhitta/hilighter v1.15.1
 	github.com/mjwhitta/log v1.8.9
 	github.com/mjwhitta/pathname v1.3.1
-	github.com/mjwhitta/sysinfo v1.7.6
+	github.com/mjwhitta/sysinfo v1.7.7
 	github.com/mjwhitta/where v1.3.13
 	github.com/stretchr/testify v1.11.1
 )

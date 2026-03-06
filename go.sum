@@ -17,8 +17,8 @@ github.com/mjwhitta/pathname v1.3.1 h1:hBkMT4ukA8hLEMIRvmWvylNHNzhX0SCf8tJ9KJEFc
 github.com/mjwhitta/pathname v1.3.1/go.mod h1:ZxV5Xv1EiDTmoFYAuzTnTZ8A8EWOD+uR+LugcaTfWd0=
 github.com/mjwhitta/safety v1.12.1 h1:sw3Shwf+61vlyN7fJBKb/sAqW8p5M7dSuKV4fq4IaUA=
 github.com/mjwhitta/safety v1.12.1/go.mod h1:7JUIZKe8aaDyfihuVxykLfZNLhNMT/VfDgB0tIxcf1Y=
-github.com/mjwhitta/sysinfo v1.7.6 h1:hr8nJayALUkegOgOUFEAvAdG/JHD+Wlb5Xd71GYbh3I=
-github.com/mjwhitta/sysinfo v1.7.6/go.mod h1:az7+lK+yq7Nizp2nEWCZxVUzMLgxsLalU/Q6w5PRHJs=
+github.com/mjwhitta/sysinfo v1.7.7 h1:JXVN+tuoIzHlCuLdLrn1nvUAw1w53qPZcU7rNu4RiYk=
+github.com/mjwhitta/sysinfo v1.7.7/go.mod h1:9/LsHhgYOdji+hFB8VVeqXMp1Lj3M8aomFDRepWTER4=
 github.com/mjwhitta/where v1.3.13 h1:aH51uZMjjwTUNJV6mDNV3bsqWcDx11iVbV4F4j85PPU=
 github.com/mjwhitta/where v1.3.13/go.mod h1:0tjCGhF4TtRVOf8A5M4E6ItQ/kkEy5kIGPU9TdKZSBk=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
