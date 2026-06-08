@@ -7,7 +7,7 @@ import (
 )
 
 // Version is the package version
-const Version string = "1.6.3"
+const Version string = "1.6.4"
 
 var (
 	// Cache related vars
