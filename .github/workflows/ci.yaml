@@ -1,18 +1,18 @@
 name: GitHub Go CI
 on:
-  push:
-    branches: ["main"]
-    paths: ["**.go"]
   pull_request:
     branches: ["main"]
     paths: ["**.go"]
     types: ["edited", "opened"]
+  push:
+    branches: ["main"]
+    paths: ["**.go"]
   workflow_dispatch:
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v7
       with:
         submodules: true
     - uses: actions/setup-go@v6
@@ -21,24 +21,20 @@ jobs:
     - env:
         GOOS: "darwin"
       name: Lint (darwin)
-      uses: golangci/golangci-lint-action@v8
+      uses: golangci/golangci-lint-action@v9
       with:
         version: latest
     - env:
         GOOS: "linux"
       name: Lint (linux)
-      uses: golangci/golangci-lint-action@v8
+      uses: golangci/golangci-lint-action@v9
       with:
         version: latest
     - env:
         GOOS: "windows"
       name: Lint (windows)
-      uses: golangci/golangci-lint-action@v8
+      uses: golangci/golangci-lint-action@v9
       with:
         version: latest
-    - name: Build
-      run: make
-    - name: Update
-      run: ./build/linux/amd64/arTTY -u
     - name: Test coverage
       run: make cover
