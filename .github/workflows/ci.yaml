@@ -36,5 +36,9 @@ jobs:
       uses: golangci/golangci-lint-action@v9
       with:
         version: latest
+    - name: Build and update image cache
+      run: |
+        make
+        ./build/linux/amd64/arTTY -u
     - name: Test coverage
       run: make cover
