@@ -12,6 +12,9 @@ func TestFilter(t *testing.T) {
 	var arts []string
 	var e error
 
+	e = artty.Cache.Update()
+	assert.NoError(t, e)
+
 	arts, e = artty.Filter(
 		"^pokemon",
 		"III|jynx|shiny|smoochum",
