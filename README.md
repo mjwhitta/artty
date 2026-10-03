@@ -4,7 +4,6 @@
 [![Release](https://img.shields.io/github/v/release/mjwhitta/artty?style=for-the-badge)](https://github.com/mjwhitta/artty/releases/latest)
 ![GitHub all releases](https://img.shields.io/github/downloads/mjwhitta/artty/total?style=for-the-badge)
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/mjwhitta/artty?style=for-the-badge)](https://goreportcard.com/report/github.com/mjwhitta/artty)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mjwhitta/artty/ci.yaml?style=for-the-badge)](https://github.com/mjwhitta/artty/actions)
 ![License](https://img.shields.io/github/license/mjwhitta/artty?style=for-the-badge)
 
